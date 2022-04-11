@@ -27,7 +27,7 @@ function App() {
   const { t } = useTranslation();
   return (
     <div className="container">
-      <div className="d-flex justify-content-end">
+      <div className="d-flex  justify-content-end">
         <div className="dropdown">
           <button
             className="btn dropdown-toggle"
