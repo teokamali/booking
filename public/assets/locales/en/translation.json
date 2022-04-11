@@ -1,0 +1,6 @@
+{
+  "app_title": "Title",
+  "language": "Language",
+  "welcome_message": "Welcome",
+  "days_since_release": "{{props1}} for test {{props2}}"
+}
