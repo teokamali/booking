@@ -1,15 +1,12 @@
 import App from "./App";
 import ReactDOM from "react-dom/client";
 import React from "react";
-
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from "i18next-http-backend";
+import { BrowserRouter } from "react-router-dom";
 
-import "bootstrap/dist/js/bootstrap.bundle";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "flag-icon-css/css/flag-icons.min.css";
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)
@@ -22,13 +19,13 @@ i18n
       caches: ["cookie"],
     },
     backend: {
-      loadPath: "/assets/locales/{{lng}}/translation.json",
+      loadPath: "locales/{{lng}}/translation.json",
     },
   });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>
+  </BrowserRouter>
 );

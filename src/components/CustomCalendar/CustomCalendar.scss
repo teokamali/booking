@@ -1,0 +1,57 @@
+.custom-calendar {
+  .rmdp-week-day {
+    font-size: 0.5rem;
+  }
+  .rmdp-rtl {
+    width: 100% !important;
+  }
+  .rmdp-calendar {
+    padding: 0 !important;
+  }
+  .rmdp-top-class {
+    width: 100% !important;
+  }
+  .rmdp-today {
+    background-color: unset;
+    border: 2px solid #7ea6f0;
+  }
+  .rmdp-day.rmdp-today span {
+    background-color: unset;
+  }
+
+  .rmdp-day.rmdp-today.rmdp-range{
+    background-color: #f25487;
+    border: 0;
+  }
+  @media (min-width: 500px) {
+    .rmdp-week-day {
+      font-size: 0.8rem;
+    }
+  }
+}
+.rmdp-wrapper {
+  width: 100%;
+}
+// .rmdp-header div {
+//   width: 70%;
+//   margin: 0 auto;
+// }
+.rmdp-day-picker div {
+  width: 100% !important;
+}
+.rmdp-day span {
+  border-radius: 0;
+}
+.rmdp-day {
+  min-height: 50px;
+}
+
+.custom-day-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .custom-day {
+    display: block !important;
+    margin: 0;
+  }
+}

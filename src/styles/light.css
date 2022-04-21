@@ -1,0 +1,9 @@
+[data-scheme="light"] {
+    --bg: #f2f2f2;
+    --bg-level-1: #fff;
+    --fg: #333;
+    --input-bg: rgb(0 0 0 / 5%);
+    --button-bg: #ddd;
+    --button-fg: var(--fg);
+    --color-transition: background-color 300ms, color 300ms;
+  }

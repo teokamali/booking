@@ -1,0 +1,108 @@
+.hero__content {
+  &__title {
+    width: 50%;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bolder;
+  }
+  &__wrapper {
+    display: flex;
+    gap: 1rem;
+    a {
+      font-size: 1.5rem;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      &:nth-child(1) {
+        color: #333;
+        background-color: #fff;
+      }
+      &:nth-child(2) {
+        color: #fff;
+        background-color: crimson;
+      }
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+.hero__header {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  margin: 2rem auto 0 auto;
+  background-color: #fff;
+  height: 5rem;
+  border-radius: 30px;
+  color: #333;
+  .row {
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    .seconde-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      nav {
+        ul {
+          display: flex;
+          justify-content: center;
+          list-style-type: none;
+          gap: 1rem;
+          padding: 0;
+          margin: 0;
+
+          li {
+            font-weight: 400;
+            cursor: pointer;
+          }
+        }
+      }
+      .favorites {
+        position: relative;
+        span {
+          position: absolute;
+          bottom: -5px;
+          left: -2px;
+          background-color: red;
+          color: #fff;
+          text-align: center;
+          width: 20px;
+          height: 20px;
+          font-size: 12px;
+          padding: 3px;
+          font-weight: bold;
+          line-height: 19px;
+          border-radius: 50%;
+        }
+
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      .btn-book-now {
+        color: #fff;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 15px;
+      }
+    }
+    .first-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      span {
+        margin-top: 5px;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}

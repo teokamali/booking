@@ -1,0 +1,28 @@
+.layout-container {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  @media (min-width: 768px) {
+      flex-direction: row;
+}
+}
+
+.container__sidebar {
+  position: sticky;
+  top: 50px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  @media (min-width: 767px) {
+    width: 30%;
+  }
+}
+
+.container__main {
+  /* Take the remaining width */
+  flex: 1;
+
+  /* Make it scrollable */
+  overflow: auto;
+}
