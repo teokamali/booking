@@ -2,16 +2,16 @@
   &__title {
     width: 50%;
     text-align: center;
-    font-size: 4rem;
+    font-size: 3.875rem;
     font-weight: bolder;
   }
   &__wrapper {
     display: flex;
     gap: 1rem;
     a {
-      font-size: 1.5rem;
-      border-radius: 20px;
-      padding: 0.5rem 1rem;
+      font-size: 18px;
+      border-radius: 36px;
+      padding: 1.5rem 2.4375rem;
       &:nth-child(1) {
         color: #333;
         background-color: #fff;
@@ -29,11 +29,11 @@
 .hero__header {
   display: flex;
   justify-content: center;
-  width: 60%;
+  width: 1200px;
   margin: 2rem auto 0 auto;
   background-color: #fff;
-  height: 5rem;
-  border-radius: 30px;
+  height: 86px;
+  border-radius: 65px;
   color: #333;
   .row {
     align-items: center;
@@ -42,7 +42,7 @@
     .seconde-row {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       gap: 1rem;
       nav {
         ul {
@@ -54,6 +54,7 @@
           margin: 0;
 
           li {
+            font-size: 18px;
             font-weight: 400;
             cursor: pointer;
           }
@@ -70,7 +71,7 @@
           text-align: center;
           width: 20px;
           height: 20px;
-          font-size: 12px;
+          font-size: 9px;
           padding: 3px;
           font-weight: bold;
           line-height: 19px;
@@ -87,21 +88,21 @@
         border-radius: 30px;
         font-weight: bold;
         font-size: 1rem;
-        padding: 15px;
+        padding: 16.5px;
       }
     }
     .first-row {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: 7px;
       span {
-        margin-top: 5px;
-        font-size: 1.2rem;
+        margin-top: 12px;
+        font-size: 24px;
         font-weight: bold;
       }
       svg {
-        width: 50px;
-        height: 50px;
+        width: 36px;
+        height: 36px;
       }
     }
   }
