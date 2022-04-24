@@ -13,12 +13,7 @@ export default function PanelRoutes() {
   );
 
   // Pages
-  const Login = React.lazy(() =>
-    import("../AdminPanel/views/pages/login/Login")
-  );
-  const Register = React.lazy(() =>
-    import("../AdminPanel/views/pages/register/Register")
-  );
+
   const Page404 = React.lazy(() =>
     import("../AdminPanel/views/pages/page404/Page404")
   );

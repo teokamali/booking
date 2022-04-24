@@ -2,10 +2,11 @@ import axios from "axios";
 import routes from "./routes";
 import Cookies from "js-cookie";
 import { constans } from "../values";
-import instance from "./axiosInstance";
+import instance from "./axios";
+import axiosInstance from "./axios";
 const login = async (username, password) => {
   try {
-    const resLogin = await instance.post(routes.login, {
+    const resLogin = await axiosInstance.post(routes.login, {
       username,
       password,
     });

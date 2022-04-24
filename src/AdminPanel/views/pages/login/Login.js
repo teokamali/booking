@@ -14,30 +14,59 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { cilLockLocked, cilUser } from "@coreui/icons";
-import api from "../../../api";
-import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router";
-import { useAuth } from "../../../components/ProtectedRoute";
+import useAuth from "../../../hooks/UseAuth";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+
+import axios from "../../../api/axios";
+const LOGIN_URL = "/auth";
+
 const Login = () => {
+  const { setAuth } = useAuth();
+
   const navigate = useNavigate();
-  const [loginForm, setLoginForm] = useState({
-    username: "mehrad",
-    password: "Mehrad1234!",
-  });
-  const loginSubmitHandler = async (e) => {
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  // const [loginForm, setLoginForm] = useState({
+  //   username: "mamad",
+  //   password: "@Mohammad80",
+  // });
+
+  const [user, setUser] = useState("mamad");
+  const [pwd, setPwd] = useState("@Mohammad80");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loginForm.password !== "" && loginForm.username !== "") {
-      const resLogin = await api.login(loginForm.username, loginForm.password);
-      if (resLogin) {
-        navigate("/administrator/dashboard");
+
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ user, pwd }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      //console.log(JSON.stringify(response));
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({ user, pwd, roles, accessToken });
+      setUser("");
+      setPwd("");
+      navigate(from, { replace: true });
+    } catch (err) {
+      if (!err?.response) {
+        // console.log("No Server Response");
+      } else if (err.response?.status === 400) {
+        console.log("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        console.log("Unauthorized");
+      } else {
+        console.log("Login Failed");
       }
     }
   };
-  const isAuth = useAuth();
-  console.log(isAuth);
-  if (isAuth) {
-    return <Navigate to="/administrator/dashboard" replace />;
-  }
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
@@ -47,7 +76,7 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm onSubmit={loginSubmitHandler}>
+                  <CForm onSubmit={handleSubmit}>
                     <h1>Login</h1>
                     <p className="text-medium-emphasis">
                       Sign In to your account
@@ -59,14 +88,9 @@ const Login = () => {
                       <CFormInput
                         placeholder="Username"
                         autoComplete="username"
-                        value={loginForm.username}
                         required={true}
-                        onChange={(e) =>
-                          setLoginForm({
-                            ...loginForm,
-                            username: e.target.value,
-                          })
-                        }
+                        onChange={(e) => setUser(e.target.value)}
+                        value={user}
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
@@ -78,13 +102,8 @@ const Login = () => {
                         placeholder="Password"
                         required={true}
                         autoComplete="current-password"
-                        value={loginForm.password}
-                        onChange={(e) =>
-                          setLoginForm({
-                            ...loginForm,
-                            password: e.target.value,
-                          })
-                        }
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}
                       />
                     </CInputGroup>
                     <CRow>
