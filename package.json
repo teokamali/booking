@@ -28,6 +28,7 @@
     "react-multi-date-picker": "^3.3.0",
     "react-multiple-image-input": "^1.0.0",
     "react-redux": "^7.2.8",
+    "react-responsive": "^9.0.0-beta.6",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",

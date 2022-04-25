@@ -1,0 +1,130 @@
+@import "../../styles/global.scss";
+.hambergur-menu {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  height: 70px;
+  z-index: 3;
+  border-radius: 65px;
+  ul {
+    margin: 0;
+    padding: 0 1rem;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
+    li {
+      a {
+        display: block;
+        padding: 20px 20px;
+        border-right: 1px solid #f4f4f4;
+        text-decoration: none;
+        &:hover {
+        }
+      }
+    }
+  }
+}
+.logo {
+  width: 83px;
+  height: 25px;
+  display: inline-block;
+  position: absolute;
+  margin-left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  img {
+    width: 100%;
+  }
+}
+
+/* menu */
+.hambergur-menu .menu {
+  position: absolute;
+  clear: both;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+  border-radius: 65px;
+  width: 100%;
+  top: 90px;
+}
+
+/* menu icon */
+
+.hambergur-menu .menu-icon {
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  padding: 34px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.hambergur-menu .menu-icon .navicon {
+  background: #333;
+  display: block;
+  height: 3px;
+  position: relative;
+  transition: background 0.2s ease-out;
+  width: 18px;
+}
+
+.hambergur-menu .menu-icon .navicon:after {
+  background: #333;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+
+.hambergur-menu .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.hambergur-menu .menu-btn {
+  display: none;
+}
+
+.hambergur-menu .menu-btn:checked ~ .menu {
+  max-height: 350px;
+  height: 300px;
+}
+
+.hambergur-menu .menu-btn:checked ~ .menu-icon .navicon {
+  background: $black-color;
+  transform: rotate(45deg);
+}
+.hambergur-menu .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(90deg);
+}
+
+.hambergur-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.hambergur-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+/* 48em = 768px */
+
+@media (min-width: 74rem) {
+  .hambergur-menu li {
+    float: left;
+  }
+  .hambergur-menu li a {
+    padding: 20px 30px;
+  }
+  .hambergur-menu .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  .hambergur-menu .menu-icon {
+    display: none;
+  }
+}

@@ -1,5 +1,5 @@
 import { config } from "../values";
-const login = config.BASE_URL + "/administrator/login";
+const login = config.BASE_URL + "/login";
 const routes = {
   login,
 };
