@@ -9,6 +9,9 @@
   height: 86px;
   border-radius: 65px;
   color: #333;
+  @media (max-width: 1200px) {
+    width: 90%;
+  }
   .row {
     align-items: center;
     width: 100%;
@@ -61,26 +64,19 @@
           height: 30px;
         }
       }
-      .btn-book-now {
-        color: #fff;
-        border-radius: 30px;
-        font-weight: bold;
-        font-size: 1rem;
-        padding: 16.5px;
-      }
     }
     .first-row {
       display: flex;
       align-items: center;
       gap: 7px;
-      span {
-        margin-top: 12px;
-        font-size: 24px;
-        font-weight: bold;
-      }
-      svg {
-        width: 36px;
-        height: 36px;
+      .full-nav-logo {
+        width: 83px;
+        height: 25px;
+        display: inline-block;
+        margin-left: 16px;
+        img {
+          width: 100%;
+        }
       }
     }
   }

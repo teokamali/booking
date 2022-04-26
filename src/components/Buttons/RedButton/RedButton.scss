@@ -1,0 +1,16 @@
+@import "../../../styles/global.scss";
+.btn-red {
+  color: $white-color;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 16.5px;
+  background-color: $red-color;
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
+  text-align: center;
+  &:hover {
+    background-color: $white-color;
+    color: $black-color;
+  }
+}

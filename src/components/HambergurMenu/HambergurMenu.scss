@@ -3,7 +3,7 @@
   position: relative;
   background-color: #fff;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
-  width: 70%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
@@ -12,16 +12,23 @@
   border-radius: 65px;
   ul {
     margin: 0;
-    padding: 0 1rem;
+    padding: 0;
     list-style: none;
     overflow: hidden;
     background-color: #fff;
     li {
+      &:last-child {
+        a {
+          color: #fff;
+        }
+      }
       a {
         display: block;
-        padding: 20px 20px;
+        margin-bottom: 12px;
         border-right: 1px solid #f4f4f4;
         text-decoration: none;
+        color: #333;
+
         &:hover {
         }
       }
@@ -40,16 +47,44 @@
     width: 100%;
   }
 }
+.hambergur-favorites {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  span {
+    position: absolute;
+    bottom: -5px;
+    left: -2px;
+    background-color: red;
+    color: #fff;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    font-size: 9px;
+    padding: 3px;
+    font-weight: bold;
+    line-height: 19px;
+    border-radius: 50%;
+  }
 
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
 /* menu */
 .hambergur-menu .menu {
   position: absolute;
   clear: both;
   max-height: 0;
   transition: max-height 0.2s ease-out;
-  border-radius: 65px;
+  border-radius: 24px;
   width: 100%;
   top: 90px;
+}
+.menu-wrapper {
+  padding: 1.5rem;
 }
 
 /* menu icon */
@@ -58,7 +93,8 @@
   cursor: pointer;
   display: inline-block;
   float: right;
-  padding: 34px 20px;
+  padding: 36px 20px;
+  margin-right: 51px;
   position: relative;
   user-select: none;
 }
@@ -69,7 +105,7 @@
   height: 3px;
   position: relative;
   transition: background 0.2s ease-out;
-  width: 18px;
+  width: 28px;
 }
 
 .hambergur-menu .menu-icon .navicon:after {
@@ -83,7 +119,7 @@
 }
 
 .hambergur-menu .menu-icon .navicon:after {
-  top: -5px;
+  top: -7px;
 }
 
 /* menu btn */
@@ -93,8 +129,8 @@
 }
 
 .hambergur-menu .menu-btn:checked ~ .menu {
-  max-height: 350px;
-  height: 300px;
+  max-height: 240px;
+  height: 240px;
 }
 
 .hambergur-menu .menu-btn:checked ~ .menu-icon .navicon {
@@ -117,7 +153,7 @@
     float: left;
   }
   .hambergur-menu li a {
-    padding: 20px 30px;
+    // padding: 20px 30px;
   }
   .hambergur-menu .menu {
     clear: none;

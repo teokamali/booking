@@ -1,27 +1,64 @@
+@import "../styles/global.scss";
 .hero__content {
-  &__title {
-    width: 50%;
-    text-align: center;
-    font-size: 3.875rem;
-    font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  // Tebgh UI mehrad
+  @media (min-width: 768px) {
+    margin-top: 201px;
   }
   &__wrapper {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+  &__title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    @media (min-width: 768px) {
+      font-size: 3.875rem;
+    }
+  }
+  &__desc {
+    font-size: 1rem;
+    margin-bottom: 9px;
+    text-align: center;
+  }
+
+  &__Footer {
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
+    width: 90%;
+    @media (min-width: 768px) {
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+    }
     a {
       font-size: 18px;
       border-radius: 36px;
       padding: 1.5rem 2.4375rem;
       &:nth-child(1) {
-        color: #333;
-        background-color: #fff;
+        color: $white-color;
+        background-color: $red-color;
+        &:hover {
+          background-color: $white-color;
+          color: $black-color;
+        }
       }
       &:nth-child(2) {
-        color: #fff;
-        background-color: crimson;
-      }
-      &:hover {
-        opacity: 0.8;
+        color: #333;
+        background-color: $white-color;
+        &:hover {
+          background-color: $red-color;
+          color: $white-color;
+        }
       }
     }
   }

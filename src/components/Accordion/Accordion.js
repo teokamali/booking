@@ -1,9 +1,4 @@
 import React from "react";
-import "./Accordion.scss";
-import "bootstrap/dist/css/bootstrap-grid.rtl.min.css";
-import "bootstrap/dist/css/bootstrap-utilities.rtl.min.css";
-import "bootstrap/dist/css/bootstrap.rtl.min.css";
-import "bootstrap/dist/js/bootstrap.bundle"
 
 const Accordion = ({ items }) => {
   return (
@@ -45,11 +40,13 @@ const Accordion = ({ items }) => {
         <p>
           پرسش خود را ثبت کنید، ما بزودی پاسخ آن را برایتان ارسال خواهیم کرد.
         </p>
-        <a className="accordion-link" href="/"> ثبت سوال</a>
+        <a className="accordion-link" href="/">
+          {" "}
+          ثبت سوال
+        </a>
       </div>
     </main>
   );
-
 };
 
 export default Accordion;
