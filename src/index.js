@@ -14,6 +14,8 @@ import "./assets/fonts/font-style.css";
 import "./styles/light.css";
 import "./styles/dark.css";
 import "./styles/global.scss";
+import "swiper/css";
+import "swiper/css/navigation";
 import "./AdminPanel/scss/style.scss";
 
 i18n

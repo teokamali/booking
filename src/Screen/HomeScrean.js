@@ -13,6 +13,10 @@ import FullNavBar from "../components/FullNavBar/FullNavBar";
 import HambergurMenu from "../components/HambergurMenu/HambergurMenu";
 import RedButton from "../components/Buttons/RedButton/RedButton";
 import WhiteButton from "../components/Buttons/WhiteButton/WhiteButton";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import HouseCard from "../components/Cards/HouseCard/HouseCard";
+
 const HomeScrean = () => {
   const { theme } = useContext(ThemeContext);
 
@@ -44,11 +48,45 @@ const HomeScrean = () => {
           </div>
           <div className="hero__content__Footer">
             <RedButton text="Explore Rooms" link="/" />
-
             <WhiteButton text="About us" link="/" />
           </div>
         </div>
       </Hero>
+      {/* First Section */}
+      <div className="section first__section">
+        <div className="first__section__heading">
+          <h3>Explore our Hotels</h3>
+          <WhiteButton text="Browse All" link="/" className="with-box-shadow" />
+        </div>
+        <div className="slider-swiper mt-5">
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={10}
+            loop={true}
+            navigation={true}
+            centeredSlides={true}
+            modules={[Navigation]}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+            <SwiperSlide>
+              <HouseCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <HouseCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <HouseCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <HouseCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <HouseCard />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </div>
     </div>
     // </div>
   );

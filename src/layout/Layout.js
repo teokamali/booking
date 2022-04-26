@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Footer from "../components/Footer/Footer";
 import { languages } from "../utils/Languages";
 import jsCookie from "js-cookie";
 
@@ -17,7 +16,6 @@ function Layout({ children }) {
   return (
     <div className={`main-layout`}>
       <div className="main-content">{children}</div>
-      <Footer />
     </div>
   );
 }

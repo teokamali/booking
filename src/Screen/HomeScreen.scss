@@ -63,3 +63,29 @@
     }
   }
 }
+.with-box-shadow {
+  box-shadow: 0px 4px 10px rgba($color: #000000, $alpha: 0.16);
+}
+.first__section {
+  margin-top: 210px;
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto 32px auto;
+  }
+  .slider-swiper {
+    margin: 1rem auto;
+    .swiper-button-prev,
+    .swiper-rtl .swiper-button-next {
+      left: 220px;
+      right: auto;
+    }
+    .swiper-button-next,
+    .swiper-rtl .swiper-button-prev {
+      left: auto;
+      right: 300px;
+    }
+  }
+}
