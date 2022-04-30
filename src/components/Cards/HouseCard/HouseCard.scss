@@ -1,11 +1,9 @@
 @import "../../../styles/global.scss";
 .house__card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   box-shadow: 0px 2px 12px rgba($color: #14142b, $alpha: 0.08);
   border-radius: 24px;
-  max-width: 391px;
+  margin-bottom: 12px;
+
   &__header {
     width: 100%;
     img {
@@ -15,12 +13,19 @@
     }
   }
   &__body {
-    margin-top: 64px;
-    margin-left: 25px;
-    margin-right: 25px;
-    padding-bottom: 33px;
-    border-bottom: 1px solid $gray-color;
+    // padding: 32px 24px;
+    margin-left: 24px;
+    margin-right: 24px;
+    padding-bottom: 32px;
+    padding-top: 32px;
+    border-bottom: 1px solid #d5d5d5;
+    p {
+      margin: 0;
+      margin-top: 8px;
+      color: $gray-color;
+    }
     &__features {
+      margin-top: 16px;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -45,7 +50,25 @@
   }
   &__footer {
     display: flex;
-    justify-content: flex-end;
-    padding: 25px 25px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 24px;
+    &__price {
+      span {
+        font-size: 18px;
+        color: #5d5d5d;
+        strong {
+          font-size: 22px;
+          font-weight: bold;
+          color: $black-color;
+          padding: 0;
+          margin: 0;
+        }
+        small {
+          font-size: 16px;
+          color: #8b8b8b;
+        }
+      }
+    }
   }
 }

@@ -17,7 +17,6 @@ import "./styles/global.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./AdminPanel/scss/style.scss";
-
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)

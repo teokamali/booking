@@ -1,8 +1,8 @@
 import React from "react";
-import RedButton from "../Buttons/RedButton/RedButton";
 import logo from "../../assets/image/flutter-logo.png";
 
 import "./FullNavBar.scss";
+import Button from "../Button/Button";
 function FullNavBar() {
   return (
     <header className="full-navbar">
@@ -68,7 +68,7 @@ function FullNavBar() {
               <g></g>
             </svg>
           </div>
-          <RedButton text="Book Now" link="/" />
+          <Button isBold>Book Now</Button>
         </div>
       </div>
     </header>

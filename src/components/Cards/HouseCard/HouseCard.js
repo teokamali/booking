@@ -1,6 +1,6 @@
 import React from "react";
 import image from "../../../assets/image/ramsar.jpg";
-import RedButton from "../../Buttons/RedButton/RedButton";
+import Button from "../../Button/Button";
 import "./HouseCard.scss";
 function HouseCard() {
   return (
@@ -10,7 +10,7 @@ function HouseCard() {
       </div>
       <div className="house__card__body">
         <h3>Name</h3>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
+        <p>Lorem ipsum dolor sit, amet </p>
         <div className="house__card__body__features">
           <a href="/" className="house__card__body__features__button">
             <i className="fa-light fa-bed-front"></i>
@@ -25,7 +25,13 @@ function HouseCard() {
         </div>
       </div>
       <div className="house__card__footer">
-        <RedButton text="Book  Now" link="/" />
+        <div className="house__card__footer__price">
+          <span>
+            From <strong>99$</strong>
+            <small>/night</small>
+          </span>
+        </div>
+        <Button hasBorder>Book Now</Button>
       </div>
     </div>
   );

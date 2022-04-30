@@ -1,7 +1,7 @@
 import React from "react";
 import "./HambergurMenu.scss";
 import logo from "../../assets/image/flutter-logo.png";
-import RedButton from "../Buttons/RedButton/RedButton";
+import Button from "../Button/Button";
 function HambergurMenu() {
   return (
     <header className="hambergur-menu">
@@ -72,7 +72,7 @@ function HambergurMenu() {
           </li>
 
           <li>
-            <RedButton text="Book Now" link="/" />
+            <Button className="w-100">Book Now</Button>
           </li>
         </div>
       </ul>
