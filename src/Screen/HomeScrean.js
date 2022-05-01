@@ -138,6 +138,7 @@ const HomeScrean = () => {
       <div className="section banner__section">
         <Banner />
       </div>
+      {/* blog sectoin*/}
     </div>
     // </div>
   );

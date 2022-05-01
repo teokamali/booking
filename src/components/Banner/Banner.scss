@@ -48,24 +48,5 @@
       flex-direction: row;
       justify-content: start;
     }
-    button:first-child {
-      color: $red-color;
-      font-weight: bold;
-      border-width: 3px;
-      padding: 23px 40px;
-      &:hover {
-        color: $white-color;
-      }
-    }
-    button:last-child {
-      font-size: 18px;
-      font-weight: bold;
-      border-width: 3px;
-      padding: 23px 13px;
-
-      &:hover {
-        color: $red-color;
-      }
-    }
   }
 }
