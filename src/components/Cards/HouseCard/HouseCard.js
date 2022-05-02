@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../../assets/image/ramsar.jpg";
+import image from "../../../assets/image/house.jpg";
 import Button from "../../Button/Button";
 import "./HouseCard.scss";
 function HouseCard() {

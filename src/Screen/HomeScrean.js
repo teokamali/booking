@@ -16,6 +16,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import HouseCard from "../components/Cards/HouseCard/HouseCard";
 import Button from "../components/Button/Button";
+import BlogCard from "../components/Cards/BlogCard/BlogCard";
 
 const HomeScrean = () => {
   const { theme } = useContext(ThemeContext);
@@ -57,7 +58,7 @@ const HomeScrean = () => {
       </Hero>
       {/* First Section */}
       <div className="section first__section">
-        <div className="first__section__heading">
+        <div className="section__heading">
           <h3>Explore our Hotels</h3>
           <Button isWhite hasBorder hasBoxShadow isPrimary>
             Book Now
@@ -139,6 +140,27 @@ const HomeScrean = () => {
         <Banner />
       </div>
       {/* blog sectoin*/}
+      <div className="section seconde-section">
+        <div className="section__heading">
+          <h3>Explore our Blogs</h3>
+          <Button isWhite hasBorder hasBoxShadow isPrimary>
+            Browse All
+          </Button>
+        </div>
+        <div className="blog-section">
+          <Mobile>
+            <BlogCard />
+          </Mobile>
+          <Tablet>
+            <BlogCard />
+          </Tablet>
+          <Desktop>
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+          </Desktop>
+        </div>
+      </div>
     </div>
     // </div>
   );

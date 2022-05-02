@@ -24,7 +24,7 @@ function Banner() {
         </p>
       </div>
       <div className="banner__footer">
-        <Button isLarge hasBorder isWhite>
+        <Button isLarge hasBorder>
           Explore rooms
         </Button>
         <Button hasBorder>Explore rooms</Button>
