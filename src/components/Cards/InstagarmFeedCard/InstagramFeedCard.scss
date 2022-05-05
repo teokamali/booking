@@ -1,0 +1,13 @@
+.image {
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 86px;
+  height: 86px;
+  border-radius: 14px;
+  border: 1px solid #707070;
+  @media (min-width: 376px) {
+    width: 106px;
+    height: 106px;
+  }
+}
