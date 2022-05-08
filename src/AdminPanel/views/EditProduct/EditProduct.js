@@ -8,7 +8,7 @@ import {
 import React, { useState, useContext } from "react";
 import MultiImageInput from "react-multiple-image-input";
 import { ProductsContext } from "../../context/ProductsContextProvider";
-import CustomDropDown1 from "../../../components/CustomDropDown1/CustomDropDown1";
+import CustomDropDown1 from "../../../components/CustomDropDown1";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { useParams } from "react-router-dom";

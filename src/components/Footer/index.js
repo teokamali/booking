@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../assets/image/flutter-logo.png";
 import house from "../../assets/image/house.jpg";
 import InstagramFeedCard from "../Cards/InstagarmFeedCard";
-import "./Footer.scss";
+import "./index.scss";
 function Foorter() {
   return (
     <>
@@ -21,22 +21,22 @@ function Foorter() {
                   <ul className="social-medias-list">
                     <li className="social-medias-item">
                       <a href="/">
-                        <i class="fa-brands fa-facebook-f"></i>
+                        <i className="fa-brands fa-facebook-f"></i>
                       </a>
                     </li>
                     <li className="social-medias-item">
                       <a href="/">
-                        <i class="fa-brands fa-instagram"></i>
+                        <i className="fa-brands fa-instagram"></i>
                       </a>
                     </li>
                     <li className="social-medias-item">
                       <a href="/">
-                        <i class="fa-brands fa-twitter"></i>
+                        <i className="fa-brands fa-twitter"></i>
                       </a>
                     </li>
                     <li className="social-medias-item">
                       <a href="/">
-                        <i class="fa-brands fa-youtube"></i>
+                        <i className="fa-brands fa-youtube"></i>
                       </a>
                     </li>
                   </ul>

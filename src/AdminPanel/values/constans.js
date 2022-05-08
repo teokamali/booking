@@ -1,4 +1,4 @@
-const TOKEN = "token";
+const TOKEN = "";
 const constans = {
   TOKEN,
 };

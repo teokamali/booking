@@ -1,6 +1,6 @@
 import React from "react";
 import image from "../../../assets/image/house.jpg";
-import "./BlogCard.scss";
+import "./index.scss";
 function BlogCard() {
   return (
     <div className="blog-card-wrapper">

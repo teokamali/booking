@@ -1,5 +1,5 @@
 import React from "react";
-import "./InstagramFeedCard.scss";
+import "./index.scss";
 
 const InstagramFeedCard = ({ image, link }) => {
   return (

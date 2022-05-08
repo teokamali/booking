@@ -14,10 +14,12 @@ import Login from "./AdminPanel/views/pages/login/Login";
 import Register from "./AdminPanel/views/pages/register/Register";
 import RequireAuth from "./AdminPanel/components/RequierAuth";
 import { AuthProvider } from "./AdminPanel/context/AuthProvider";
+import login from "./AdminPanel/api/login";
 
 function App() {
   const { t } = useTranslation();
   document.title = t("app_title");
+  login();
   const ROLES = {
     User: 2001,
     Editor: 1984,
@@ -41,9 +43,10 @@ function App() {
                 element={<Register />}
               />
               {/* Protected Routes */}
-              <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-                <Route path="/administrator/*" element={<PanelRoutes />} />
-              </Route>
+              <Route path="/administrator/*" element={<PanelRoutes />} />
+              {/* <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+              <Route path="/administrator/*" element={<PanelRoutes />} />
+              </Route> */}
             </Routes>
           </AuthProvider>
         </VilaContextProvider>

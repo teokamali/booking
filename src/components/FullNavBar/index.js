@@ -1,8 +1,8 @@
 import React from "react";
 import logo from "../../assets/image/flutter-logo.png";
 
-import "./FullNavBar.scss";
-import Button from "../Button/Button";
+import "./index.scss";
+import Button from "../Button";
 function FullNavBar() {
   return (
     <header className="full-navbar">

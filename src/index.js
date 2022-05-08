@@ -16,6 +16,8 @@ import "./styles/dark.css";
 import "./styles/global.scss";
 import "swiper/css";
 import "swiper/css/navigation";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 import "./AdminPanel/scss/style.scss";
 i18n
   .use(initReactI18next)

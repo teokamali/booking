@@ -8,7 +8,7 @@ import {
 import React, { useState, useContext } from "react";
 import MultiImageInput from "react-multiple-image-input";
 import { ProductsContext } from "../../context/ProductsContextProvider";
-import CustomDropDown1 from "../../../components/CustomDropDown1/CustomDropDown1";
+import CustomDropDown1 from "../../../components/CustomDropDown1";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 function AddProducts() {
@@ -31,7 +31,7 @@ function AddProducts() {
     description: "",
   });
   const submitHandler = (values) => {
-    console.log(values)
+    console.log(values);
     fetch("https://fakestoreapi.com/products", {
       method: "POST",
       body: JSON.stringify(values),
@@ -62,7 +62,9 @@ function AddProducts() {
               <div className="col-12">
                 <MultiImageInput
                   images={formik.values.images}
-                  setImages={(images) => formik.setValues({ ...formik.values, images })}
+                  setImages={(images) =>
+                    formik.setValues({ ...formik.values, images })
+                  }
                   allowCrop={true}
                   max={5}
                   theme="light"
@@ -80,7 +82,10 @@ function AddProducts() {
                     placeholder="مثال: خانه ویلایی"
                     value={formik.values.productName}
                     onChange={(e) => {
-                      formik.setValues({ ...formik.values, productName: e.target.value });
+                      formik.setValues({
+                        ...formik.values,
+                        productName: e.target.value,
+                      });
                     }}
                   />
                   <CFormLabel htmlFor="productName">نام محصول</CFormLabel>
@@ -92,9 +97,12 @@ function AddProducts() {
                     type="text"
                     id="productPrice"
                     placeholder="مثال: 200000"
-                    value={formik.values.productPrice.toLocaleString('fa-IR')}
+                    value={formik.values.productPrice.toLocaleString("fa-IR")}
                     onChange={(e) => {
-                      formik.setValues({ ...formik.values, productPrice: e.target.value });
+                      formik.setValues({
+                        ...formik.values,
+                        productPrice: e.target.value,
+                      });
                     }}
                   />
                   <CFormLabel htmlFor="productPrice">قیمت</CFormLabel>
@@ -111,7 +119,10 @@ function AddProducts() {
                   label="انتخاب دسته بندی"
                   value={formik.values.categorySelect}
                   onValueChange={(category) => {
-                    formik.setValues({ ...formik.values, categorySelect: category });
+                    formik.setValues({
+                      ...formik.values,
+                      categorySelect: category,
+                    });
                   }}
                 />
               </div>
@@ -123,7 +134,7 @@ function AddProducts() {
                   label="انتخاب دسته بندی"
                   value={formik.values.tagSelect}
                   onValueChange={(tags) => {
-                    formik.setValues({  ...formik.values, tagSelect: tags });
+                    formik.setValues({ ...formik.values, tagSelect: tags });
                   }}
                 />
               </div>
@@ -137,7 +148,10 @@ function AddProducts() {
                     placeholder="Leave a comment here"
                     value={formik.values.description}
                     onChange={(e) => {
-                      formik.setValues({  ...formik.values, description: e.target.value });
+                      formik.setValues({
+                        ...formik.values,
+                        description: e.target.value,
+                      });
                     }}
                   ></CFormTextarea>
                   <CFormLabel htmlFor="floatingTextarea">توضیحات</CFormLabel>

@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import CustomDropDown1 from "../CustomDropDown1/CustomDropDown1";
-import CustomRadioButton2 from "../CustomRadioButton2/CustomRadioButton2";
-import CustomButton from "../CustomButton/CustomButton";
-import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 import { DateObject } from "react-multi-date-picker";
+
+import {
+  Button,
+  CustomDropDown1,
+  CustomDatePicker,
+  CustomRadioButton2,
+} from "../../components";
+
 import persian from "react-date-object/calendars/persian";
 import { useTranslation } from "react-i18next";
 
 import "./index.scss";
+
 const VilaFinder = () => {
   const { t } = useTranslation();
   const vilatypes = [
@@ -134,7 +139,7 @@ const VilaFinder = () => {
             boxShadow="0 0 0 0.25rem rgba(255, 0, 0, 0.281)"
             ActiveColor="#fff"
           />
-          <CustomButton
+          <Button
             type="customBtn"
             style={{
               marginBottom: "10px",

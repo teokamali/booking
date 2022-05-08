@@ -1,7 +1,8 @@
 import React from "react";
-import "./HambergurMenu.scss";
 import logo from "../../assets/image/flutter-logo.png";
-import Button from "../Button/Button";
+import Button from "../Button";
+import "./index.scss";
+
 function HambergurMenu() {
   return (
     <header className="hambergur-menu">

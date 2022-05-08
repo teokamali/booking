@@ -1,5 +1,7 @@
 import axios from "axios";
+import { constans } from "../values";
 
 export default axios.create({
-  baseURL: "http://localhost:3500",
+  baseURL: "http://hostapp.ir/api/v1/",
+  headers: { Authorization: `Bearer ${constans.TOKEN}` },
 });

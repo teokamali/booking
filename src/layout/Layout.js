@@ -3,7 +3,8 @@ import { languages } from "../utils/Languages";
 import jsCookie from "js-cookie";
 
 import "./Layout.scss";
-import Footer from "../components/Footer/Foorter";
+import Footer from "../components/Footer";
+import CopyRight from "../components/CopyRight";
 
 function Layout({ children }) {
   const currentlanguageCode = jsCookie.get("i18next") || "en";
@@ -18,6 +19,7 @@ function Layout({ children }) {
     <div className={`main-layout`}>
       <div className="main-content">{children}</div>
       <Footer />
+      <CopyRight />
     </div>
   );
 }

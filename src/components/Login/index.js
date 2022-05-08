@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Select from "react-select";
-import "./Login.scss";
 import { countries } from "../../values";
 import { useTranslation } from "react-i18next";
 import { handleDirction } from "../../utils/functions";
+import "./index.scss";
+
 function Login() {
   const [isPhoneLogin, setIsPhoneLogin] = useState(true);
   const [isEmailLogin, setIsEmailLogin] = useState(false);

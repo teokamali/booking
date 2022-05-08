@@ -1,7 +1,7 @@
 import React from "react";
 import image from "../../../assets/image/house.jpg";
-import Button from "../../Button/Button";
-import "./HouseCard.scss";
+import Button from "../../Button";
+import "./index.scss";
 function HouseCard() {
   return (
     <div className="house__card">
