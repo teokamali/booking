@@ -47,6 +47,14 @@
     width: 100%;
   }
 }
+.user-dashboard-mini {
+  font-size: 1.7rem;
+  color: #333;
+  position: absolute;
+  top: 50%;
+  right: 66px;
+  transform: translateY(-50%);
+}
 .hambergur-favorites {
   position: absolute;
   top: 50%;
@@ -94,7 +102,7 @@
   display: inline-block;
   float: right;
   padding: 36px 20px;
-  margin-right: 51px;
+  margin-right: 80px;
   position: relative;
   user-select: none;
 }

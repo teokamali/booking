@@ -15,6 +15,11 @@ function HambergurMenu() {
         id="menu-btn"
         autoComplete="off"
       />
+
+      <i
+        className="fa-regular fa-user user-dashboard-mini"
+        onClick={() => window.open("/login")}
+      ></i>
       <div className="hambergur-favorites">
         <span className="counter">0</span>
         <svg
@@ -57,6 +62,7 @@ function HambergurMenu() {
       <label className="menu-icon" htmlFor="menu-btn">
         <span className="navicon"></span>
       </label>
+
       <ul className="menu">
         <div className="menu-wrapper">
           <li>

@@ -29,6 +29,10 @@ function FullNavBar() {
               </li>
             </ul>
           </nav>
+          <i
+            className="fa-regular fa-user user-dashboard"
+            onClick={() => window.open("/login")}
+          ></i>
           <div className="favorites">
             <span className="counter">0</span>
             <svg
