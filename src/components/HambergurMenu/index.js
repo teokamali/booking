@@ -1,89 +1,337 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/image/flutter-logo.png";
-import Button from "../Button";
+import Select from "react-select";
+import api from "../../api/";
+import * as Yup from "yup";
+import { Toastify, Button, Modal } from "../index";
+import { Field, Form, Formik } from "formik";
+import { userTypes } from "../../values";
 import "./index.scss";
 
+const LoginValidate = Yup.object({
+  email: Yup.string()
+    .email("Email Format Is Invalid")
+    .required("Email Is Required"),
+  password: Yup.string().required("Password Is Requaired"),
+});
+const RegisterValidate = Yup.object({
+  name: Yup.string()
+    .max(15, "Name Most Be Less Then 15 Characters")
+    .required("Name Is Required"),
+  fname: Yup.string()
+    .max(15, "Family Name  Most Be Less Then 15 Characters")
+    .required("Family Name Is Required"),
+  email: Yup.string().email("Email Invalid").required("Email Is Required"),
+  password: Yup.string().required("Password Feild Is Requaired For Changes"),
+  confirmPass: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords Are Not Match")
+    .required("You Need To Confirm Your Password"),
+});
+
 function HambergurMenu() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+  const [registerForm, setRegisterForm] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    lang: "en",
+    currency: "USD",
+    user_type_id: 1,
+    password: "",
+    password_confirmation: "",
+  });
+  const loginSubmitHandler = (values) => {
+    try {
+      Toastify("success", "Login hander");
+      api.webSiteLogin(values.email, values.password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const registerSubmitHandler = (values) => {
+    try {
+      Toastify("success", "Register handler");
+      api.webSiteRegister(registerForm);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <header className="hambergur-menu">
-      <div className="logo">
-        <img src={logo} alt="logo" />
-      </div>
-      <input
-        type="checkbox"
-        className="menu-btn"
-        id="menu-btn"
-        autoComplete="off"
-      />
-
-      <i
-        className="fa-regular fa-user user-dashboard-mini"
-        onClick={() => window.open("/login")}
-      ></i>
-      <div className="hambergur-favorites">
-        <span className="counter">0</span>
-        <svg
-          version="1.1"
-          id="Capa_1"
-          xmlns="http://www.w3.org/2000/svg"
-          x="0px"
-          y="0px"
-          viewBox="0 0 490.4 490.4"
-        >
-          <g>
-            <g>
-              <path
-                d="M222.5,453.7c6.1,6.1,14.3,9.5,22.9,9.5c8.5,0,16.9-3.5,22.9-9.5L448,274c27.3-27.3,42.3-63.6,42.4-102.1
-			c0-38.6-15-74.9-42.3-102.2S384.6,27.4,346,27.4c-37.9,0-73.6,14.5-100.7,40.9c-27.2-26.5-63-41.1-101-41.1
-			c-38.5,0-74.7,15-102,42.2C15,96.7,0,133,0,171.6c0,38.5,15.1,74.8,42.4,102.1L222.5,453.7z M59.7,86.8
-			c22.6-22.6,52.7-35.1,84.7-35.1s62.2,12.5,84.9,35.2l7.4,7.4c2.3,2.3,5.4,3.6,8.7,3.6l0,0c3.2,0,6.4-1.3,8.7-3.6l7.2-7.2
-			c22.7-22.7,52.8-35.2,84.9-35.2c32,0,62.1,12.5,84.7,35.1c22.7,22.7,35.1,52.8,35.1,84.8s-12.5,62.1-35.2,84.8L251,436.4
-			c-2.9,2.9-8.2,2.9-11.2,0l-180-180c-22.7-22.7-35.2-52.8-35.2-84.8C24.6,139.6,37.1,109.5,59.7,86.8z"
-              />
-            </g>
-          </g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-        </svg>
-      </div>
-      <label className="menu-icon" htmlFor="menu-btn">
-        <span className="navicon"></span>
-      </label>
-
-      <ul className="menu">
-        <div className="menu-wrapper">
-          <li>
-            <a href="/"> Home</a>
-          </li>
-          <li>
-            <a href="/"> About</a>
-          </li>
-          <li>
-            <a href="/"> Blog</a>
-          </li>
-          <li>
-            <a href="/"> About Us</a>
-          </li>
-
-          <li>
-            <Button className="w-100">Book Now</Button>
-          </li>
+    <>
+      <header className="hambergur-menu">
+        <div className="logo">
+          <img src={logo} alt="logo" />
         </div>
-      </ul>
-    </header>
+        <input
+          type="checkbox"
+          className="menu-btn"
+          id="menu-btn"
+          autoComplete="off"
+        />
+
+        {/* <i className="fa-regular fa-user user-dashboard-mini"></i> */}
+
+        <div className="hambergur-favorites">
+          <span className="counter">0</span>
+          <i className="fa-regular fa-heart heart-icon"></i>
+        </div>
+        <label className="menu-icon" htmlFor="menu-btn">
+          <span className="navicon"></span>
+        </label>
+
+        <ul className="menu">
+          <div className="menu-wrapper">
+            <li>
+              <a href="/"> Home</a>
+            </li>
+            <li>
+              <a href="/"> About</a>
+            </li>
+            <li>
+              <a href="/"> Blog</a>
+            </li>
+            <li>
+              <a href="/"> About Us</a>
+            </li>
+
+            <li>
+              <Button className="w-100">Book Now</Button>
+            </li>
+          </div>
+        </ul>
+        <Modal
+          id="LoginModal"
+          buttonClassnames="login-modal-btn"
+          buttonText={
+            <i className="fa-regular fa-user user-dashboard-mini"></i>
+          }
+          modalTitle="Login/Register"
+          submitButtonClassNames="d-none"
+        >
+          {/* Login form */}
+          <div
+            className="login-form"
+            style={isLogin ? { left: "0" } : { left: "100%" }}
+          >
+            <h4>Login to Your Account</h4>
+            <div className="other-options">
+              <button className="login-with-fb">
+                <span className="icon fa-brands fa-facebook-square"></span>
+                Login with facebook
+              </button>
+              <button className="login-with-google">
+                <span className="icon fa-brands fa-google"></span>
+                Login with google
+              </button>
+            </div>
+            <Formik
+              validationSchema={LoginValidate}
+              initialValues={{
+                email: "",
+                password: "",
+              }}
+              onSubmit={(values) => {
+                // same shape as initial values
+                loginSubmitHandler(values);
+              }}
+            >
+              {({ errors, touched, values }) => (
+                <Form
+                  onChange={() => {
+                    setLoginForm({
+                      email: values.email,
+                      password: values.password,
+                    });
+                  }}
+                >
+                  <div className="form-floating input-wrapper">
+                    <Field
+                      className="form-control"
+                      name="email"
+                      placeholder="Email Address"
+                      id="email"
+                      type="text"
+                    />
+                    <label htmlFor="email">Email Address</label>
+
+                    {errors.email && touched.email && (
+                      <span className="input-error">{errors.email}</span>
+                    )}
+                  </div>
+                  <div className="form-floating input-wrapper">
+                    <Field
+                      className="form-control"
+                      name="password"
+                      placeholder="Password"
+                      id="password"
+                      type="password"
+                    />
+                    <label htmlFor="password">Password</label>
+
+                    {errors.password && touched.password && (
+                      <span>{errors.password}</span>
+                    )}
+                  </div>
+                  <span>
+                    dont have account?
+                    <button
+                      type="button"
+                      onClick={() => setIsLogin((prev) => !prev)}
+                    >
+                      Register
+                    </button>
+                  </span>
+                  <Button isBold hasBorder type="submit">
+                    Login
+                  </Button>
+                </Form>
+              )}
+            </Formik>
+          </div>
+          {/* Register form */}
+          <div
+            className="register-form"
+            style={!isLogin ? { left: "0" } : { left: "-100%" }}
+          >
+            <h4>Register</h4>
+            <div className="other-options">
+              <button className="login-with-fb">
+                <span className="icon fa-brands fa-facebook-square"></span>
+                Register with facebook
+              </button>
+              <button className="login-with-google">
+                <span className="icon fa-brands fa-google"></span>
+                Register with google
+              </button>
+            </div>
+            <Formik
+              validationSchema={RegisterValidate}
+              initialValues={{
+                name: "",
+                fname: "",
+                email: "",
+                password: "",
+                confirmPass: "",
+                role: 1,
+              }}
+              onSubmit={(values) => {
+                // same shape as initial values
+                registerSubmitHandler(values);
+              }}
+            >
+              {({ errors, touched, values }) => (
+                <Form
+                  onChange={() => {
+                    setRegisterForm({
+                      first_name: values.name,
+                      last_name: values.fname,
+                      email: values.email,
+                      lang: "en",
+                      currency: "USD",
+                      user_type_id: values.role,
+                      password: values.password,
+                      password_confirmation: values.confirmPass,
+                    });
+                  }}
+                >
+                  <Select
+                    name="role"
+                    options={userTypes}
+                    defaultValue={userTypes[0]}
+                    onChange={(e) => (values.role = e.value)}
+                    className="input-wrapper"
+                  />
+                  <div className="form-floating input-wrapper">
+                    <Field
+                      className="form-control"
+                      name="name"
+                      placeholder="name"
+                      id="name"
+                      type="text"
+                    />
+                    <label htmlFor="name">Name</label>
+                    {errors.name && touched.name && (
+                      <span className="input-error">{errors.name}</span>
+                    )}
+                  </div>
+                  <div className="form-floating input-wrapper">
+                    <Field
+                      className="form-control"
+                      name="fname"
+                      placeholder="Family Name"
+                      id="fname"
+                      type="text"
+                    />
+                    <label htmlFor="fname">Family Name</label>
+
+                    {errors.fname && touched.fname && (
+                      <span className="input-error">{errors.fname}</span>
+                    )}
+                  </div>
+                  <div className="form-floating input-wrapper">
+                    <Field
+                      className="form-control"
+                      name="email"
+                      placeholder="Email"
+                      id="register-email"
+                      type="text"
+                    />
+                    {errors.email && touched.email && (
+                      <span className="input-error">{errors.email}</span>
+                    )}
+                    <label htmlFor="register-email">Email</label>
+                  </div>
+                  <div className=" form-floating input-wrapper">
+                    <Field
+                      className="form-control"
+                      name="password"
+                      placeholder="Password"
+                      id="register-password"
+                      type="password"
+                    />
+                    <label htmlFor="register-password">Password</label>
+
+                    {errors.password && touched.password && (
+                      <span className="input-error">{errors.password}</span>
+                    )}
+                  </div>
+                  <div className="form-floating input-wrapper">
+                    <Field
+                      className="form-control"
+                      name="confirmPass"
+                      placeholder="ConfirmPassword"
+                      id="confirmPass"
+                      type="password"
+                    />
+                    <label htmlFor="confirmPass">Confrim Password</label>
+
+                    {errors.confirmPass && touched.confirmPass && (
+                      <span className="input-error">{errors.confirmPass}</span>
+                    )}
+                  </div>
+                  <span>
+                    Already have an account?
+                    <button
+                      type="button"
+                      onClick={() => setIsLogin((prev) => !prev)}
+                    >
+                      Login
+                    </button>
+                  </span>
+                  <Button isBold hasBorder type="submit">
+                    Register
+                  </Button>
+                </Form>
+              )}
+            </Formik>
+          </div>
+        </Modal>
+      </header>
+    </>
   );
 }
 

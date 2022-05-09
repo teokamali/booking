@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 function Button({
   children = "TEXT",
@@ -9,6 +10,7 @@ function Button({
   hasBoxShadow,
   hasBorder,
   className,
+  type = "submit",
 }) {
   const ButtonEl = styled.button`
     padding: ${(props) => (props.isLarge ? "26px 38px" : "18px 24px")};
@@ -43,4 +45,4 @@ function Button({
   );
 }
 
-export default Button;
+export default memo(Button);

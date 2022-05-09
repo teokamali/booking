@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { languages } from "../utils/Languages";
 import jsCookie from "js-cookie";
 
-import "./Layout.scss";
 import Footer from "../components/Footer";
 import CopyRight from "../components/CopyRight";
+import "./Layout.scss";
 
 function Layout({ children }) {
   const currentlanguageCode = jsCookie.get("i18next") || "en";

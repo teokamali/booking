@@ -8,7 +8,7 @@
   margin-right: auto;
   margin-top: 20px;
   height: 70px;
-  z-index: 3;
+  z-index: 7000;
   border-radius: 65px;
   ul {
     margin: 0;
@@ -62,8 +62,8 @@
   transform: translateY(-50%);
   span {
     position: absolute;
-    bottom: -5px;
-    left: -2px;
+    bottom: 0;
+    left: -5px;
     background-color: red;
     color: #fff;
     text-align: center;
@@ -76,9 +76,9 @@
     border-radius: 50%;
   }
 
-  svg {
-    width: 30px;
-    height: 30px;
+  .heart-icon {
+    font-size: 1.7rem;
+    color: $black-color;
   }
 }
 /* menu */
@@ -94,7 +94,163 @@
 .menu-wrapper {
   padding: 1.5rem;
 }
+.login-modal-btn {
+  border: 0;
+  outline: 0;
+  background-color: unset;
+}
+.other-options {
+  width: 75%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .login-with-fb,
+  .login-with-google {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    height: 40px;
+    display: block;
+    margin: 15px 0;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    opacity: 0.95;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+  }
 
+  .login-with-fb:hover,
+  .login-with-google:hover {
+    opacity: 1;
+  }
+
+  .login-with-fb {
+    background: #527ebf;
+  }
+
+  .login-with-google {
+    background: $red-color;
+  }
+  .login-with-fb .icon,
+  .login-with-google .icon {
+    float: left;
+    font-size: 21px;
+    width: 50px;
+    height: 26px;
+    margin: 7px;
+    padding: 2px;
+    text-align: center;
+    border-right: 1px solid #fff;
+    position: relative;
+    &::before {
+      position: absolute;
+      top: -6px;
+      left: 6px;
+    }
+  }
+}
+.modal-title {
+  color: $black-color;
+}
+.modal-body {
+  color: $black-color;
+  position: relative;
+  overflow-x: hidden;
+  padding: 1rem;
+  height: 700px;
+  .inputs_wrapper {
+    display: flex;
+    flex-direction: column;
+    input {
+      width: 100%;
+    }
+  }
+  .login-form {
+    transition: all 200ms ease-in-out;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h4 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0;
+      padding: 1rem;
+    }
+    form {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
+      .input-wrapper {
+        margin-bottom: 1rem;
+        .form-control {
+          width: 100%;
+        }
+      }
+      span {
+        button {
+          border: 0;
+          outline: 0;
+          background-color: unset;
+          color: blue;
+        }
+      }
+    }
+  }
+  .register-form {
+    .css-1okebmr-indicatorSeparator {
+      background-color: unset;
+    }
+
+    transition: all 200ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    h4 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0;
+      padding: 1rem;
+    }
+    form {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
+      .input-wrapper {
+        margin-bottom: 1rem;
+        .form-control {
+          width: 100%;
+        }
+      }
+      span {
+        button {
+          border: 0;
+          outline: 0;
+          background-color: unset;
+          color: blue;
+        }
+      }
+    }
+  }
+}
 /* menu icon */
 
 .hambergur-menu .menu-icon {
@@ -102,7 +258,7 @@
   display: inline-block;
   float: right;
   padding: 36px 20px;
-  margin-right: 80px;
+  margin-right: 90px;
   position: relative;
   user-select: none;
 }
@@ -124,10 +280,18 @@
   position: absolute;
   transition: all 0.2s ease-out;
   width: 100%;
+  top: -7px;
 }
 
-.hambergur-menu .menu-icon .navicon:after {
-  top: -7px;
+.hambergur-menu .menu-icon .navicon::before {
+  background: #333;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+  top: 7px;
 }
 
 /* menu btn */
@@ -152,6 +316,9 @@
 .hambergur-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
 .hambergur-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
   top: 0;
+}
+.hambergur-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before {
+  opacity: 0;
 }
 
 /* 48em = 768px */

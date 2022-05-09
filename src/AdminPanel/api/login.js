@@ -6,8 +6,8 @@ import axios from "./axios";
 const login = async (email, password) => {
   try {
     const resLogin = await axios.post("login/email", {
-      email: "mamad@sjdf.com",
-      password: "asdhajsdfh",
+      email: email,
+      password: password,
     });
     // Cookies.set(constans.TOKEN, resLogin.data.result.token);
     console.log({ resLogin });

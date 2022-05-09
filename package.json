@@ -32,6 +32,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-select": "^5.3.0",
+    "react-toastify": "^9.0.1",
     "simplebar-react": "^2.3.6",
     "styled-components": "^5.3.5",
     "swiper": "^8.1.4",
