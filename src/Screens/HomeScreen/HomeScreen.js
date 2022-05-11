@@ -7,6 +7,7 @@ import {
   FullNavBar,
   HambergurMenu,
   Hero,
+  LoginModal,
 } from "../../components";
 
 //other
@@ -18,9 +19,9 @@ import backgroundImage from "../../assets/image/dubai.webp";
 import { ThemeContext } from "../../context/ThemeContextProvider";
 import { useTranslation } from "react-i18next";
 
-import "./HomeScreen.scss";
 import HouseCard from "../../components/Cards/HouseCard";
 import BlogCard from "../../components/Cards/BlogCard";
+import "./HomeScreen.scss";
 
 const HomeScrean = () => {
   const { theme } = useContext(ThemeContext);
@@ -30,13 +31,13 @@ const HomeScrean = () => {
     <div className="home-page container-fluid m-0 p-0">
       <Hero background={backgroundImage} overlayColor="rgba(0, 0, 0, 0.65)">
         <Desktop>
-          <FullNavBar />
+          <FullNavBar Modal={LoginModal} />
         </Desktop>
         <Tablet>
-          <HambergurMenu />
+          <HambergurMenu Modal={LoginModal} />
         </Tablet>
         <Mobile>
-          <HambergurMenu />
+          <HambergurMenu Modal={LoginModal} />
         </Mobile>
 
         <div className="hero__content ">

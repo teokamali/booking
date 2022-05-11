@@ -1,4 +1,4 @@
-const BASE_URL = "http://hostapp.ir/api/v1/";
+const BASE_URL = "http://hostap.ir/api/v1/";
 const config = {
   BASE_URL,
 };

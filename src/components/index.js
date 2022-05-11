@@ -16,3 +16,4 @@ export { default as VilaFinder } from "./VilaFinder";
 export { default as Accordion } from "./Accordion";
 export { default as Modal } from "./Modal";
 export { default as Toastify } from "./Toastify";
+export { default as LoginModal } from "./LoginModal";

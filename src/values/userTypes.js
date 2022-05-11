@@ -1,17 +1,20 @@
 const userTypes = [
   {
     id: 1,
-    label: "Passenger",
+    type: "passenger",
+    htmlId: "passenger",
     value: 1,
   },
   {
     id: 2,
-    label: "Property Owner",
+    type: "owner",
+    htmlId: "owner",
     value: 2,
   },
   {
     id: 3,
-    label: "Middleman",
+    type: "referrer",
+    htmlId: "referrer",
     value: 3,
   },
 ];

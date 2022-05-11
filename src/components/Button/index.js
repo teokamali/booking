@@ -10,9 +10,11 @@ function Button({
   hasBoxShadow,
   hasBorder,
   className,
+  id,
   type = "submit",
 }) {
   const ButtonEl = styled.button`
+    white-space: nowrap;
     padding: ${(props) => (props.isLarge ? "26px 38px" : "18px 24px")};
     font-size: ${(props) => (props.isLarge ? "18px" : "16px")};
     color: ${(props) => (props.isPrimary ? "#191919" : "#ffff")};
@@ -39,6 +41,7 @@ function Button({
       isWhite={isWhite}
       hasBoxShadow={hasBoxShadow}
       hasBorder={hasBorder}
+      id={id}
     >
       {children}
     </ButtonEl>

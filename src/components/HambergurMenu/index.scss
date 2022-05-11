@@ -10,6 +10,17 @@
   height: 70px;
   z-index: 7000;
   border-radius: 65px;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &_icons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
   ul {
     margin: 0;
     padding: 0;
@@ -39,27 +50,13 @@
   width: 83px;
   height: 25px;
   display: inline-block;
-  position: absolute;
   margin-left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
   img {
     width: 100%;
   }
 }
-.user-dashboard-mini {
-  font-size: 1.7rem;
-  color: #333;
-  position: absolute;
-  top: 50%;
-  right: 66px;
-  transform: translateY(-50%);
-}
 .hambergur-favorites {
-  position: absolute;
-  top: 50%;
-  right: 24px;
-  transform: translateY(-50%);
+  position: relative;
   span {
     position: absolute;
     bottom: 0;
@@ -81,6 +78,10 @@
     color: $black-color;
   }
 }
+.user-dashboard {
+  font-size: 1.7rem;
+  cursor: pointer;
+}
 /* menu */
 .hambergur-menu .menu {
   position: absolute;
@@ -90,6 +91,7 @@
   border-radius: 24px;
   width: 100%;
   top: 90px;
+  left: 0;
 }
 .menu-wrapper {
   padding: 1.5rem;
@@ -257,8 +259,6 @@
   cursor: pointer;
   display: inline-block;
   float: right;
-  padding: 36px 20px;
-  margin-right: 90px;
   position: relative;
   user-select: none;
 }

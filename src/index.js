@@ -20,6 +20,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "react-toastify/dist/ReactToastify.css";
 import "./AdminPanel/scss/style.scss";
+import "./api/interceptor";
+
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)
