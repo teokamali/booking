@@ -36,7 +36,22 @@
     "simplebar-react": "^2.3.6",
     "styled-components": "^5.3.5",
     "swiper": "^8.1.4",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "@emotion/cache": "11.7.1",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
+    "@mui/icons-material": "5.4.1",
+    "@mui/material": "5.4.1",
+    "@mui/styled-engine": "5.4.1",
+    "chart.js": "3.4.1",
+    "chroma-js": "2.4.2",
+    "prop-types": "15.8.1",
+    "react-chartjs-2": "3.0.4",
+    "react-github-btn": "1.2.1",
+    "react-table": "7.7.0",
+    "stylis": "4.0.13",
+    "stylis-plugin-rtl": "^2.1.1",
+    "web-vitals": "2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

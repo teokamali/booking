@@ -1,10 +1,11 @@
 import React from "react";
 import logo from "../../assets/image/flutter-logo.png";
+import DashboardDropDownWithIcon from "../DashboardDropDownWithIcon";
 import { Button } from "../index";
 
 import "./index.scss";
 
-function HambergurMenu({ Modal }) {
+function HambergurMenu({ Modal, isUserLoggedIn }) {
   return (
     <>
       <header className="hambergur-menu">
@@ -16,7 +17,7 @@ function HambergurMenu({ Modal }) {
             <span className="counter">0</span>
             <i className="fa-regular fa-heart heart-icon"></i>
           </div>
-          <Modal />
+          {isUserLoggedIn ? <DashboardDropDownWithIcon /> : <Modal />}
           <input
             type="checkbox"
             className="menu-btn"

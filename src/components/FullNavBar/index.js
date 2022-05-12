@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/image/flutter-logo.png";
-import { useNavigate } from "react-router";
 import "./index.scss";
 import Button from "../Button";
+import DashboardDropDownWithIcon from "../DashboardDropDownWithIcon";
 
-function FullNavBar({ Modal }) {
-  const navigate = useNavigate();
-
+function FullNavBar({ Modal, isUserLoggedIn }) {
   return (
     <>
       <header className="full-navbar">
@@ -33,7 +31,7 @@ function FullNavBar({ Modal }) {
                 </li>
               </ul>
             </nav>
-            <Modal />
+            {isUserLoggedIn ? <DashboardDropDownWithIcon /> : <Modal />}
             <div className="favorites">
               <span className="counter">0</span>
               <i className="fa-regular fa-heart heart-icon"></i>

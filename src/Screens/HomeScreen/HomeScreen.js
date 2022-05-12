@@ -14,7 +14,6 @@ import {
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import backgroundImage from "../../assets/image/dubai.webp";
-
 // context
 import { ThemeContext } from "../../context/ThemeContextProvider";
 import { useTranslation } from "react-i18next";
@@ -22,22 +21,25 @@ import { useTranslation } from "react-i18next";
 import HouseCard from "../../components/Cards/HouseCard";
 import BlogCard from "../../components/Cards/BlogCard";
 import "./HomeScreen.scss";
+import useAuth from "../../hooks/useAuth";
 
 const HomeScrean = () => {
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
+  const { isUserLoggedIn } = useAuth();
+  console.log(isUserLoggedIn);
   return (
     // <div className="theme" data-scheme={theme}>
     <div className="home-page container-fluid m-0 p-0">
       <Hero background={backgroundImage} overlayColor="rgba(0, 0, 0, 0.65)">
         <Desktop>
-          <FullNavBar Modal={LoginModal} />
+          <FullNavBar Modal={LoginModal} isUserLoggedIn={isUserLoggedIn} />
         </Desktop>
         <Tablet>
-          <HambergurMenu Modal={LoginModal} />
+          <HambergurMenu Modal={LoginModal} isUserLoggedIn={isUserLoggedIn} />
         </Tablet>
         <Mobile>
-          <HambergurMenu Modal={LoginModal} />
+          <HambergurMenu Modal={LoginModal} isUserLoggedIn={isUserLoggedIn} />
         </Mobile>
 
         <div className="hero__content ">
@@ -119,8 +121,8 @@ const HomeScrean = () => {
               },
             }}
             modules={[Navigation]}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log("slide change")}
+            // onSwiper={(swiper) => console.log(swiper)}
           >
             <SwiperSlide>
               <HouseCard />
