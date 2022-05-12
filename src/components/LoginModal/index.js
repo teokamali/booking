@@ -26,6 +26,8 @@ const LoginModal = () => {
     try {
       const loginRes = await api.webSiteLogin(values.email, values.password);
       Cookies.set(constans.TOKEN, loginRes.data.access_token);
+      // get user basse info and save it to cookies
+      // Cookies.set(constans.Info, loginRes.data.access_token);
       Toastify("success", "Logged in successfully");
       setTimeout(() => {
         navigate("/dashboard");

@@ -27,7 +27,6 @@ const HomeScrean = () => {
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
   const { isUserLoggedIn } = useAuth();
-  console.log(isUserLoggedIn);
   return (
     // <div className="theme" data-scheme={theme}>
     <div className="home-page container-fluid m-0 p-0">

@@ -14,15 +14,12 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { cilLockLocked, cilUser } from "@coreui/icons";
-import useAuth from "../../../hooks/UseAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import axios from "../../../api/axios";
 const LOGIN_URL = "/auth";
 
 const Login = () => {
-  const { setAuth } = useAuth();
-
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -34,33 +31,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ user, pwd, roles, accessToken });
-      setUser("");
-      setPwd("");
-      navigate(from, { replace: true });
-    } catch (err) {
-      if (!err?.response) {
-        // console.log("No Server Response");
-      } else if (err.response?.status === 400) {
-        console.log("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        console.log("Unauthorized");
-      } else {
-        console.log("Login Failed");
-      }
-    }
+    } catch (err) {}
   };
 
   return (
