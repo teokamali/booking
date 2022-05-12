@@ -12,7 +12,6 @@ import PanelRoutes from "./Routes/PanelRoutes";
 import { useTranslation } from "react-i18next";
 import Login from "./AdminPanel/views/pages/login/Login";
 import Register from "./AdminPanel/views/pages/register/Register";
-import RequireAuth from "./AdminPanel/components/RequierAuth";
 import { AuthProvider } from "./AdminPanel/context/AuthProvider";
 import { ToastContainer } from "react-toastify";
 
@@ -44,7 +43,7 @@ function App() {
               {/* Protected Routes */}
               <Route path="/administrator/*" element={<PanelRoutes />} />
               {/* <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-              <Route path="/administrator/*" element={<PanelRoutes />} />
+                <Route path="/administrator/*" element={<PanelRoutes />} />
               </Route> */}
             </Routes>
           </AuthProvider>
