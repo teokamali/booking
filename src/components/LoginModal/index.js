@@ -86,6 +86,7 @@ const LoginModal = () => {
                   name="email"
                   placeholder="Email Address"
                   id="email"
+                  autoComplete="on"
                   type="text"
                 />
                 <label htmlFor="email">Email Address</label>
@@ -99,6 +100,7 @@ const LoginModal = () => {
                   className="form-control"
                   name="password"
                   placeholder="Password"
+                  autoComplete="on"
                   id="password"
                   type="password"
                 />
@@ -108,6 +110,7 @@ const LoginModal = () => {
                   <span className="input-error">{errors.password}</span>
                 )}
               </div>
+
               <span>
                 dont have account?
                 <button

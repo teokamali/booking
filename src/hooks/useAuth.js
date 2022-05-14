@@ -56,4 +56,5 @@ const useRegister = () => {
     },
   });
 };
+
 export { useAuth, useLogin, useRegister };

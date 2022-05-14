@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { constans } from "../../values";
 import styled from "styled-components";
 import Button from "../Button";
 
@@ -15,16 +17,24 @@ const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
       </Selected>
       <Options heyt={isActived}>
         <li>
-          <Link to="/dashboard">dashboard</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </li>
         <li>
-          <Link to="/">setting</Link>
+          <Link to="/dashboard/settings">Setting</Link>
         </li>
         <li>
-          <Link to="/">reservations</Link>
+          <Link to="/dashboard/reservations">Reservations</Link>
         </li>
         <li>
-          <Button className="w-100">log out</Button>
+          <Button
+            className="w-100"
+            onClick={() => {
+              Cookies.remove(constans.TOKEN);
+              window.location.reload();
+            }}
+          >
+            Log Out
+          </Button>
         </li>
       </Options>
     </Container>
@@ -66,8 +76,8 @@ const Options = styled.ul`
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.12);
   @media (min-width: 991px) {
     width: 200px;
-    right: 0;
-    left: unset;
+    right: unset;
+    left: 0;
     top: 61px;
   }
   li {
@@ -75,6 +85,8 @@ const Options = styled.ul`
     margin: 4px 0 !important;
     width: 100%;
     a {
+      text-decoration: none;
+      color: #5d5d5d;
       padding: 0 8px;
     }
   }
