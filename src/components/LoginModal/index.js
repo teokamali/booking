@@ -7,6 +7,7 @@ import { constans } from "../../values";
 import { useNavigate } from "react-router";
 import { userTypes } from "../../values";
 import { Modal, CustomRadioButton2, Toastify, Button } from "../index";
+import { useLogin, useRegister } from "../../hooks/useAuth";
 import "./index.scss";
 
 const LoginModal = () => {
@@ -22,20 +23,11 @@ const LoginModal = () => {
     password_confirmation: "",
   });
   const navigate = useNavigate();
-  const loginSubmitHandler = async (values) => {
-    try {
-      const loginRes = await api.webSiteLogin(values.email, values.password);
-      Cookies.set(constans.TOKEN, loginRes.data.access_token);
-      // get user basse info and save it to cookies
-      // Cookies.set(constans.Info, loginRes.data.access_token);
-      Toastify("success", "Logged in successfully");
-      setTimeout(() => {
-        navigate("/dashboard");
-        document.querySelector(".modal-backdrop").remove("");
-      }, 3000);
-    } catch (error) {
-      Toastify("error", "Invalid login");
-    }
+  const { mutate: loginMutate } = useLogin();
+  const { mutate: RegisterMutate } = useRegister();
+
+  const loginSubmitHandler = (values) => {
+    loginMutate({ email: values.email, password: values.password });
   };
   const registerSubmitHandler = async (values) => {
     const formData = {
@@ -48,17 +40,7 @@ const LoginModal = () => {
       password: values.password,
       password_confirmation: values.confirmPass,
     };
-    try {
-      const RegisterRes = await api.webSiteRegister(formData);
-      Cookies.set(constans.TOKEN, RegisterRes.access_token);
-      Toastify("success", "Registeration successfull!");
-      setTimeout(() => {
-        navigate("/dashboard");
-        document.querySelector(".modal-backdrop").remove("");
-      }, 3000);
-    } catch (error) {
-      Toastify("error", "An error occurred while registering");
-    }
+    RegisterMutate(formData);
   };
 
   return (
@@ -190,7 +172,7 @@ const LoginModal = () => {
           }}
         >
           {({ errors, touched, values }) => (
-            <Form onChange={() => console.log(errors)}>
+            <Form>
               <div className="form-floating input-wrapper">
                 <Field
                   className="form-control"

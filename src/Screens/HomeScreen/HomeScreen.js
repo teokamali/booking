@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 import HouseCard from "../../components/Cards/HouseCard";
 import BlogCard from "../../components/Cards/BlogCard";
 import "./HomeScreen.scss";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 
 const HomeScrean = () => {
   const { theme } = useContext(ThemeContext);

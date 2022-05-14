@@ -108,8 +108,8 @@ const colors = {
     },
 
     info: {
-      main: "#49a3f1",
-      state: "#1A73E8",
+      main: "#ff3f3f",
+      state: "#ff3f3f",
     },
 
     success: {

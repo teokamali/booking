@@ -52,7 +52,7 @@ import Icon from "@mui/material/Icon";
 const routes = [
   {
     type: "collapse",
-    name: "Dashboard",
+    name: "dashboard",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/",
@@ -85,7 +85,7 @@ const routes = [
   // },
   {
     type: "collapse",
-    name: "Notifications",
+    name: "notifications",
     key: "notifications",
     icon: <Icon fontSize="small">notifications</Icon>,
     route: "notifications",
@@ -94,7 +94,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Profile",
+    name: "profile",
     key: "profile",
     icon: <Icon fontSize="small">person</Icon>,
     route: "profile",
@@ -103,20 +103,20 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "HotelProfile",
-    key: "profile2",
+    name: "hotelprofile",
+    key: "hotelprofile",
     icon: <Icon fontSize="small">person</Icon>,
-    route: "profile",
-    link: "profile",
+    route: "hotelprofile",
+    link: "hotelprofile",
     component: <Profile />,
   },
   {
     type: "collapse",
-    name: "refererProfile",
-    key: "profile3",
+    name: "refererprofile",
+    key: "refererprofile",
     icon: <Icon fontSize="small">person</Icon>,
-    route: "profile",
-    link: "profile",
+    route: "refererprofile",
+    link: "refererprofile",
 
     component: <Profile />,
   },
