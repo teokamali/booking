@@ -1,3 +1,6 @@
+import Cookies from "js-cookie";
+import { constans } from "values";
+
 export const toEnDigit = function (str) {
   const persianNumbers = [
     /۰/g,
@@ -36,4 +39,8 @@ export const handleDirction = () => {
     return false;
   }
   return false;
+};
+export const handleLogOut = () => {
+  Cookies.remove(constans.TOKEN);
+  window.location.reload();
 };

@@ -14,11 +14,14 @@
     min-width: 0;
     word-wrap: break-word;
     background-clip: border-box;
+    box-shadow: 0px 2px 12px rgba($color: #14142b, $alpha: 8%);
+    border-radius: 24px;
+
     .blog-card-img {
+      border-radius: 24px;
       width: 100%;
       height: 444px;
       object-fit: cover;
-      border-radius: 24px;
       @media (min-width: 424px) {
         height: 560px;
       }
@@ -29,7 +32,10 @@
       left: 0;
       padding: 1rem;
       border-radius: 0 0 24px 24px;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: #fff;
+      width: calc(100% + 2px);
+      margin-left: -1px;
+      box-shadow: 0px 2px 12px rgba($color: #14142b, $alpha: 8%);
 
       .card-title {
         color: $red-color;

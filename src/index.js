@@ -8,7 +8,6 @@ import HttpApi from "i18next-http-backend";
 import { BrowserRouter } from "react-router-dom";
 
 import "core-js";
-import "./assets/fontawesome/pro/css/all.min.css";
 import "flag-icon-css/css/flag-icons.min.css";
 import "./assets/fonts/font-style.css";
 import "./styles/light.css";
@@ -21,6 +20,7 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import "react-toastify/dist/ReactToastify.css";
 import "./AdminPanel/scss/style.scss";
 import "./api/interceptor";
+import "./assets/fontawesome/pro/css/all.min.css";
 
 i18n
   .use(initReactI18next)

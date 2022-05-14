@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import { constans } from "../../values";
 import styled from "styled-components";
 import Button from "../Button";
+import { handleLogOut } from "utils/functions";
 
 const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
   const [isActived, setIsActicved] = useState(false);
@@ -29,8 +30,7 @@ const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
           <Button
             className="w-100"
             onClick={() => {
-              Cookies.remove(constans.TOKEN);
-              window.location.reload();
+              handleLogOut();
             }}
           >
             Log Out

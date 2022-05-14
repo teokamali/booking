@@ -8,7 +8,7 @@ function VilaContextProvider({ children }) {
   const { isUserLoggedIn } = useAuth();
   if (isUserLoggedIn) {
     const userBaseInfo = Cookies.get(constans.INFO);
-    console.log(userBaseInfo);
+    // console.log(userBaseInfo);
   }
 
   return (

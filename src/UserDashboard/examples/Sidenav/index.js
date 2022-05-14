@@ -107,7 +107,10 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             <SidenavCollapse
               name={name}
               icon={icon}
-              active={key === collapseName}
+              active={
+                key.toLowerCase() ===
+                collapseName.replace("dashboard/", "").toLowerCase()
+              }
               noCollapse={noCollapse}
             />
           </Link>
@@ -116,7 +119,10 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             <SidenavCollapse
               name={name}
               icon={icon}
-              active={key === collapseName}
+              active={
+                key.toLowerCase() ===
+                collapseName.replace("dashboard/", "").toLowerCase()
+              }
             />
           </NavLink>
         );

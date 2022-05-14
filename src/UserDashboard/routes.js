@@ -43,8 +43,8 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React layouts
 import Dashboard from "UserDashboard/layouts/dashboard";
 import { Navigate } from "react-router-dom";
-import Notifications from "UserDashboard/layouts/notifications";
 import Profile from "UserDashboard/layouts/profile";
+import Gallery from "UserDashboard/layouts/Gallery";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -52,90 +52,81 @@ import Icon from "@mui/material/Icon";
 const routes = [
   {
     type: "collapse",
-    name: "dashboard",
+    name: "Dashboard",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/",
     link: "/dashboard",
     component: <Dashboard />,
   },
+  {
+    type: "collapse",
+    name: "Gallery",
+    key: "gallery",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "gallery",
+    link: "gallery",
+    component: <Gallery />,
+  },
+
   // {
   //   type: "collapse",
-  //   name: "Tables",
-  //   key: "tables",
-  //   icon: <Icon fontSize="small">table_view</Icon>,
-  //   route: "/tables",
-  //   component: <Tables />,
+  //   name: "Notifications",
+  //   key: "notifications",
+  //   icon: <Icon fontSize="small">notifications</Icon>,
+  //   route: "notifications",
+  //   link: "notifications",
+  //   component: <Notifications />,
   // },
   // {
   //   type: "collapse",
-  //   name: "Billing",
-  //   key: "billing",
-  //   icon: <Icon fontSize="small">receipt_long</Icon>,
-  //   route: "/billing",
-  //   component: <Billing />,
+  //   name: "Profile",
+  //   key: "profile",
+  //   icon: <Icon fontSize="small">person</Icon>,
+  //   route: "profile",
+  //   link: "profile",
+  //   component: <Profile />,
   // },
   // {
   //   type: "collapse",
-  //   name: "RTL",
-  //   key: "rtl",
-  //   icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-  //   route: "/rtl",
-  //   component: <RTL />,
+  //   name: "Hotel Profile",
+  //   key: "hotelprofile",
+  //   icon: <Icon fontSize="small">apartment</Icon>,
+  //   route: "hotelprofile",
+  //   link: "hotelprofile",
+  //   component: <Profile />,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Referer Profile",
+  //   key: "refererprofile",
+  //   icon: <Icon fontSize="small">assignment_ind</Icon>,
+  //   route: "refererprofile",
+  //   link: "refererprofile",
+
+  //   component: <Profile />,
+  // },
+
+  // {
+  //   type: "collapse",
+  //   name: "Reservations",
+  //   key: "Reservations",
+  //   icon: <Icon fontSize="small">bookonline</Icon>,
+  //   route: "reservations",
+  //   link: "reservations",
+
+  //   component: <Profile />,
   // },
   {
     type: "collapse",
-    name: "notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "notifications",
-    link: "notifications",
-    component: <Notifications />,
-  },
-  {
-    type: "collapse",
-    name: "profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "profile",
-    link: "profile",
-    component: <Profile />,
-  },
-  {
-    type: "collapse",
-    name: "hotelprofile",
-    key: "hotelprofile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "hotelprofile",
-    link: "hotelprofile",
-    component: <Profile />,
-  },
-  {
-    type: "collapse",
-    name: "refererprofile",
-    key: "refererprofile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "refererprofile",
-    link: "refererprofile",
+    name: "Setting",
+    key: "Setting",
+    icon: <Icon fontSize="small">settings</Icon>,
+    route: "setting",
+    link: "setting",
 
     component: <Profile />,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Sign In",
-  //   key: "sign-in",
-  //   icon: <Icon fontSize="small">login</Icon>,
-  //   route: "/authentication/sign-in",
-  //   component: <SignIn />,
-  // },
-  // {
-  //   type: "collapse",
-  //   name: "Sign Up",
-  //   key: "sign-up",
-  //   icon: <Icon fontSize="small">assignment</Icon>,
-  //   route: "/authentication/sign-up",
-  //   component: <SignUp />,
-  // },
 ];
 
 export default routes;
