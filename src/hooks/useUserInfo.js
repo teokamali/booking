@@ -29,7 +29,7 @@ const usePostGallery = () => {
       Toastify("success", "Image Added successfully");
       setTimeout(() => {
         window.location.reload();
-      }, 3000);
+      }, 1000);
     },
   });
 };
