@@ -1,11 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-const Hero = ({ children, background, overlayColor, className }) => {
+const Hero = ({
+  children,
+  background,
+  overlayColor,
+  className,
+  height = "100vh",
+}) => {
   const HeroSection = styled.div`
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: ${(props) => props.height};
     min-height: 700px;
     background-image: ${(props) => `url(${props.background})`};
     background-size: cover;
@@ -24,7 +30,7 @@ const Hero = ({ children, background, overlayColor, className }) => {
     background-color: ${overlayColor};
   `;
   return (
-    <HeroSection background={background} className={className}>
+    <HeroSection background={background} className={className} height={height}>
       <HeroSectionOverlay>{children}</HeroSectionOverlay>
     </HeroSection>
   );
