@@ -187,7 +187,7 @@ const Gallery = () => {
                     <ImageGallery
                       id={item.id}
                       title={item.title}
-                      image={`${constans.STORAGE}/${item.original_file_path}`}
+                      image={item.original_file_path}
                       onDelete={() => deleteHandler(item.id)}
                     />
                     <h2 className="item-title">{item.title}</h2>
