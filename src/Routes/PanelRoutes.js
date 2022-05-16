@@ -46,7 +46,15 @@ export default function PanelRoutes() {
                           path={route.path}
                           exact={route.exact}
                           name={route.name}
-                          element={<route.element />}
+                          element={
+                            route.isProtected ? (
+                              <route.protectedChecker>
+                                <route.element />
+                              </route.protectedChecker>
+                            ) : (
+                              <route.element />
+                            )
+                          }
                         />
                       )
                     );

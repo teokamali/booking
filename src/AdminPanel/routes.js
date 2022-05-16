@@ -1,5 +1,5 @@
 import React from "react";
-
+import { ProtectedOwnerRoutes } from "../Routes/Protected/Panel";
 // Base
 const Accordion = React.lazy(() => import("./views/base/accordion/Accordion"));
 const Breadcrumbs = React.lazy(() =>
@@ -94,7 +94,12 @@ const Settings = React.lazy(() => import("./views/Settings/Settings"));
 
 const routes = [
   // { path: '/', name: 'داشبورد'},
-  { path: "dashboard", name: "داشبورد", element: Dashboard },
+  {
+    path: "dashboard",
+    name: "داشبورد",
+    element: Dashboard,
+    isProtected: false,
+  },
   { path: "products", name: "محصولات", element: Products },
   { path: "products/:id", name: "ویرایش محصول", element: EditProduct },
   { path: "products/add", name: "افزودن", element: AddProducts },
