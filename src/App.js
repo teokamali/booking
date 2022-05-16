@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 
 // context
 import ThemeContextProvider from "./context/ThemeContextProvider";
-import VilaContextProvider from "./context/VilaContextProvider";
 import UserContextProvider from "./context/UsersContextProvider";
 
 import { useTranslation } from "react-i18next";
@@ -23,20 +22,18 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeContextProvider>
         <UserContextProvider>
-          <VilaContextProvider>
-            <Routes>
-              {routes.map((route, i) => {
-                const { path, name, element } = route;
-                return (
-                  <Route key={i} path={path} name={name} element={element} />
-                );
-              })}
-            </Routes>
-          </VilaContextProvider>
+          <Routes>
+            {routes.map((route, i) => {
+              const { path, name, element } = route;
+              return (
+                <Route key={i} path={path} name={name} element={element} />
+              );
+            })}
+          </Routes>
         </UserContextProvider>
         <ToastContainer
           position="top-right"
-          autoClose={3000}
+          autoClose={1000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -46,7 +43,6 @@ function App() {
           pauseOnHover
         />
       </ThemeContextProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

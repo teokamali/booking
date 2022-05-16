@@ -6,20 +6,31 @@ import {
   useGetGallery,
   usePostGallery,
   useDeleteGallery,
+  useUpdateGallery,
 } from "../../../hooks/useUserInfo";
 import "./index.scss";
 import { UserContext } from "../../../context/UsersContextProvider";
+import { constans } from "values";
+import { Field, Form, Formik } from "formik";
 
 const Gallery = () => {
   const { user, setUser } = useContext(UserContext);
-  const { mutate: galleryMutate } = useGetGallery();
-  const { mutate: postGallery } = usePostGallery();
-  const { mutate: deleteGalleryImage } = useDeleteGallery();
   const [fieldValue, setFieldValue] = useState({ image: "", title: "" });
+  const { mutate: galleryMutate } = useGetGallery(); //token
+  const { mutate: postGallery } = usePostGallery(); // picture , title
+  const { mutate: deleteGalleryImage } = useDeleteGallery(); //id
+  const { mutate: updateGallery } = useUpdateGallery(); //id , title
   const { gallery } = user;
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     galleryMutate();
   }, []);
+
+  useEffect(() => {
+    if (gallery.length > 0) {
+      setIsLoading(false);
+    }
+  }, [gallery]);
 
   const addImageHandler = (e) => {
     e.preventDefault();
@@ -51,6 +62,9 @@ const Gallery = () => {
   const deleteHandler = (id) => {
     deleteGalleryImage({ id });
   };
+  const updateTitleHandler = (values) => {
+    updateGallery({ id: values.id, title: values.title });
+  };
   const AddImage = () => {
     return (
       <span className="AddImage">
@@ -59,12 +73,49 @@ const Gallery = () => {
       </span>
     );
   };
-  const ImageGallery = ({ image, onDelete, onEdite }) => {
+  const ImageGallery = ({ id, title, image, onDelete }) => {
     return (
       <div className="imageGallery">
         <img src={image} alt="" />
         <div className="actions">
-          <Modal buttonClassnames="edit-title fa-regular fa-pen"></Modal>
+          <Modal
+            id={`EditModal${id}`}
+            buttonClassnames="edit-title fa-regular fa-pen"
+            modalTitle="Edit Image Title"
+          >
+            <Formik
+              initialValues={{
+                title: title,
+                id: id,
+              }}
+            >
+              {({ errors, touched, values }) => (
+                <Form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    updateTitleHandler(values);
+                  }}
+                >
+                  <div className="form-floating input-wrapper">
+                    <Field
+                      className="form-control"
+                      name="title"
+                      placeholder="Title"
+                      id="title"
+                      autoComplete="off"
+                      type="text"
+                    />
+                    <label htmlFor="email">update title</label>
+                  </div>
+                  <img src={image} alt="" />
+
+                  <Button isBold hasBorder type="submit">
+                    update
+                  </Button>
+                </Form>
+              )}
+            </Formik>
+          </Modal>
           <button className="delete-btn" onClick={onDelete}>
             <i className="fa-regular fa-trash"></i>
           </button>
@@ -107,8 +158,8 @@ const Gallery = () => {
               <input
                 type="text"
                 name="title"
-                values={fieldValue.title}
                 placeholder="Example: Pool"
+                value={fieldValue.title}
                 onChange={(event) => {
                   setFieldValue({
                     ...fieldValue,
@@ -122,21 +173,29 @@ const Gallery = () => {
             </form>
           </Modal>
         </div>
-        <div className="gallery__body">
+        <div className="gallery__body ">
           <div className="row">
-            {gallery.length > 0 ? (
-              gallery.map((item) => (
-                <div className="col-12 col-md-6 col-lg-3" key={item.id}>
-                  <h2>{item.title}</h2>
-                  <ImageGallery
-                    image="https://picsum.photos/seed/picsum/500/500"
-                    onDelete={() => deleteHandler(item.id)}
-                    // image={`https://www.hostap.ir/${item.original_file_path}`}
-                  />
-                </div>
-              ))
+            {!isLoading ? (
+              gallery[0] === "empty" ? (
+                <h2>Gallery is Empty</h2>
+              ) : (
+                gallery.map((item) => (
+                  <div
+                    className="col-12 col-md-6 col-lg-3 item-card "
+                    key={item.id}
+                  >
+                    <ImageGallery
+                      id={item.id}
+                      title={item.title}
+                      image={`${constans.STORAGE}/${item.original_file_path}`}
+                      onDelete={() => deleteHandler(item.id)}
+                    />
+                    <h2 className="item-title">{item.title}</h2>
+                  </div>
+                ))
+              )
             ) : (
-              <h2>loading...</h2>
+              <h2>Loading...</h2>
             )}
           </div>
         </div>

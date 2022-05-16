@@ -12,8 +12,14 @@ const useGetGallery = () => {
     },
     onSuccess: (data, variables, context) => {
       // Boom baby!
-      // console.log(data.data);
-      setUser({ ...user, gallery: data.data });
+      // console.log(data.data.data);
+      if (data.data.data.length > 0) {
+        setUser({ ...user, gallery: data.data.data });
+      }
+      setUser({ ...user, gallery: data.data.data });
+      if (data.data.data.length === 0) {
+        setUser({ ...user, gallery: ["empty"] });
+      }
     },
   });
 };
@@ -47,4 +53,18 @@ const useDeleteGallery = () => {
     },
   });
 };
-export { useGetGallery, usePostGallery, useDeleteGallery };
+const useUpdateGallery = () => {
+  const { user, setUser } = useContext(UserContext);
+  return useMutation(api.updateGallery, {
+    onError: (error, variables, context) => {
+      // An error happened!
+      console.log(error);
+    },
+    onSuccess: (data, variables, context) => {
+      // Boom baby!
+      Toastify("success", "Image Title updated successfully");
+      window.location.reload();
+    },
+  });
+};
+export { useGetGallery, usePostGallery, useDeleteGallery, useUpdateGallery };

@@ -1,9 +1,6 @@
-import { useAuth } from "hooks/useAuth";
 import React, { createContext, useState } from "react";
-import Cookies from "js-cookie";
-import { constans } from "values";
-export const UserContext = createContext({});
-function VilaContextProvider({ children }) {
+export const UserContext = createContext();
+function UserContextProvider({ children }) {
   const [user, setUser] = useState({ gallery: [] });
 
   return (
@@ -13,4 +10,4 @@ function VilaContextProvider({ children }) {
   );
 }
 
-export default VilaContextProvider;
+export default UserContextProvider;

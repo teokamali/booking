@@ -9,6 +9,7 @@ export const routes = [
     path: "/*",
     name: "WebsiteRoutes",
     element: <WebsiteRoutes />,
+    
   },
   {
     path: "/administrator/login",

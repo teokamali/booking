@@ -12,7 +12,7 @@ const Modal = ({
   isCentered = false,
 }) => {
   return (
-    <div className="login-register-modal">
+    <div className="modal-custom">
       <button
         type="button"
         className={buttonClassnames}

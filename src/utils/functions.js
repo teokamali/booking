@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { constans } from "values";
-
+import { useNavigate } from "react-router";
 export const toEnDigit = function (str) {
   const persianNumbers = [
     /۰/g,
@@ -42,5 +42,5 @@ export const handleDirction = () => {
 };
 export const handleLogOut = () => {
   Cookies.remove(constans.TOKEN);
-  window.location.reload();
+  window.location.href = "/";
 };

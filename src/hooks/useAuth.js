@@ -31,9 +31,10 @@ const useLogin = () => {
       Cookies.set(constans.TOKEN, data.data.access_token);
       Toastify("success", "Logged in successfully");
       setTimeout(() => {
-        navigate("/dashboard");
+        // navigate("/dashboard");
+        window.location.reload();
         document.querySelector(".modal-backdrop").remove("");
-      }, 3000);
+      }, 1000);
     },
   });
 };
