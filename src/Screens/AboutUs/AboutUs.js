@@ -9,6 +9,8 @@ import {
 import backgroundImage from "assets/image/about-hero.png";
 import { Desktop, Mobile, Tablet } from "../../layout/BreakPoints";
 import { useAuth } from "../../hooks/useAuth";
+import Cookies from "js-cookie";
+import { constans } from "../../values";
 const AboutUs = () => {
   const { isUserLoggedIn } = useAuth();
   const gallery = [
@@ -18,6 +20,8 @@ const AboutUs = () => {
     "https://images.unsplash.com/photo-1510425463958-dcced28da480?auto=format&fit=crop&w=1352&q=80",
     "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1234&q=80",
   ];
+  console.log(JSON.parse(Cookies.get(constans.INFO)));
+
   return (
     <Hero
       background={backgroundImage}

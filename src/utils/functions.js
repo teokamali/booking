@@ -42,5 +42,6 @@ export const handleDirction = () => {
 };
 export const handleLogOut = () => {
   Cookies.remove(constans.TOKEN);
+  Cookies.remove(constans.INFO);
   window.location.href = "/";
 };

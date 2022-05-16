@@ -1,10 +1,11 @@
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import api from "../api";
 import { Toastify } from "../components";
 import { constans } from "../values";
+import { UserContext } from "context/UsersContextProvider";
 
 const useAuth = () => {
   let [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -20,6 +21,7 @@ const useAuth = () => {
   return { isUserLoggedIn };
 };
 const useLogin = () => {
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   return useMutation(api.webSiteLogin, {
     onError: (error, variables, context) => {
@@ -28,8 +30,10 @@ const useLogin = () => {
     },
     onSuccess: (data, variables, context) => {
       // Boom baby!
-      Cookies.set(constans.TOKEN, data.data.access_token);
+      Cookies.set(constans.TOKEN, data.data.data.token.access_token);
       Toastify("success", "Logged in successfully");
+      setUser({ ...user, userInformation: data.data.data.user });
+      Cookies.set(constans.INFO, JSON.stringify(data.data.data.user));
       setTimeout(() => {
         // navigate("/dashboard");
         window.location.reload();

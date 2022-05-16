@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/image/flutter-logo.png";
 import DashboardDropDownWithIcon from "../DashboardDropDownWithIcon";
 import { Button } from "../index";
-
+import { UserContext } from "context/UsersContextProvider";
 import "./index.scss";
 
 function HambergurMenu({ Modal, isUserLoggedIn }) {
+  const { user, setUser } = useContext(UserContext);
+  console.log(user.userInformation.first_name);
   const navList = [
     { id: 1, link: "/", title: "Home" },
     { id: 2, link: "/about-us", title: "About" },
@@ -25,7 +27,11 @@ function HambergurMenu({ Modal, isUserLoggedIn }) {
             <i className="fa-regular fa-heart heart-icon"></i>
           </div>
           {isUserLoggedIn ? <DashboardDropDownWithIcon /> : <Modal />}
-          {isUserLoggedIn ? <span className="text-dark">username</span> : ""}
+          {isUserLoggedIn ? (
+            <span className="text-dark">{user.userInformation.first_name}</span>
+          ) : (
+            ""
+          )}
 
           <input
             type="checkbox"

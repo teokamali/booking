@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/image/flutter-logo.png";
 import Button from "../Button";
 import DashboardDropDownWithIcon from "../DashboardDropDownWithIcon";
+import { UserContext } from "context/UsersContextProvider";
 import "./index.scss";
 const navList = [
   { id: 1, link: "/", title: "Home" },
@@ -11,6 +12,7 @@ const navList = [
   { id: 4, link: "/contact-us", title: "Contact Us" },
 ];
 function FullNavBar({ Modal, isUserLoggedIn }) {
+  const { user, setUser } = useContext(UserContext);
   return (
     <>
       <header className="full-navbar">
@@ -30,7 +32,13 @@ function FullNavBar({ Modal, isUserLoggedIn }) {
                 ))}
               </ul>
             </nav>
-            {isUserLoggedIn ? <span className="text-dark">username</span> : ""}
+            {isUserLoggedIn ? (
+              <span className="text-dark">
+                {user.userInformation.first_name}
+              </span>
+            ) : (
+              ""
+            )}
             {isUserLoggedIn ? <DashboardDropDownWithIcon /> : <Modal />}
 
             <div className="favorites">
