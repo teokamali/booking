@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/image/flutter-logo.png";
-import "./index.scss";
 import Button from "../Button";
 import DashboardDropDownWithIcon from "../DashboardDropDownWithIcon";
-
+import "./index.scss";
+const navList = [
+  { id: 1, link: "/", title: "Home" },
+  { id: 2, link: "/about-us", title: "About" },
+  { id: 3, link: "/blog", title: "Blog" },
+  { id: 4, link: "/contact-us", title: "Contact Us" },
+];
 function FullNavBar({ Modal, isUserLoggedIn }) {
   return (
     <>
@@ -17,21 +23,16 @@ function FullNavBar({ Modal, isUserLoggedIn }) {
           <div className="seconde-row col-6">
             <nav>
               <ul>
-                <li>
-                  <a href="/"> Home</a>
-                </li>
-                <li>
-                  <a href="/"> About</a>
-                </li>
-                <li>
-                  <a href="/"> Blog</a>
-                </li>
-                <li>
-                  <a href="/"> About Us</a>
-                </li>
+                {navList.map((nav) => (
+                  <li key={nav.id}>
+                    <Link to={nav.link}>{nav.title}</Link>
+                  </li>
+                ))}
               </ul>
             </nav>
+            {isUserLoggedIn ? <span className="text-dark">username</span> : ""}
             {isUserLoggedIn ? <DashboardDropDownWithIcon /> : <Modal />}
+
             <div className="favorites">
               <span className="counter">0</span>
               <i className="fa-regular fa-heart heart-icon"></i>

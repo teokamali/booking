@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/image/flutter-logo.png";
 import DashboardDropDownWithIcon from "../DashboardDropDownWithIcon";
 import { Button } from "../index";
@@ -6,6 +7,12 @@ import { Button } from "../index";
 import "./index.scss";
 
 function HambergurMenu({ Modal, isUserLoggedIn }) {
+  const navList = [
+    { id: 1, link: "/", title: "Home" },
+    { id: 2, link: "/about-us", title: "About" },
+    { id: 3, link: "/blog", title: "Blog" },
+    { id: 4, link: "/contact-us", title: "Contact Us" },
+  ];
   return (
     <>
       <header className="hambergur-menu">
@@ -18,6 +25,8 @@ function HambergurMenu({ Modal, isUserLoggedIn }) {
             <i className="fa-regular fa-heart heart-icon"></i>
           </div>
           {isUserLoggedIn ? <DashboardDropDownWithIcon /> : <Modal />}
+          {isUserLoggedIn ? <span className="text-dark">username</span> : ""}
+
           <input
             type="checkbox"
             className="menu-btn"
@@ -30,18 +39,11 @@ function HambergurMenu({ Modal, isUserLoggedIn }) {
           </label>
           <ul className="menu">
             <div className="menu-wrapper">
-              <li>
-                <a href="/"> Home</a>
-              </li>
-              <li>
-                <a href="/"> About</a>
-              </li>
-              <li>
-                <a href="/"> Blog</a>
-              </li>
-              <li>
-                <a href="/"> About Us</a>
-              </li>
+              {navList.map((nav) => (
+                <li key={nav.id}>
+                  <Link to={nav.link}>{nav.title}</Link>
+                </li>
+              ))}
 
               <li>
                 <Button className="w-100">Book Now</Button>
