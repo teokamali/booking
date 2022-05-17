@@ -1,19 +1,5 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { useState, useEffect, useMemo } from "react";
+import { UserContext } from "context/UsersContextProvider";
+import { useState, useEffect, useMemo, useContext } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -133,30 +119,7 @@ export default function UserDashboard() {
 
       return null;
     });
-
-  // const configsButton = (
-  //   <MDBox
-  //     display="flex"
-  //     justifyContent="center"
-  //     alignItems="center"
-  //     width="3.25rem"
-  //     height="3.25rem"
-  //     bgColor="white"
-  //     shadow="sm"
-  //     borderRadius="50%"
-  //     position="fixed"
-  //     right="2rem"
-  //     bottom="2rem"
-  //     zIndex={99}
-  //     color="dark"
-  //     sx={{ cursor: "pointer" }}
-  //     onClick={handleConfiguratorOpen}
-  //   >
-  //     <Icon fontSize="small" color="inherit">
-  //       settings
-  //     </Icon>
-  //   </MDBox>
-  // );
+  const { user } = useContext(UserContext);
 
   return direction === "rtl" ? (
     <CacheProvider value={rtlCache}>
@@ -171,7 +134,7 @@ export default function UserDashboard() {
                   ? brandDark
                   : brandWhite
               }
-              brandName="Hello"
+              brandName={`Hello ${user.userInformation.first_name}`}
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
@@ -199,7 +162,7 @@ export default function UserDashboard() {
                 ? brandDark
                 : brandWhite
             }
-            brandName="Hello"
+            brandName={`Hello ${user.userInformation.first_name} `}
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}

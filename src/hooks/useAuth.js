@@ -11,7 +11,7 @@ const useAuth = () => {
   let [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (Cookies.get(constans.TOKEN)) {
+    if (Cookies.get(constans.TOKEN) && Cookies.get(constans.INFO)) {
       return setIsUserLoggedIn(true);
     } else {
       return setIsUserLoggedIn(false);
@@ -22,7 +22,6 @@ const useAuth = () => {
 };
 const useLogin = () => {
   const { user, setUser } = useContext(UserContext);
-  const navigate = useNavigate();
   return useMutation(api.webSiteLogin, {
     onError: (error, variables, context) => {
       // An error happened!
@@ -35,7 +34,6 @@ const useLogin = () => {
       setUser({ ...user, userInformation: data.data.data.user });
       Cookies.set(constans.INFO, JSON.stringify(data.data.data.user));
       setTimeout(() => {
-        // navigate("/dashboard");
         window.location.reload();
         document.querySelector(".modal-backdrop").remove("");
       }, 1000);
@@ -43,7 +41,8 @@ const useLogin = () => {
   });
 };
 const useRegister = () => {
-  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
+
   return useMutation(api.webSiteRegister, {
     onError: (error, variables, context) => {
       // An error happened!
@@ -51,11 +50,12 @@ const useRegister = () => {
     },
     onSuccess: (data, variables, context) => {
       // Boom baby!
-      console.log(data);
-      Cookies.set(constans.TOKEN, data.access_token);
+      Cookies.set(constans.TOKEN, data.data.token.access_token);
       Toastify("success", "Registeration successfull!");
+      setUser({ ...user, userInformation: data.data.user });
+      Cookies.set(constans.INFO, JSON.stringify(data.data.user));
       setTimeout(() => {
-        navigate("/dashboard");
+        window.location.reload();
         document.querySelector(".modal-backdrop").remove("");
       }, 3000);
     },

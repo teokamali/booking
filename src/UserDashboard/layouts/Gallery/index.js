@@ -10,7 +10,7 @@ import {
 } from "../../../hooks/useUserInfo";
 import "./index.scss";
 import { UserContext } from "../../../context/UsersContextProvider";
-import { constans } from "values";
+import { config } from "values";
 import { Field, Form, Formik } from "formik";
 
 const Gallery = () => {
@@ -187,7 +187,7 @@ const Gallery = () => {
                     <ImageGallery
                       id={item.id}
                       title={item.title}
-                      image={item.original_file_path}
+                      image={`${config.BASE_URL}${item.original_file_path}`}
                       onDelete={() => deleteHandler(item.id)}
                     />
                     <h2 className="item-title">{item.title}</h2>
