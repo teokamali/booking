@@ -1,36 +1,16 @@
 import React from "react";
-import Button from "../Button";
 import "./index.scss";
-
-function Banner() {
+const Banner = ({ image, description, titile }) => {
   return (
-    <div className="banner">
-      <div className="banner__header">
-        <span>
-          Relax in one of our luxury hotels
-          <br />
-          We make happy moments for you
-        </span>
-      </div>
-      <div className="banner__body">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ulabore et dolore magna aliqua Egestas purus
-          viverra accumsan in nisl nisi Arcu cursus vitae congue mauris rhoncus
-          aenean vel elit scelerisqueLorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt ulabore et dolore
-          magna aliqua Egestas purus viverra accumsan in nisl nisi Arcu cursus
-          vitae congue mauris rhoncus aenean vel elit scelerisque
-        </p>
-      </div>
-      <div className="banner__footer">
-        <Button isLarge hasBorder>
-          Explore rooms
-        </Button>
-        <Button hasBorder>Explore rooms</Button>
+    <div className="Banner">
+      <div className="Banner__overlay"></div>
+      <img className="Banner__image" src={image} alt="" />
+      <div className="Banner__description">
+        <span>{titile}</span>
+        <p>{description}</p>
       </div>
     </div>
   );
-}
+};
 
 export default Banner;

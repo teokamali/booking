@@ -8,7 +8,6 @@ import "./index.scss";
 
 function HambergurMenu({ Modal, isUserLoggedIn }) {
   const { user, setUser } = useContext(UserContext);
-  console.log(user.userInformation.first_name);
   const navList = [
     { id: 1, link: "/", title: "Home" },
     { id: 2, link: "/about-us", title: "About" },

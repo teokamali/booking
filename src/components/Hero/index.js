@@ -16,9 +16,9 @@ const Hero = ({
     background-image: ${(props) => `url(${props.background})`};
     background-size: cover;
     background-position: 50% 50%;
-    @media (max-width: 767px) {
+    /* @media (max-width: 767px) {
       height: 150vh;
-    }
+    } */
   `;
   const HeroSectionOverlay = styled.div`
     position: absolute;

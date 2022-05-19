@@ -1,52 +1,51 @@
-@import "../../styles/global.scss";
-.banner {
-  background-color: $red-color;
-  margin: 0 15px;
-  padding: 50px 30px;
-  border-radius: 30px;
-  @media (min-width: 767px) {
-    width: 80%;
-    margin: 0 auto;
+@import "styles/global.scss";
+.Banner {
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba($color: #000000, $alpha: 0.5);
   }
-  &__header {
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+  &__description {
+    position: absolute;
+    bottom: 110px;
+    right: 0;
+    color: $white-color;
+    text-align: center;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @media (min-width: 767px) {
-      justify-content: flex-start;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
+
     span {
-      color: $white-color;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
-      @media (min-width: 767px) {
-        font-size: 2.75rem;
-        line-height: 2.75rem;
-      }
     }
-  }
-  &__body {
     p {
-      color: $white-color;
-      font-size: 13px;
-      padding: 6px 9px;
-      @media (min-width: 767px) {
-        font-size: 1.5625rem;
+      font-size: 1rem;
+      margin: 0;
+      text-align: center;
+      width: 100%;
+    }
+    @media (min-width: 767px) {
+      width: 50%;
+      span {
+        font-size: 22px;
       }
     }
   }
-  &__footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 11px;
-    @media (min-width: 767px) {
-      flex-direction: row;
-      justify-content: start;
-    }
-  }
+}
+.about-description {
+  text-align: center;
 }

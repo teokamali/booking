@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 //components
 import { Desktop, Mobile, Tablet } from "../../layout/BreakPoints";
 import {
-  Banner,
+  CallToAction,
   Button,
   FullNavBar,
   HambergurMenu,
@@ -143,7 +143,7 @@ const HomeScrean = () => {
       </div>
       {/* banner section */}
       <div className="section banner__section">
-        <Banner />
+        <CallToAction />
       </div>
       {/* blog sectoin*/}
       <div className="section seconde-section">
