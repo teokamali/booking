@@ -7,7 +7,7 @@ import {
   usePostGallery,
   useDeleteGallery,
   useUpdateGallery,
-} from "../../../hooks/useUserInfo";
+} from "../../../hooks/useUserGallery";
 import "./index.scss";
 import { UserContext } from "../../../context/UsersContextProvider";
 import { config } from "values";
@@ -123,6 +123,7 @@ const Gallery = () => {
       </div>
     );
   };
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -187,7 +188,7 @@ const Gallery = () => {
                     <ImageGallery
                       id={item.id}
                       title={item.title}
-                      image={`${config.BASE_URL}${item.original_file_path}`}
+                      image={`${item.original_image_link}`}
                       onDelete={() => deleteHandler(item.id)}
                     />
                     <h2 className="item-title">{item.title}</h2>
