@@ -2,6 +2,7 @@
   "name": "booking",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@coreui/icons": "^2.1.0",
     "@coreui/icons-react": "^2.0.1",
