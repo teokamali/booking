@@ -96,7 +96,7 @@ const Gallery = () => {
                     updateTitleHandler(values);
                   }}
                 >
-                  <div className="form-floating input-wrapper">
+                  <div className="form-floating input-wrapper mb-3">
                     <Field
                       className="form-control"
                       name="title"
@@ -105,10 +105,9 @@ const Gallery = () => {
                       autoComplete="off"
                       type="text"
                     />
-                    <label htmlFor="email">update title</label>
+                    <label htmlFor="title">Update Title</label>
                   </div>
-                  <img src={image} alt="" />
-
+                  <img className="mb-3 img-preview" src={image} alt="preview" />
                   <Button isBold hasBorder type="submit">
                     update
                   </Button>
@@ -142,39 +141,48 @@ const Gallery = () => {
                 addImageHandler(e);
               }}
             >
-              <p>Select your image:</p>
-              <input
-                id="file"
-                name="file"
-                type="file"
-                values={fieldValue.image}
-                onChange={(event) => {
-                  setFieldValue({
-                    ...fieldValue,
-                    image: event.currentTarget.files[0],
-                  });
-                }}
-              />
-              <p>Image title:</p>
-              <input
-                type="text"
-                name="title"
-                placeholder="Example: Pool"
-                value={fieldValue.title}
-                onChange={(event) => {
-                  setFieldValue({
-                    ...fieldValue,
-                    title: event.target.value,
-                  });
-                }}
-              />
+              <div className="mb-3">
+                <label htmlFor="file" className="form-label">
+                  Select your image:
+                </label>
+                <input
+                  className="form-control"
+                  id="file"
+                  name="file"
+                  type="file"
+                  values={fieldValue.image}
+                  onChange={(event) => {
+                    setFieldValue({
+                      ...fieldValue,
+                      image: event.currentTarget.files[0],
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  className="form-control"
+                  id="floatingInput"
+                  placeholder="Image Title"
+                  type="text"
+                  name="title"
+                  value={fieldValue.title}
+                  onChange={(event) => {
+                    setFieldValue({
+                      ...fieldValue,
+                      title: event.target.value,
+                    });
+                  }}
+                />
+                <label htmlFor="floatingInput">Image Title</label>
+              </div>
               <Button type="submit" hasBoxShadow hasBorder>
                 Add Image
               </Button>
             </form>
           </Modal>
         </div>
-        <div className="gallery__body ">
+        <div className="gallery__body">
           <div className="row">
             {!isLoading ? (
               gallery[0] === "empty" ? (
