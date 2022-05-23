@@ -3,11 +3,6 @@ import "./index.scss";
 const Accordion = ({ items }) => {
   return (
     <main id="mainFAQ">
-      {/* row 1 */}
-      {/* <h5 className="accordion-title"> پرسش‌های متداول</h5> */}
-      <br />
-      {/* row 2 */}
-
       <div className="accordion accordion-flush" id="accordionFlushExample">
         {items.map((item) => (
           <div className="accordion-item" key={item.id}>

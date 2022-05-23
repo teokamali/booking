@@ -1,0 +1,167 @@
+.SinglePage {
+  &__Nav {
+    position: absolute;
+    width: 100%;
+  }
+  &__Gallery {
+  }
+  @import "styles/global.scss";
+  .bloc-tabs {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      width: 90%;
+      flex-direction: row;
+      justify-content: center;
+      margin: 0 auto;
+    }
+  }
+  .tabs {
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    background: $white-color;
+    cursor: pointer;
+    border: 0;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.274);
+    position: relative;
+    outline: none;
+    color: $black-color;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
+    margin-top: 171px;
+    &:hover {
+      color: $black-color;
+    }
+  }
+
+  .active-tabs {
+    background: white;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.274);
+    color: $red-color;
+    &:hover {
+      color: $red-color;
+    }
+  }
+
+  .content-tabs {
+    flex-grow: 1;
+  }
+  .content {
+    background: white;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+  .content h2 {
+    padding: 0px 0 5px 0px;
+  }
+  .content hr {
+    width: 100px;
+    height: 2px;
+    background: #222;
+    margin-bottom: 5px;
+  }
+  .content p {
+    width: 100%;
+    height: 100%;
+  }
+  .active-content {
+    display: block;
+  }
+  .single-hotel-description {
+    color: $gray-color;
+    border: 1px solid $gray-color;
+    border-radius: 30px;
+    padding: 3.25rem !important;
+    h2 {
+      font-size: 35px;
+      font-weight: bold;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+  .single-hotel-facalities {
+    color: $gray-color;
+    border: 1px solid $gray-color;
+    border-radius: 30px;
+    padding: 3.25rem !important;
+    h2 {
+      font-size: 35px;
+      font-weight: bold;
+    }
+  }
+  .single-hotel-room {
+    color: $gray-color;
+    border: 1px solid $gray-color;
+    border-radius: 30px;
+    padding: 3.25rem !important;
+    h2 {
+      font-size: 35px;
+      font-weight: bold;
+    }
+  }
+  .tag-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    width: 80%;
+    margin: 3.125rem auto;
+    a {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+      padding: 17px 30px;
+      border: 1px solid #eeeeee;
+      font-size: 1rem;
+      font-weight: bold;
+      box-shadow: 0px 4px 10px rgba($color: #141428, $alpha: 4%);
+      border-radius: 30px;
+      text-decoration: none;
+      color: $black-color;
+      &:hover {
+        color: $black-color;
+      }
+    }
+  }
+  .amenities__wrapper {
+    color: $black-color;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    span {
+      margin-left: 5px;
+    }
+  }
+  .room-details__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+
+    color: $gray-color;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      i {
+        color: $black-color;
+        font-size: 3.125rem;
+      }
+      span {
+        font-size: 1.875rem;
+      }
+    }
+  }
+}

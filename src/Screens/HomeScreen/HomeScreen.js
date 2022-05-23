@@ -22,7 +22,71 @@ import HouseCard from "../../components/Cards/HouseCard";
 import BlogCard from "../../components/Cards/BlogCard";
 import "./HomeScreen.scss";
 import { useAuth } from "../../hooks/useAuth";
-
+const hotels = [
+  {
+    id: 1,
+    name: "Hotel Mamad 1",
+    image:
+      "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Lorem ipsum dolor sit amet.",
+  },
+  {
+    id: 2,
+    name: "Hotel Mamad 2",
+    image:
+      "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Lorem ipsum dolor sit amet.",
+  },
+  {
+    id: 3,
+    name: "Hotel Mamad 3",
+    image:
+      "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Lorem ipsum dolor sit amet.",
+  },
+  {
+    id: 4,
+    name: "Hotel Mamad 4",
+    image:
+      "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Lorem ipsum dolor sit amet.",
+  },
+  {
+    id: 5,
+    name: "Hotel Mamad 5",
+    image:
+      "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Lorem ipsum dolor sit amet.",
+  },
+  {
+    id: 6,
+    name: "Hotel Mamad 6",
+    image:
+      "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Lorem ipsum dolor sit amet.",
+  },
+  {
+    id: 7,
+    name: "Hotel Mamad 7",
+    image:
+      "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Lorem ipsum dolor sit amet.",
+  },
+  {
+    id: 8,
+    name: "Hotel Mamad 8",
+    image:
+      "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Lorem ipsum dolor sit amet.",
+  },
+  {
+    id: 9,
+    name: "Hotel Mamad 9",
+    image:
+      "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description: "Lorem ipsum dolor sit amet.",
+  },
+];
 const HomeScrean = () => {
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
@@ -123,21 +187,16 @@ const HomeScrean = () => {
             // onSlideChange={() => console.log("slide change")}
             // onSwiper={(swiper) => console.log(swiper)}
           >
-            <SwiperSlide>
-              <HouseCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <HouseCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <HouseCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <HouseCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <HouseCard />
-            </SwiperSlide>
+            {hotels.map((hotel) => (
+              <SwiperSlide key={hotel.id}>
+                <HouseCard
+                  id={hotel.id}
+                  name={hotel.name}
+                  image={hotel.image}
+                  description={hotel.description}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

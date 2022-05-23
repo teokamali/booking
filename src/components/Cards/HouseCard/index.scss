@@ -1,72 +1,80 @@
 @import "../../../styles/global.scss";
-.house__card {
-  box-shadow: 0px 2px 12px rgba($color: #14142b, $alpha: 0.08);
-  border-radius: 24px;
-  margin-bottom: 12px;
 
-  &__header {
-    width: 100%;
-    img {
-      width: 100%;
-      height: 230px;
-      border-radius: 24px 24px 0 0;
-    }
+.house__card-link {
+  text-decoration: none;
+  color: unset;
+  &:hover {
+    color: unset;
   }
-  &__body {
-    // padding: 32px 24px;
-    margin-left: 24px;
-    margin-right: 24px;
-    padding-bottom: 32px;
-    padding-top: 32px;
-    border-bottom: 1px solid #d5d5d5;
-    p {
-      margin: 0;
-      margin-top: 8px;
-      color: $gray-color;
+  .house__card {
+    box-shadow: 0px 2px 12px rgba($color: #14142b, $alpha: 0.08);
+    border-radius: 24px;
+    margin-bottom: 12px;
+
+    &__header {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 230px;
+        border-radius: 24px 24px 0 0;
+      }
     }
-    &__features {
-      margin-top: 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      &__button {
+    &__body {
+      // padding: 32px 24px;
+      margin-left: 24px;
+      margin-right: 24px;
+      padding-bottom: 32px;
+      padding-top: 32px;
+      border-bottom: 1px solid #d5d5d5;
+      p {
+        margin: 0;
+        margin-top: 8px;
+        color: $gray-color;
+      }
+      &__features {
+        margin-top: 16px;
         display: flex;
-        gap: 5px;
         align-items: center;
-        color: $black-color;
-        border-radius: 30px;
-        font-size: 1rem;
-        padding: 13px;
-        background-color: $white-color;
-        border: 1px solid #eeeeee;
-        text-decoration: none;
-        text-align: center;
-        transition: all 200ms ease-in-out;
-        &:hover {
+        gap: 14px;
+        &__button {
+          display: flex;
+          gap: 5px;
+          align-items: center;
           color: $black-color;
+          border-radius: 30px;
+          font-size: 1rem;
+          padding: 13px;
+          background-color: $white-color;
+          border: 1px solid #eeeeee;
+          text-decoration: none;
+          text-align: center;
+          transition: all 200ms ease-in-out;
+          &:hover {
+            color: $black-color;
+          }
         }
       }
     }
-  }
-  &__footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 32px 24px;
-    &__price {
-      span {
-        font-size: 18px;
-        color: #5d5d5d;
-        strong {
-          font-size: 22px;
-          font-weight: bold;
-          color: $black-color;
-          padding: 0;
-          margin: 0;
-        }
-        small {
-          font-size: 16px;
-          color: #8b8b8b;
+    &__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 24px;
+      &__price {
+        span {
+          font-size: 18px;
+          color: #5d5d5d;
+          strong {
+            font-size: 22px;
+            font-weight: bold;
+            color: $black-color;
+            padding: 0;
+            margin: 0;
+          }
+          small {
+            font-size: 16px;
+            color: #8b8b8b;
+          }
         }
       }
     }

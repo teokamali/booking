@@ -3,11 +3,6 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
 
 #mainFAQ {
   height: 100%;
-  // white-space: nowrap;
-  // text-overflow: ellipsis;
-  // min-width: 100px;
-  // overflow: hidden;
-  // width: 80%;
 
   @media (max-width: 767px) {
     width: 100%;
@@ -16,7 +11,7 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
   padding-right: 5rem;
   padding-left: 5rem;
   align-items: center;
-  .accordion-flush{
+  .accordion-flush {
     padding-right: 10rem;
     padding-left: 10rem;
     @media (max-width: 767px) {
@@ -24,23 +19,22 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
       padding-left: 1rem;
     }
   }
-  }
-  .accordion-button:not(.collapsed) {
-    color: #333;
-    background-color: #f7d9d9;
-  }
-  .accordion-button:focus {
-    border-color: hsl(0, 0%, 24%);
-    outline: 0;
-    box-shadow: 0 0 0 0.05rem #f25487;
-  }
-  .accordion-button:not(.collapsed)::after {
-    background-image: $accordion-button-icon;
-  }
-  .accordion-button collapsed::after {
-    background-image: $accordion-button-active-icon;
-  }
-
+}
+.accordion-button:not(.collapsed) {
+  color: #333;
+  background-color: #f7d9d9;
+}
+.accordion-button:focus {
+  border-color: hsl(0, 0%, 24%);
+  outline: 0;
+  box-shadow: 0 0 0 0.05rem #f25487 !important;
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: $accordion-button-icon;
+}
+.accordion-button collapsed::after {
+  background-image: $accordion-button-active-icon;
+}
 
 .accordion-title {
   align-items: center;
@@ -53,8 +47,8 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
   padding-top: 2rem;
   text-align: center;
   align-items: center;
-  .accordion-link{
-    color: #f25487;
+  .accordion-link {
+    color: #f25487 !important;
     text-decoration: none;
     // font-style: italic;
   }
