@@ -20,7 +20,10 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 90vh;
+    height: 40vh;
+    @media (min-width: 767px) {
+      height: 70vh;
+    }
   }
 
   .item {

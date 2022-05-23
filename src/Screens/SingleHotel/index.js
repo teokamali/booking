@@ -227,7 +227,7 @@ const SingleHotel = () => {
         <HostInfoCard />
       </div>
       {/* house rules */}
-      <div id="house-rules">
+      <div id="house-rules" className="container ">
         <h4>House Rules</h4>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam.
         Hic odio unde sequi aut harum eius nesciunt, reiciendis tempore aliquid
@@ -237,7 +237,7 @@ const SingleHotel = () => {
         a dignissimos?
       </div>
       {/* House FAQ */}
-      <div id="faq">
+      <div id="faq" className="container">
         <h4>faq</h4>
         <Accordion items={faqs} />
       </div>

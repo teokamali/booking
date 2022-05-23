@@ -3,6 +3,7 @@
   &__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #707070;
     span {
@@ -46,23 +47,27 @@
     }
     &__avatar {
       width: 100%;
-      @media (min-width: 767px) {
-        width: 30%;
-      }
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
       img {
         border-radius: 50%;
-        width: 190px;
-        height: 190px;
+        width: 150px;
+        height: 150px;
         border: 1px solid $gray-color;
       }
       span {
         margin-top: 20px;
         font-size: 22px;
         color: #707070;
+      }
+      @media (min-width: 767px) {
+        width: 30%;
+        img {
+          width: 190px;
+          height: 190px;
+        }
       }
     }
   }
