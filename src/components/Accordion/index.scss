@@ -1,39 +1,45 @@
-$accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#333'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
-$accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#333'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
-
+@import "styles/global.scss";
+$arrowDown: url("data:image/svg+xml,%3Csvg fill='%23ff3f3f' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3C!--! Font Awesome Pro 6.0.0-alpha3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --%3E%3Cpath d='M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z'/%3E%3C/svg%3E");
 #mainFAQ {
   height: 100%;
-
   @media (max-width: 767px) {
     width: 100%;
     padding: 1rem;
   }
-  padding-right: 5rem;
-  padding-left: 5rem;
+
   align-items: center;
   .accordion-flush {
-    padding-right: 10rem;
-    padding-left: 10rem;
-    @media (max-width: 767px) {
+      @media (max-width: 767px) {
       padding-right: 1rem;
       padding-left: 1rem;
     }
   }
 }
+.accordion-button {
+  background-color: $red-color !important;
+  color: #fff !important;
+  border-radius: 16px !important;
+  margin-bottom: 10px;
+}
 .accordion-button:not(.collapsed) {
-  color: #333;
-  background-color: #f7d9d9;
+  background-color: rgba($color: $red-color, $alpha: 0.2) !important;
+  color: #333 !important;
 }
 .accordion-button:focus {
   border-color: hsl(0, 0%, 24%);
   outline: 0;
   box-shadow: 0 0 0 0.05rem #f25487 !important;
 }
+.accordion-button::after {
+  background-image: $arrowDown !important;
+  background-size: 12px !important;
+  background-color: #fff;
+  background-position: center;
+  border-radius: 50%;
+}
 .accordion-button:not(.collapsed)::after {
-  background-image: $accordion-button-icon;
 }
 .accordion-button collapsed::after {
-  background-image: $accordion-button-active-icon;
 }
 
 .accordion-title {

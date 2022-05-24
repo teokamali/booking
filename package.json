@@ -45,6 +45,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-select": "^5.3.0",
+    "react-svg-star-rating": "^2.1.2",
     "react-table": "7.7.0",
     "react-toastify": "^9.0.1",
     "simplebar-react": "^2.3.6",

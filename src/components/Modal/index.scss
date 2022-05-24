@@ -1,6 +1,12 @@
 .modal {
   z-index: 1160 !important;
 }
+.modal-content {
+  border-radius: 24px !important;
+}
+.modal-body {
+  height: fit-content;
+}
 .login-register-modal {
   display: inline-block;
 }

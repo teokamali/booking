@@ -1,11 +1,14 @@
+@import "styles/global.scss";
 .SinglePage {
+  &__section {
+    margin-top: 150px;
+  }
   &__Nav {
     position: absolute;
     width: 100%;
   }
   &__Gallery {
   }
-  @import "styles/global.scss";
   .bloc-tabs {
     display: flex;
     // flex-direction: column;
@@ -16,7 +19,7 @@
       justify-content: center;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 171px;
+      margin-top: 150px;
     }
   }
   .tabs {
@@ -207,6 +210,88 @@
           font-size: 1.875rem;
         }
       }
+    }
+  }
+  .section__header {
+    padding: 0.5rem;
+    border-bottom: 1px solid #707070;
+    margin-bottom: 15px;
+    span {
+      color: $black-color;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+  }
+  .section__header__row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #707070;
+    margin-bottom: 15px;
+    span {
+      color: $black-color;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    &__rating {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      &__wrapper {
+        padding: 8px;
+      }
+      .total-rating {
+        padding: 8px;
+        line-height: 1.9;
+      }
+    }
+  }
+  .area-Info-category {
+    display: flex;
+    gap: 5px;
+    font-size: 22px;
+    color: $black-color;
+    font-weight: bold;
+  }
+  .places-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    .places {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        font-weight: 300;
+        color: $gray-color;
+      }
+      p {
+        color: $gray-color;
+        font-weight: 300;
+      }
+    }
+  }
+  .review-wrapper {
+    display: flex;
+    gap: 25px;
+  }
+
+  .category__rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    &__wrapper {
+      padding: 8px;
+      border-right: 1px solid transparent;
+    }
+    .total-rating {
+      padding: 8px;
+      line-height: 1.9;
     }
   }
 }

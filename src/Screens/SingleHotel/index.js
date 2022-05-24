@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DynamicImage,
   FullNavBar,
   HambergurMenu,
   LoginModal,
   Accordion,
+  Button,
 } from "../../components";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
 import { useAuth } from "../../hooks/useAuth";
 import { Desktop, Mobile, Tablet } from "../../layout/BreakPoints";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle";
-import "./index.scss";
 import HostInfoCard from "../../components/Cards/HostInfoCard";
+import ReviewCard from "../../components/Cards/ReviewCard";
+import avatar1 from "assets/image/avatars/1.jpg";
+import avatar2 from "assets/image/avatars/2.jpg";
+import avatar3 from "assets/image/avatars/3.jpg";
+import "./index.scss";
+import { icons } from "../../values";
+import StarRating from "react-svg-star-rating";
 
 const gallery = [
   "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?cs=srgb&dl=pexels-pixabay-164595.jpg&fm=jpg",
@@ -66,14 +73,110 @@ const roomDetails = [
   { icon: "fas fa-tv", title: "Media And Technology", quantity: 6 },
   { icon: "fas fa-signal", title: "Internet", quantity: 2 },
 ];
-
+const areaInfo = [
+  {
+    category: "restourant",
+    places: [
+      { name: "KFC", distance: 2 },
+      { name: "KFC", distance: 2 },
+      { name: "KFC", distance: 2 },
+      { name: "KFC", distance: 2 },
+      { name: "KFC", distance: 2 },
+    ],
+  },
+  {
+    category: "gym",
+    places: [
+      { name: "Pro", distance: 1.3 },
+      { name: "Pro", distance: 1.3 },
+      { name: "Pro", distance: 1.3 },
+    ],
+  },
+  {
+    category: "hospital",
+    places: [
+      {
+        name: "Ghaem",
+        distance: 1,
+      },
+      {
+        name: "Ghaem",
+        distance: 1,
+      },
+      {
+        name: "Ghaem",
+        distance: 1,
+      },
+    ],
+  },
+  {
+    category: "park",
+    places: [
+      {
+        name: "Sia Bagh",
+        distance: 0.5,
+      },
+      {
+        name: "Sia Bagh",
+        distance: 0.5,
+      },
+      {
+        name: "Sia Bagh",
+        distance: 0.5,
+      },
+      {
+        name: "Sia Bagh",
+        distance: 0.5,
+      },
+    ],
+  },
+];
+const categoryRating = [
+  {
+    id: 1,
+    title: "Staff",
+    rating: 4.4,
+  },
+  {
+    id: 2,
+    title: "Facilities",
+    rating: 4.4,
+  },
+  {
+    id: 3,
+    title: "Cleanliness",
+    rating: 4.4,
+  },
+  {
+    id: 5,
+    title: "Comfort",
+    rating: 3.3,
+  },
+  {
+    id: 6,
+    title: "Value For Money",
+    rating: 5,
+  },
+  {
+    id: 7,
+    title: "Location",
+    rating: 2.6,
+  },
+  {
+    id: 8,
+    title: "Free WiFi",
+    rating: 2.8,
+  },
+];
 const SingleHotel = () => {
   const { isUserLoggedIn } = useAuth();
   const [toggleState, setToggleState] = useState(1);
-
   const toggleTab = (index) => {
     setToggleState(index);
   };
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <div className="SinglePage">
@@ -94,7 +197,7 @@ const SingleHotel = () => {
         <DynamicImage gallery={gallery} />
       </div>
       {/* Tabs */}
-      <div className="container">
+      <div className="container SinglePage__section">
         <div className="bloc-tabs">
           <button
             className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -223,22 +326,189 @@ const SingleHotel = () => {
         </div>
       </div>
       {/* host info */}
-      <div className="container">
+      <div className="container SinglePage__section">
         <HostInfoCard />
       </div>
+      {/* reviews */}
+      <div className="container SinglePage__section">
+        <div className="section__header">
+          <span>Commnets</span>
+        </div>
+        <div className="review-wrapper">
+          <Desktop>
+            <ReviewCard
+              image={avatar1}
+              name="Ali Houshangi"
+              country="United States"
+              countryCode="us"
+              review="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam."
+            />
+            <ReviewCard
+              image={avatar2}
+              name="Mamad"
+              country="United States"
+              countryCode="us"
+              review="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam."
+            />
+            <ReviewCard
+              image={avatar3}
+              name="mehrad"
+              country="United States"
+              countryCode="us"
+              review="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam."
+            />
+          </Desktop>
+          <Tablet>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={10}
+              navigation={true}
+              modules={[Navigation]}
+            >
+              <SwiperSlide>
+                <ReviewCard
+                  image={avatar1}
+                  name="Ali Houshangi"
+                  country="United States"
+                  countryCode="us"
+                  review="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam."
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <ReviewCard
+                  image={avatar2}
+                  name="Mamad"
+                  country="United States"
+                  countryCode="us"
+                  review="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam."
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <ReviewCard
+                  image={avatar3}
+                  name="mehrad"
+                  country="United States"
+                  countryCode="us"
+                  review="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam."
+                />
+              </SwiperSlide>
+            </Swiper>
+          </Tablet>
+          <Mobile>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={10}
+              navigation={true}
+              modules={[Navigation]}
+            >
+              <SwiperSlide>
+                <ReviewCard
+                  image={avatar1}
+                  name="Ali Houshangi"
+                  country="United States"
+                  countryCode="us"
+                  review="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam."
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <ReviewCard
+                  image={avatar2}
+                  name="Mamad"
+                  country="United States"
+                  countryCode="us"
+                  review="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam."
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <ReviewCard
+                  image={avatar3}
+                  name="mehrad"
+                  country="United States"
+                  countryCode="us"
+                  review="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam."
+                />
+              </SwiperSlide>
+            </Swiper>
+          </Mobile>
+        </div>
+        <Button className="mt-3" hasBorder hasBoxShadow>
+          Read all comments
+        </Button>
+      </div>
+      {/* Area info */}
+      <div className="container AreaInfo">
+        <div className="section__header">
+          <span>Area Info</span>
+        </div>
+        <div className="AreaInfo">
+          <div className="row">
+            {areaInfo.map((item, index) => {
+              const icon = icons.find((icon) => item.category === icon.name);
+              return (
+                <div className="col-12 col-md-6 col-lg-3" key={index}>
+                  <span className="area-Info-category">
+                    <i className={`${icon.iconClass}`}></i>
+                    {item.category}
+                  </span>
+                  <div className="places-wrapper">
+                    {item.places.map((place, index) => (
+                      <div className="places" key={index}>
+                        <span className="p-1">{place.name}</span>
+                        <p className="m-0">{place.distance}KM</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      {/* guest rating */}
+      <div className="container">
+        <div className="section__header__row">
+          <span>Guest reviews</span>
+          <div className="section__header__row__rating">
+            <div className="section__header__row__rating__wrapper">
+              <span>Rate: </span>
+              <StarRating unit="float" isReadOnly initialRating={4.4} />
+            </div>
+            <span className="total-rating">4.4</span>
+          </div>
+        </div>
+        <div>
+          <h5>Categories:</h5>
+          <div className="row">
+            {categoryRating.map((item, i) => (
+              <div className="col-12 col-md-6 col-lg-4" key={i}>
+                <div className="category__rating">
+                  <span>{item.title}: </span>
+                  <div className="category__rating__wrapper">
+                    <StarRating
+                      unit="float"
+                      isReadOnly
+                      initialRating={item.rating}
+                    />
+                    <span className="total-rating">{item.rating}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       {/* house rules */}
-      <div id="house-rules" className="container ">
-        <h4>House Rules</h4>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, nam.
-        Hic odio unde sequi aut harum eius nesciunt, reiciendis tempore aliquid
-        recusandae vero nihil error sit iste accusantium. Aspernatur magnam
-        assumenda dolore, reiciendis hic illo, facilis, nemo architecto incidunt
-        placeat officiis. Magni doloribus totam dolorum quisquam laborum dolorem
-        a dignissimos?
+      <div id="house-rules" className="container SinglePage__section ">
+        <div className="section__header">
+          <span>House Rules</span>
+        </div>
+        <div className="house-rules"></div>
       </div>
       {/* House FAQ */}
-      <div id="faq" className="container">
-        <h4>faq</h4>
+      <div id="faq" className="container SinglePage__section">
+        <div className="section__header">
+          <span>Frequently Asked Questions (FAQ)</span>
+        </div>
         <Accordion items={faqs} />
       </div>
     </div>
