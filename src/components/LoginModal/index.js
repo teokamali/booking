@@ -78,7 +78,7 @@ const LoginModal = () => {
             loginSubmitHandler(values);
           }}
         >
-          {({ errors, touched, values }) => (
+          {({ errors, touched, values, isSubmitting }) => (
             <Form>
               <div className="form-floating input-wrapper">
                 <Field
@@ -120,7 +120,14 @@ const LoginModal = () => {
                   Register
                 </button>
               </span>
-              <Button isBold hasBorder type="submit" id="loginBtn">
+              <Button
+                isBold
+                hasBorder
+                isLoading={isSubmitting}
+                disabled={isSubmitting}
+                type="submit"
+                id="loginBtn"
+              >
                 Login
               </Button>
             </Form>
@@ -174,7 +181,7 @@ const LoginModal = () => {
             registerSubmitHandler(values);
           }}
         >
-          {({ errors, touched, values }) => (
+          {({ errors, touched, values, isSubmitting }) => (
             <Form>
               <div className="form-floating input-wrapper">
                 <Field
@@ -253,7 +260,13 @@ const LoginModal = () => {
                   Login
                 </button>
               </span>
-              <Button isBold hasBorder type="submit">
+              <Button
+                isBold
+                hasBorder
+                isLoading={isSubmitting}
+                disabled={isSubmitting}
+                type="submit"
+              >
                 Register
               </Button>
             </Form>

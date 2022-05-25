@@ -20,3 +20,4 @@ export { default as LoginModal } from "./LoginModal";
 export { default as DynamicImage } from "./DynamicImage";
 export { default as Banner } from "./Banner";
 export { default as TimeLine } from "./TimeLine";
+export { default as Loader } from "./Loader";

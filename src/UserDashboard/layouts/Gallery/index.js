@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Modal, Toastify } from "../../../components";
+import { Button, Loader, Modal, Toastify } from "../../../components";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import {
@@ -22,6 +22,7 @@ const Gallery = () => {
   const { mutate: updateGallery } = useUpdateGallery(); //id , title
   const { gallery } = user;
   const [isLoading, setIsLoading] = useState(true);
+  const [disabled, setDisabled] = useState(false);
   useEffect(() => {
     galleryMutate();
   }, []);
@@ -89,7 +90,7 @@ const Gallery = () => {
                 id: id,
               }}
             >
-              {({ errors, touched, values }) => (
+              {({ errors, touched, values, isSubmitting }) => (
                 <Form
                   onSubmit={(e) => {
                     e.preventDefault();
@@ -108,8 +109,14 @@ const Gallery = () => {
                     <label htmlFor="title">Update Title</label>
                   </div>
                   <img className="mb-3 img-preview" src={image} alt="preview" />
-                  <Button isBold hasBorder type="submit">
-                    update
+                  <Button
+                    isBold
+                    hasBorder
+                    disabled={isSubmitting}
+                    isLoading={isSubmitting}
+                    type="submit"
+                  >
+                    Update
                   </Button>
                 </Form>
               )}
@@ -176,7 +183,17 @@ const Gallery = () => {
                 />
                 <label htmlFor="floatingInput">Image Title</label>
               </div>
-              <Button type="submit" hasBoxShadow hasBorder>
+              <Button
+                type="submit"
+                hasBoxShadow
+                hasBorder
+                disabled={disabled}
+                isLoading={disabled}
+                onClick={(e) => {
+                  addImageHandler(e);
+                  setDisabled(true);
+                }}
+              >
                 Add Image
               </Button>
             </form>
@@ -204,7 +221,7 @@ const Gallery = () => {
                 ))
               )
             ) : (
-              <h2>Loading...</h2>
+              <Loader />
             )}
           </div>
         </div>
