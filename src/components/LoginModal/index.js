@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { LoginValidate, RegisterValidate } from "../../validations";
-import api from "../../api";
-import Cookies from "js-cookie";
-import { constans } from "../../values";
 import { useNavigate } from "react-router";
 import { userTypes } from "../../values";
-import { Modal, CustomRadioButton2, Toastify, Button } from "../index";
+import { Modal, CustomRadioButton2, Button } from "../index";
 import { useLogin, useRegister } from "../../hooks/useAuth";
 import "./index.scss";
 
 const LoginModal = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [isReset, setIsReset] = useState(false);
   const [registerForm, setRegisterForm] = useState({
     first_name: "",
     last_name: "",
@@ -42,7 +40,7 @@ const LoginModal = () => {
     };
     RegisterMutate(formData);
   };
-
+  console.log({ isLogin, isReset });
   return (
     <Modal
       id="LoginModal"
@@ -112,10 +110,23 @@ const LoginModal = () => {
               </div>
 
               <span>
+                Have troble loging in?
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsReset((prev) => !prev);
+                  }}
+                >
+                  Reset Password
+                </button>
+              </span>
+              <span>
                 dont have account?
                 <button
                   type="button"
-                  onClick={() => setIsLogin((prev) => !prev)}
+                  onClick={() => {
+                    setIsLogin((prev) => !prev);
+                  }}
                 >
                   Register
                 </button>
@@ -269,6 +280,54 @@ const LoginModal = () => {
               >
                 Register
               </Button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+      {/* Reset Password */}
+      <div
+        className="reset-password-form"
+        style={isReset ? { left: "0%" } : { left: "100%" }}
+      >
+        <h3>Want to Reset Password ?</h3>
+        <Formik
+          initialValues={{
+            email: "",
+          }}
+          onSubmit={(values) => {
+            // same shape as initial values
+            // loginSubmitHandler(values);
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div className="form-floating input-wrapper">
+                <Field
+                  className="form-control"
+                  name="email"
+                  placeholder="Email Address"
+                  id="email"
+                  type="text"
+                />
+                <label htmlFor="email">Email Address</label>
+                {errors.email && touched.email && (
+                  <span className="input-error">{errors.email}</span>
+                )}
+              </div>
+              <Button type="submit" isLarge hasBoxShadow hasBorder>
+                Reset Password
+              </Button>
+              <span>
+                Never Mind I Want to
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsReset((prev) => !prev);
+                  }}
+                >
+                  Login
+                </button>
+              </span>
             </Form>
           )}
         </Formik>

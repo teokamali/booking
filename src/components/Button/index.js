@@ -23,7 +23,7 @@ function Button({
     color: ${(props) => (props.isPrimary ? "#191919" : "#ffff")};
     font-weight: ${(props) => (props.isBold ? "bold" : "400")};
     background-color: ${(props) => (props.isWhite ? "#fff" : "#ff3f3f")};
-    background-color: ${(props) => (props.disabled ? "#fff" : "#ff3f3f")};
+    background-color: ${(props) => props.disabled && "#fff"};
     outline: none;
     border-radius: 36px;
     border: ${(props) => (props.hasBorder ? "1px solid #eeeeee" : "0")};
