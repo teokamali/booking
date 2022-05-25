@@ -1,6 +1,6 @@
 {
   "name": "booking",
-  "version": "0.1.4",
+  "version": "0.1.4.1",
   "private": true,
   "homepage": ".",
   "dependencies": {
