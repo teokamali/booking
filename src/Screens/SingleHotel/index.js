@@ -6,6 +6,7 @@ import {
   LoginModal,
   Accordion,
   Button,
+  TimeLine,
 } from "../../components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -502,7 +503,9 @@ const SingleHotel = () => {
         <div className="section__header">
           <span>House Rules</span>
         </div>
-        <div className="house-rules"></div>
+        <div className="house-rules">
+          <TimeLine start={8} end={16} />
+        </div>
       </div>
       {/* House FAQ */}
       <div id="faq" className="container SinglePage__section">
