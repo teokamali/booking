@@ -505,15 +505,21 @@ const SingleHotel = () => {
         </div>
         <div className="house__rules__wrapper">
           <div className="house__rules">
-            <span>Check-In</span>
+            <span>
+              <i className="fas fa-calendar-range"></i> Check-In
+            </span>
             <TimeLine start={8} end={16} />
           </div>
           <div className="house__rules">
-            <span>Check-Out</span>
+            <span>
+              <i className="fas fa-calendar-range"></i> Check-Out
+            </span>
             <TimeLine start={7} end={15} />
           </div>
           <div className="house__rules">
-            <span>Cancellation/Prepayment</span>
+            <span>
+              <i className="fas fa-square-info"></i> Cancellation/Prepayment
+            </span>
             <p>
               Cancellation and prepayment policies vary according to apartment
               type. Please enter the dates of your stay and check what
@@ -521,7 +527,9 @@ const SingleHotel = () => {
             </p>
           </div>
           <div className="house__rules">
-            <span>Refundable damage deposit</span>
+            <span>
+              <i className="fas fa-square-info"></i> Refundable damage deposit
+            </span>
             <p>
               A damage deposit of EUR 300 is required. The property charges this
               7 days before arrival. This will be collected by credit card. You
@@ -531,7 +539,9 @@ const SingleHotel = () => {
             </p>
           </div>
           <div className="house__rules">
-            <span>Children & Beds</span>
+            <span>
+              <i className="fas fa-family"></i> Children & Beds
+            </span>
             <p>
               Child policies Children of all ages are welcome. To see correct
               prices and occupancy info, add the number and ages of children in
@@ -540,19 +550,27 @@ const SingleHotel = () => {
             </p>
           </div>
           <div className="house__rules">
-            <span>No age restriction</span>
+            <span>
+              <i className="fas fa-user"></i> No age restriction
+            </span>
             <p>There's no age requirement for check-in</p>
           </div>
           <div className="house__rules">
-            <span>Smoking</span>
+            <span>
+              <i className="fas fa-ban-smoking"></i>Smoking
+            </span>
             <p>Smoking is not allowed.</p>
           </div>
           <div className="house__rules">
-            <span>Pets</span>
+            <span>
+              <i className="fas fa-paw"></i> Pets
+            </span>
             <p>Pets is not allowed.</p>
           </div>
           <div className="house__rules">
-            <span>Parties</span>
+            <span>
+              <i className="fas fa-party-horn"></i> Parties
+            </span>
             <p>Parties/events are not allowed</p>
           </div>
         </div>
