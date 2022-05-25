@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 1;
   .fa-sun {
     font-size: 2rem;
     color: #ffd055;
@@ -30,10 +31,11 @@
     }
     &__time {
       position: absolute;
-      top: -20px;
+      top: -30px;
       left: 0;
       display: flex;
       justify-content: space-between;
+      gap: 50px;
     }
   }
 }
