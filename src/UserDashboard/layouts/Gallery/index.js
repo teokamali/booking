@@ -22,12 +22,12 @@ const Gallery = () => {
   const { user, setUser } = useContext(UserContext);
   const [fieldValue, setFieldValue] = useState({ image: "", title: "" });
   const { mutate: galleryMutate } = useGetGallery(); //token
-  const { mutate: postGallery } = usePostGallery(); // picture , title
+  const { mutate: postGallery, isLoading: isAddLoading } = usePostGallery(); // picture , title
   const { mutate: deleteGalleryImage } = useDeleteGallery(); //id
-  const { mutate: updateGallery } = useUpdateGallery(); //id , title
+  const { mutate: updateGallery, isLoading: isUpdateLoading } =
+    useUpdateGallery(); //id , title
   const { gallery } = user;
   const [isLoading, setIsLoading] = useState(true);
-  const [disabled, setDisabled] = useState(false);
   useEffect(() => {
     galleryMutate();
   }, []);
@@ -110,8 +110,8 @@ const Gallery = () => {
                   <Button
                     isBold
                     hasBorder
-                    disabled={isSubmitting}
-                    isLoading={isSubmitting}
+                    disabled={isUpdateLoading}
+                    isLoading={isUpdateLoading}
                     type="submit"
                   >
                     Update
@@ -185,11 +185,10 @@ const Gallery = () => {
                 type="submit"
                 hasBoxShadow
                 hasBorder
-                disabled={disabled}
-                isLoading={disabled}
+                disabled={isAddLoading}
+                isLoading={isAddLoading}
                 onClick={(e) => {
                   addImageHandler(e);
-                  setDisabled(true);
                 }}
               >
                 Add Image
