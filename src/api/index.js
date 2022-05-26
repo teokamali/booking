@@ -1,4 +1,5 @@
 import webSiteLogin from "./webSiteLogin";
+import webSiteLogOut from "./webSiteLogOut";
 import webSiteRegister from "./webSiteRegister";
 import getUserGallery from "./getUsergallery";
 import postUserGallery from "./postUserGallery";
@@ -11,5 +12,6 @@ const api = {
   postUserGallery,
   deleteUserGalleryImage,
   updateGallery,
+  webSiteLogOut,
 };
 export default api;

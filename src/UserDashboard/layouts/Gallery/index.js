@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Loader, Modal, Toastify } from "../../../components";
+import {
+  AddButtonWithIcon,
+  Button,
+  Loader,
+  Modal,
+  Toastify,
+} from "../../../components";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import {
@@ -10,7 +16,6 @@ import {
 } from "../../../hooks/useUserGallery";
 import "./index.scss";
 import { UserContext } from "../../../context/UsersContextProvider";
-import { config } from "values";
 import { Field, Form, Formik } from "formik";
 
 const Gallery = () => {
@@ -66,14 +71,7 @@ const Gallery = () => {
   const updateTitleHandler = (values) => {
     updateGallery({ id: values.id, title: values.title });
   };
-  const AddImage = () => {
-    return (
-      <span className="AddImage">
-        <i className="fa-regular fa-file-plus"></i>
-        <span>Add</span>
-      </span>
-    );
-  };
+
   const ImageGallery = ({ id, title, image, onDelete }) => {
     return (
       <div className="imageGallery">
@@ -140,7 +138,7 @@ const Gallery = () => {
             id="AddgalleryModal"
             modalTitle="Add New Image"
             buttonClassnames="login-modal-btn"
-            buttonText={<AddImage />}
+            buttonText={<AddButtonWithIcon />}
           >
             <form
               className="upload-image-form"

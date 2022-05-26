@@ -61,5 +61,19 @@ const useRegister = () => {
     },
   });
 };
+const useLogout = () => {
+  return useMutation(api.webSiteLogOut, {
+    onError: (error, variables, context) => {
+      // An error happened!
+      Toastify("error", "Somthing Wrong Happened");
+    },
+    onSuccess: (data, variables, context) => {
+      // Boom baby!
+      Cookies.remove(constans.TOKEN);
+      Cookies.remove(constans.INFO);
+      window.location.href = "/";
+    },
+  });
+};
 
-export { useAuth, useLogin, useRegister };
+export { useAuth, useLogin, useRegister, useLogout };

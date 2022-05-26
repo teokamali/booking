@@ -21,3 +21,16 @@ export const RegisterValidate = Yup.object({
     .oneOf([Yup.ref("password"), null], "Passwords Are Not Match")
     .required("You Need To Confirm Your Password"),
 });
+export const AddProperty = Yup.object({
+  property_type_id: Yup.number().required("Property type is required"),
+  name: Yup.string()
+    .max(15, "Name Most Be Less Then 15 Characters")
+    .required("Name Is Required"),
+  description: Yup.string()
+    .max(15, "Description most be less than 15 Characters")
+    .required("Description Is Required"),
+  images: Yup.array().required("you most at least add one image"),
+  address: Yup.object().required(),
+  city_id: Yup.number().required("you must choose a city"),
+  full:""
+});

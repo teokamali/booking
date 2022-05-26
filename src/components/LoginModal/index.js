@@ -21,9 +21,9 @@ const LoginModal = () => {
     password_confirmation: "",
   });
   const navigate = useNavigate();
-  const { mutate: loginMutate } = useLogin();
-  const { mutate: RegisterMutate } = useRegister();
-
+  const { mutate: loginMutate, isLoading: loginIsLoading } = useLogin();
+  const { mutate: RegisterMutate, isLoading: registerIsLoading } =
+    useRegister();
   const loginSubmitHandler = (values) => {
     loginMutate({ email: values.email, password: values.password });
   };
@@ -40,7 +40,6 @@ const LoginModal = () => {
     };
     RegisterMutate(formData);
   };
-  console.log({ isLogin, isReset });
   return (
     <Modal
       id="LoginModal"
@@ -76,7 +75,7 @@ const LoginModal = () => {
             loginSubmitHandler(values);
           }}
         >
-          {({ errors, touched, values, isSubmitting }) => (
+          {({ errors, touched }) => (
             <Form>
               <div className="form-floating input-wrapper">
                 <Field
@@ -134,8 +133,8 @@ const LoginModal = () => {
               <Button
                 isBold
                 hasBorder
-                isLoading={isSubmitting}
-                disabled={isSubmitting}
+                isLoading={loginIsLoading}
+                disabled={loginIsLoading}
                 type="submit"
                 id="loginBtn"
               >
@@ -192,7 +191,7 @@ const LoginModal = () => {
             registerSubmitHandler(values);
           }}
         >
-          {({ errors, touched, values, isSubmitting }) => (
+          {({ errors, touched }) => (
             <Form>
               <div className="form-floating input-wrapper">
                 <Field
@@ -274,8 +273,8 @@ const LoginModal = () => {
               <Button
                 isBold
                 hasBorder
-                isLoading={isSubmitting}
-                disabled={isSubmitting}
+                isLoading={registerIsLoading}
+                disabled={registerIsLoading}
                 type="submit"
               >
                 Register

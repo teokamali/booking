@@ -23,3 +23,8 @@ $red-color: #ff3f3f;
 $black-color: #191919;
 $gray-color: #5d5d5d;
 $white-color: #ffffff;
+$box-shadow: 0 2px 12px
+  rgba(
+    $color: $black-color,
+    $alpha: 8%,
+  );

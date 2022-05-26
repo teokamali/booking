@@ -52,11 +52,12 @@ import {
   setMiniSidenav,
   setOpenConfigurator,
 } from "UserDashboard/context";
-import { handleLogOut } from "utils/functions";
+import { useLogout } from "hooks/useAuth";
 
 function DashboardNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useMaterialUIController();
+  const { mutate: logout } = useLogout();
   const {
     miniSidenav,
     transparentNavbar,
@@ -171,7 +172,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 sx={navbarIconButton}
                 size="small"
                 disableRipple
-                onClick={() => handleLogOut()}
+                onClick={() => logout()}
               >
                 <Icon sx={iconsStyle}>logout</Icon>
               </IconButton>

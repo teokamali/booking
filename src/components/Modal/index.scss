@@ -7,6 +7,9 @@
 .modal-body {
   height: fit-content;
 }
-.login-register-modal {
-  display: inline-block;
+.modal-custom {
+  button {
+    border: 0;
+    outline: 0;
+  }
 }

@@ -22,7 +22,6 @@ import MDBox from "UserDashboard/components/MDBox";
 // Material Dashboard 2 React example components
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
-import Footer from "UserDashboard/examples/Footer";
 import ReportsBarChart from "UserDashboard/examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "UserDashboard/examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "UserDashboard/examples/Cards/StatisticsCards/ComplexStatisticsCard";
@@ -30,10 +29,6 @@ import ComplexStatisticsCard from "UserDashboard/examples/Cards/StatisticsCards/
 // Data
 import reportsBarChartData from "UserDashboard/layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "UserDashboard/layouts/dashboard/data/reportsLineChartData";
-
-// Dashboard components
-import Projects from "UserDashboard/layouts/dashboard/components/Projects";
-import OrdersOverview from "UserDashboard/layouts/dashboard/components/OrdersOverview";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;

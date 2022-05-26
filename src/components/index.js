@@ -21,3 +21,5 @@ export { default as DynamicImage } from "./DynamicImage";
 export { default as Banner } from "./Banner";
 export { default as TimeLine } from "./TimeLine";
 export { default as Loader } from "./Loader";
+export { default as AddButtonWithIcon } from "./AddButtonWithIcon";
+export { default as Table } from "./Table";

@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.scss";
+
 const Modal = ({
   id = "modal1",
   buttonText,

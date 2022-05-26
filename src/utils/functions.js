@@ -40,8 +40,3 @@ export const handleDirction = () => {
   }
   return false;
 };
-export const handleLogOut = () => {
-  Cookies.remove(constans.TOKEN);
-  Cookies.remove(constans.INFO);
-  window.location.href = "/";
-};

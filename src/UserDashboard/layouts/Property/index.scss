@@ -1,0 +1,8 @@
+@import "../../../styles/global.scss";
+.PropertyPage {
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
