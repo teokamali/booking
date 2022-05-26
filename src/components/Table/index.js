@@ -55,9 +55,6 @@ const Table = () => {
           </thead>
           <tbody className="tbody">
             <TableItem />
-            <TableItem />
-            <TableItem />
-            <TableItem />
           </tbody>
         </table>
       </div>

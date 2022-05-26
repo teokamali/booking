@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AddButtonWithIcon,
   Button,
@@ -13,8 +13,12 @@ import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import "./index.scss";
 import { userTypes } from "../../../values";
 import { Field, Form, Formik } from "formik";
-
+import { useGetPropertyType } from "hooks/useProperty";
 const Property = () => {
+  const propertyTypes = useGetPropertyType();
+  if (propertyTypes) {
+    console.log(propertyTypes.data.data);
+  }
   return (
     <DashboardLayout>
       <DashboardNavbar />

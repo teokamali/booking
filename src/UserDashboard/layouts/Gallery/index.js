@@ -1,11 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  AddButtonWithIcon,
-  Button,
-  Loader,
-  Modal,
-  Toastify,
-} from "../../../components";
+import { Button, Loader, Modal, AddGalleryModal } from "../../../components";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import {
@@ -19,52 +13,12 @@ import { UserContext } from "../../../context/UsersContextProvider";
 import { Field, Form, Formik } from "formik";
 
 const Gallery = () => {
-  const { user, setUser } = useContext(UserContext);
-  const [fieldValue, setFieldValue] = useState({ image: "", title: "" });
-  const { mutate: galleryMutate } = useGetGallery(); //token
-  const { mutate: postGallery, isLoading: isAddLoading } = usePostGallery(); // picture , title
+  const { data, isError, error, isLoading, isFetching } = useGetGallery(); //token
   const { mutate: deleteGalleryImage } = useDeleteGallery(); //id
   const { mutate: updateGallery, isLoading: isUpdateLoading } =
     useUpdateGallery(); //id , title
-  const { gallery } = user;
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    galleryMutate();
-  }, []);
+  useGetGallery();
 
-  useEffect(() => {
-    if (gallery.length > 0) {
-      setIsLoading(false);
-    }
-  }, [gallery]);
-
-  const addImageHandler = (e) => {
-    e.preventDefault();
-    const imageSize = fieldValue.image.size / 1000;
-    const selectedImage = fieldValue.image;
-    // form validation
-    if (selectedImage !== "" && fieldValue.title !== "") {
-      if (imageSize < 5120) {
-        if (
-          selectedImage.type === "image/png" ||
-          selectedImage.type === "image/jpeg" ||
-          selectedImage.type === "image/bmp " ||
-          selectedImage.type === "image/png "
-        ) {
-          postGallery({ image: fieldValue.image, title: fieldValue.title });
-        } else {
-          Toastify(
-            "error",
-            "image fomat not valid! valid formats : jpg , jpeg ,png ,bpm"
-          );
-        }
-      } else {
-        Toastify("error", "image size most be lest than 5mb");
-      }
-    } else {
-      Toastify("error", "both fields are required");
-    }
-  };
   const deleteHandler = (id) => {
     deleteGalleryImage({ id });
   };
@@ -134,75 +88,15 @@ const Gallery = () => {
       <div className="gallery">
         <div className="gallery__header">
           <h2>List Of Gallery Images</h2>
-          <Modal
-            id="AddgalleryModal"
-            modalTitle="Add New Image"
-            buttonClassnames="login-modal-btn"
-            buttonText={<AddButtonWithIcon />}
-          >
-            <form
-              className="upload-image-form"
-              onSubmit={(e) => {
-                addImageHandler(e);
-              }}
-            >
-              <div className="mb-3">
-                <label htmlFor="file" className="form-label">
-                  Select your image:
-                </label>
-                <input
-                  className="form-control"
-                  id="file"
-                  name="file"
-                  type="file"
-                  values={fieldValue.image}
-                  onChange={(event) => {
-                    setFieldValue({
-                      ...fieldValue,
-                      image: event.currentTarget.files[0],
-                    });
-                  }}
-                />
-              </div>
-              <div className="form-floating mb-3">
-                <input
-                  className="form-control"
-                  id="floatingInput"
-                  placeholder="Image Title"
-                  type="text"
-                  name="title"
-                  value={fieldValue.title}
-                  onChange={(event) => {
-                    setFieldValue({
-                      ...fieldValue,
-                      title: event.target.value,
-                    });
-                  }}
-                />
-                <label htmlFor="floatingInput">Image Title</label>
-              </div>
-              <Button
-                type="submit"
-                hasBoxShadow
-                hasBorder
-                disabled={isAddLoading}
-                isLoading={isAddLoading}
-                onClick={(e) => {
-                  addImageHandler(e);
-                }}
-              >
-                Add Image
-              </Button>
-            </form>
-          </Modal>
+          <AddGalleryModal />
         </div>
         <div className="gallery__body">
           <div className="row">
             {!isLoading ? (
-              gallery[0] === "empty" ? (
+              data.data.length === 0 ? (
                 <h2>Gallery is Empty</h2>
               ) : (
-                gallery.map((item) => (
+                data.data.map((item) => (
                   <div
                     className="col-12 col-md-6 col-lg-3 item-card "
                     key={item.id}

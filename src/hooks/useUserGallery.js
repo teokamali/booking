@@ -1,25 +1,16 @@
 import { useContext } from "react";
 import api from "../api";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { UserContext } from "../context/UsersContextProvider";
 import { Toastify } from "../components";
 const useGetGallery = () => {
-  const { user, setUser } = useContext(UserContext);
-  return useMutation(api.getUserGallery, {
+  return useQuery("getGallery", api.getUserGallery, {
     onError: (error, variables, context) => {
       // An error happened!
-      console.log(error);
+      Toastify("error", "somthing went wrong");
     },
     onSuccess: (data, variables, context) => {
       // Boom baby!
-      // console.log(data.data.data);
-      if (data.data.data.length > 0) {
-        setUser({ ...user, gallery: data.data.data });
-      }
-      setUser({ ...user, gallery: data.data.data });
-      if (data.data.data.length === 0) {
-        setUser({ ...user, gallery: ["empty"] });
-      }
     },
   });
 };
