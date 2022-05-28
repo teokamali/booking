@@ -6,6 +6,8 @@ import postUserGallery from "./postUserGallery";
 import deleteUserGalleryImage from "./deleteGalleryImage";
 import updateGallery from "./updateGallery";
 import getPropertyTypes from "./getPropertyTypes";
+import getAllProperties from "./getAllProperties";
+
 const api = {
   webSiteLogin,
   webSiteRegister,
@@ -15,5 +17,6 @@ const api = {
   updateGallery,
   webSiteLogOut,
   getPropertyTypes,
+  getAllProperties,
 };
 export default api;

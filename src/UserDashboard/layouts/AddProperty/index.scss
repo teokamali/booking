@@ -1,0 +1,72 @@
+@import "styles/global.scss";
+.AddPropertyPage {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__body {
+  }
+}
+#galleryModal {
+  .modal-dialog {
+    max-width: 90% !important;
+  }
+}
+.galleryImages {
+  width: 250px;
+  height: 250px;
+  .galleryImage {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    &:hover {
+      border-color: $red-color;
+    }
+  }
+
+  .galleryImage-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .galleryImageOverlay {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($color: #000000, $alpha: 0.6);
+      i {
+        position: absolute;
+        background-color: rgba($color: $white-color, $alpha: 1);
+        width: 25px;
+        height: 25px;
+        font-size: 18px;
+        text-align: center;
+        color: $red-color;
+        font-weight: bold;
+        vertical-align: middle;
+        margin: 0;
+        padding: 0;
+        border-radius: 6px;
+        left: 5px;
+        top: 5px;
+      }
+    }
+  }
+  .selected {
+    border: 3px solid $red-color;
+    box-shadow: $box-shadow;
+    width: 100%;
+    height: 100%;
+  }
+}
+.preview-image {
+  border-radius: 6px;
+  width: 100%;
+  height: 250px;
+}

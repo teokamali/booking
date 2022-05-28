@@ -25,7 +25,6 @@ const Gallery = () => {
   const updateTitleHandler = (values) => {
     updateGallery({ id: values.id, title: values.title });
   };
-
   const ImageGallery = ({ id, title, image, onDelete }) => {
     return (
       <div className="imageGallery">

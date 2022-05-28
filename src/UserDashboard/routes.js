@@ -2,10 +2,11 @@
 import Dashboard from "UserDashboard/layouts/dashboard";
 import Profile from "UserDashboard/layouts/profile";
 import Gallery from "UserDashboard/layouts/Gallery";
+import Property from "./layouts/Property";
+import AddProperty from "./layouts/AddProperty";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
-import Property from "./layouts/Property";
 
 const routes = [
   {
@@ -21,19 +22,28 @@ const routes = [
     type: "collapse",
     name: "Gallery",
     key: "gallery",
-    icon: <Icon fontSize="small">dashboard</Icon>,
+    icon: <Icon fontSize="small">photo library</Icon>,
     route: "gallery",
     link: "gallery",
     component: <Gallery />,
   },
   {
     type: "collapse",
-    name: "Property",
+    name: "Properties",
     key: "property",
     icon: <Icon fontSize="small">apartment</Icon>,
     route: "property",
     link: "property",
     component: <Property />,
+  },
+  {
+    type: "collapse",
+    name: "Add Property",
+    key: "property/add",
+    icon: <Icon fontSize="small">add</Icon>,
+    route: "property/add",
+    link: "property/add",
+    component: <AddProperty />,
   },
 
   {

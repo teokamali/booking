@@ -5,4 +5,8 @@ const useGetPropertyType = () => {
   const { data } = useQuery("getPropertyTypes", api.getPropertyTypes);
   return data;
 };
-export { useGetPropertyType };
+const useGetProperties = () => {
+  const { data } = useQuery("getProperties", api.getAllProperties);
+  return data;
+};
+export { useGetPropertyType, useGetProperties };

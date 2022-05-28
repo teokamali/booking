@@ -10,6 +10,7 @@ const Modal = ({
   submitButtonText,
   submitButtonClassNames,
   submitButtonOnClick,
+  renderCloseButton = false,
   isCentered = false,
 }) => {
   return (
@@ -52,6 +53,18 @@ const Modal = ({
             <div className="modal-body">
               <>{children}</>
             </div>
+            {renderCloseButton && (
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn-main"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  Submit
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
