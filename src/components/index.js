@@ -24,3 +24,4 @@ export { default as Loader } from "./Loader";
 export { default as AddButtonWithIcon } from "./AddButtonWithIcon";
 export { default as Table } from "./Table";
 export { default as AddGalleryModal } from "./AddGalleryModal";
+export { default as Map } from "./Map";

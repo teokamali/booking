@@ -2,18 +2,11 @@ import React, { useState } from "react";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import { useGetPropertyType } from "hooks/useProperty";
-import { Modal, CustomDropDown1 } from "components";
+import { Modal, Map } from "components";
 import { useGetGallery } from "hooks/useUserGallery";
-import { Loader } from "components";
-import {
-  CButton,
-  CFormFloating,
-  CFormInput,
-  CFormLabel,
-  CFormTextarea,
-} from "@coreui/react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { MapContainer } from "react-leaflet";
 import "./index.scss";
 
 const AddProperty = () => {
@@ -21,12 +14,18 @@ const AddProperty = () => {
   const { data, isError, error, isLoading, isFetching } = useGetGallery(); //token
   const propertyTypes = useGetPropertyType();
   const [selectedImages, setSelectedImages] = useState([]);
+  const [position, setPosition] = useState({
+    lat: 50.5,
+    lng: 30.5,
+  });
+  const [location, setLocation] = useState(null);
   const onImageClickHandler = (item) => {
     setSelectedImages((prev) => [...prev, item]);
   };
   const removeImage = (item) => {
     setSelectedImages((prev) => prev.filter((image) => image.id !== item.id));
   };
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -41,7 +40,7 @@ const AddProperty = () => {
               <label htmlFor="">Select your property images</label>
               <Modal
                 id="galleryModal"
-                buttonText="gallery"
+                buttonText="Images"
                 buttonClassnames="btn-main"
                 modalTitle="Media Gallery"
                 renderCloseButton={true}
@@ -145,6 +144,22 @@ const AddProperty = () => {
                 </Form>
               )}
             </Formik>
+          </div>
+          {/* Map */}
+          <div className="container">
+            <MapContainer
+              style={{ height: "400px" }}
+              center={[position.lat, position.lng]}
+              zoom={13}
+              scrollWheelZoom={false}
+            >
+              <Map
+                clickedPosition={position}
+                setClickedPosition={setPosition}
+                userLocation={location}
+                setUserLocation={setLocation}
+              />
+            </MapContainer>
           </div>
         </div>
       </div>
