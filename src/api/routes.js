@@ -7,16 +7,18 @@ const propertyTypes = config.BASE_URL + "property_types";
 const properties = config.BASE_URL + "property";
 const countries = config.BASE_URL + "countries";
 const cities = config.BASE_URL + "cities";
+const postProperty = config.BASE_URL + "property";
 
 const routes = {
-  webSiteLoginWithEmailRoute,
-  webSiteRegisterWithEmailRoute,
-  usergallery,
-  webSiteLogOut,
-  propertyTypes,
-  properties,
-  countries,
-  cities,
+	webSiteLoginWithEmailRoute,
+	webSiteRegisterWithEmailRoute,
+	usergallery,
+	webSiteLogOut,
+	propertyTypes,
+	properties,
+	countries,
+	cities,
+	postProperty,
 };
 
 export default routes;

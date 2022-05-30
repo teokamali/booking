@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import { useGetPropertyType } from "hooks/useProperty";
-import { Modal, Map } from "components";
+import { Modal, Map, Button, Toastify, Loader } from "components";
 import { useGetGallery } from "hooks/useUserGallery";
-import * as Yup from "yup";
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import { MapContainer } from "react-leaflet";
 import Select from "react-select";
-import AsyncSelect from "react-select/async";
-
 import { capitalizeFirstLetter } from "utils/functions";
 import { useGetCountries } from "hooks/useProperty";
 import { useGetCities } from "hooks/useProperty";
-
+import { AddPropertyValidate } from "validations/index";
 import "./index.scss";
+import { usePostProperty } from "../../../hooks/useProperty";
 
 const AddProperty = () => {
 	// select image functionalities
@@ -27,13 +25,14 @@ const AddProperty = () => {
 	const removeImage = (item) => {
 		setSelectedImages((prev) => prev.filter((image) => image.id !== item.id));
 	};
-	// map functionality
-	const [position, setPosition] = useState();
-	const [location, setLocation] = useState({
-		lat: 50.5,
-		lng: 30.5,
-	});
+	const images = selectedImages.map((image) => image.id);
 
+	// map functionality
+	const [location, setLocation] = useState({
+		lat: 0,
+		lng: 0,
+	});
+	const [position, setPosition] = useState();
 	// get countries
 	const { data: countries, isLoading: countryLoading } = useGetCountries();
 	let countryList = [];
@@ -66,6 +65,35 @@ const AddProperty = () => {
 			})
 		);
 	}
+	// Form Submit Handler
+	const { mutate: postPropertyResult, isLoading: isPropertyPostLoading } = usePostProperty();
+	const formSubmitHandler = (e) => {
+		if (images.length === 0) {
+			Toastify("error", "Please select at least one image");
+		}
+		if (position === undefined) {
+			Toastify("error", "Please select a loacation on map");
+		}
+		const formData = {
+			property_type_id: e.property_type_id,
+			name: e.name,
+			description: e.description,
+			subtitle: e.subtitle,
+			images: images,
+			address: {
+				city_id: e.city_id,
+				full: e.full,
+				location: {
+					lat: position.lat,
+					long: position.lng,
+				},
+			},
+		};
+		if (images.length !== 0 && position !== undefined) {
+			console.log(formData);
+			postPropertyResult(formData);
+		}
+	};
 
 	return (
 		<DashboardLayout>
@@ -149,25 +177,18 @@ const AddProperty = () => {
 					{/* form */}
 					<div className='container mt-3'>
 						<Formik
-							// validationSchema={Validate}
+							validationSchema={AddPropertyValidate}
 							initialValues={{
-								property_type_id: 0,
+								property_type_id: "",
 								name: "",
 								description: "",
 								subtitle: "",
-								images: [],
-								address: {
-									city_id: 0,
-									full: "",
-									location: {
-										lat: 0,
-										long: 0,
-									},
-								},
+								city_id: "",
+								full: "",
 							}}
-							// onSubmit={(e) => submitHandler(e)}
+							onSubmit={(e) => formSubmitHandler(e)}
 						>
-							{({ values }) => (
+							{({ values, errors }) => (
 								<Form>
 									{/* type */}
 									<div className=' mb-3'>
@@ -201,6 +222,8 @@ const AddProperty = () => {
 												options={cityData}
 												className='basic-single'
 												classNamePrefix='select'
+												name='city_id'
+												onChange={(e) => (values.city_id = e.value)}
 												isSearchable
 												isLoading={isCityLoading}
 												isDisabled={!!!cityData}
@@ -209,7 +232,7 @@ const AddProperty = () => {
 									</div>
 									{/* name */}
 									<div className='form-floating mb-3'>
-										<input
+										<Field
 											type='text'
 											className='form-control'
 											id='name'
@@ -220,7 +243,7 @@ const AddProperty = () => {
 									</div>
 									{/* subtitle */}
 									<div className='form-floating mb-3'>
-										<input
+										<Field
 											type='text'
 											className='form-control'
 											id='subtitle'
@@ -237,40 +260,49 @@ const AddProperty = () => {
 											id='description'
 											placeholder='Description'
 											name='description'
+											onChange={(e) => (values.description = e.target.value)}
 											style={{ height: "100px" }}
 										/>
 										<label htmlFor='description'>Description</label>
 									</div>
 									{/* fullAddress */}
 									<div className='form-floating mb-3'>
-										<input
+										<Field
 											type='text'
 											className='form-control'
 											id='fullAddress'
 											placeholder='Full Address'
-											name='fullAddress'
+											name='full'
 										/>
 										<label htmlFor='fullAddress'>Full Address</label>
 									</div>
+									{/* Map */}
+									<div className='container'>
+										<MapContainer
+											style={{ height: "400px" }}
+											center={[location.lat, location.lng]}
+											zoom={13}
+											minZoom={5}
+											scrollWheelZoom={true}
+										>
+											<Map
+												userLocation={location}
+												setUserLocation={setLocation}
+												clickedPosition={position}
+												setClickPosition={setPosition}
+											/>
+										</MapContainer>
+									</div>
+									{isPropertyPostLoading ? (
+										<Loader />
+									) : (
+										<Button type='submit' className='w-100 my-3'>
+											Submit
+										</Button>
+									)}
 								</Form>
 							)}
 						</Formik>
-					</div>
-					{/* Map */}
-					<div className='container'>
-						<MapContainer
-							style={{ height: "400px" }}
-							center={[location.lat, location.lng]}
-							zoom={13}
-							scrollWheelZoom={true}
-						>
-							<Map
-								clickedPosition={position}
-								setClickedPosition={setPosition}
-								userLocation={location}
-								setUserLocation={setLocation}
-							/>
-						</MapContainer>
 					</div>
 				</div>
 			</div>

@@ -9,18 +9,20 @@ import getPropertyTypes from "./getPropertyTypes";
 import getAllProperties from "./getAllProperties";
 import getCountries from "./getCountries";
 import getCities from "./getCities";
+import postProperty from "./postProperty";
 
 const api = {
-  webSiteLogin,
-  webSiteRegister,
-  getUserGallery,
-  postUserGallery,
-  deleteUserGalleryImage,
-  updateGallery,
-  webSiteLogOut,
-  getPropertyTypes,
-  getAllProperties,
-  getCountries,
-  getCities,
+	webSiteLogin,
+	webSiteRegister,
+	getUserGallery,
+	postUserGallery,
+	deleteUserGalleryImage,
+	updateGallery,
+	webSiteLogOut,
+	getPropertyTypes,
+	getAllProperties,
+	getCountries,
+	getCities,
+	postProperty,
 };
 export default api;

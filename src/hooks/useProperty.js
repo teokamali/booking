@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "react-query";
+import { Toastify } from "components";
 import api from "api";
 const useGetPropertyType = () => {
 	const { data, isLoading } = useQuery("getPropertyTypes", api.getPropertyTypes);
@@ -26,4 +27,16 @@ const useGetCities = ({ id, options = {} }) => {
 		...options,
 	});
 };
-export { useGetPropertyType, useGetProperties, useGetCountries, useGetCities };
+const usePostProperty = () => {
+	return useMutation(api.postProperty, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", "An error happened!");
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			window.location.reload();
+		},
+	});
+};
+export { useGetPropertyType, useGetProperties, useGetCountries, useGetCities, usePostProperty };
