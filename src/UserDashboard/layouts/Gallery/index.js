@@ -18,7 +18,6 @@ const Gallery = () => {
   const { mutate: updateGallery, isLoading: isUpdateLoading } =
     useUpdateGallery(); //id , title
   useGetGallery();
-
   const deleteHandler = (id) => {
     deleteGalleryImage({ id });
   };

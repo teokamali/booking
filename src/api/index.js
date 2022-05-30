@@ -7,6 +7,8 @@ import deleteUserGalleryImage from "./deleteGalleryImage";
 import updateGallery from "./updateGallery";
 import getPropertyTypes from "./getPropertyTypes";
 import getAllProperties from "./getAllProperties";
+import getCountries from "./getCountries";
+import getCities from "./getCities";
 
 const api = {
   webSiteLogin,
@@ -18,5 +20,7 @@ const api = {
   webSiteLogOut,
   getPropertyTypes,
   getAllProperties,
+  getCountries,
+  getCities,
 };
 export default api;

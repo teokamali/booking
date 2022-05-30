@@ -5,6 +5,8 @@ const webSiteRegisterWithEmailRoute = config.BASE_URL + "register/email";
 const usergallery = config.BASE_URL + "gallery";
 const propertyTypes = config.BASE_URL + "property_types";
 const properties = config.BASE_URL + "property";
+const countries = config.BASE_URL + "countries";
+const cities = config.BASE_URL + "cities";
 
 const routes = {
   webSiteLoginWithEmailRoute,
@@ -13,6 +15,8 @@ const routes = {
   webSiteLogOut,
   propertyTypes,
   properties,
+  countries,
+  cities,
 };
 
 export default routes;
