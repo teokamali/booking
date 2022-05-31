@@ -1,28 +1,12 @@
-import webSiteLogin from "./webSiteLogin";
-import webSiteLogOut from "./webSiteLogOut";
-import webSiteRegister from "./webSiteRegister";
-import getUserGallery from "./getUsergallery";
-import postUserGallery from "./postUserGallery";
-import deleteUserGalleryImage from "./deleteGalleryImage";
-import updateGallery from "./updateGallery";
-import getPropertyTypes from "./getPropertyTypes";
-import getAllProperties from "./getAllProperties";
-import getCountries from "./getCountries";
-import getCities from "./getCities";
-import postProperty from "./postProperty";
+import post from "api/post";
+import get from "api/get";
+import patch from "api/patch";
+import deleteApi from "api/delete";
 
 const api = {
-	webSiteLogin,
-	webSiteRegister,
-	getUserGallery,
-	postUserGallery,
-	deleteUserGalleryImage,
-	updateGallery,
-	webSiteLogOut,
-	getPropertyTypes,
-	getAllProperties,
-	getCountries,
-	getCities,
-	postProperty,
+	post,
+	get,
+	deleteApi,
+	patch,
 };
 export default api;

@@ -1,5 +1,5 @@
-import routes from "./routes";
-import webSiteAxios from "./webSiteAxios";
+import routes from "../routes";
+import webSiteAxios from "../webSiteAxios";
 
 const getUserGallery = async () => {
   const response = await webSiteAxios.get(routes.usergallery);

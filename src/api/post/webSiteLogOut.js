@@ -1,5 +1,5 @@
-import routes from "./routes";
-import axios from "./webSiteAxios";
+import routes from "../routes";
+import axios from "../webSiteAxios";
 
 const webSiteLogin = async () => {
   const response = await axios.post(routes.webSiteLogOut);

@@ -1,5 +1,5 @@
-import routes from "./routes";
-import axios from "./webSiteAxios";
+import routes from "../routes";
+import axios from "../webSiteAxios";
 
 const deleteUserGalleryImage = async ({ id }) => {
   const response = await axios.delete(`${routes.usergallery}/${id}`);

@@ -1,5 +1,5 @@
-import routes from "./routes";
-import axios from "./webSiteAxios";
+import routes from "../routes";
+import axios from "../webSiteAxios";
 
 const getCities = async (context) => {
 	const [_key, id] = context.queryKey;

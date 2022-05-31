@@ -1,7 +1,7 @@
-import { constans } from "../values";
+import { constans } from "../../values";
 import Cookies from "js-cookie";
-import routes from "./routes";
-import axios from "./webSiteAxios";
+import routes from "../routes";
+import axios from "../webSiteAxios";
 
 const webSiteRegister = async (registerData) => {
   const {

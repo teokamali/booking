@@ -1,5 +1,5 @@
-import routes from "./routes";
-import axios from "./webSiteAxios";
+import routes from "../routes";
+import axios from "../webSiteAxios";
 
 const updateGallery = async ({ id, title }) => {
   const response = await axios.patch(`${routes.usergallery}/${id}`, {

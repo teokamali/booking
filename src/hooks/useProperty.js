@@ -2,19 +2,19 @@ import { useMutation, useQuery } from "react-query";
 import { Toastify } from "components";
 import api from "api";
 const useGetPropertyType = () => {
-	const { data, isLoading } = useQuery("getPropertyTypes", api.getPropertyTypes);
+	const { data, isLoading } = useQuery("getPropertyTypes", api.get.getPropertyTypes);
 	return { data, isLoading };
 };
 const useGetProperties = () => {
-	const { data } = useQuery("getProperties", api.getAllProperties);
+	const { data } = useQuery("getProperties", api.get.getAllProperties);
 	return data;
 };
 const useGetCountries = () => {
-	const { data, isLoading } = useQuery("getCountries", api.getCountries);
+	const { data, isLoading } = useQuery("getCountries", api.get.getCountries);
 	return { data, isLoading };
 };
 const useGetCities = ({ id, options = {} }) => {
-	return useQuery(["get-cities", id], api.getCities, {
+	return useQuery(["get-cities", id], api.get.getCities, {
 		onError: (error, variables, context) => {
 			// An error happened!
 			// recconecting
@@ -28,7 +28,7 @@ const useGetCities = ({ id, options = {} }) => {
 	});
 };
 const usePostProperty = () => {
-	return useMutation(api.postProperty, {
+	return useMutation(api.post.postProperty, {
 		onError: (error, variables, context) => {
 			// An error happened!
 			Toastify("error", "An error happened!");
