@@ -40,6 +40,34 @@ const useLogin = () => {
 		},
 	});
 };
+const useLoginWithGoogle = () => {
+	// const { user, setUser } = useContext(UserContext);
+	return useMutation(api.get.loginWithGoogle, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", "email or password is incorrect");
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			// Cookies.set(constans.TOKEN, data.data.data.token.access_token);
+			// Toastify("success", "Logged in successfully");
+			// setUser({ ...user, userInformation: data.data.data.user });
+			// Cookies.set(constans.INFO, JSON.stringify(data.data.data.user));
+			// setTimeout(() => {
+			// 	window.location.reload();
+			// 	document.querySelector(".modal-backdrop").remove("");
+			// }, 1000);
+			function popup() {
+				var features =
+					"directories=no,menubar=no,status=no,titlebar=no,toolbar=no,width=500,height=500";
+				window.open(data.data.url, "mypopup", features);
+			}
+			console.log(data.data);
+			// window.open(data.data.url);
+			popup();
+		},
+	});
+};
 const useRegister = () => {
 	const { user, setUser } = useContext(UserContext);
 
@@ -76,4 +104,4 @@ const useLogout = () => {
 	});
 };
 
-export { useAuth, useLogin, useRegister, useLogout };
+export { useAuth, useLogin, useRegister, useLogout, useLoginWithGoogle };

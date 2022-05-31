@@ -8,6 +8,7 @@ const properties = config.BASE_URL + "property";
 const countries = config.BASE_URL + "countries";
 const cities = config.BASE_URL + "cities";
 const postProperty = config.BASE_URL + "property";
+const loginWithGoogle = config.BASE_URL + "auth/google";
 
 const routes = {
 	webSiteLoginWithEmailRoute,
@@ -19,6 +20,7 @@ const routes = {
 	countries,
 	cities,
 	postProperty,
+	loginWithGoogle,
 };
 
 export default routes;
