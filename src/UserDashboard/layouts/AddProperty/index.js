@@ -11,8 +11,10 @@ import { capitalizeFirstLetter } from "utils/functions";
 import { useGetCountries } from "hooks/useProperty";
 import { useGetCities } from "hooks/useProperty";
 import { AddPropertyValidate } from "validations/index";
-import "./index.scss";
 import { usePostProperty } from "../../../hooks/useProperty";
+import { Gallery, Item } from "react-photoswipe-gallery";
+import "photoswipe/dist/photoswipe.css";
+import "./index.scss";
 
 const AddProperty = () => {
 	// select image functionalities
@@ -113,6 +115,7 @@ const AddProperty = () => {
 								buttonClassnames='btn-main'
 								modalTitle='Media Gallery'
 								renderCloseButton={true}
+								isScrollable={true}
 							>
 								<div className='container'>
 									<div className='row'>
@@ -162,9 +165,9 @@ const AddProperty = () => {
 					</div>
 					{/* Preview selected images */}
 					<div className='container mt-3'>
-						<div className='row'>
+						{/* <div className='preview'>
 							{selectedImages.map((images, i) => (
-								<div className='col-6 col-md-3 mb-3' key={i}>
+								<div className='preview-image-wrapper' key={i}>
 									<img
 										className='preview-image'
 										src={images.medium_image_link}
@@ -172,6 +175,30 @@ const AddProperty = () => {
 									/>
 								</div>
 							))}
+						</div> */}
+						<div className='preview'>
+							<Gallery>
+								{console.log(selectedImages)}
+								{selectedImages.map((images, i) => (
+									<Item
+										original={images.original_image_link}
+										thumbnail={images.thumb_image_link}
+										width='1024'
+										height='768'
+										cropped
+									>
+										{({ ref, open }) => (
+											<img
+												className='preview-image'
+												ref={ref}
+												onClick={open}
+												src={images.thumb_image_link}
+												alt=''
+											/>
+										)}
+									</Item>
+								))}
+							</Gallery>
 						</div>
 					</div>
 					{/* form */}
