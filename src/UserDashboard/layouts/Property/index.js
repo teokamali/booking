@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 const Property = () => {
 	const properties = useGetProperties();
 	const editPropertyHandler = (id) => {
-		console.log(id);
+		// console.log(id);
 	};
 	const deletePropertyHandler = (id) => {
-		console.log(id);
+		// console.log(id);
 	};
 	const property = properties?.data?.data.map((property) => property);
 	return (
@@ -31,10 +31,7 @@ const Property = () => {
 						) : (
 							<div>
 								<Table
-									key={property.id}
-									id={property.id}
-									name={property.name}
-									address={property.address}
+									tableHead={["id", "Name", "Location", "Action"]}
 									onEdit={(id) => editPropertyHandler(id)}
 									onDelete={(id) => deletePropertyHandler(id)}
 									data={property}

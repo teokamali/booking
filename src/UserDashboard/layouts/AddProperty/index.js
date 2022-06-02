@@ -82,6 +82,7 @@ const AddProperty = () => {
 			description: e.description,
 			subtitle: e.subtitle,
 			images: images,
+			cover_image_id: images[0],
 			address: {
 				city_id: e.city_id,
 				full: e.full,
@@ -92,7 +93,7 @@ const AddProperty = () => {
 			},
 		};
 		if (images.length !== 0 && position !== undefined) {
-			console.log(formData);
+			// console.log(formData);
 			postPropertyResult(formData);
 		}
 	};
@@ -178,7 +179,7 @@ const AddProperty = () => {
 						</div> */}
 						<div className='preview'>
 							<Gallery>
-								{console.log(selectedImages)}
+								{/* {console.log(selectedImages)} */}
 								{selectedImages.map((images, i) => (
 									<Item
 										original={images.original_image_link}

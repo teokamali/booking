@@ -23,7 +23,7 @@ function ProductsContextProvider({ children }) {
         setProducts(data);
       })();
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }, []);
 

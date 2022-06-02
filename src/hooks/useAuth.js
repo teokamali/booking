@@ -60,9 +60,8 @@ const useLoginWithGoogle = () => {
 			function popup() {
 				var features =
 					"directories=no,menubar=no,status=no,titlebar=no,toolbar=no,width=500,height=500";
-				window.open(data.data.url, "mypopup", features);
+				window.open(data.data.url, "_self");
 			}
-			console.log(data.data);
 			// window.open(data.data.url);
 			popup();
 		},

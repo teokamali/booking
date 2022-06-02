@@ -18,7 +18,6 @@ const useGetCities = ({ id, options = {} }) => {
 		onError: (error, variables, context) => {
 			// An error happened!
 			// recconecting
-			console.log(error);
 		},
 		select: (data, variables, context) => {
 			// Boom baby!

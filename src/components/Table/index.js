@@ -3,7 +3,7 @@ import image from "assets/image/avatars/7.jpg";
 import "./index.scss";
 import Modal from "../Modal";
 
-const TableItem = ({ id, name, address, onEdit, onDelete }) => {
+const TableItem = ({ id, name, address, beds, bathrooms, onEdit, onDelete }) => {
 	return (
 		<tr className='table_body_row'>
 			<td className=' table_body_d'>
@@ -13,8 +13,13 @@ const TableItem = ({ id, name, address, onEdit, onDelete }) => {
 				<span>{name}</span>
 			</td>
 			<td className='table_body_d'>
-				<p>{address}</p>
+				<p>{address || beds}</p>
 			</td>
+			{bathrooms ? (
+				<td className='table_body_d'>
+					<p>{bathrooms}</p>
+				</td>
+			) : null}
 			<td className=' table_body_d  '>
 				<TableButtons onEdit={onEdit} onDelete={onDelete} />
 			</td>
@@ -41,17 +46,18 @@ const TableButtons = ({ onEdit, onDelete }) => {
 		</div>
 	);
 };
-const Table = ({ id, name, address, onEdit, onDelete, data }) => {
+const Table = ({ onEdit, onDelete, data, tableHead }) => {
 	return (
 		<div className='table-responsive'>
 			<div className='Table_wrapper'>
 				<table className='cs-table'>
 					<thead className='thead'>
 						<tr className='thead_row'>
-							<th className='thead_cels'>Id</th>
-							<th className='thead_cels'>Name </th>
-							<th className='thead_cels'>Location</th>
-							<th className='thead_cels'>Actions</th>
+							{tableHead.map((item, i) => (
+								<th className='thead_cels' key={i}>
+									{item}
+								</th>
+							))}
 						</tr>
 					</thead>
 					<tbody className='tbody'>
@@ -62,6 +68,8 @@ const Table = ({ id, name, address, onEdit, onDelete, data }) => {
 										id={item.id}
 										name={item.name}
 										address={item.address}
+										beds={item.beds}
+										bathrooms={item.bathroom}
 										onEdit={() => onEdit(item.id)}
 										onDelete={() => onDelete(item.id)}
 									/>

@@ -4,6 +4,7 @@ import Profile from "UserDashboard/layouts/profile";
 import Gallery from "UserDashboard/layouts/Gallery";
 import Property from "./layouts/Property";
 import AddProperty from "./layouts/AddProperty";
+import Units from "./layouts/Units";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -45,7 +46,15 @@ const routes = [
 		link: "property/add",
 		component: <AddProperty />,
 	},
-
+	{
+		type: "collapse",
+		name: "Units",
+		key: "units",
+		icon: <Icon fontSize='small'>bed</Icon>,
+		route: "units",
+		link: "units",
+		component: <Units />,
+	},
 	{
 		type: "collapse",
 		name: "Setting",
