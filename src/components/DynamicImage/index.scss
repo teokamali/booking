@@ -1,53 +1,53 @@
 .dynamic-image {
-  width: 100%;
-  .dynamic-image-heading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+	width: 100%;
+	.dynamic-image-heading {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
 
-  h1 {
-    position: relative;
-    margin-bottom: 45px;
-    font-family: "Oswald", sans-serif;
-    font-size: 44px;
-    text-transform: uppercase;
-    color: #424242;
-  }
+	h1 {
+		position: relative;
+		margin-bottom: 45px;
+		font-family: "Oswald", sans-serif;
+		font-size: 44px;
+		text-transform: uppercase;
+		color: #424242;
+	}
 
-  .gallery-wrap {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 40vh;
-    @media (min-width: 767px) {
-      height: 70vh;
-    }
-  }
+	.gallery-wrap {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		height: 40vh;
+		@media (min-width: 767px) {
+			height: 70vh;
+		}
+	}
 
-  .item {
-    cursor: pointer;
-    flex: 1;
-    height: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: none;
-    transition: flex 0.8s ease;
+	.item {
+		cursor: pointer;
+		flex: 1;
+		height: 100%;
+		background-position: center;
+		background-size: cover;
+		background-repeat: none;
+		transition: flex 1s ease-in-out;
 
-    &:hover {
-      flex: 6;
-    }
-  }
+		&:hover {
+			flex: 24;
+		}
+	}
 
-  .social {
-    position: absolute;
-    right: 35px;
-    bottom: 0;
+	.social {
+		position: absolute;
+		right: 35px;
+		bottom: 0;
 
-    img {
-      display: block;
-      width: 32px;
-    }
-  }
+		img {
+			display: block;
+			width: 32px;
+		}
+	}
 }

@@ -34,9 +34,9 @@ import routes from "UserDashboard/routes";
 
 // Material Dashboard 2 React contexts
 import {
-  useMaterialUIController,
-  setMiniSidenav,
-  setOpenConfigurator,
+	useMaterialUIController,
+	setMiniSidenav,
+	setOpenConfigurator,
 } from "UserDashboard/context";
 
 // Images
@@ -44,138 +44,130 @@ import brandWhite from "UserDashboard/assets/images/logo-ct.png";
 import brandDark from "UserDashboard/assets/images/logo-ct-dark.png";
 
 export default function UserDashboard() {
-  const [controller, dispatch] = useMaterialUIController();
-  const {
-    miniSidenav,
-    direction,
-    layout,
-    openConfigurator,
-    sidenavColor,
-    transparentSidenav,
-    whiteSidenav,
-    darkMode,
-  } = controller;
-  const [onMouseEnter, setOnMouseEnter] = useState(false);
-  const [rtlCache, setRtlCache] = useState(null);
-  const { pathname } = useLocation();
+	const [controller, dispatch] = useMaterialUIController();
+	const {
+		miniSidenav,
+		direction,
+		layout,
+		openConfigurator,
+		sidenavColor,
+		transparentSidenav,
+		whiteSidenav,
+		darkMode,
+	} = controller;
+	const [onMouseEnter, setOnMouseEnter] = useState(false);
+	const [rtlCache, setRtlCache] = useState(null);
+	const { pathname } = useLocation();
 
-  // Cache for the rtl
-  useMemo(() => {
-    const cacheRtl = createCache({
-      key: "rtl",
-      stylisPlugins: [rtlPlugin],
-    });
+	// Cache for the rtl
+	useMemo(() => {
+		const cacheRtl = createCache({
+			key: "rtl",
+			stylisPlugins: [rtlPlugin],
+		});
 
-    setRtlCache(cacheRtl);
-  }, []);
+		setRtlCache(cacheRtl);
+	}, []);
 
-  // Open sidenav when mouse enter on mini sidenav
-  const handleOnMouseEnter = () => {
-    if (miniSidenav && !onMouseEnter) {
-      setMiniSidenav(dispatch, false);
-      setOnMouseEnter(true);
-    }
-  };
+	// Open sidenav when mouse enter on mini sidenav
+	const handleOnMouseEnter = () => {
+		if (miniSidenav && !onMouseEnter) {
+			setMiniSidenav(dispatch, false);
+			setOnMouseEnter(true);
+		}
+	};
 
-  // Close sidenav when mouse leave mini sidenav
-  const handleOnMouseLeave = () => {
-    if (onMouseEnter) {
-      setMiniSidenav(dispatch, true);
-      setOnMouseEnter(false);
-    }
-  };
+	// Close sidenav when mouse leave mini sidenav
+	const handleOnMouseLeave = () => {
+		if (onMouseEnter) {
+			setMiniSidenav(dispatch, true);
+			setOnMouseEnter(false);
+		}
+	};
 
-  // Change the openConfigurator state
-  const handleConfiguratorOpen = () =>
-    setOpenConfigurator(dispatch, !openConfigurator);
+	// Change the openConfigurator state
+	const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
 
-  // Setting the dir attribute for the body element
-  useEffect(() => {
-    document.body.setAttribute("dir", direction);
-  }, [direction]);
+	// Setting the dir attribute for the body element
+	useEffect(() => {
+		document.body.setAttribute("dir", direction);
+	}, [direction]);
 
-  // Setting page scroll to 0 when changing the route
-  useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-  }, [pathname]);
+	// Setting page scroll to 0 when changing the route
+	useEffect(() => {
+		document.documentElement.scrollTop = 0;
+		document.scrollingElement.scrollTop = 0;
+	}, [pathname]);
 
-  const getRoutes = (allRoutes) =>
-    allRoutes.map((route) => {
-      if (route.collapse) {
-        return getRoutes(route.collapse);
-      }
+	const getRoutes = (allRoutes) =>
+		allRoutes.map((route) => {
+			if (route.collapse) {
+				return getRoutes(route.collapse);
+			}
 
-      if (route.route) {
-        return (
-          <Route
-            exact
-            path={route.route}
-            element={route.component}
-            key={route.key}
-          />
-        );
-      }
+			if (route.route) {
+				return <Route exact path={route.route} element={route.component} key={route.key} />;
+			}
 
-      return null;
-    });
-  const { user } = useContext(UserContext);
+			return null;
+		});
+	const { user } = useContext(UserContext);
 
-  return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              brand={
-                (transparentSidenav && !darkMode) || whiteSidenav
-                  ? brandDark
-                  : brandWhite
-              }
-              brandName={`Hello ${user.userInformation.first_name}`}
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-            <Configurator />
-            {/* {configsButton} */}
-          </>
-        )}
-        {layout === "vr" && <Configurator />}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
-      </ThemeProvider>
-    </CacheProvider>
-  ) : (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
-      <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brand={
-              (transparentSidenav && !darkMode) || whiteSidenav
-                ? brandDark
-                : brandWhite
-            }
-            brandName={`Hello ${user.userInformation.first_name} `}
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-          <Configurator />
-          {/* {configsButton} */}
-        </>
-      )}
-      {layout === "vr" && <Configurator />}
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
-      </Routes>
-    </ThemeProvider>
-  );
+	return direction === "rtl" ? (
+		<CacheProvider value={rtlCache}>
+			<ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
+				<CssBaseline />
+				{layout === "dashboard" && (
+					<>
+						<Sidenav
+							color={sidenavColor}
+							brand={
+								(transparentSidenav && !darkMode) || whiteSidenav
+									? brandDark
+									: brandWhite
+							}
+							brandName={`Hello ${user.userInformation.first_name}`}
+							routes={routes}
+							onMouseEnter={handleOnMouseEnter}
+							onMouseLeave={handleOnMouseLeave}
+						/>
+						<Configurator />
+						{/* {configsButton} */}
+					</>
+				)}
+				{layout === "vr" && <Configurator />}
+				<Routes>
+					{getRoutes(routes)}
+					<Route path='*' element={<Navigate to='/dashboard' />} />
+				</Routes>
+			</ThemeProvider>
+		</CacheProvider>
+	) : (
+		<ThemeProvider theme={darkMode ? themeDark : theme}>
+			<CssBaseline />
+			{layout === "dashboard" && (
+				<>
+					<Sidenav
+						color={sidenavColor}
+						brand={
+							(transparentSidenav && !darkMode) || whiteSidenav
+								? brandDark
+								: brandWhite
+						}
+						brandName={`Hello ${user.userInformation.first_name} `}
+						routes={routes}
+						onMouseEnter={handleOnMouseEnter}
+						onMouseLeave={handleOnMouseLeave}
+					/>
+					<Configurator />
+					{/* {configsButton} */}
+				</>
+			)}
+			{layout === "vr" && <Configurator />}
+			<Routes>
+				{getRoutes(routes)}
+				<Route path='*' element={<Navigate to='/dashboard' />} />
+			</Routes>
+		</ThemeProvider>
+	);
 }

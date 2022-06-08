@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useGetPropertyType } from "hooks/useProperty";
+import { Modal, Map, Button, Loader, Toastify } from "components";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
-import { useGetPropertyType } from "hooks/useProperty";
-import { Modal, Map, Button, Toastify, Loader } from "components";
 import { useGetGallery } from "hooks/useUserGallery";
 import { Formik, Form, Field } from "formik";
 import { MapContainer } from "react-leaflet";
 import Select from "react-select";
 import { capitalizeFirstLetter } from "utils/functions";
-import { useGetCountries } from "hooks/useProperty";
+import { useGetCountries, useGetPropertyById } from "hooks/useProperty";
 import { useGetCities } from "hooks/useProperty";
 import { AddPropertyValidate } from "validations/index";
-import { usePostProperty } from "../../../hooks/useProperty";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
-import "./index.scss";
+import { useLocation } from "react-router-dom";
+import { useUpdateProperty } from "hooks/useProperty";
 
-const AddProperty = () => {
+const EditProperty = ({ data }) => {
 	// select image functionalities
+	const pathname = useLocation().pathname;
+	const propertyId = pathname.split("/")[4];
+	const { data: propertyData, isLoading: isPropertyLoading } = useGetPropertyById(propertyId);
+
 	useGetGallery();
-	const { data } = useGetGallery(); //token
+	const { data: galleryData } = useGetGallery(); //token
+
 	const [selectedImages, setSelectedImages] = useState([]);
 	const onImageClickHandler = (item) => {
 		setSelectedImages((prev) => [...prev, item]);
@@ -38,7 +43,7 @@ const AddProperty = () => {
 	// get countries
 	const { data: countries, isLoading: countryLoading } = useGetCountries();
 	let countryList = [];
-	if (!countryLoading) {
+	if (!countryLoading && !isPropertyLoading) {
 		countries.data.data.map((item) =>
 			countryList.push({
 				label: capitalizeFirstLetter(item.name),
@@ -46,8 +51,9 @@ const AddProperty = () => {
 			})
 		);
 	}
+
 	// get cities
-	const [selectedCountry, setSelectedCountry] = useState(null);
+	const [selectedCountry, setSelectedCountry] = useState();
 	const { data: cityData, isLoading: isCityLoading } = useGetCities({
 		id: selectedCountry,
 		options: {
@@ -66,15 +72,9 @@ const AddProperty = () => {
 			})
 		);
 	}
-	// Form Submit Handler
-	const { mutate: postPropertyResult, isLoading: isPropertyPostLoading } = usePostProperty();
+	const { mutate: updateProperty, isLoading: isUpdating } = useUpdateProperty();
 	const formSubmitHandler = (e) => {
-		if (images.length === 0) {
-			Toastify("error", "Please select at least one image");
-		}
-		if (position === undefined) {
-			Toastify("error", "Please select a loacation on map");
-		}
+		console.log(propertyData.data);
 		const formData = {
 			property_type_id: e.property_type_id,
 			name: e.name,
@@ -91,20 +91,25 @@ const AddProperty = () => {
 				},
 			},
 		};
+		if (images.length === 0) {
+			Toastify("error", "Please select at least one image");
+		}
+		if (position === undefined) {
+			Toastify("error", "Please select a loacation on map");
+		}
+		if (selectedImages.length === 0) {
+			galleryData.data.map((item) => setSelectedImages((prev) => [...prev, item.id]));
+		}
 		if (images.length !== 0 && position !== undefined) {
-			console.log(formData);
-			postPropertyResult(formData);
+			updateProperty(formData);
 		}
 	};
 
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
-			<div className='AddPropertyPage'>
-				<div className='AddPropertyPage__header'>
-					<h2>Add new Property</h2>
-				</div>
-				<div className='AddPropertyPage__body'>
+			{propertyData ? (
+				<>
 					{/* Add Image */}
 					<div className='container'>
 						<div className='d-flex align-items-center justify-content-between'>
@@ -119,45 +124,38 @@ const AddProperty = () => {
 							>
 								<div className='container'>
 									<div className='row'>
-										{data ? (
-											data.data.length === 0 ? (
-												<h4>Your Gallery is Empty</h4>
-											) : (
-												data.data.map((item) => (
-													<div
-														className='galleryImages col-12 col-md-6 col-lg-3'
-														key={item.id}
-													>
-														{selectedImages.includes(item) ? (
-															<div className='galleryImage-wrapper'>
-																<div
-																	className='galleryImageOverlay '
-																	onClick={() =>
-																		removeImage(item)
-																	}
-																>
-																	<i className='fas fa-check'></i>
-																</div>
-																<img
-																	className={`galleryImage selected`}
-																	src={item.medium_image_link}
-																	alt=''
-																/>
+										{galleryData &&
+											galleryData.data.map((item) => (
+												<div
+													className='galleryImages col-12 col-md-6 col-lg-3'
+													key={item.id}
+												>
+													{selectedImages.includes(item) ? (
+														<div className='galleryImage-wrapper'>
+															<div
+																className='galleryImageOverlay '
+																onClick={() => removeImage(item)}
+															>
+																<i className='fas fa-check'></i>
 															</div>
-														) : (
 															<img
-																className={`galleryImage`}
+																className={`galleryImage selected`}
 																src={item.medium_image_link}
 																alt=''
-																onClick={() =>
-																	onImageClickHandler(item)
-																}
 															/>
-														)}
-													</div>
-												))
-											)
-										) : null}
+														</div>
+													) : (
+														<img
+															className={`galleryImage`}
+															src={item.medium_image_link}
+															alt=''
+															onClick={() =>
+																onImageClickHandler(item)
+															}
+														/>
+													)}
+												</div>
+											))}
 									</div>
 								</div>
 							</Modal>
@@ -165,21 +163,10 @@ const AddProperty = () => {
 					</div>
 					{/* Preview selected images */}
 					<div className='container mt-3'>
-						{/* <div className='preview'>
-							{selectedImages.map((images, i) => (
-								<div className='preview-image-wrapper' key={i}>
-									<img
-										className='preview-image'
-										src={images.medium_image_link}
-										alt=''
-									/>
-								</div>
-							))}
-						</div> */}
 						<div className='preview'>
 							<Gallery>
-								{/* {console.log(selectedImages)} */}
-								{selectedImages.map((images, i) => (
+								{/* {console.log(propertyData.data.images)} */}
+								{propertyData.data.images.map((images, i) => (
 									<Item
 										original={images.original_image_link}
 										thumbnail={images.thumb_image_link}
@@ -205,14 +192,14 @@ const AddProperty = () => {
 					{/* form */}
 					<div className='container mt-3'>
 						<Formik
-							validationSchema={AddPropertyValidate}
+							// validationSchema={AddPropertyValidate}
 							initialValues={{
-								property_type_id: "",
-								name: "",
-								description: "",
-								subtitle: "",
+								property_type_id: propertyData.data.property_type_id,
+								name: propertyData.data.name,
+								description: propertyData.data.description,
+								subtitle: propertyData.data.subtitle,
 								city_id: "",
-								full: "",
+								full: propertyData.data.address.full,
 							}}
 							onSubmit={(e) => formSubmitHandler(e)}
 						>
@@ -225,6 +212,11 @@ const AddProperty = () => {
 											className='basic-single'
 											classNamePrefix='select'
 											options={newTypes}
+											defaultValue={newTypes.find(
+												(item) =>
+													item.value ===
+													propertyData.data.property_type_id
+											)}
 											name='property_type_id'
 											onChange={(e) => (values.property_type_id = e.value)}
 										/>
@@ -237,6 +229,11 @@ const AddProperty = () => {
 												className='basic-single'
 												classNamePrefix='select'
 												options={countryList}
+												defaultValue={countryList.find(
+													(item) =>
+														item.label ===
+														propertyData.data.address.country
+												)}
 												onChange={(e) => {
 													setSelectedCountry(e.value);
 													// cityHandler(e);
@@ -251,6 +248,7 @@ const AddProperty = () => {
 												className='basic-single'
 												classNamePrefix='select'
 												name='city_id'
+												placeholder={propertyData.data.address.city}
 												onChange={(e) => (values.city_id = e.value)}
 												isSearchable
 												isLoading={isCityLoading}
@@ -288,6 +286,7 @@ const AddProperty = () => {
 											id='description'
 											placeholder='Description'
 											name='description'
+											value={propertyData.data.description}
 											onChange={(e) => (values.description = e.target.value)}
 											style={{ height: "100px" }}
 										/>
@@ -316,26 +315,33 @@ const AddProperty = () => {
 											<Map
 												userLocation={location}
 												setUserLocation={setLocation}
-												clickedPosition={position}
+												clickedPosition={
+													position
+														? position
+														: [
+																propertyData.data.address.location
+																	.latitude,
+																propertyData.data.address.location
+																	.longitude,
+														  ]
+												}
 												setClickPosition={setPosition}
 											/>
 										</MapContainer>
 									</div>
-									{!isPropertyPostLoading ? (
-										<Button type='submit' className='w-100 my-3'>
-											Submit
-										</Button>
-									) : (
-										<Loader />
-									)}
+									<Button type='submit' className='w-100 my-3'>
+										Submit
+									</Button>
 								</Form>
 							)}
 						</Formik>
 					</div>
-				</div>
-			</div>
+				</>
+			) : (
+				<Loader />
+			)}
 		</DashboardLayout>
 	);
 };
 
-export default AddProperty;
+export default EditProperty;

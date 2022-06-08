@@ -6,8 +6,12 @@ const useGetPropertyType = () => {
 	return { data, isLoading };
 };
 const useGetProperties = () => {
-	const { data } = useQuery("getProperties", api.get.getAllProperties);
+	const { data } = useQuery("getProperties", api.get.getUserProperties);
 	return data;
+};
+const useGetPropertyById = (id) => {
+	const { data, isLoading } = useQuery("getPropertyById", () => api.get.getPropertyById(id));
+	return { data, isLoading };
 };
 const useGetCountries = () => {
 	const { data, isLoading } = useQuery("getCountries", api.get.getCountries);
@@ -26,6 +30,18 @@ const useGetCities = ({ id, options = {} }) => {
 		...options,
 	});
 };
+const useUpdateProperty = () => {
+	return useMutation(api.patch.updateProperty, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", "An error happened!");
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			window.location.reload();
+		},
+	});
+};
 const usePostProperty = () => {
 	return useMutation(api.post.postProperty, {
 		onError: (error, variables, context) => {
@@ -38,4 +54,13 @@ const usePostProperty = () => {
 		},
 	});
 };
-export { useGetPropertyType, useGetProperties, useGetCountries, useGetCities, usePostProperty };
+
+export {
+	useGetPropertyType,
+	useGetProperties,
+	useGetCountries,
+	useGetCities,
+	usePostProperty,
+	useGetPropertyById,
+	useUpdateProperty,
+};

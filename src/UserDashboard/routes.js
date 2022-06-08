@@ -4,6 +4,7 @@ import Profile from "UserDashboard/layouts/profile";
 import Gallery from "UserDashboard/layouts/Gallery";
 import Property from "./layouts/Property";
 import AddProperty from "./layouts/AddProperty";
+import EditProperty from "./layouts/EditProperty";
 import Units from "./layouts/Units";
 
 // @mui icons
@@ -45,6 +46,15 @@ const routes = [
 		route: "property/add",
 		link: "property/add",
 		component: <AddProperty />,
+	},
+	{
+		type: "",
+		name: "Edit Property",
+		key: "property/Edit",
+		icon: <Icon fontSize='small'>pen</Icon>,
+		route: "property/edit/:id",
+		link: "property/edit/:id",
+		component: <EditProperty />,
 	},
 	{
 		type: "collapse",

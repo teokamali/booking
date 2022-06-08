@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Loader, Table } from "components";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
-
+import { useGetUserUnits } from "hooks/useUnits";
 const Units = () => {
 	const units = [
 		{ id: 1, name: "3 room", beds: 3, bathroom: 1, propertyName: "mamad hotels" },
@@ -11,6 +11,8 @@ const Units = () => {
 		{ id: 3, name: "5 room", beds: 5, bathroom: 1, propertyName: "mamad hotels" },
 		{ id: 4, name: "1 room", beds: 1, bathroom: 1, propertyName: "mamad hotels" },
 	];
+	const { data, isLoading } = useGetUserUnits();
+	console.log({ data, isLoading });
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
