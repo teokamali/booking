@@ -12,6 +12,7 @@ const postProperty = config.BASE_URL + "property";
 const getPropertyById = config.BASE_URL + "property";
 const userUnits = config.BASE_URL + "user/units";
 const updateProperty = config.BASE_URL + "property";
+const getAllProperties = config.BASE_URL + "property";
 const routes = {
 	webSiteLoginWithEmailRoute,
 	webSiteRegisterWithEmailRoute,
@@ -26,6 +27,7 @@ const routes = {
 	userUnits,
 	getPropertyById,
 	updateProperty,
+	getAllProperties,
 };
 
 export default routes;

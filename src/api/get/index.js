@@ -6,6 +6,7 @@ import getCountries from "./getCountries";
 import getCities from "./getCities";
 import getUserUnits from "./getUserUnits";
 import getPropertyById from "./getPropertyById";
+import getAllProperties from "./getAllProperties";
 
 const get = {
 	getUserGallery,
@@ -16,5 +17,6 @@ const get = {
 	loginWithGoogle,
 	getUserUnits,
 	getPropertyById,
+	getAllProperties,
 };
 export default get;

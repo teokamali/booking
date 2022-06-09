@@ -20,6 +20,8 @@ import avatar3 from "assets/image/avatars/3.jpg";
 import "./index.scss";
 import { icons } from "../../values";
 import StarRating from "react-svg-star-rating";
+import { useLocation } from "react-router";
+import { useGetPropertyById } from "../../hooks/useProperty";
 
 const gallery = [
 	"https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?cs=srgb&dl=pexels-pixabay-164595.jpg&fm=jpg",
@@ -171,13 +173,13 @@ const categoryRating = [
 ];
 const SingleHotel = () => {
 	const { isUserLoggedIn } = useAuth();
-	const [toggleState, setToggleState] = useState(1);
-	const toggleTab = (index) => {
-		setToggleState(index);
-	};
-	// useEffect(() => {
-	//   window.scrollTo(0, 0);
-	// }, []);
+	// const [toggleState, setToggleState] = useState(1);
+	// const toggleTab = (index) => {
+	// 	setToggleState(index);
+	// };
+	const PropertyId = useLocation().pathname.split("/")[2];
+	const { data } = useGetPropertyById(PropertyId);
+	console.log(data?.data);
 
 	return (
 		<div className='SinglePage'>
@@ -195,32 +197,27 @@ const SingleHotel = () => {
 			</div>
 			{/* gallery */}
 			<div className='SinglePage__Gallery'>
-				<DynamicImage gallery={gallery} />
+				<DynamicImage gallery={data ? data.data.images : gallery} />
 			</div>
-			{/* Tabs */}
-			<div className='container SinglePage__section'>
+			<div className='SinglePage__baseInformation SinglePage__section'>
+				<h2 className='hotel-title'>{data ? data.data.name : ""}</h2>
+				<p className='hotel-address'>{data ? data.data.address.full : ""} </p>
+			</div>
+			{/* navigation */}
+			<div className='container'>
 				<div className='bloc-tabs'>
-					<button
-						className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-						onClick={() => toggleTab(1)}
-					>
+					<a href='#profile' className={"tabs"}>
 						<i className='fas fa-user'></i>
 						Profile
-					</button>
-					<button
-						className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-						onClick={() => toggleTab(2)}
-					>
+					</a>
+					<a href='#facilities' className={"tabs"}>
 						<i className='fas fa-warehouse-full'></i>
 						Facilities
-					</button>
-					<button
-						className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-						onClick={() => toggleTab(3)}
-					>
+					</a>
+					<a href='#room' className={"tabs"}>
 						<i className='fas fa-door-closed'></i>
 						Room
-					</button>
+					</a>
 					<a href='#house-rules' className='tabs'>
 						<i className='fas fa-memo'></i>
 						House Rules
@@ -254,40 +251,16 @@ const SingleHotel = () => {
 				</div>
 				<div className='content-tabs'>
 					{/* description */}
-					<div
-						className={
-							toggleState === 1
-								? "container content single-hotel-description active-content"
-								: "container content single-hotel-description"
-						}
-					>
+					<div className={"container content single-hotel-description active-content"}>
 						<h2>Description</h2>
-						<p>
-							You're eligible for a Genius discount at Appartement Lyon Centre
-							Confluence 100 m2 Parking Terrasses! To save at this property, all you
-							have to do is sign in.
-						</p>
-						<p>
-							Located in Lyon, 2.3 km from Musée Miniature et Cinéma, Appartement Lyon
-							Centre Confluence 100 m2 Parking Terrasses provides accommodations with
-							a shared lounge, free WiFi and a shared kitchen. Private parking is
-							available on site.
-						</p>
-						<p>
-							The apartment comes with 2 bedrooms, 1 bathroom, bed linen, towels, a
-							flat-screen TV, a dining area, a fully equipped kitchen, and a balcony
-							with city views.
-						</p>
+						<div dangerouslySetInnerHTML={{ __html: data?.data.description }}></div>
 					</div>
 					{/* Facilities */}
 					<div
-						className={
-							toggleState === 2
-								? "container content single-hotel-facalities active-content"
-								: "container content single-hotel-facalities"
-						}
+						className={"container content single-hotel-facalities active-content"}
+						id='facilities'
 					>
-						<h2>Amenities</h2>
+						<h2>Facilities</h2>
 						<div className='row'>
 							{amenities.map((item, index) => (
 								<div
@@ -301,13 +274,7 @@ const SingleHotel = () => {
 						</div>
 					</div>
 					{/* Room and details */}
-					<div
-						className={
-							toggleState === 3
-								? "container content single-hotel-room  active-content"
-								: "container content single-hotel-room"
-						}
-					>
+					<div className={"container content single-hotel-room active-content"} id='room'>
 						<h2>Room and details</h2>
 						<div className='row'>
 							{roomDetails.map((item, index) => (
@@ -327,7 +294,7 @@ const SingleHotel = () => {
 				</div>
 			</div>
 			{/* host info */}
-			<div className='container SinglePage__section'>
+			<div className='container SinglePage__section' id='profile'>
 				<HostInfoCard />
 			</div>
 			{/* reviews */}
@@ -437,7 +404,7 @@ const SingleHotel = () => {
 				</Button>
 			</div>
 			{/* Area info */}
-			<div className='container AreaInfo'>
+			<div className='container SinglePage__section AreaInfo'>
 				<div className='section__header'>
 					<span>Area Info</span>
 				</div>
@@ -466,7 +433,7 @@ const SingleHotel = () => {
 				</div>
 			</div>
 			{/* guest rating */}
-			<div className='container'>
+			<div className='container SinglePage__section'>
 				<div className='section__header__row'>
 					<span>Guest reviews</span>
 					<div className='section__header__row__rating'>
