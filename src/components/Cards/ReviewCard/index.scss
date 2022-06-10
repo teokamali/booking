@@ -1,61 +1,61 @@
 .ReviewCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid #707070;
-  width: 80%;
-  border-radius: 30px;
-  padding: 27px 35px;
-  @media (min-width: 767px) {
-    width: 50%;
-    align-items: flex-start;
-  }
-  &__header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    @media (min-width: 767px) {
-      flex-direction: row;
-    }
-    img {
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      border: 1px solid #707070;
-    }
-    &__info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      @media (min-width: 767px) {
-        align-items: flex-start;
-      }
-      &__name {
-        font-size: 25px;
-        font-weight: bold;
-      }
-      &__country {
-        display: flex;
-        gap: 5px;
-        align-items: center;
-        span {
-          font-weight: bold;
-        }
-      }
-    }
-  }
-  &__body {
-    margin-top: 20px;
-    font-size: 15px;
-    color: #191919;
-    p {
-      margin: 0;
-    }
-  }
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #707070;
+	width: 80%;
+	border-radius: 30px;
+	padding: 27px 35px;
+	@media (min-width: 767px) {
+		width: 50%;
+		align-items: flex-start;
+	}
+	&__header {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+		@media (min-width: 767px) {
+			flex-direction: row;
+		}
+		img {
+			width: 88px;
+			height: 88px;
+			border-radius: 50%;
+			border: 1px solid #707070;
+		}
+		&__info {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			@media (min-width: 767px) {
+				align-items: flex-start;
+			}
+			&__name {
+				font-size: 25px;
+				font-weight: bold;
+			}
+			&__country {
+				display: flex;
+				gap: 5px;
+				align-items: center;
+				span {
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	&__body {
+		margin-top: 20px;
+		font-size: 15px;
+		color: #191919;
+		p {
+			margin: 0;
+		}
+	}
 }

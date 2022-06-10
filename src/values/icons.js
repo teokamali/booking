@@ -1,19 +1,23 @@
-const icons = [
-  {
-    name: "restourant",
-    iconClass: "fas fa-burger-fries",
-  },
-  {
-    name: "gym",
-    iconClass: "fas fa-dumbbell",
-  },
-  {
-    name: "hospital",
-    iconClass: "fas fa-truck-medical",
-  },
-  {
-    name: "park",
-    iconClass: "fas fa-bench-tree",
-  },
-];
+const icons = {
+	restourant: "fas fa-burger-fries",
+	gym: "fas fa-dumbbell",
+	hospital: "fas fa-truck-medical",
+	park: "fas fa-bench-tree",
+	Bathroom: "fas fa-toilet",
+	"Building Characteristics": "fas fa-hotel",
+	Internet: "fas fa-wifi",
+	Kitchen: "fas fa-refrigerator",
+	"Languages Spoken": "fas fa-language",
+	"Living Area": "fas fa-couch",
+	Miscellaneous: "fas fa-circle-dashed",
+	"Safety & security": "fas fa-lock",
+	Parking: "fas fa-car",
+	Bedroom: "fas fa-bed",
+	"Room Amenities": "fas fa-lamp-floor",
+	"Media & Technology": "fas fa-tv",
+	Accessibility: "fas fa-elevator",
+	"Common Areas": "fas fa-gamepad",
+	Activities: "fas fa-pool-8-ball",
+	"Front Desk Services": "fas fa-desktop",
+};
 export default icons;

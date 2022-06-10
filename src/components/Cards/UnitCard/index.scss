@@ -1,0 +1,61 @@
+@import "styles/global.scss";
+
+#unitcard {
+	.unitcard__wrapper {
+		box-shadow: $box-shadow;
+		padding: 1rem;
+		margin-bottom: 1rem;
+
+		.unitcard {
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			margin-bottom: 1rem;
+			border-radius: 6px;
+
+			&__informations {
+				display: flex;
+				flex-direction: column;
+				&__title {
+					font-size: 1.8rem;
+					font-weight: 500;
+				}
+				&__icons {
+					display: flex;
+					gap: 10px;
+					span {
+						display: flex;
+						align-items: center;
+						gap: 5px;
+					}
+				}
+			}
+			&__price {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				p {
+					font-size: 1.5rem;
+					color: $red-color;
+					font-weight: 600;
+				}
+			}
+			.openDescription {
+				position: absolute;
+				font-size: 1.5rem;
+				top: 50%;
+				right: 0;
+				transform: translate(40px, -50%);
+				transition: all 200ms ease-in-out;
+				cursor: pointer;
+			}
+			.active {
+				transform: translate(40px, -50%) rotateZ(90deg);
+			}
+		}
+		.description {
+			transition: all 200ms ease-in-out;
+		}
+	}
+}

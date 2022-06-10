@@ -1,7 +1,8 @@
 import React from "react";
-import avatar from "assets/image/avatars/9.jpg";
 import "./index.scss";
-const HostInfoCard = () => {
+
+const HostInfoCard = ({ data }) => {
+	const { property_cover_image } = data;
 	return (
 		<div className='host__info__card'>
 			<div className='host__info__card__header'>
@@ -9,7 +10,7 @@ const HostInfoCard = () => {
 			</div>
 			<div className='host__info__card__body'>
 				<div className='host__info__card__body__avatar'>
-					<img src={avatar} alt='' />
+					<img src={property_cover_image.medium_file_path} alt='' />
 					<span>Mamad</span>
 					<div>
 						<span>Host Review Score</span>

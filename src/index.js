@@ -7,8 +7,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from "i18next-http-backend";
 import { BrowserRouter } from "react-router-dom";
 
-import "core-js";
 import "flag-icon-css/css/flag-icons.min.css";
+import "core-js";
 import "./assets/fonts/font-style.css";
 import "./styles/light.css";
 import "./styles/dark.css";
@@ -22,25 +22,24 @@ import "./AdminPanel/scss/style.scss";
 import "./api/interceptor";
 import "./assets/fontawesome/pro/css/all.min.css";
 
-i18n
-  .use(initReactI18next)
-  .use(LanguageDetector)
-  .use(HttpApi)
-  .init({
-    supportedLngs: ["en", "fas"],
-    fallbackLng: "en",
-    detection: {
-      order: ["cookie", "htmlTag", "localStorage", "path"],
-      caches: ["cookie"],
-    },
-    backend: {
-      loadPath: "locales/{{lng}}/translation.json",
-    },
-  });
+i18n.use(initReactI18next)
+	.use(LanguageDetector)
+	.use(HttpApi)
+	.init({
+		supportedLngs: ["en", "fas"],
+		fallbackLng: "en",
+		detection: {
+			order: ["cookie", "htmlTag", "localStorage", "path"],
+			caches: ["cookie"],
+		},
+		backend: {
+			loadPath: "locales/{{lng}}/translation.json",
+		},
+	});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+	<BrowserRouter>
+		<App />
+	</BrowserRouter>
 );
