@@ -52,101 +52,6 @@ const faqs = [
 	},
 ];
 
-const areaInfo = [
-	{
-		category: "restourant",
-		places: [
-			{ name: "KFC", distance: 2 },
-			{ name: "KFC", distance: 2 },
-			{ name: "KFC", distance: 2 },
-			{ name: "KFC", distance: 2 },
-			{ name: "KFC", distance: 2 },
-		],
-	},
-	{
-		category: "gym",
-		places: [
-			{ name: "Pro", distance: 1.3 },
-			{ name: "Pro", distance: 1.3 },
-			{ name: "Pro", distance: 1.3 },
-		],
-	},
-	{
-		category: "hospital",
-		places: [
-			{
-				name: "Ghaem",
-				distance: 1,
-			},
-			{
-				name: "Ghaem",
-				distance: 1,
-			},
-			{
-				name: "Ghaem",
-				distance: 1,
-			},
-		],
-	},
-	{
-		category: "park",
-		places: [
-			{
-				name: "Sia Bagh",
-				distance: 0.5,
-			},
-			{
-				name: "Sia Bagh",
-				distance: 0.5,
-			},
-			{
-				name: "Sia Bagh",
-				distance: 0.5,
-			},
-			{
-				name: "Sia Bagh",
-				distance: 0.5,
-			},
-		],
-	},
-];
-const categoryRating = [
-	{
-		id: 1,
-		title: "Staff",
-		rating: 4.4,
-	},
-	{
-		id: 2,
-		title: "Facilities",
-		rating: 4.4,
-	},
-	{
-		id: 3,
-		title: "Cleanliness",
-		rating: 4.4,
-	},
-	{
-		id: 5,
-		title: "Comfort",
-		rating: 3.3,
-	},
-	{
-		id: 6,
-		title: "Value For Money",
-		rating: 5,
-	},
-	{
-		id: 7,
-		title: "Location",
-		rating: 2.6,
-	},
-	{
-		id: 8,
-		title: "Free WiFi",
-		rating: 2.8,
-	},
-];
 const SingleHotel = () => {
 	const { isUserLoggedIn } = useAuth();
 	// const [toggleState, setToggleState] = useState(1);
@@ -216,7 +121,7 @@ const SingleHotel = () => {
 								<i className='fas fa-route'></i>
 								Direction
 							</a>
-							<a href='#'>
+							<a href={`mailto:${data.data.user.email}`}>
 								<i className='fas fa-inbox-full'></i>
 								Send Email
 							</a>
@@ -382,29 +287,35 @@ const SingleHotel = () => {
 							<div className='section__header__row__rating'>
 								<div className='section__header__row__rating__wrapper'>
 									<span>Rate: </span>
-									<StarRating unit='float' isReadOnly initialRating={4.4} />
+									<StarRating
+										unit='float'
+										isReadOnly
+										initialRating={data.data.ratings_average}
+									/>
 								</div>
-								<span className='total-rating'>4.4</span>
+								<span className='total-rating'>{data.data.ratings_average}</span>
 							</div>
 						</div>
 						<div>
 							<h5>Categories:</h5>
 							<div className='row'>
-								{categoryRating.map((item, i) => (
-									<div className='col-12 col-md-6 col-lg-4' key={i}>
-										<div className='category__rating'>
-											<span>{item.title}: </span>
-											<div className='category__rating__wrapper'>
-												<StarRating
-													unit='float'
-													isReadOnly
-													initialRating={item.rating}
-												/>
-												<span className='total-rating'>{item.rating}</span>
+								{/* {data.data.rating.map((item) =>
+									Object.keys(item).map((rates, i) => (
+										<div className='col-12 col-md-6 col-lg-4' key={i}>
+											<div className='category__rating'>
+												<span>{console.log(rates)}: </span>
+												<div className='category__rating__wrapper'>
+													<StarRating
+														unit='float'
+														isReadOnly
+														initialRating={rates[1]}
+													/>
+													<span className='total-rating'>{rates[1]}</span>
+												</div>
 											</div>
 										</div>
-									</div>
-								))}
+									))
+								)} */}
 							</div>
 						</div>
 					</div>
