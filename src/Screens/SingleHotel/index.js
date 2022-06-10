@@ -25,33 +25,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { icons } from "values";
 import "./index.scss";
 
-const faqs = [
-	{
-		id: 1,
-		htmlId: "Accordion1",
-		headingId: "head1",
-		label: "Test",
-		content:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore consequuntur laboriosam.",
-	},
-	{
-		id: 2,
-		htmlId: "Accordion2",
-		headingId: "head2",
-		label: "Test",
-		content:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore consequuntur laboriosam.",
-	},
-	{
-		id: 3,
-		htmlId: "Accordion3",
-		headingId: "head3",
-		label: "Test",
-		content:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore consequuntur laboriosam.",
-	},
-];
-
 const SingleHotel = () => {
 	const { isUserLoggedIn } = useAuth();
 	// const [toggleState, setToggleState] = useState(1);
@@ -60,7 +33,7 @@ const SingleHotel = () => {
 	// };
 	const PropertyId = useLocation().pathname.split("/")[2];
 	const { data } = useGetPropertyById(PropertyId);
-	console.log(data?.data);
+	console.log(data?.data.faqs);
 	const RoomReserveHandler = (id) => {
 		console.log(id);
 	};
@@ -401,7 +374,7 @@ const SingleHotel = () => {
 						<div className='section__header'>
 							<span>Frequently Asked Questions (FAQ)</span>
 						</div>
-						<Accordion items={faqs} />
+						<Accordion items={data.data.faqs} />
 					</div>
 				</div>
 			) : (
