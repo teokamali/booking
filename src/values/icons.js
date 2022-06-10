@@ -19,5 +19,11 @@ const icons = {
 	"Common Areas": "fas fa-gamepad",
 	Activities: "fas fa-pool-8-ball",
 	"Front Desk Services": "fas fa-desktop",
+	"What's nearby": "fas fa-map-location-dot",
+	"Top attraction": "fas fa-face-grin-hearts",
+	"Restaurant & cafes": "fas fa-fas fa-burger-fries",
+	"Public transit": "fas fa-taxi-bus",
+	"Closest airport": "fas fa-plane-departure",
+	"Natural beauty": "fas fa-sparkles",
 };
 export default icons;

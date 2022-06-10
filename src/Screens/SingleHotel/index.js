@@ -344,27 +344,27 @@ const SingleHotel = () => {
 							Read all comments
 						</Button>
 					</div>
-					{/* Area info */}
+					{/* surroundings info */}
 					<div className='container SinglePage__section AreaInfo'>
 						<div className='section__header'>
 							<span>Area Info</span>
 						</div>
 						<div className='AreaInfo'>
 							<div className='row'>
-								{areaInfo.map((item, index) => {
+								{Object.entries(data.data.surroundings).map((item, index) => {
 									const icon = Object.entries(icons).find(
-										(key) => item.category === key[0]
+										(key) => item[0] === key[0]
 									);
 									return (
 										<div className='col-12 col-md-6 col-lg-3' key={index}>
 											<span className='area-Info-category'>
 												<i className={`${icon[1]}`}></i>
-												{item.category}
+												{item[0]}
 											</span>
 											<div className='places-wrapper'>
-												{item.places.map((place, index) => (
-													<div className='places' key={index}>
-														<span className='p-1'>{place.name}</span>
+												{item[1].map((place, i) => (
+													<div className='places' key={i + 10}>
+														<span className='p-1'>{place.item}</span>
 														<p className='m-0'>{place.distance}KM</p>
 													</div>
 												))}
