@@ -40,8 +40,13 @@
 				width: 70%;
 			}
 			p {
+				padding: 1rem;
+				text-align: center;
 				font-size: 22px;
 				color: #707070;
+				@media (min-width: 767px) {
+					text-align: left;
+				}
 			}
 		}
 		&__avatar {
