@@ -1,6 +1,5 @@
 import avatar1 from "assets/image/avatars/1.jpg";
-import avatar2 from "assets/image/avatars/2.jpg";
-import avatar3 from "assets/image/avatars/3.jpg";
+
 import {
 	Accordion,
 	Button,
@@ -33,7 +32,7 @@ const SingleHotel = () => {
 	// };
 	const PropertyId = useLocation().pathname.split("/")[2];
 	const { data } = useGetPropertyById(PropertyId);
-	console.log(data?.data.faqs);
+	console.log(data?.data.rating);
 	const RoomReserveHandler = (id) => {
 		console.log(id);
 	};
@@ -272,23 +271,25 @@ const SingleHotel = () => {
 						<div>
 							<h5>Categories:</h5>
 							<div className='row'>
-								{/* {data.data.rating.map((item) =>
-									Object.keys(item).map((rates, i) => (
-										<div className='col-12 col-md-6 col-lg-4' key={i}>
-											<div className='category__rating'>
-												<span>{console.log(rates)}: </span>
-												<div className='category__rating__wrapper'>
-													<StarRating
-														unit='float'
-														isReadOnly
-														initialRating={rates[1]}
-													/>
-													<span className='total-rating'>{rates[1]}</span>
-												</div>
+								{data.data.rating.map((item, i) => (
+									<div className='col-12 col-md-6 col-lg-4' key={i}>
+										<div className='category__rating'>
+											<span>{item.name}: </span>
+											<div className='category__rating__wrapper'>
+												<StarRating
+													unit='float'
+													isReadOnly
+													initialRating={
+														Math.round(item.average_rate * 10) / 10
+													}
+												/>
+												<span className='total-rating'>
+													{Math.round(item.average_rate * 10) / 10}
+												</span>
 											</div>
 										</div>
-									))
-								)} */}
+									</div>
+								))}
 							</div>
 						</div>
 					</div>
