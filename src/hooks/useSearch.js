@@ -6,7 +6,7 @@ const useSearchedUnits = () => {
 	return useMutation(api.get.getSearchedUnit, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			Toastify("error", "An error happened!");
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!

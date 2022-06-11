@@ -84,4 +84,13 @@
 			transition: all 200ms ease-in-out;
 		}
 	}
+	.reservation-form {
+		&__wrapper {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 1rem;
+			margin-bottom: 1rem;
+		}
+	}
 }

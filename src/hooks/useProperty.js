@@ -38,7 +38,7 @@ const useUpdateProperty = () => {
 	return useMutation(api.patch.updateProperty, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			Toastify("error", "An error happened!");
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
@@ -50,7 +50,7 @@ const usePostProperty = () => {
 	return useMutation(api.post.postProperty, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			Toastify("error", "An error happened!");
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!

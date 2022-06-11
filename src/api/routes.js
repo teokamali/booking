@@ -14,6 +14,7 @@ const userUnits = config.BASE_URL + "user/units";
 const updateProperty = config.BASE_URL + "property";
 const getAllProperties = config.BASE_URL + "property";
 const searchUnits = config.BASE_URL + "search/hotels";
+const ReserveUnit = config.BASE_URL + "hotels/unit";
 
 const routes = {
 	webSiteLoginWithEmailRoute,
@@ -31,6 +32,7 @@ const routes = {
 	updateProperty,
 	getAllProperties,
 	searchUnits,
+	ReserveUnit,
 };
 
 export default routes;

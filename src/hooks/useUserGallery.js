@@ -7,7 +7,7 @@ const useGetGallery = () => {
 	return useQuery("getGallery", api.get.getUserGallery, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			Toastify("error", "somthing went wrong");
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
@@ -18,8 +18,7 @@ const usePostGallery = () => {
 	return useMutation(api.post.postUserGallery, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			console.log(error);
-			Toastify("error", "something went wrong");
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
@@ -35,7 +34,7 @@ const useDeleteGallery = () => {
 	return useMutation(api.deleteApi.deleteUserGalleryImage, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			console.log(error);
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
@@ -49,7 +48,7 @@ const useUpdateGallery = () => {
 	return useMutation(api.patch.updateGallery, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			console.log(error);
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!

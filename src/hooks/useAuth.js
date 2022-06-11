@@ -25,7 +25,7 @@ const useLogin = () => {
 	return useMutation(api.post.webSiteLogin, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			Toastify("error", "email or password is incorrect");
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
@@ -45,7 +45,7 @@ const useLoginWithGoogle = () => {
 	return useMutation(api.get.loginWithGoogle, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			Toastify("error", "email or password is incorrect");
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
@@ -73,7 +73,7 @@ const useRegister = () => {
 	return useMutation(api.post.webSiteRegister, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			Toastify("error", "An error happened!");
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
@@ -92,7 +92,7 @@ const useLogout = () => {
 	return useMutation(api.post.webSiteLogOut, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			Toastify("error", "Somthing Wrong Happened");
+			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
