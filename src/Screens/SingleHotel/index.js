@@ -291,7 +291,10 @@ const SingleHotel = () => {
 										initialRating={data.data.ratings_average}
 									/>
 								</div>
-								<span className='total-rating'>{data.data.ratings_average}</span>
+
+								<span className='total-rating'>
+									{Math.round(data.data.ratings_average * 10) / 10}
+								</span>
 							</div>
 						</div>
 						<div>

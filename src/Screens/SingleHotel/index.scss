@@ -235,7 +235,7 @@
 		span {
 			color: $black-color;
 			font-weight: bold;
-			font-size: 1rem;
+			font-size: 1.5rem;
 		}
 	}
 	.section__header__row {
@@ -249,7 +249,7 @@
 		span {
 			color: $black-color;
 			font-weight: bold;
-			font-size: 1rem;
+			font-size: 1.5rem;
 		}
 		&__rating {
 			display: flex;
@@ -267,7 +267,7 @@
 	.area-Info-category {
 		display: flex;
 		gap: 5px;
-		font-size: 22px;
+		font-size: 1.3rem;
 		color: $black-color;
 		font-weight: bold;
 	}

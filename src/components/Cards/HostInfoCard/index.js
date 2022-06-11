@@ -15,7 +15,8 @@ const HostInfoCard = ({ data }) => {
 					<div>
 						<span>Host Review Score</span>
 						<span className='host__info__card__header__score'>
-							{ratings_average} <i className='fa-solid fa-star'></i>
+							{Math.round(ratings_average * 10) / 10}
+							<i className='fa-solid fa-star'></i>
 						</span>
 					</div>
 				</div>
