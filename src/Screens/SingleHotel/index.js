@@ -371,7 +371,7 @@ const SingleHotel = () => {
 						</div>
 					</div>
 					{/* House FAQ */}
-					<div id='faq' className='container SinglePage__section'>
+					<div id='faq' className='container SinglePage__section mb-5'>
 						<div className='section__header'>
 							<span>Frequently Asked Questions (FAQ)</span>
 						</div>

@@ -13,17 +13,29 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		.hotel-title {
+			font-size: 1.5rem;
+		}
+		.hotel-address {
+			font-size: 0.8rem;
+		}
+		@media (min-width: 787px) {
+			.hotel-title {
+				font-size: 1.8rem;
+			}
+			.hotel-address {
+				font-size: 1rem;
+			}
+		}
 	}
 	.bloc-tabs {
 		display: flex;
-		// flex-direction: column;
-		margin-top: 50px;
+		justify-content: center;
+		margin-top: 20px;
+		margin-left: auto;
+		margin-right: auto;
 		@media (min-width: 768px) {
 			width: 90%;
-			flex-direction: row;
-			justify-content: center;
-			margin-left: auto;
-			margin-right: auto;
 		}
 	}
 	.tabs {
