@@ -1,22 +1,25 @@
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
+html {
+	font-size: 14px;
+}
 body {
-  margin: 0;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+	margin: 0;
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none; /* Standard syntax */
 }
 p {
-  margin: 0;
+	margin: 0;
 }
 
 .theme {
-  height: 100vh;
-  width: 100%;
-  background-color: var(--bg);
-  transition: var(--color-transition);
+	height: 100vh;
+	width: 100%;
+	background-color: var(--bg);
+	transition: var(--color-transition);
 }
 // colors
 $red-color: #ff3f3f;
@@ -24,24 +27,24 @@ $black-color: #191919;
 $gray-color: #5d5d5d;
 $white-color: #ffffff;
 $box-shadow: 0 2px 12px
-  rgba(
-    $color: $black-color,
-    $alpha: 8%,
-  );
+	rgba(
+		$color: $black-color,
+		$alpha: 8%,
+	);
 .btn-main {
-  background-color: $red-color;
-  color: $white-color;
-  padding: 18px 24px;
-  border-radius: 36px;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: "0px 4px 10px rgba(20, 20 ,40, .04)";
-  transition: all 200ms ease-in-out;
-  &:hover {
-    background-color: $white-color;
-    color: $black-color;
-  }
+	background-color: $red-color;
+	color: $white-color;
+	padding: 18px 24px;
+	border-radius: 36px;
+	font-size: 16px;
+	font-weight: bold;
+	box-shadow: "0px 4px 10px rgba(20, 20 ,40, .04)";
+	transition: all 200ms ease-in-out;
+	&:hover {
+		background-color: $white-color;
+		color: $black-color;
+	}
 }
 .css-1ioqvny-MuiPaper-root-MuiDrawer-paper {
-  z-index: 1039 !important;
+	z-index: 1039 !important;
 }

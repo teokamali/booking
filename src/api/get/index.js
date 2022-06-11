@@ -7,6 +7,7 @@ import getCities from "./getCities";
 import getUserUnits from "./getUserUnits";
 import getPropertyById from "./getPropertyById";
 import getAllProperties from "./getAllProperties";
+import getSearchedUnit from "./getSearchedUnit";
 
 const get = {
 	getUserGallery,
@@ -18,5 +19,6 @@ const get = {
 	getUserUnits,
 	getPropertyById,
 	getAllProperties,
+	getSearchedUnit,
 };
 export default get;

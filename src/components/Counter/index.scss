@@ -1,0 +1,30 @@
+@import "styles/global.scss";
+.counter {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	span {
+	}
+	&__plus {
+		background-color: $red-color;
+		border: 0;
+		box-shadow: $box-shadow;
+		color: $white-color;
+		border-radius: 6px;
+		font-size: 1.2rem;
+		width: 30px;
+		text-align: center;
+	}
+	&__negative {
+		width: 30px;
+		text-align: center;
+		font-size: 1.2rem;
+		background-color: $red-color;
+		border: 0;
+		color: $white-color;
+		box-shadow: $box-shadow;
+		border-radius: 6px;
+	}
+}

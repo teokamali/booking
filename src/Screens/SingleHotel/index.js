@@ -9,6 +9,7 @@ import {
 	LoginModal,
 	TimeLine,
 	Loader2,
+	UnitFinder,
 } from "components";
 import HostInfoCard from "components/Cards/HostInfoCard";
 import ReviewCard from "components/Cards/ReviewCard";
@@ -16,12 +17,13 @@ import UnitCard from "components/Cards/UnitCard";
 import { useAuth } from "hooks/useAuth";
 import { useGetPropertyById } from "hooks/useProperty";
 import { Desktop, Mobile, Tablet } from "layout/BreakPoints";
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router";
 import StarRating from "react-svg-star-rating";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { icons } from "values";
+
 import "./index.scss";
 
 const SingleHotel = () => {
@@ -32,10 +34,13 @@ const SingleHotel = () => {
 	// };
 	const PropertyId = useLocation().pathname.split("/")[2];
 	const { data } = useGetPropertyById(PropertyId);
-	console.log(data?.data.rating);
+	// console.log(data?.data.rating);
+	const [searchedUnits, setSearchedUnits] = useState([]);
+	const [isSearching, setIsSearching] = useState(true);
 	const RoomReserveHandler = (id) => {
 		console.log(id);
 	};
+
 	return (
 		<>
 			{data ? (
@@ -111,13 +116,19 @@ const SingleHotel = () => {
 							</a>
 						</div>
 						{/* description */}
-						<div className={"container single-hotel-description active-content"}>
+						<div
+							className={
+								"container SinglePage__section single-hotel-description active-content"
+							}
+						>
 							<h2>Description</h2>
 							<div dangerouslySetInnerHTML={{ __html: data.data.description }}></div>
 						</div>
 						{/* Facilities */}
 						<div
-							className={"container content single-hotel-facalities active-content"}
+							className={
+								"container SinglePage__section content single-hotel-facalities active-content"
+							}
 							id='facilities'
 						>
 							<h2>Facilities</h2>
@@ -139,18 +150,33 @@ const SingleHotel = () => {
 							</div>
 						</div>
 						{/* Room and details */}
-						<div className={"container single-hotel-room active-content"} id='room'>
+						<div
+							className={
+								"container SinglePage__section single-hotel-room active-content"
+							}
+							id='room'
+						>
 							<h2>Room and details</h2>
-							<div className=''>
-								{data?.data.units.map((unit) => (
-									<UnitCard
-										data={unit}
-										key={unit.id}
-										buttonOnClick={() => {
-											RoomReserveHandler(unit.id);
-										}}
-									/>
-								))}
+							<div className='rooms'>
+								{searchedUnits.length > 0
+									? searchedUnits.map((unit) => (
+											<UnitCard
+												data={unit}
+												key={unit.id}
+												buttonOnClick={() => {
+													RoomReserveHandler(unit.id);
+												}}
+											/>
+									  ))
+									: data?.data.units.map((unit) => (
+											<UnitCard
+												data={unit}
+												key={unit.id}
+												buttonOnClick={() => {
+													RoomReserveHandler(unit.id);
+												}}
+											/>
+									  ))}
 							</div>
 						</div>
 					</div>
@@ -376,6 +402,13 @@ const SingleHotel = () => {
 							<span>Frequently Asked Questions (FAQ)</span>
 						</div>
 						<Accordion items={data.data.faqs} />
+					</div>
+					{/* reservation filter */}
+					<div className='reservation-filter'>
+						<UnitFinder
+							searchedUnits={searchedUnits}
+							setSearchedUnits={setSearchedUnits}
+						/>
 					</div>
 				</div>
 			) : (

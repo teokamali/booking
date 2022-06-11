@@ -1,0 +1,94 @@
+@import "styles/global.scss";
+.placeholder {
+	font-weight: 300;
+	line-height: 1.25;
+	color: rgba(19, 27, 31, 0.5);
+	font-size: 14px;
+}
+.UnitFinder {
+	position: relative;
+	overflow-x: hidden;
+	background-color: #ffffff;
+	box-shadow: $box-shadow;
+	padding: 1rem;
+	border-radius: 6px;
+	width: 300px;
+
+	&__header {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		.close {
+			background-color: $red-color;
+			width: 25px;
+			height: 25px;
+			color: #ffffff;
+			border: 0;
+			border-radius: 6px;
+		}
+	}
+	i {
+		font-size: 20px;
+	}
+	&__wrapper {
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		color: #333;
+		border-radius: 7px;
+		width: 100%;
+		gap: 1rem;
+		.date-wrapper {
+			width: 100%;
+		}
+		.search-label {
+			font-size: 1.2rem;
+			padding-left: 5px;
+		}
+	}
+}
+.rmdp-day.rmdp-selected span:not(.highlight) {
+	background-color: $red-color;
+}
+.search-filter {
+	border: 0;
+	background-color: $red-color;
+	color: #ffffff;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	position: relative;
+	&:before,
+	&:after {
+		content: "";
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: $red-color;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		transform: scale(0.5);
+		transform-origin: center center;
+		animation: pulse-me 1s linear infinite;
+	}
+}
+@keyframes pulse-me {
+	0% {
+		transform: scale(0.5);
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	70% {
+		opacity: 0.09;
+	}
+	100% {
+		transform: scale(2);
+		opacity: 0;
+	}
+}
