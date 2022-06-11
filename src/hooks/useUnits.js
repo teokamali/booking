@@ -14,7 +14,7 @@ const useReserveUnits = () => {
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
 			// window.location.reload();
-			return data;
+			Toastify("success", "Reservation Request Successfuly Sent");
 		},
 	});
 };

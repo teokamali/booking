@@ -14,23 +14,24 @@ const UnitCard = ({ data, buttonOnClick }) => {
 	const [checkIn, setCheckIn] = useState(new DateObject().format("YYYY-MM-DD"));
 	const [checkOut, setCheckOut] = useState();
 	const [adult, setAdult] = useState(1);
+	const [specialRequests, setSpecialRequests] = useState("");
 	const [children, setChildren] = useState(0);
 
 	const reservationHandler = (id) => {
 		const data = {
 			id,
 			formData: {
-				check_in_date: "2022-10-01",
-				check_out_date: "2022-10-06",
-				adults_count: 2,
-				kids_count: 0,
+				check_in_date: checkIn,
+				check_out_date: checkOut,
+				adults_count: adult,
+				kids_count: children,
 				is_for_someone_else: false,
 				someone_else_info: {
 					first_name: "",
 					last_name: "",
 					email: "",
 				},
-				special_requests: "asdasdasdasd",
+				special_requests: specialRequests,
 			},
 		};
 		reserveMutate(data);
@@ -69,48 +70,67 @@ const UnitCard = ({ data, buttonOnClick }) => {
 							modalTitle={`Reserve ${name}`}
 							isCentered={true}
 						>
-							<form onSubmit={reservationHandler} className='reservation-form'>
-								<div className='reservation-form__wrapper '>
-									{/* date */}
-									<div className='date-input'>
-										<h5>Check In:</h5>
-										<DatePicker
-											containerClassName='w-100'
-											inputClass='form-control'
-											format='MMMM DD YYYY'
-											minDate={checkIn}
-											onChange={(e) => setCheckIn(e.format("YYYY-MM-DD"))}
-										/>
-									</div>
-
-									<div className='date-input'>
-										<h5>Check Out:</h5>
-										<DatePicker
-											containerClassName='w-100'
-											inputClass='form-control'
-											format='MMMM DD YYYY'
-											minDate={checkIn}
-											onChange={(e) => setCheckOut(e.format("YYYY-MM-DD"))}
-										/>
-									</div>
-									<div className='w-100'>
-										<h5>Adults:</h5>
-										<Counter value={adult} onValueChange={setAdult} />
-									</div>
-									<div className='w-100'>
-										<h5>Children:</h5>
-										<Counter value={children} onValueChange={setChildren} />
-									</div>
-								</div>
-							</form>
 							{isUserLoggedIn ? (
-								<Button
-									type='submit'
-									className='w-100'
-									onClick={() => reservationHandler(id)}
-								>
-									Send Reservation Request
-								</Button>
+								<>
+									<form
+										onSubmit={reservationHandler}
+										className='reservation-form'
+									>
+										<div className='reservation-form__wrapper '>
+											{/* date */}
+											<div className='date-input'>
+												<h5>Check In:</h5>
+												<DatePicker
+													containerClassName='w-100'
+													inputClass='form-control'
+													format='MMMM DD YYYY'
+													minDate={checkIn}
+													onChange={(e) =>
+														setCheckIn(e.format("YYYY-MM-DD"))
+													}
+												/>
+											</div>
+
+											<div className='date-input'>
+												<h5>Check Out:</h5>
+												<DatePicker
+													containerClassName='w-100'
+													inputClass='form-control'
+													format='MMMM DD YYYY'
+													minDate={checkIn}
+													onChange={(e) =>
+														setCheckOut(e.format("YYYY-MM-DD"))
+													}
+												/>
+											</div>
+											<div className='w-100'>
+												<h5>Adults:</h5>
+												<Counter value={adult} onValueChange={setAdult} />
+											</div>
+											<div className='w-100'>
+												<h5>Children:</h5>
+												<Counter
+													value={children}
+													onValueChange={setChildren}
+												/>
+											</div>
+											<textarea
+												placeholder='Additional Request'
+												className='w-100 form-control'
+												value={specialRequests}
+												onChange={(e) => setSpecialRequests(e.target.value)}
+											/>
+										</div>
+									</form>
+
+									<Button
+										type='submit'
+										className='w-100'
+										onClick={() => reservationHandler(id)}
+									>
+										Send Reservation Request
+									</Button>
+								</>
 							) : (
 								<div className='d-flex justify-content-center align-items-center flex-column'>
 									<h5>You need to login to your account before continue</h5>
