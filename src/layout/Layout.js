@@ -29,7 +29,7 @@ function Layout({ children }) {
 		<div className={`main-layout`} id='main-layout'>
 			<div className='main-content'>{children}</div>
 			<Footer />
-			<CopyRight />
+			{/* <CopyRight /> */}
 			{isScrollable ? <ScrollToTop /> : null}
 		</div>
 	);

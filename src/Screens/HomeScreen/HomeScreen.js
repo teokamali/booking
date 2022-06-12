@@ -154,7 +154,7 @@ const HomeScrean = () => {
 								Browse All
 							</Button>
 						</div>
-						<div className='blog-section'>
+						<div className='blog-section mb-5'>
 							<Mobile>
 								<BlogCard />
 							</Mobile>

@@ -13,10 +13,13 @@ const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
 		setIsActicved((prev) => !prev);
 	};
 	return (
-		<Container>
-			<Selected onClick={onOpenDropDown}>
-				<i className='fa-regular fa-circle-user'></i>
-			</Selected>
+		<Container onClick={onOpenDropDown}>
+			<IconContainer>
+				<span>{data}</span>
+				<Selected>
+					<i className='fa-regular fa-circle-user'></i>
+				</Selected>
+			</IconContainer>
 			<Options heyt={isActived}>
 				<li>
 					<Link to='/dashboard'>Dashboard</Link>
@@ -42,6 +45,13 @@ const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
 	);
 };
 
+const IconContainer = styled.section`
+	display: flex;
+	color: #333;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+`;
 const Container = styled.section`
 	display: flex;
 	flex-direction: column;
@@ -53,7 +63,6 @@ const Container = styled.section`
 
 const Selected = styled.div`
 	border-radius: 8px;
-	cursor: pointer;
 	i {
 		font-size: 1.7rem;
 	}
