@@ -200,11 +200,11 @@ const LoginModal = ({ iconButton = true }) => {
 										<Field
 											className='form-control'
 											name='name'
-											placeholder='name'
+											placeholder='First Name'
 											id='name'
 											type='text'
 										/>
-										<label htmlFor='name'>Name</label>
+										<label htmlFor='name'>First Name</label>
 										{errors.name && touched.name && (
 											<span className='input-error'>{errors.name}</span>
 										)}
@@ -213,11 +213,11 @@ const LoginModal = ({ iconButton = true }) => {
 										<Field
 											className='form-control'
 											name='fname'
-											placeholder='Family Name'
+											placeholder='Last Name'
 											id='fname'
 											type='text'
 										/>
-										<label htmlFor='fname'>Family Name</label>
+										<label htmlFor='fname'>Last Name</label>
 
 										{errors.fname && touched.fname && (
 											<span className='input-error'>{errors.fname}</span>

@@ -16,7 +16,6 @@ const UnitCard = ({ data, buttonOnClick }) => {
 	const [adult, setAdult] = useState(1);
 	const [specialRequests, setSpecialRequests] = useState("");
 	const [children, setChildren] = useState(0);
-
 	const reservationHandler = (id) => {
 		const data = {
 			id,
@@ -34,7 +33,7 @@ const UnitCard = ({ data, buttonOnClick }) => {
 				special_requests: specialRequests,
 			},
 		};
-		reserveMutate(data);
+		// reserveMutate(data);
 	};
 
 	return (

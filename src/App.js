@@ -15,36 +15,34 @@ import { routes } from "./routes";
 const queryClient = new QueryClient();
 
 function App() {
-  const { t } = useTranslation();
-  document.title = t("app_title");
+	const { t } = useTranslation();
+	// document.title = t("app_title");
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeContextProvider>
-        <UserContextProvider>
-          <Routes>
-            {routes.map((route, i) => {
-              const { path, name, element } = route;
-              return (
-                <Route key={i} path={path} name={name} element={element} />
-              );
-            })}
-          </Routes>
-        </UserContextProvider>
-        <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </ThemeContextProvider>
-    </QueryClientProvider>
-  );
+	return (
+		<QueryClientProvider client={queryClient}>
+			<ThemeContextProvider>
+				<UserContextProvider>
+					<Routes>
+						{routes.map((route, i) => {
+							const { path, name, element } = route;
+							return <Route key={i} path={path} name={name} element={element} />;
+						})}
+					</Routes>
+				</UserContextProvider>
+				<ToastContainer
+					position='top-right'
+					autoClose={1000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+				/>
+			</ThemeContextProvider>
+		</QueryClientProvider>
+	);
 }
 
 export default App;

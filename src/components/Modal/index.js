@@ -28,7 +28,7 @@ const Modal = ({
 			<div
 				className='modal fade'
 				id={id}
-				data-bs-backdrop='static'
+				// data-bs-backdrop='static'
 				data-bs-keyboard='false'
 				tabIndex='-1'
 				aria-labelledby='staticBackdropLabel'
