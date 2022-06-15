@@ -22,6 +22,7 @@ import { useLocation } from "react-router";
 import StarRating from "react-svg-star-rating";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { convertTime } from "utils/functions";
 import { icons } from "values";
 
 import "./index.scss";
@@ -34,9 +35,8 @@ const SingleHotel = () => {
 	// };
 	const PropertyId = useLocation().pathname.split("/")[2];
 	const { data } = useGetPropertyById(PropertyId);
-	// console.log(data?.data.rating);
+	// console.log(data?.data.generalRules.check_in_from);
 	const [searchedUnits, setSearchedUnits] = useState([]);
-	const [isSearching, setIsSearching] = useState(true);
 	const RoomReserveHandler = (id) => {
 		console.log(id);
 	};
@@ -332,22 +332,28 @@ const SingleHotel = () => {
 								<span>
 									<i className='fas fa-calendar-range'></i> Check-In
 								</span>
-								<TimeLine start={8} end={16} />
+								<TimeLine
+									start={convertTime(data?.data.generalRules.check_in_from)}
+									end={convertTime(data?.data.generalRules.check_in_to)}
+								/>
 							</div>
 							<div className='house__rules'>
 								<span>
 									<i className='fas fa-calendar-range'></i> Check-Out
 								</span>
-								<TimeLine start={7} end={15} />
+								<TimeLine
+									start={convertTime(data?.data.generalRules.check_out_from)}
+									end={convertTime(data?.data.generalRules.check_out_to)}
+								/>
 							</div>
 							<div className='house__rules'>
 								<span>
 									<i className='fas fa-square-info'></i> Cancellation/Prepayment
 								</span>
 								<p>
-									Cancellation and prepayment policies vary according to apartment
-									type. Please enter the dates of your stay and check what
-									conditions apply to your preferred room.
+									{data?.data.generalRules.cancellation_prepayment
+										? data?.data.generalRules.cancellation_prepayment
+										: "No information available"}
 								</p>
 							</div>
 							<div className='house__rules'>
@@ -355,47 +361,63 @@ const SingleHotel = () => {
 									<i className='fas fa-square-info'></i> Refundable damage deposit
 								</span>
 								<p>
-									A damage deposit of EUR 300 is required. The property charges
-									this 7 days before arrival. This will be collected by credit
-									card. You should be reimbursed within 14 days of check-out. Your
-									deposit will be refunded in full by credit card, subject to an
-									inspection of the property.
+									{data?.data.generalRules.refundable_damage_deposit
+										? data?.data.generalRules.refundable_damage_deposit
+										: "No information available"}
 								</p>
 							</div>
 							<div className='house__rules'>
 								<span>
 									<i className='fas fa-family'></i> Children & Beds
 								</span>
-								<p>
-									Child policies Children of all ages are welcome. To see correct
-									prices and occupancy info, add the number and ages of children
-									in your group to your search. Crib and extra bed policies No
-									cribs or extra beds are available.
-								</p>
+								<div className='d-flex flex-column'>
+									{data?.data.generalRules.children_and_beds[0]
+										? data?.data.generalRules.children_and_beds.map(
+												(item, i) => <p key={i}>{`${i + 1}: ${item}`}</p>
+										  )
+										: "No information available"}
+								</div>
 							</div>
 							<div className='house__rules'>
 								<span>
-									<i className='fas fa-user'></i> No age restriction
+									<i className='fas fa-user'></i>
+									No age restriction
 								</span>
-								<p>There's no age requirement for check-in</p>
+								<p>
+									{data?.data.generalRules.age_restriction
+										? "this house has age restriction"
+										: "No age restriction"}
+								</p>
 							</div>
 							<div className='house__rules'>
 								<span>
 									<i className='fas fa-ban-smoking'></i>Smoking
 								</span>
-								<p>Smoking is not allowed.</p>
+								<p>
+									{data?.data.generalRules.smoking
+										? "Smoking is allowed"
+										: "Smoking is not allowed"}
+								</p>
 							</div>
 							<div className='house__rules'>
 								<span>
 									<i className='fas fa-paw'></i> Pets
 								</span>
-								<p>Pets is not allowed.</p>
+								<p>
+									{data?.data.generalRules.pets
+										? "Pets is allowed"
+										: "Pets is not allowed"}
+								</p>
 							</div>
 							<div className='house__rules'>
 								<span>
 									<i className='fas fa-party-horn'></i> Parties
 								</span>
-								<p>Parties/events are not allowed</p>
+								<p>
+									{data?.data.generalRules.parties
+										? "Parties/Events is allowed"
+										: "Parties/Events is not allowed"}
+								</p>
 							</div>
 						</div>
 					</div>

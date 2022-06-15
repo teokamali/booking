@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { languages } from "../utils/Languages";
 import jsCookie from "js-cookie";
+import { useEffect, useState } from "react";
+import { languages } from "../utils/Languages";
 
 import Footer from "../components/Footer";
-import CopyRight from "../components/CopyRight";
 import "./Layout.scss";
 
 const ScrollToTop = () => {
