@@ -119,6 +119,7 @@ const PanelRoutes = () => {
 				<Routes>
 					{websiteRoutesList.map((_route) => {
 						const { route, key, component, accessibility } = _route;
+
 						return (
 							<Route
 								key={key}

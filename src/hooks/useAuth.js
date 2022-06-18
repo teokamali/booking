@@ -29,10 +29,14 @@ const useLogin = () => {
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
-			Cookies.set(constans.TOKEN, data.data.data.token.access_token);
+			Cookies.set(constans.TOKEN, data.data.data.token.access_token, {
+				expires: new Date().getFullYear(),
+			});
 			Toastify("success", "Logged in successfully");
 			setUser({ ...user, userInformation: data.data.data.user });
-			Cookies.set(constans.INFO, JSON.stringify(data.data.data.user));
+			Cookies.set(constans.INFO, JSON.stringify(data.data.data.user), {
+				expires: new Date().getFullYear(),
+			});
 			setTimeout(() => {
 				window.location.reload();
 				document.querySelector(".modal-backdrop").remove("");

@@ -10,6 +10,7 @@ import { constans } from "values";
 // @mui icons
 import Icon from "@mui/material/Icon";
 const { PASSENGER, MIDDLE_MAN, OWNER } = constans;
+
 const routes = [
 	{
 		type: "collapse",
@@ -29,7 +30,7 @@ const routes = [
 		route: "gallery",
 		link: "gallery",
 		component: <Gallery />,
-		accessibility: [OWNER],
+		accessibility: [MIDDLE_MAN],
 	},
 	{
 		type: "collapse",
@@ -39,7 +40,7 @@ const routes = [
 		route: "property",
 		link: "property",
 		component: <Property />,
-		accessibility: [PASSENGER],
+		accessibility: [PASSENGER, OWNER],
 	},
 	{
 		type: "",
@@ -49,7 +50,7 @@ const routes = [
 		route: "property/add",
 		link: "property/add",
 		component: <AddProperty />,
-		accessibility: [PASSENGER],
+		accessibility: [PASSENGER, OWNER],
 	},
 	{
 		type: "",
@@ -59,7 +60,7 @@ const routes = [
 		route: "property/edit/:id",
 		link: "property/edit/:id",
 		component: <EditProperty />,
-		accessibility: [PASSENGER],
+		accessibility: [PASSENGER, OWNER],
 	},
 	{
 		type: "collapse",
@@ -69,7 +70,7 @@ const routes = [
 		route: "units",
 		link: "units",
 		component: <Units />,
-		accessibility: [PASSENGER],
+		accessibility: [PASSENGER, OWNER],
 	},
 	{
 		type: "collapse",
@@ -79,7 +80,7 @@ const routes = [
 		route: "setting",
 		link: "setting",
 		component: <Profile />,
-		accessibility: [PASSENGER],
+		accessibility: [PASSENGER, OWNER],
 	},
 ];
 
