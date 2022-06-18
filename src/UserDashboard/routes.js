@@ -6,10 +6,10 @@ import Property from "./layouts/Property";
 import AddProperty from "./layouts/AddProperty";
 import EditProperty from "./layouts/EditProperty";
 import Units from "./layouts/Units";
-
+import { constans } from "values";
 // @mui icons
 import Icon from "@mui/material/Icon";
-
+const { PASSENGER, MIDDLE_MAN, OWNER } = constans;
 const routes = [
 	{
 		type: "collapse",
@@ -19,6 +19,7 @@ const routes = [
 		route: "/",
 		link: "/dashboard",
 		component: <Dashboard />,
+		accessibility: [MIDDLE_MAN, OWNER],
 	},
 	{
 		type: "collapse",
@@ -28,6 +29,7 @@ const routes = [
 		route: "gallery",
 		link: "gallery",
 		component: <Gallery />,
+		accessibility: [OWNER],
 	},
 	{
 		type: "collapse",
@@ -37,6 +39,7 @@ const routes = [
 		route: "property",
 		link: "property",
 		component: <Property />,
+		accessibility: [PASSENGER],
 	},
 	{
 		type: "",
@@ -46,6 +49,7 @@ const routes = [
 		route: "property/add",
 		link: "property/add",
 		component: <AddProperty />,
+		accessibility: [PASSENGER],
 	},
 	{
 		type: "",
@@ -55,6 +59,7 @@ const routes = [
 		route: "property/edit/:id",
 		link: "property/edit/:id",
 		component: <EditProperty />,
+		accessibility: [PASSENGER],
 	},
 	{
 		type: "collapse",
@@ -64,6 +69,7 @@ const routes = [
 		route: "units",
 		link: "units",
 		component: <Units />,
+		accessibility: [PASSENGER],
 	},
 	{
 		type: "collapse",
@@ -72,8 +78,8 @@ const routes = [
 		icon: <Icon fontSize='small'>settings</Icon>,
 		route: "setting",
 		link: "setting",
-
 		component: <Profile />,
+		accessibility: [PASSENGER],
 	},
 ];
 

@@ -1,70 +1,180 @@
-import React, { Suspense } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import routes from "../AdminPanel/routes";
-import { Provider } from "react-redux";
-import UserContextProvider from "../AdminPanel/context/UserContextProvider";
-import ProductsContextProvider from "../AdminPanel/context/ProductsContextProvider";
-import BlogContextProvider from "../AdminPanel/context/BlogContextProvider";
-import store from "../AdminPanel/store";
-export default function PanelRoutes() {
-  // Containers
-  const DefaultLayout = React.lazy(() =>
-    import("../AdminPanel/layout/DefaultLayout")
-  );
+import { UserContext } from "context/UsersContextProvider";
+import { useContext, useEffect, useMemo, useState } from "react";
+import websiteRoutesList from "UserDashboard/routes";
+import PanelProtectedRoutes from "./PanelProtectedRoutes";
 
-  // Pages
+// react-router components
+import { Route, Routes, useLocation } from "react-router-dom";
 
-  const Page404 = React.lazy(() =>
-    import("../AdminPanel/views/pages/page404/Page404")
-  );
-  const Page500 = React.lazy(() =>
-    import("../AdminPanel/views/pages/page500/Page500")
-  );
+// @mui material components
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
 
-  const loading = (
-    <div className="pt-3 text-center">
-      <div className="sk-spinner sk-spinner-pulse"></div>
-    </div>
-  );
+// Material Dashboard 2 React components
 
-  return (
-    <Suspense fallback={loading}>
-      <Provider store={store}>
-        <UserContextProvider>
-          <ProductsContextProvider>
-            <BlogContextProvider>
-              <Routes>
-                <Route path="/" element={<Navigate to="dashboard" />} />
-                <Route path="404" name="Page 404" element={<Page404 />} />
-                <Route path="500" name="Page 500" element={<Page500 />} />
-                <Route path="/*" name="dashboard" element={<DefaultLayout />}>
-                  {routes.map((route, idx) => {
-                    return (
-                      route.element && (
-                        <Route
-                          key={idx}
-                          path={route.path}
-                          exact={route.exact}
-                          name={route.name}
-                          element={
-                            route.isProtected ? (
-                              <route.protectedChecker>
-                                <route.element />
-                              </route.protectedChecker>
-                            ) : (
-                              <route.element />
-                            )
-                          }
-                        />
-                      )
-                    );
-                  })}
-                </Route>
-              </Routes>
-            </BlogContextProvider>
-          </ProductsContextProvider>
-        </UserContextProvider>
-      </Provider>
-    </Suspense>
-  );
-}
+// Material Dashboard 2 React example components
+import Configurator from "UserDashboard/examples/Configurator";
+import Sidenav from "UserDashboard/examples/Sidenav";
+
+// Material Dashboard 2 React themes
+import theme from "UserDashboard/assets/theme";
+import themeRTL from "UserDashboard/assets/theme/theme-rtl";
+
+// Material Dashboard 2 React Dark Mode themes
+import themeDark from "UserDashboard/assets/theme-dark";
+import themeDarkRTL from "UserDashboard/assets/theme-dark/theme-rtl";
+
+// RTL plugins
+import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
+import rtlPlugin from "stylis-plugin-rtl";
+
+// Material Dashboard 2 React routes
+import routes from "UserDashboard/routes";
+
+// Material Dashboard 2 React contexts
+import { setMiniSidenav, useMaterialUIController } from "UserDashboard/context";
+
+// Images
+import brandDark from "UserDashboard/assets/images/logo-ct-dark.png";
+import brandWhite from "UserDashboard/assets/images/logo-ct.png";
+
+const PanelRoutes = () => {
+	const [controller, dispatch] = useMaterialUIController();
+	const {
+		miniSidenav,
+		direction,
+		layout,
+		openConfigurator,
+		sidenavColor,
+		transparentSidenav,
+		whiteSidenav,
+		darkMode,
+	} = controller;
+	const [onMouseEnter, setOnMouseEnter] = useState(false);
+	const [rtlCache, setRtlCache] = useState(null);
+	const { pathname } = useLocation();
+
+	// Cache for the rtl
+	useMemo(() => {
+		const cacheRtl = createCache({
+			key: "rtl",
+			stylisPlugins: [rtlPlugin],
+		});
+
+		setRtlCache(cacheRtl);
+	}, []);
+
+	// Open sidenav when mouse enter on mini sidenav
+	const handleOnMouseEnter = () => {
+		if (miniSidenav && !onMouseEnter) {
+			setMiniSidenav(dispatch, false);
+			setOnMouseEnter(true);
+		}
+	};
+
+	// Close sidenav when mouse leave mini sidenav
+	const handleOnMouseLeave = () => {
+		if (onMouseEnter) {
+			setMiniSidenav(dispatch, true);
+			setOnMouseEnter(false);
+		}
+	};
+
+	useEffect(() => {
+		document.body.setAttribute("dir", direction);
+	}, [direction]);
+
+	// Setting page scroll to 0 when changing the route
+	useEffect(() => {
+		document.documentElement.scrollTop = 0;
+		document.scrollingElement.scrollTop = 0;
+	}, [pathname]);
+
+	const { user } = useContext(UserContext);
+
+	return direction === "rtl" ? (
+		<CacheProvider value={rtlCache}>
+			<ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
+				<CssBaseline />
+				{layout === "dashboard" && (
+					<>
+						<Sidenav
+							color={sidenavColor}
+							brand={
+								(transparentSidenav && !darkMode) || whiteSidenav
+									? brandDark
+									: brandWhite
+							}
+							brandName={`Hello ${user.userInformation.first_name}`}
+							routes={routes}
+							onMouseEnter={handleOnMouseEnter}
+							onMouseLeave={handleOnMouseLeave}
+						/>
+						<Configurator />
+						{/* {configsButton} */}
+					</>
+				)}
+				{layout === "vr" && <Configurator />}
+				<Routes>
+					{websiteRoutesList.map((_route) => {
+						const { route, key, component, accessibility } = _route;
+						return (
+							<Route
+								key={key}
+								path={route}
+								element={
+									<PanelProtectedRoutes
+										accessbility={accessibility}
+										Component={component}
+									/>
+								}
+							/>
+						);
+					})}
+				</Routes>
+			</ThemeProvider>
+		</CacheProvider>
+	) : (
+		<ThemeProvider theme={darkMode ? themeDark : theme}>
+			<CssBaseline />
+			{layout === "dashboard" && (
+				<>
+					<Sidenav
+						color={sidenavColor}
+						brand={
+							(transparentSidenav && !darkMode) || whiteSidenav
+								? brandDark
+								: brandWhite
+						}
+						brandName={`Hello ${user.userInformation.first_name} `}
+						routes={routes}
+						onMouseEnter={handleOnMouseEnter}
+						onMouseLeave={handleOnMouseLeave}
+					/>
+					<Configurator />
+				</>
+			)}
+			{layout === "vr" && <Configurator />}
+			<Routes>
+				{websiteRoutesList.map((_route) => {
+					const { route, key, component, accessibility } = _route;
+					return (
+						<Route
+							key={key}
+							path={route}
+							element={
+								<PanelProtectedRoutes
+									accessbility={accessibility}
+									Component={component}
+								/>
+							}
+						/>
+					);
+				})}
+			</Routes>
+		</ThemeProvider>
+	);
+};
+
+export default PanelRoutes;
