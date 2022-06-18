@@ -22,6 +22,7 @@ import { useLocation } from "react-router";
 import StarRating from "react-svg-star-rating";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { timeStringToFloat } from "utils/functions";
 import { convertTime } from "utils/functions";
 import { icons } from "values";
 
@@ -35,7 +36,7 @@ const SingleHotel = () => {
 	// };
 	const PropertyId = useLocation().pathname.split("/")[2];
 	const { data } = useGetPropertyById(PropertyId);
-	// console.log(data?.data.generalRules.check_in_from);
+
 	const [searchedUnits, setSearchedUnits] = useState([]);
 	const RoomReserveHandler = (id) => {
 		console.log(id);
@@ -333,8 +334,10 @@ const SingleHotel = () => {
 									<i className='fas fa-calendar-range'></i> Check-In
 								</span>
 								<TimeLine
-									start={convertTime(data?.data.generalRules.check_in_from)}
-									end={convertTime(data?.data.generalRules.check_in_to)}
+									start={timeStringToFloat(data?.data.generalRules.check_in_from)}
+									startTime={data?.data.generalRules.check_in_from}
+									endTime={data?.data.generalRules.check_in_to}
+									end={timeStringToFloat(data?.data.generalRules.check_in_to)}
 								/>
 							</div>
 							<div className='house__rules'>
@@ -342,8 +345,12 @@ const SingleHotel = () => {
 									<i className='fas fa-calendar-range'></i> Check-Out
 								</span>
 								<TimeLine
-									start={convertTime(data?.data.generalRules.check_out_from)}
-									end={convertTime(data?.data.generalRules.check_out_to)}
+									startTime={data?.data.generalRules.check_out_from}
+									start={timeStringToFloat(
+										data?.data.generalRules.check_out_from
+									)}
+									endTime={data?.data.generalRules.check_out_to}
+									end={timeStringToFloat(data?.data.generalRules.check_out_to)}
 								/>
 							</div>
 							<div className='house__rules'>

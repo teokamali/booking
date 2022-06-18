@@ -23,14 +23,12 @@ import HouseCard from "../../components/Cards/HouseCard";
 import BlogCard from "../../components/Cards/BlogCard";
 import "./HomeScreen.scss";
 import { useAuth } from "../../hooks/useAuth";
-import { useGetAllProperties } from "../../hooks/useProperty";
+import { useGetBestProperties } from "../../hooks/useProperty";
 
 const HomeScrean = () => {
-	const { theme } = useContext(ThemeContext);
 	const { t } = useTranslation();
 	const { isUserLoggedIn } = useAuth();
-	const { data: hotelsData, isLoading: isHotelsLoading } = useGetAllProperties();
-
+	const { data: hotelsData, isLoading: isHotelsLoading } = useGetBestProperties();
 	return (
 		// <div className="theme" data-scheme={theme}>
 		<>
@@ -130,12 +128,15 @@ const HomeScrean = () => {
 								// onSwiper={(swiper) => console.log(swiper)}
 							>
 								{hotelsData.data.map((item, i) => (
-									<SwiperSlide key={item.id}>
+									<SwiperSlide key={item.property_id}>
 										<HouseCard
-											id={item.id}
-											name={item.name}
-											image={item.property_cover_image.medium_file_path}
-											description={item.subtitle}
+											id={item.property_id}
+											name={item.property_name}
+											image={item.cover_image.medium_image_link}
+											description={item.property_subtitle}
+											maxGuests={item.max_guests_count}
+											maxBedrooms={item.max_unit_bedrooms}
+											startPrice={item.min_unit_price}
 										/>
 									</SwiperSlide>
 								))}

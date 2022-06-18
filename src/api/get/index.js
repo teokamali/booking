@@ -8,6 +8,7 @@ import getUserUnits from "./getUserUnits";
 import getPropertyById from "./getPropertyById";
 import getAllProperties from "./getAllProperties";
 import getSearchedUnit from "./getSearchedUnit";
+import getBestProperties from "./getBestProperties";
 
 const get = {
 	getUserGallery,
@@ -20,5 +21,6 @@ const get = {
 	getPropertyById,
 	getAllProperties,
 	getSearchedUnit,
+	getBestProperties,
 };
 export default get;

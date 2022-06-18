@@ -2,10 +2,10 @@ import React from "react";
 
 import "./index.scss";
 
-const TimeLine = ({ start, end }) => {
+const TimeLine = ({ start, end, startTime, endTime }) => {
 	const totalWidth = 100 / 24;
-	const barWidth = (end.value - start.value) * totalWidth;
-	const startBarFrom = start.value * totalWidth;
+	const barWidth = (end - start) * totalWidth;
+	const startBarFrom = start * totalWidth;
 	return (
 		<div className='timebar-wrapper'>
 			<i className='fas fa-sun'></i>
@@ -18,8 +18,8 @@ const TimeLine = ({ start, end }) => {
 					className='timebar__time'
 					style={{ width: `${barWidth}%`, left: `${startBarFrom}%` }}
 				>
-					<span>{start > 12 ? `${start.time} PM` : `${start.time} AM`}</span>
-					<span>{end > 12 ? `${end.time} PM` : `${end.time} AM`}</span>
+					<span>{start > 12 ? `${startTime} PM` : `${startTime} AM`}</span>
+					<span>{end > 12 ? `${endTime} PM` : `${endTime} AM`}</span>
 				</div>
 			</div>
 			<i className='fas fa-moon'></i>

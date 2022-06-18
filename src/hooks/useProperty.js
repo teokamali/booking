@@ -13,6 +13,10 @@ const useGetAllProperties = () => {
 	const { data, isLoading } = useQuery("getAllProperties", api.get.getAllProperties);
 	return { data, isLoading };
 };
+const useGetBestProperties = () => {
+	const { data, isLoading } = useQuery("getBestProperties", api.get.getBestProperties);
+	return { data, isLoading };
+};
 const useGetPropertyById = (id) => {
 	const { data, isLoading } = useQuery("getPropertyById", () => api.get.getPropertyById(id));
 	return { data, isLoading };
@@ -68,4 +72,5 @@ export {
 	useGetPropertyById,
 	useUpdateProperty,
 	useGetAllProperties,
+	useGetBestProperties,
 };
