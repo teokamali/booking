@@ -59,7 +59,7 @@
 		@media (min-width: 767px) {
 			width: 100%;
 			padding: 15px;
-			font-size: 20px;
+			font-size: 1.428rem;
 		}
 		&:hover {
 			color: $black-color;
@@ -107,7 +107,7 @@
 		border-radius: 30px;
 		padding: 3.25rem !important;
 		h2 {
-			font-size: 22px;
+			font-size: 1.571rem;
 			font-weight: bold;
 		}
 		p {
@@ -115,10 +115,10 @@
 		}
 		@media (min-width: 768px) {
 			h2 {
-				font-size: 35px;
+				font-size: 2.5rem;
 			}
 			p {
-				font-size: 22px;
+				font-size: 1.571rem;
 			}
 		}
 	}
@@ -128,12 +128,12 @@
 		border-radius: 30px;
 		padding: 3.25rem !important;
 		h2 {
-			font-size: 22px;
+			font-size: 1.571;
 			font-weight: bold;
 		}
 		@media (min-width: 767px) {
 			h2 {
-				font-size: 35px;
+				font-size: 2.5rem;
 			}
 		}
 	}
@@ -143,13 +143,13 @@
 		border-radius: 30px;
 		padding: 2.25rem !important;
 		h2 {
-			font-size: 22px;
+			font-size: 1.571rem;
 			font-weight: bold;
 		}
 		@media (min-width: 767px) {
 			padding: 3.25rem !important;
 			h2 {
-				font-size: 35px;
+				font-size: 2.5rem;
 			}
 		}
 	}
@@ -193,7 +193,7 @@
 		font-weight: 400;
 		padding-bottom: 10px;
 		@media (min-width: 767px) {
-			font-size: 18px;
+			font-size: 1.285rem;
 		}
 		span {
 			margin-left: 5px;
