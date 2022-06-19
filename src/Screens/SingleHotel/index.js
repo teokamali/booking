@@ -17,7 +17,7 @@ import UnitCard from "components/Cards/UnitCard";
 import { useAuth } from "hooks/useAuth";
 import { useGetPropertyById } from "hooks/useProperty";
 import { Desktop, Mobile, Tablet } from "layout/BreakPoints";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import StarRating from "react-svg-star-rating";
 import { Navigation } from "swiper";
@@ -35,12 +35,21 @@ const SingleHotel = () => {
 	// 	setToggleState(index);
 	// };
 	const PropertyId = useLocation().pathname.split("/")[2];
-	const { data } = useGetPropertyById(PropertyId);
+	const { data, isLoading: ispropertyLoading } = useGetPropertyById(PropertyId);
 
 	const [searchedUnits, setSearchedUnits] = useState([]);
 	const RoomReserveHandler = (id) => {
 		console.log(id);
 	};
+	const location = useLocation().hash.split("#")[1];
+
+	// scroll to element
+	useEffect(() => {
+		if (data) {
+			let element = document.getElementById(location);
+			element.scrollIntoView();
+		}
+	}, [ispropertyLoading]);
 
 	return (
 		<>
