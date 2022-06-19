@@ -19,7 +19,7 @@ function Button({
 	const ButtonEl = styled.button`
 		white-space: nowrap;
 		padding: ${(props) => (props.isLarge ? "26px 38px" : "18px 24px")};
-		font-size: ${(props) => (props.isLarge ? "18px" : "16px")};
+		font-size: ${(props) => (props.isLarge ? "1.285rem" : "1.2rem")};
 		color: ${(props) => (props.isPrimary ? "#191919" : "#ffff")};
 		font-weight: ${(props) => (props.isBold ? "bold" : "400")};
 		background-color: ${(props) => (props.isWhite ? "#fff" : "#ff3f3f")};

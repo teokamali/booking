@@ -1,341 +1,341 @@
 @import "../../styles/global.scss";
 .hambergur-menu {
-  position: relative;
-  background-color: #fff;
-  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  height: 70px;
-  z-index: 7000;
-  border-radius: 65px;
-  padding: 0.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  &_icons {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    overflow: hidden;
-    background-color: #fff;
-    li {
-      &:last-child {
-        a {
-          color: #fff;
-        }
-      }
-      a {
-        display: block;
-        margin-bottom: 12px;
-        border-right: 1px solid #f4f4f4;
-        text-decoration: none;
-        color: #333;
+	position: relative;
+	background-color: #fff;
+	box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	height: 70px;
+	z-index: 7000;
+	border-radius: 65px;
+	padding: 0.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	&_icons {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		overflow: hidden;
+		background-color: #fff;
+		li {
+			&:last-child {
+				a {
+					color: #fff;
+				}
+			}
+			a {
+				display: block;
+				margin-bottom: 12px;
+				border-right: 1px solid #f4f4f4;
+				text-decoration: none;
+				color: #333;
 
-        &:hover {
-        }
-      }
-    }
-  }
+				&:hover {
+				}
+			}
+		}
+	}
 }
 .logo {
-  width: 83px;
-  height: 25px;
-  display: inline-block;
-  margin-left: 16px;
-  img {
-    width: 100%;
-  }
+	width: 83px;
+	height: 25px;
+	display: inline-block;
+	margin-left: 16px;
+	img {
+		width: 100%;
+	}
 }
 .hambergur-favorites {
-  position: relative;
-  span {
-    position: absolute;
-    bottom: 0;
-    left: -5px;
-    background-color: red;
-    color: #fff;
-    text-align: center;
-    width: 20px;
-    height: 20px;
-    font-size: 9px;
-    padding: 3px;
-    font-weight: bold;
-    line-height: 19px;
-    border-radius: 50%;
-  }
+	position: relative;
+	span {
+		position: absolute;
+		bottom: 0;
+		left: -5px;
+		background-color: red;
+		color: #fff;
+		text-align: center;
+		width: 20px;
+		height: 20px;
+		font-size: 0.642rem;
+		padding: 3px;
+		font-weight: bold;
+		line-height: 19px;
+		border-radius: 50%;
+	}
 
-  .heart-icon {
-    font-size: 1.7rem;
-    color: $black-color;
-  }
+	.heart-icon {
+		font-size: 1.7rem;
+		color: $black-color;
+	}
 }
 .user-dashboard {
-  font-size: 1.7rem;
-  cursor: pointer;
+	font-size: 1.7rem;
+	cursor: pointer;
 }
 /* menu */
 .hambergur-menu .menu {
-  position: absolute;
-  clear: both;
-  max-height: 0;
-  transition: max-height 0.2s ease-out;
-  border-radius: 24px;
-  width: 100%;
-  top: 90px;
-  left: 0;
+	position: absolute;
+	clear: both;
+	max-height: 0;
+	transition: max-height 0.2s ease-out;
+	border-radius: 24px;
+	width: 100%;
+	top: 90px;
+	left: 0;
 }
 .menu-wrapper {
-  padding: 1.5rem;
+	padding: 1.5rem;
 }
 .login-modal-btn {
-  border: 0;
-  outline: 0;
-  background-color: unset;
+	border: 0;
+	outline: 0;
+	background-color: unset;
 }
 .other-options {
-  width: 75%;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .login-with-fb,
-  .login-with-google {
-    border: 0;
-    outline: 0;
-    width: 100%;
-    height: 40px;
-    display: block;
-    margin: 15px 0;
-    color: #fff;
-    text-align: center;
-    line-height: 40px;
-    font-size: 14px;
-    opacity: 0.95;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-  }
+	width: 75%;
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.login-with-fb,
+	.login-with-google {
+		border: 0;
+		outline: 0;
+		width: 100%;
+		height: 40px;
+		display: block;
+		margin: 15px 0;
+		color: #fff;
+		text-align: center;
+		line-height: 40px;
+		font-size: 1rem;
+		opacity: 0.95;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+	}
 
-  .login-with-fb:hover,
-  .login-with-google:hover {
-    opacity: 1;
-  }
+	.login-with-fb:hover,
+	.login-with-google:hover {
+		opacity: 1;
+	}
 
-  .login-with-fb {
-    background: #527ebf;
-  }
+	.login-with-fb {
+		background: #527ebf;
+	}
 
-  .login-with-google {
-    background: $red-color;
-  }
-  .login-with-fb .icon,
-  .login-with-google .icon {
-    float: left;
-    font-size: 21px;
-    width: 50px;
-    height: 26px;
-    margin: 7px;
-    padding: 2px;
-    text-align: center;
-    border-right: 1px solid #fff;
-    position: relative;
-    &::before {
-      position: absolute;
-      top: -6px;
-      left: 6px;
-    }
-  }
+	.login-with-google {
+		background: $red-color;
+	}
+	.login-with-fb .icon,
+	.login-with-google .icon {
+		float: left;
+		font-size: 1.5rem;
+		width: 50px;
+		height: 26px;
+		margin: 7px;
+		padding: 2px;
+		text-align: center;
+		border-right: 1px solid #fff;
+		position: relative;
+		&::before {
+			position: absolute;
+			top: -6px;
+			left: 6px;
+		}
+	}
 }
 .modal-title {
-  color: $black-color;
+	color: $black-color;
 }
 .modal-body {
-  color: $black-color;
-  position: relative;
-  overflow-x: hidden;
-  padding: 1rem;
-  height: 700px;
-  .inputs_wrapper {
-    display: flex;
-    flex-direction: column;
-    input {
-      width: 100%;
-    }
-  }
-  .login-form {
-    transition: all 200ms ease-in-out;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    h4 {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 0;
-      padding: 1rem;
-    }
-    form {
-      width: 80%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 1rem;
-      .input-wrapper {
-        margin-bottom: 1rem;
-        .form-control {
-          width: 100%;
-        }
-      }
-      span {
-        button {
-          border: 0;
-          outline: 0;
-          background-color: unset;
-          color: blue;
-        }
-      }
-    }
-  }
-  .register-form {
-    .css-1okebmr-indicatorSeparator {
-      background-color: unset;
-    }
+	color: $black-color;
+	position: relative;
+	overflow-x: hidden;
+	padding: 1rem;
+	height: 700px;
+	.inputs_wrapper {
+		display: flex;
+		flex-direction: column;
+		input {
+			width: 100%;
+		}
+	}
+	.login-form {
+		transition: all 200ms ease-in-out;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		h4 {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin: 0;
+			padding: 1rem;
+		}
+		form {
+			width: 80%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 1rem;
+			.input-wrapper {
+				margin-bottom: 1rem;
+				.form-control {
+					width: 100%;
+				}
+			}
+			span {
+				button {
+					border: 0;
+					outline: 0;
+					background-color: unset;
+					color: blue;
+				}
+			}
+		}
+	}
+	.register-form {
+		.css-1okebmr-indicatorSeparator {
+			background-color: unset;
+		}
 
-    transition: all 200ms ease-in-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0%;
-    h4 {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 0;
-      padding: 1rem;
-    }
-    form {
-      width: 80%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 1rem;
-      .input-wrapper {
-        margin-bottom: 1rem;
-        .form-control {
-          width: 100%;
-        }
-      }
-      span {
-        button {
-          border: 0;
-          outline: 0;
-          background-color: unset;
-          color: blue;
-        }
-      }
-    }
-  }
+		transition: all 200ms ease-in-out;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0%;
+		h4 {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin: 0;
+			padding: 1rem;
+		}
+		form {
+			width: 80%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 1rem;
+			.input-wrapper {
+				margin-bottom: 1rem;
+				.form-control {
+					width: 100%;
+				}
+			}
+			span {
+				button {
+					border: 0;
+					outline: 0;
+					background-color: unset;
+					color: blue;
+				}
+			}
+		}
+	}
 }
 /* menu icon */
 
 .hambergur-menu .menu-icon {
-  cursor: pointer;
-  display: inline-block;
-  float: right;
-  position: relative;
-  user-select: none;
+	cursor: pointer;
+	display: inline-block;
+	float: right;
+	position: relative;
+	user-select: none;
 }
 
 .hambergur-menu .menu-icon .navicon {
-  background: #333;
-  display: block;
-  height: 3px;
-  position: relative;
-  transition: background 0.2s ease-out;
-  width: 28px;
+	background: #333;
+	display: block;
+	height: 3px;
+	position: relative;
+	transition: background 0.2s ease-out;
+	width: 28px;
 }
 
 .hambergur-menu .menu-icon .navicon:after {
-  background: #333;
-  content: "";
-  display: block;
-  height: 100%;
-  position: absolute;
-  transition: all 0.2s ease-out;
-  width: 100%;
-  top: -7px;
+	background: #333;
+	content: "";
+	display: block;
+	height: 100%;
+	position: absolute;
+	transition: all 0.2s ease-out;
+	width: 100%;
+	top: -7px;
 }
 
 .hambergur-menu .menu-icon .navicon::before {
-  background: #333;
-  content: "";
-  display: block;
-  height: 100%;
-  position: absolute;
-  transition: all 0.2s ease-out;
-  width: 100%;
-  top: 7px;
+	background: #333;
+	content: "";
+	display: block;
+	height: 100%;
+	position: absolute;
+	transition: all 0.2s ease-out;
+	width: 100%;
+	top: 7px;
 }
 
 /* menu btn */
 
 .hambergur-menu .menu-btn {
-  display: none;
+	display: none;
 }
 
 .hambergur-menu .menu-btn:checked ~ .menu {
-  max-height: 240px;
-  height: 240px;
+	max-height: 240px;
+	height: 240px;
 }
 
 .hambergur-menu .menu-btn:checked ~ .menu-icon .navicon {
-  background: $black-color;
-  transform: rotate(45deg);
+	background: $black-color;
+	transform: rotate(45deg);
 }
 .hambergur-menu .menu-btn:checked ~ .menu-icon .navicon:after {
-  transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 .hambergur-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
 .hambergur-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
-  top: 0;
+	top: 0;
 }
 .hambergur-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before {
-  opacity: 0;
+	opacity: 0;
 }
 
 /* 48em = 768px */
 
 @media (min-width: 74rem) {
-  .hambergur-menu li {
-    float: left;
-  }
-  .hambergur-menu li a {
-    // padding: 20px 30px;
-  }
-  .hambergur-menu .menu {
-    clear: none;
-    float: right;
-    max-height: none;
-  }
-  .hambergur-menu .menu-icon {
-    display: none;
-  }
+	.hambergur-menu li {
+		float: left;
+	}
+	.hambergur-menu li a {
+		// padding: 20px 30px;
+	}
+	.hambergur-menu .menu {
+		clear: none;
+		float: right;
+		max-height: none;
+	}
+	.hambergur-menu .menu-icon {
+		display: none;
+	}
 }

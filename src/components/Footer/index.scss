@@ -1,111 +1,111 @@
 @import "../../styles/global.scss";
 .footer-container {
-  border-top: 1px solid $black-color;
-  padding: 32px 35px;
-  .footer-wrapper {
-    .row-wrapper {
-    }
-  }
-  .footer-column-1 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    margin-bottom: 57px;
+	border-top: 1px solid $black-color;
+	padding: 32px 35px;
+	.footer-wrapper {
+		.row-wrapper {
+		}
+	}
+	.footer-column-1 {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		margin-bottom: 57px;
 
-    .footer-logo {
-      width: 273px;
-      height: 58px;
-      margin-bottom: 45px;
-      @media (min-width: 991px) {
-        max-width: 273px;
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .footer-desc {
-      font-size: 18px;
-      color: $gray-color;
-      margin: 0;
-      margin-bottom: 10px;
-    }
-    .social-medias {
-      .social-medias-list {
-        display: flex;
-        list-style-type: none;
-        gap: 10px;
-        padding: 0;
-        margin: 0;
-        margin-left: 5px;
-        .social-medias-item {
-          a {
-            padding: 6.1px 11.6px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            text-decoration: none;
-            color: $red-color;
-            box-shadow: 0px 3px 6px rgba($color: #000000, $alpha: 0.16);
+		.footer-logo {
+			width: 273px;
+			height: 58px;
+			margin-bottom: 45px;
+			@media (min-width: 991px) {
+				max-width: 273px;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.footer-desc {
+			font-size: 1.285rem;
+			color: $gray-color;
+			margin: 0;
+			margin-bottom: 10px;
+		}
+		.social-medias {
+			.social-medias-list {
+				display: flex;
+				list-style-type: none;
+				gap: 10px;
+				padding: 0;
+				margin: 0;
+				margin-left: 5px;
+				.social-medias-item {
+					a {
+						padding: 6.1px 11.6px;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: 36px;
+						height: 36px;
+						border-radius: 50%;
+						text-decoration: none;
+						color: $red-color;
+						box-shadow: 0px 3px 6px rgba($color: #000000, $alpha: 0.16);
 
-            i {
-              font-size: 1.4rem;
-            }
-          }
-        }
-      }
-    }
-  }
-  .footer-column-2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    color: $black-color;
-    margin-bottom: 57px;
-    h4 {
-      font-weight: bold;
-      font-size: 20px;
-      margin-bottom: 30px;
-    }
-    .site-links-wrapper {
-      width: 100%;
-      display: flex;
-      gap: 8.25rem;
-      .site-links {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        li {
-          a {
-            font-size: 18px;
-            text-decoration: none;
-            color: $gray-color;
-          }
-        }
-      }
-    }
-  }
-  .footer-column-3 {
-    justify-content: center;
-    align-items: flex-start;
-    color: $black-color;
-    .Instagram-title {
-      color: $black-color;
-      margin-bottom: 30px;
-      font-weight: bold;
-      font-size: 20px;
-    }
+						i {
+							font-size: 1.4rem;
+						}
+					}
+				}
+			}
+		}
+	}
+	.footer-column-2 {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		color: $black-color;
+		margin-bottom: 57px;
+		h4 {
+			font-weight: bold;
+			font-size: 1.428rem;
+			margin-bottom: 30px;
+		}
+		.site-links-wrapper {
+			width: 100%;
+			display: flex;
+			gap: 8.25rem;
+			.site-links {
+				margin: 0;
+				padding: 0;
+				list-style-type: none;
+				li {
+					a {
+						font-size: 1.285rem;
+						text-decoration: none;
+						color: $gray-color;
+					}
+				}
+			}
+		}
+	}
+	.footer-column-3 {
+		justify-content: center;
+		align-items: flex-start;
+		color: $black-color;
+		.Instagram-title {
+			color: $black-color;
+			margin-bottom: 30px;
+			font-weight: bold;
+			font-size: 1.428;
+		}
 
-    .instagram-posts-wrapper {
-      // gap: 10px 10px;
-      .single-card-wrapper {
-        // max-width: 106px;
-        width: calc(33.33333333% - 10px);
-        margin: 5px;
-      }
-    }
-  }
+		.instagram-posts-wrapper {
+			// gap: 10px 10px;
+			.single-card-wrapper {
+				// max-width: 106px;
+				width: calc(33.33333333% - 10px);
+				margin: 5px;
+			}
+		}
+	}
 }
