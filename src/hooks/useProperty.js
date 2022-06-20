@@ -62,6 +62,19 @@ const usePostProperty = () => {
 		},
 	});
 };
+const useDeleteProperty = () => {
+	return useMutation(api.deleteApi.deleteProperty, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			Toastify("success", "Property Removed successfully");
+			window.location.reload();
+		},
+	});
+};
 
 export {
 	useGetPropertyType,
@@ -73,4 +86,5 @@ export {
 	useUpdateProperty,
 	useGetAllProperties,
 	useGetBestProperties,
+	useDeleteProperty,
 };

@@ -3,15 +3,13 @@ import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLa
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 
 import "./index.scss";
-import { useGetProperties } from "hooks/useProperty";
+import { useGetProperties, useDeleteProperty } from "hooks/useProperty";
 import { Link } from "react-router-dom";
 const Property = () => {
 	const properties = useGetProperties();
-	const editPropertyHandler = (id) => {
-		// console.log(id);
-	};
+	const { mutate: deletePropertyMutate } = useDeleteProperty();
 	const deletePropertyHandler = (id) => {
-		// console.log(id);
+		deletePropertyMutate({ id });
 	};
 	const property = properties?.data?.data.map((property) => property);
 	return (
@@ -32,7 +30,6 @@ const Property = () => {
 							<div>
 								<Table
 									tableHead={["id", "Name", "Location", "Action"]}
-									onEdit={(id) => editPropertyHandler(id)}
 									onDelete={(id) => deletePropertyHandler(id)}
 									data={property}
 								/>
