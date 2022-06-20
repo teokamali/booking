@@ -1,8 +1,11 @@
 import routes from "../routes";
 import axios from "../webSiteAxios";
 
-const updateProperty = async (formData, id) => {
-	const response = await axios.patch(routes.updateProperty + `/${id}`, formData);
+const updateProperty = async (data) => {
+	const response = await axios.patch(
+		routes.updateProperty + `/${data.propertyId}`,
+		data.formData
+	);
 	return response;
 };
 

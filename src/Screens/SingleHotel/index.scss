@@ -34,6 +34,7 @@
 		margin-top: 20px;
 		margin-left: auto;
 		margin-right: auto;
+		overflow-x: auto;
 		@media (min-width: 768px) {
 			width: 90%;
 		}
@@ -100,6 +101,10 @@
 	}
 	.active-content {
 		display: block;
+		h2 {
+			border-bottom: 1px solid rgba($color: $gray-color, $alpha: 0.5);
+			padding-bottom: 5px;
+		}
 	}
 	.single-hotel-description {
 		color: $gray-color;
@@ -233,9 +238,9 @@
 		border-bottom: 1px solid #707070;
 		margin-bottom: 15px;
 		span {
-			color: $black-color;
+			color: $gray-color;
 			font-weight: bold;
-			font-size: 1.5rem;
+			font-size: 2.5rem;
 		}
 	}
 	.section__header__row {
@@ -247,14 +252,18 @@
 		border-bottom: 1px solid #707070;
 		margin-bottom: 15px;
 		span {
-			color: $black-color;
 			font-weight: bold;
-			font-size: 1.5rem;
+			font-size: 2.5rem;
+			color: $gray-color;
 		}
 		&__rating {
 			display: flex;
 			justify-content: center;
 			align-items: stretch;
+			span {
+				color: $black-color;
+				font-size: 1.5rem;
+			}
 			&__wrapper {
 				padding: 8px;
 			}
@@ -330,6 +339,9 @@
 				width: 30%;
 				white-space: nowrap;
 				font-weight: bold;
+				i {
+					margin-right: 4px;
+				}
 			}
 			p {
 				width: 70%;
@@ -395,5 +407,5 @@
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
-	z-index: 1000;
+	z-index: 100;
 }

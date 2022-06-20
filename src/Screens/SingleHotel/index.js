@@ -41,15 +41,6 @@ const SingleHotel = () => {
 	const RoomReserveHandler = (id) => {
 		console.log(id);
 	};
-	const location = useLocation().hash.split("#")[1];
-
-	// scroll to element
-	useEffect(() => {
-		if (data) {
-			let element = document.getElementById(location);
-			element.scrollIntoView();
-		}
-	}, [ispropertyLoading]);
 
 	return (
 		<>
@@ -94,6 +85,10 @@ const SingleHotel = () => {
 								<i className='fas fa-memo'></i>
 								House Rules
 							</a>
+							<a href='#reviews' className='tabs'>
+								<i className='fas fa-comments'></i>
+								Reviews
+							</a>
 							<a href='#faq' className='tabs'>
 								<i className='fas fa-messages-question'></i>
 								FAQ
@@ -112,17 +107,9 @@ const SingleHotel = () => {
 								<i className='fas fa-inbox-full'></i>
 								Send Email
 							</a>
-							<a href='#reviews'>
-								<i className='fas fa-comments'></i>
-								Reviews
-							</a>
 							<a href='#'>
 								<i className='fas fa-bookmark'></i>
 								Bookmark
-							</a>
-							<a href='#'>
-								<i className='fas fa-share'></i>
-								Share
 							</a>
 						</div>
 						{/* description */}
@@ -308,7 +295,6 @@ const SingleHotel = () => {
 							</div>
 						</div>
 						<div>
-							<h5>Categories:</h5>
 							<div className='row'>
 								{data.data.rating.map((item, i) => (
 									<div className='col-12 col-md-6 col-lg-4' key={i}>

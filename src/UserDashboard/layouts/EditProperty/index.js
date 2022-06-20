@@ -21,7 +21,6 @@ const EditProperty = ({ data }) => {
 	const pathname = useLocation().pathname;
 	const propertyId = pathname.split("/")[4];
 	const { data: propertyData, isLoading: isPropertyLoading } = useGetPropertyById(propertyId);
-
 	useGetGallery();
 	const { data: galleryData } = useGetGallery(); //token
 
@@ -101,7 +100,7 @@ const EditProperty = ({ data }) => {
 			galleryData.data.map((item) => setSelectedImages((prev) => [...prev, item.id]));
 		}
 		if (images.length !== 0 && position !== undefined) {
-			updateProperty(formData);
+			updateProperty({ formData, propertyId });
 		}
 	};
 
@@ -232,7 +231,7 @@ const EditProperty = ({ data }) => {
 												defaultValue={countryList.find(
 													(item) =>
 														item.label ===
-														propertyData.data.address.country
+														propertyData.data.address.country.name
 												)}
 												onChange={(e) => {
 													setSelectedCountry(e.value);
@@ -248,7 +247,7 @@ const EditProperty = ({ data }) => {
 												className='basic-single'
 												classNamePrefix='select'
 												name='city_id'
-												placeholder={propertyData.data.address.city}
+												placeholder={propertyData.data.address.city.name}
 												onChange={(e) => (values.city_id = e.value)}
 												isSearchable
 												isLoading={isCityLoading}

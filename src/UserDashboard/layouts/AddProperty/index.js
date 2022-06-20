@@ -92,7 +92,6 @@ const AddProperty = () => {
 			},
 		};
 		if (images.length !== 0 && position !== undefined) {
-			console.log(formData);
 			postPropertyResult(formData);
 		}
 	};
@@ -165,20 +164,8 @@ const AddProperty = () => {
 					</div>
 					{/* Preview selected images */}
 					<div className='container mt-3'>
-						{/* <div className='preview'>
-							{selectedImages.map((images, i) => (
-								<div className='preview-image-wrapper' key={i}>
-									<img
-										className='preview-image'
-										src={images.medium_image_link}
-										alt=''
-									/>
-								</div>
-							))}
-						</div> */}
 						<div className='preview'>
 							<Gallery>
-								{/* {console.log(selectedImages)} */}
 								{selectedImages.map((images, i) => (
 									<Item
 										original={images.original_image_link}

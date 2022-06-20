@@ -12,8 +12,8 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			align-items: flex-start;
-			margin-bottom: 1rem;
+			align-items: center;
+			padding: 0 1.2rem;
 			@media (min-width: 767px) {
 				flex-direction: row;
 			}

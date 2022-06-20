@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, LoginModal, Counter } from "components";
+import { Modal, LoginModal, Counter, Button } from "components";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import { useReserveUnits } from "hooks/useUnits";
 import { useAuth } from "hooks/useAuth";
@@ -33,7 +33,7 @@ const UnitCard = ({ data, buttonOnClick }) => {
 				special_requests: specialRequests,
 			},
 		};
-		// reserveMutate(data);
+		reserveMutate(data);
 	};
 
 	return (
@@ -121,10 +121,9 @@ const UnitCard = ({ data, buttonOnClick }) => {
 											/>
 										</div>
 									</form>
-
 									<Button
 										type='submit'
-										className='w-100'
+										className='w-100 '
 										onClick={() => reservationHandler(id)}
 									>
 										Send Reservation Request
@@ -137,9 +136,6 @@ const UnitCard = ({ data, buttonOnClick }) => {
 								</div>
 							)}
 						</Modal>
-						{/* <Button isWhite isPrimary hasBorder hasBoxShadow onClick={buttonOnClick}>
-							Reserve Now
-						</Button> */}
 					</div>
 					<i
 						className={`fas fa-chevron-right openDescription ${active ? "active" : ""}`}
@@ -149,7 +145,9 @@ const UnitCard = ({ data, buttonOnClick }) => {
 				<div
 					className='description'
 					style={
-						active ? { height: "100%", opacity: "1" } : { height: "0px", opacity: "0" }
+						active
+							? { height: "100%", opacity: "1", paddingTop: "1rem" }
+							: { height: "0px", opacity: "0", paddingTop: "0" }
 					}
 				>
 					<div dangerouslySetInnerHTML={{ __html: description }}></div>

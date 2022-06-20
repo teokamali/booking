@@ -14,15 +14,16 @@ const UnitFinder = ({ setSearchedUnits }) => {
 
 	const [adult, setAdult] = useState(1);
 	const [children, setChildren] = useState(0);
-	const [checkIn, setCheckIn] = useState(new DateObject().format("YYYY-MM-DD"));
+	const [checkMinDate, setCheckMinDate] = useState(new DateObject());
+	const [checkIn, setCheckIn] = useState(null);
 	const [checkOut, setCheckOut] = useState(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const onSubmitHandler = (e) => {
 		let params = {
 			adults_count: adult,
 			kids_count: children,
-			check_in_date: checkIn,
-			check_out_date: checkOut,
+			check_in_date: checkIn.format("YYYY-MM-DD"),
+			check_out_date: checkOut.format("YYYY-MM-DD"),
 		};
 		e.preventDefault();
 		if (checkIn !== null && checkOut !== null) {
@@ -49,20 +50,27 @@ const UnitFinder = ({ setSearchedUnits }) => {
 						<div className='date-input'>
 							<h5>Check In:</h5>
 							<DatePicker
+								portal
 								inputClass='form-control'
 								format='MMMM DD YYYY'
-								minDate={checkIn}
-								onChange={(e) => setCheckIn(e.format("YYYY-MM-DD"))}
+								minDate={checkMinDate}
+								value={checkIn}
+								onChange={(e) => {
+									setCheckMinDate(e);
+									setCheckIn(e);
+								}}
 							/>
 						</div>
 
 						<div className='date-input'>
 							<h5>Check Out:</h5>
 							<DatePicker
+								portal
 								inputClass='form-control'
 								format='MMMM DD YYYY'
-								minDate={checkIn}
-								onChange={(e) => setCheckOut(e.format("YYYY-MM-DD"))}
+								minDate={checkMinDate}
+								value={checkOut}
+								onChange={(e) => setCheckOut(e)}
 							/>
 						</div>
 						<div className='w-100'>

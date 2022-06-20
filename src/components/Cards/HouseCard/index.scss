@@ -10,6 +10,7 @@
 		box-shadow: 0px 2px 12px rgba($color: #14142b, $alpha: 0.08);
 		border-radius: 24px;
 		margin-bottom: 12px;
+		border-bottom: 1px solid #d5d5d5;
 
 		&__header {
 			width: 100%;
@@ -24,7 +25,6 @@
 			margin-right: 24px;
 			padding-bottom: 32px;
 			padding-top: 32px;
-			border-bottom: 1px solid #d5d5d5;
 			h3 {
 				white-space: nowrap;
 				text-overflow: ellipsis;
@@ -45,8 +45,10 @@
 				margin-top: 16px;
 				display: flex;
 				align-items: center;
+				flex-wrap: wrap;
 				gap: 14px;
 				&__button {
+					flex: 1 1 50px;
 					display: flex;
 					gap: 5px;
 					align-items: center;

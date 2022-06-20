@@ -30,7 +30,7 @@ const routes = [
 		route: "gallery",
 		link: "gallery",
 		component: <Gallery />,
-		accessibility: [MIDDLE_MAN],
+		accessibility: [MIDDLE_MAN, OWNER],
 	},
 	{
 		type: "collapse",
