@@ -6,8 +6,8 @@ const useGetPropertyType = () => {
 	return { data, isLoading };
 };
 const useGetProperties = () => {
-	const { data } = useQuery("getUserProperties", api.get.getUserProperties);
-	return data;
+	const { data, isLoading } = useQuery("getUserProperties", api.get.getUserProperties);
+	return { data, isLoading };
 };
 const useGetAllProperties = () => {
 	const { data, isLoading } = useQuery("getAllProperties", api.get.getAllProperties);

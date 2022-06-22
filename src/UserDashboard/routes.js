@@ -5,6 +5,7 @@ import Gallery from "UserDashboard/layouts/Gallery";
 import Property from "./layouts/Property";
 import AddProperty from "./layouts/AddProperty";
 import EditProperty from "./layouts/EditProperty";
+import AddUnit from "./layouts/AddUnit";
 import Units from "./layouts/Units";
 import { constans } from "values";
 // @mui icons
@@ -70,6 +71,16 @@ const routes = [
 		route: "units",
 		link: "units",
 		component: <Units />,
+		accessibility: [PASSENGER, OWNER],
+	},
+	{
+		type: "",
+		name: "Add Units",
+		key: "add-unit",
+		icon: <Icon fontSize='small'>bed</Icon>,
+		route: "units/add-unit",
+		link: "units/add-unit",
+		component: <AddUnit />,
 		accessibility: [PASSENGER, OWNER],
 	},
 	{

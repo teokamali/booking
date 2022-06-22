@@ -18,4 +18,22 @@ const useReserveUnits = () => {
 		},
 	});
 };
-export { useGetUserUnits, useReserveUnits };
+const useDeleteUnit = () => {
+	return useMutation(api.deleteApi.deleteUnit, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			Toastify("success", "Property Removed successfully");
+			window.location.reload();
+		},
+	});
+};
+const useGetBedTypes = () => {
+	const { data, isLoading } = useQuery("getBedstypes", api.get.getBedsTypes);
+	return { data, isLoading };
+};
+
+export { useGetUserUnits, useReserveUnits, useDeleteUnit, useGetBedTypes };

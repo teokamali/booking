@@ -5,7 +5,15 @@ import Modal from "../Modal";
 import EditProperty from "UserDashboard/layouts/EditProperty";
 import { Link } from "react-router-dom";
 
-const TableItem = ({ id, name, address, beds, bathrooms, onEdit, onDelete }) => {
+const TableItem = ({
+	id,
+	name,
+	address,
+	adults_sleeps_count,
+	bedrooms_count,
+	onEdit,
+	onDelete,
+}) => {
 	return (
 		<tr className='table_body_row'>
 			<td className=' table_body_d'>
@@ -15,11 +23,11 @@ const TableItem = ({ id, name, address, beds, bathrooms, onEdit, onDelete }) => 
 				<span>{name}</span>
 			</td>
 			<td className='table_body_d'>
-				<p>{address || beds}</p>
+				<p>{address || adults_sleeps_count}</p>
 			</td>
-			{bathrooms ? (
+			{bedrooms_count ? (
 				<td className='table_body_d'>
-					<p>{bathrooms}</p>
+					<p>{bedrooms_count}</p>
 				</td>
 			) : null}
 			<td className=' table_body_d  '>
@@ -44,10 +52,11 @@ const TableButtons = ({ onEdit, onDelete, id }) => {
 		</div>
 	);
 };
-const Table = ({ onEdit, onDelete, data, tableHead }) => {
+const Table = ({ onEdit, onDelete, data, tableHead, title }) => {
 	return (
 		<div className='table-responsive'>
 			<div className='Table_wrapper'>
+				<h3>{title}</h3>
 				<table className='cs-table'>
 					<thead className='thead'>
 						<tr className='thead_row'>
@@ -66,6 +75,8 @@ const Table = ({ onEdit, onDelete, data, tableHead }) => {
 										id={item.id}
 										name={item.name}
 										address={item.address}
+										adults_sleeps_count={item.adults_sleeps_count}
+										bedrooms_count={item.bedrooms_count}
 										beds={item.beds}
 										bathrooms={item.bathroom}
 										onEdit={() => onEdit(item.id)}

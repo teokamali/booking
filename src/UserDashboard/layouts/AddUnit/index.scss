@@ -1,0 +1,28 @@
+.counter-input-wrapper {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 20px;
+	margin-bottom: 20px;
+	span {
+		white-space: nowrap;
+		text-align: left;
+	}
+	.counter {
+		width: unset;
+	}
+}
+.Beds-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	gap: 20px;
+
+	.counter {
+		width: unset;
+	}
+	:nth-child(1) {
+		flex: 1;
+	}
+}

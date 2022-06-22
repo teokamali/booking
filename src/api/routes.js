@@ -16,6 +16,8 @@ const postProperty = config.BASE_URL + "property";
 const getPropertyById = config.BASE_URL + "property";
 const userUnits = config.BASE_URL + "user/units";
 const deleteProperty = config.BASE_URL + "property";
+const deleteUnit = config.BASE_URL + "property/units";
+const getBedsTypes = config.BASE_URL + "property/bed_types";
 // main website
 const getBestProperties = config.BASE_URL + "best_properties";
 const getAllProperties = config.BASE_URL + "property";
@@ -41,6 +43,8 @@ const routes = {
 	ReserveUnit,
 	getBestProperties,
 	deleteProperty,
+	deleteUnit,
+	getBedsTypes,
 };
 
 export default routes;

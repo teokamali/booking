@@ -27,4 +27,8 @@
 		box-shadow: $box-shadow;
 		border-radius: 6px;
 	}
+	.counter-deactive {
+		pointer-events: none;
+		opacity: 0.5;
+	}
 }

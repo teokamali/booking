@@ -6,12 +6,13 @@ import "./index.scss";
 import { useGetProperties, useDeleteProperty } from "hooks/useProperty";
 import { Link } from "react-router-dom";
 const Property = () => {
-	const properties = useGetProperties();
+	const { data } = useGetProperties();
+	console.log(data);
 	const { mutate: deletePropertyMutate } = useDeleteProperty();
 	const deletePropertyHandler = (id) => {
 		deletePropertyMutate({ id });
 	};
-	const property = properties?.data?.data.map((property) => property);
+	const property = data?.data?.data.map((property) => property);
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
@@ -23,8 +24,8 @@ const Property = () => {
 					</Link>
 				</div>
 				<div className='container'>
-					{properties ? (
-						properties.data.data.length === 0 ? (
+					{data ? (
+						data.data.data.length === 0 ? (
 							<h2>Empty</h2>
 						) : (
 							<div>
