@@ -264,9 +264,7 @@ const AddUnit = () => {
 							</div>
 						);
 					})}
-					{formik.errors.beds && formik.touched.beds[0].bed_type_id && (
-						<span className='input-error'>{formik.errors.beds[0].bed_type_id}</span>
-					)}
+
 					<Button type='submit' className='mt-4 w-100'>
 						Submit
 					</Button>
