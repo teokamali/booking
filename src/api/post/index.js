@@ -3,6 +3,7 @@ import webSiteLogOut from "./webSiteLogOut";
 import webSiteRegister from "./webSiteRegister";
 import postUserGallery from "./postUserGallery";
 import postProperty from "./postProperty";
+import postUnit from "./postUnit";
 import reserveUnit from "./reserveUnit";
 const post = {
 	webSiteLogin,
@@ -11,5 +12,6 @@ const post = {
 	postUserGallery,
 	postProperty,
 	reserveUnit,
+	postUnit,
 };
 export default post;

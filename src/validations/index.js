@@ -29,3 +29,8 @@ export const AddPropertyValidate = Yup.object({
 		.max(20, "please write a shorter subtitle")
 		.required("subtitle is required"),
 });
+
+export const AddUnitValidate = Yup.object({
+
+	
+});

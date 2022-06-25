@@ -32,8 +32,27 @@ const useDeleteUnit = () => {
 	});
 };
 const useGetBedTypes = () => {
-	const { data, isLoading } = useQuery("getBedstypes", api.get.getBedsTypes);
+	const { data, isLoading } = useQuery("getBedstypes", api.get.getBedsTypes, {
+		select: (data) =>
+			data.data.map((item) => ({
+				label: item.name,
+				value: item.id,
+			})),
+	});
 	return { data, isLoading };
 };
 
-export { useGetUserUnits, useReserveUnits, useDeleteUnit, useGetBedTypes };
+const usePostUnit = () => {
+	return useMutation(api.post.postUnit, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			window.location.reload();
+		},
+	});
+};
+
+export { useGetUserUnits, useReserveUnits, useDeleteUnit, useGetBedTypes, usePostUnit };

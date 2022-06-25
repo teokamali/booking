@@ -6,14 +6,14 @@ const Counter = ({ value, onValueChange, min = 0 }) => {
 			<button
 				type='button'
 				className={`counter__negative ${value <= min ? "counter-deactive" : ""} `}
-				onClick={() => value > min && onValueChange((prev) => prev - 1)}
+				onClick={() => value > min && onValueChange(value - 1)}
 			>
 				-
 			</button>
 			<span>{value}</span>
 			<button
 				className='counter__plus'
-				onClick={() => onValueChange((prev) => prev + 1)}
+				onClick={() => onValueChange(value + 1)}
 				type='button'
 			>
 				+
