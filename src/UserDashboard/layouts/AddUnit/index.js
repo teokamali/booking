@@ -4,7 +4,7 @@ import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLa
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import { useGetProperties } from "hooks/useProperty";
 import { useGetBedTypes, usePostUnit } from "hooks/useUnits";
-
+import { AddUnitValidate } from "validations";
 import { Counter, Button } from "components";
 import { useFormik } from "formik";
 import "./index.scss";
@@ -30,10 +30,10 @@ const AddUnit = () => {
 	let formInitial = {
 		property_id: "",
 		name: "",
-		adults_sleeps_count: 0,
-		kids_sleeps_count: 0,
+		adults_sleeps_count: 1,
+		kids_sleeps_count: 1,
 		price: "",
-		bedrooms_count: 0,
+		bedrooms_count: 1,
 		description: "",
 		unit_count: 1,
 		beds: [
@@ -47,11 +47,14 @@ const AddUnit = () => {
 
 	const formik = useFormik({
 		initialValues: formInitial,
+		validationSchema: AddUnitValidate,
 		onSubmit: (values) => {
-			console.log(values);
 			postUnit(values);
 		},
 	});
+	if (formik.errors) {
+		console.log(formik.errors);
+	}
 	const handleChangeCounter = (name, val) => {
 		formik.setValues((prev) => ({ ...prev, [name]: val }));
 	};
@@ -105,10 +108,6 @@ const AddUnit = () => {
 		setSelectedBeds((prev) => prev.slice(0, -1));
 	};
 
-	useEffect(() => {
-		console.log("run");
-	}, [formik.values]);
-
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
@@ -125,6 +124,9 @@ const AddUnit = () => {
 							onChange={(e) => (formik.values.property_id = e.value)}
 						/>
 					</div>
+					{formik.errors.property_id && formik.touched.property_id && (
+						<span className='input-error'>{formik.errors.property_id}</span>
+					)}
 					{/* name */}
 					<div className='form-floating mb-3'>
 						<input
@@ -138,6 +140,10 @@ const AddUnit = () => {
 						/>
 						<label htmlFor='name'>Name</label>
 					</div>
+					{formik.errors.name && formik.touched.name && (
+						<span className='input-error'>{formik.errors.name}</span>
+					)}
+					{/* description */}
 					<div className='form-floating mb-3'>
 						<textarea
 							className='form-control'
@@ -150,6 +156,9 @@ const AddUnit = () => {
 						/>
 						<label htmlFor='name'>Description</label>
 					</div>
+					{formik.errors.description && formik.touched.description && (
+						<span className='input-error'>{formik.errors.description}</span>
+					)}
 					{/* price */}
 					<div className='input-group mb-3'>
 						<span className='input-group-text'>$</span>
@@ -163,6 +172,10 @@ const AddUnit = () => {
 							value={formik.values.price}
 						/>
 					</div>
+					{formik.errors.price && formik.touched.price && (
+						<span className='input-error'>{formik.errors.price}</span>
+					)}
+					{/* adults_sleeps_count */}
 					<div className='counter-input-wrapper'>
 						<span>Adult Count</span>
 						<Counter
@@ -170,8 +183,13 @@ const AddUnit = () => {
 							onValueChange={(value) =>
 								handleChangeCounter("adults_sleeps_count", value)
 							}
+							min={1}
 						/>
 					</div>
+					{formik.errors.adults_sleeps_count && formik.touched.adults_sleeps_count && (
+						<span className='input-error'>{formik.errors.adults_sleeps_count}</span>
+					)}
+					{/* children_sleep-count */}
 					<div className='counter-input-wrapper'>
 						<span>Children Count</span>
 						<Counter
@@ -179,15 +197,25 @@ const AddUnit = () => {
 							onValueChange={(value) =>
 								handleChangeCounter("kids_sleeps_count", value)
 							}
+							min={1}
 						/>
 					</div>
+					{formik.errors.kids_sleeps_count && formik.touched.kids_sleeps_count && (
+						<span className='input-error'>{formik.errors.kids_sleeps_count}</span>
+					)}
+					{/* bedroms count */}
 					<div className='counter-input-wrapper'>
 						<span>Bedrooms Count</span>
 						<Counter
 							value={formik.values.bedrooms_count}
 							onValueChange={(value) => handleChangeCounter("bedrooms_count", value)}
+							min={1}
 						/>
 					</div>
+					{formik.errors.bedrooms_count && formik.touched.bedrooms_count && (
+						<span className='input-error'>{formik.errors.bedrooms_count}</span>
+					)}
+					{/* unit_count */}
 					<div className='counter-input-wrapper'>
 						<span>Unit Count</span>
 						<Counter
@@ -196,6 +224,10 @@ const AddUnit = () => {
 							min={1}
 						/>
 					</div>
+					{formik.errors.unit_count && formik.touched.unit_count && (
+						<span className='input-error'>{formik.errors.unit_count}</span>
+					)}
+					{/* beds_count */}
 					<div className='counter-input-wrapper'>
 						<span>Bed Count</span>
 						<Counter
@@ -232,6 +264,9 @@ const AddUnit = () => {
 							</div>
 						);
 					})}
+					{formik.errors.beds && formik.touched.beds[0].bed_type_id && (
+						<span className='input-error'>{formik.errors.beds[0].bed_type_id}</span>
+					)}
 					<Button type='submit' className='mt-4 w-100'>
 						Submit
 					</Button>

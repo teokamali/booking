@@ -31,6 +31,25 @@ export const AddPropertyValidate = Yup.object({
 });
 
 export const AddUnitValidate = Yup.object({
-
-	
+	property_id: Yup.number().required("please Select a Property"),
+	name: Yup.string()
+		.required("Enter a Name for your unit")
+		.min(4, "name must be at least 4 characters")
+		.max(24, "Name must be at most 24 characters"),
+	adults_sleeps_count: Yup.number(),
+	kids_sleeps_count: Yup.number(),
+	price: Yup.number("Invalid Price").required("You must enter a Price for your unit"),
+	bedrooms_count: Yup.number(),
+	description: Yup.string()
+		.required("Enter a Description for your unit")
+		.min(3, "Description must be at least 4 characters"),
+	unit_count: Yup.number(),
+	beds: Yup.array()
+		.of(
+			Yup.object().shape({
+				bed_type_id: Yup.mixed().required("you must select your bed type"),
+				count: Yup.number(),
+			})
+		)
+		.required("You must enter your bed types"),
 });
