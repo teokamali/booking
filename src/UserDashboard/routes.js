@@ -7,6 +7,7 @@ import AddProperty from "./layouts/AddProperty";
 import EditProperty from "./layouts/EditProperty";
 import AddUnit from "./layouts/AddUnit";
 import Units from "./layouts/Units";
+import EditUnit from "./layouts/EditUnit";
 import { constans } from "values";
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -81,6 +82,16 @@ const routes = [
 		route: "units/add-unit",
 		link: "units/add-unit",
 		component: <AddUnit />,
+		accessibility: [PASSENGER, OWNER],
+	},
+	{
+		type: "",
+		name: "Edit Unit",
+		key: "units/Edit",
+		icon: <Icon fontSize='small'>pen</Icon>,
+		route: "units/edit/:id",
+		link: "units/edit/:id",
+		component: <EditUnit />,
 		accessibility: [PASSENGER, OWNER],
 	},
 	{

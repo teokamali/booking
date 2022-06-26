@@ -54,5 +54,28 @@ const usePostUnit = () => {
 		},
 	});
 };
-
-export { useGetUserUnits, useReserveUnits, useDeleteUnit, useGetBedTypes, usePostUnit };
+const useGetUnitById = (id) => {
+	const { data, isLoading } = useQuery("getUnitById", () => api.get.getUnitById(id));
+	return { data, isLoading };
+};
+const useUpdateUnit = () => {
+	return useMutation(api.patch.updateUnit, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			window.location.reload();
+		},
+	});
+};
+export {
+	useGetUserUnits,
+	useReserveUnits,
+	useDeleteUnit,
+	useGetBedTypes,
+	usePostUnit,
+	useGetUnitById,
+	useUpdateUnit,
+};

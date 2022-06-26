@@ -10,8 +10,9 @@ import getAllProperties from "./getAllProperties";
 import getSearchedUnit from "./getSearchedUnit";
 import getBestProperties from "./getBestProperties";
 import getBedsTypes from "./getBedTypes";
-
+import getUnitById from "./getUnitById";
 const get = {
+	getUnitById,
 	getUserGallery,
 	getPropertyTypes,
 	getUserProperties,
