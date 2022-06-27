@@ -11,6 +11,7 @@ import getSearchedUnit from "./getSearchedUnit";
 import getBestProperties from "./getBestProperties";
 import getBedsTypes from "./getBedTypes";
 import getUnitById from "./getUnitById";
+import getHotelReservations from "./getHotelReservations";
 const get = {
 	getUnitById,
 	getUserGallery,
@@ -25,5 +26,6 @@ const get = {
 	getSearchedUnit,
 	getBestProperties,
 	getBedsTypes,
+	getHotelReservations,
 };
 export default get;

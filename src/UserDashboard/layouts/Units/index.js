@@ -11,7 +11,10 @@ const Units = () => {
 	const deletePropertyHandler = (id) => {
 		deleteUnitMutate({ id });
 	};
-
+	console.log(data?.data);
+	const onEditUnit = (id) => {
+		console.log({ id });
+	};
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
@@ -33,7 +36,7 @@ const Units = () => {
 										key={hotel.id}
 										title={hotel.name}
 										tableHead={["Id", "Name", "Adults", "Bedrooms", "Actions"]}
-										// onEdit={(id) => editPropertyHandler(id)}
+										onEdit={onEditUnit}
 										onDelete={(id) => deletePropertyHandler(id)}
 										data={hotel.units}
 									/>

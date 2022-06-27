@@ -24,6 +24,7 @@ import BlogCard from "../../components/Cards/BlogCard";
 import "./HomeScreen.scss";
 import { useAuth } from "../../hooks/useAuth";
 import { useGetBestProperties } from "../../hooks/useProperty";
+import { Link } from "react-router-dom";
 
 const HomeScrean = () => {
 	const { t } = useTranslation();
@@ -71,7 +72,7 @@ const HomeScrean = () => {
 						<div className='section__heading'>
 							<h3>Explore our Hotels</h3>
 							<Button isWhite hasBorder hasBoxShadow isPrimary>
-								Book Now
+								<Link to='/hotels'>See More</Link>
 							</Button>
 						</div>
 						<div className='slider-swiper'>

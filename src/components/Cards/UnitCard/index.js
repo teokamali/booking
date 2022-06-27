@@ -78,6 +78,17 @@ const UnitCard = ({ data, buttonOnClick }) => {
 										<div className='reservation-form__wrapper '>
 											{/* date */}
 											<div className='date-input'>
+												<button
+													onClick={(e) => {
+														e.preventDefault();
+														setCheckIn(
+															new DateObject().format("YYYY-MM-DD")
+														);
+														setCheckOut();
+													}}
+												>
+													X
+												</button>
 												<h5>Check In:</h5>
 												<DatePicker
 													containerClassName='w-100'

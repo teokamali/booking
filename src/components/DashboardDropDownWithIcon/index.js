@@ -28,7 +28,7 @@ const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
 					<Link to='/dashboard/settings'>Setting</Link>
 				</li>
 				<li>
-					<Link to='/dashboard/reservations'>Reservations</Link>
+					<Link to='/dashboard/reserves'>Reservations</Link>
 				</li>
 				<li>
 					<Button

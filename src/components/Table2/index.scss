@@ -14,19 +14,22 @@
 	transition: all 200ms ease-in-out;
 	border: 0;
 	outline: 0;
-	svg {
-		width: 15px;
-		height: 15px;
-		fill: $white-color;
-	}
-
+	color: $white-color;
+	width: 25px;
+	height: 25px;
 	&:hover {
-		background-color: transparent;
+		// background-color: transparent;
 		box-shadow: $box-shadow;
 		svg {
 			fill: $red-color;
 		}
 	}
+}
+.action-button.accept {
+	background-color: $green-color;
+}
+.action-button.reject {
+	background-color: $red-color;
 }
 
 .table-responsive {
