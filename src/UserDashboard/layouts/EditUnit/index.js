@@ -29,7 +29,7 @@ function EditUnit() {
 	}
 
 	// beds type
-	const { data: bedTypes, isLoading: BedTypesIsLoading } = useGetBedTypes();
+	const { data: bedTypes } = useGetBedTypes();
 	let formInitial = {
 		property_id: data ? data?.data.property_id : "",
 		name: data ? data?.data.name : "",
@@ -50,11 +50,11 @@ function EditUnit() {
 		initialValues: formInitial,
 		validationSchema: AddUnitValidate,
 		onSubmit: (values) => {
-			updateUnit(unitId, values);
+			const formData = { unitId, values };
+			updateUnit(formData);
 			// console.log({ unitId, values });
 		},
 	});
-	console.log(formik.values.beds);
 
 	const handleChangeCounter = (name, val) => {
 		formik.setValues((prev) => ({ ...prev, [name]: val }));

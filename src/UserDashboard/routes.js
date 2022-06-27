@@ -8,6 +8,7 @@ import EditProperty from "./layouts/EditProperty";
 import AddUnit from "./layouts/AddUnit";
 import Units from "./layouts/Units";
 import EditUnit from "./layouts/EditUnit";
+import Reserves from "./layouts/Reserves";
 import { constans } from "values";
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -92,6 +93,16 @@ const routes = [
 		route: "units/edit/:id",
 		link: "units/edit/:id",
 		component: <EditUnit />,
+		accessibility: [PASSENGER, OWNER],
+	},
+	{
+		type: "collapse",
+		name: "Reservations",
+		key: "reserves",
+		icon: <Icon fontSize='small'>book_online</Icon>,
+		route: "reserves",
+		link: "reserves",
+		component: <Reserves />,
 		accessibility: [PASSENGER, OWNER],
 	},
 	{
