@@ -15,6 +15,7 @@ function Button({
 	disabled,
 	id,
 	type = "submit",
+	...props
 }) {
 	const ButtonEl = styled.button`
 		white-space: nowrap;
@@ -49,6 +50,7 @@ function Button({
 			hasBorder={hasBorder}
 			id={id}
 			type={type}
+			{...props}
 		>
 			{isLoading ? <Loader /> : children}
 		</ButtonEl>

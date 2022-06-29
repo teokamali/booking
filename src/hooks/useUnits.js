@@ -5,19 +5,7 @@ const useGetUserUnits = () => {
 	const { data, isLoading } = useQuery("getUserUnits", api.get.getUserUnits);
 	return { data, isLoading };
 };
-const useReserveUnits = () => {
-	return useMutation(api.post.reserveUnit, {
-		onError: (error, variables, context) => {
-			// An error happened!
-			Toastify("error", error.response.data.message);
-		},
-		onSuccess: (data, variables, context) => {
-			// Boom baby!
-			// window.location.reload();
-			Toastify("success", "Reservation Request Successfuly Sent");
-		},
-	});
-};
+
 const useDeleteUnit = () => {
 	return useMutation(api.deleteApi.deleteUnit, {
 		onError: (error, variables, context) => {
@@ -72,7 +60,6 @@ const useUpdateUnit = () => {
 };
 export {
 	useGetUserUnits,
-	useReserveUnits,
 	useDeleteUnit,
 	useGetBedTypes,
 	usePostUnit,

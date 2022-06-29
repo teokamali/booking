@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, LoginModal, Counter, Button } from "components";
 import DatePicker, { DateObject } from "react-multi-date-picker";
-import { useReserveUnits } from "hooks/useUnits";
+import { useReserveUnits } from "hooks/useReservaion";
 import { useAuth } from "hooks/useAuth";
 import "./index.scss";
 
@@ -11,17 +11,17 @@ const UnitCard = ({ data, buttonOnClick }) => {
 	const [active, setIsActive] = useState(false);
 	const { mutate: reserveMutate } = useReserveUnits();
 	const { isUserLoggedIn } = useAuth();
-	const [checkIn, setCheckIn] = useState(new DateObject().format("YYYY-MM-DD"));
-	const [checkOut, setCheckOut] = useState();
 	const [adult, setAdult] = useState(1);
 	const [specialRequests, setSpecialRequests] = useState("");
 	const [children, setChildren] = useState(0);
+
 	const reservationHandler = (id) => {
 		const data = {
 			id,
 			formData: {
-				check_in_date: checkIn,
-				check_out_date: checkOut,
+				// check_in_date: checkIn,
+				// check_out_date: checkOut,
+
 				adults_count: adult,
 				kids_count: children,
 				is_for_someone_else: false,
@@ -77,42 +77,7 @@ const UnitCard = ({ data, buttonOnClick }) => {
 									>
 										<div className='reservation-form__wrapper '>
 											{/* date */}
-											<div className='date-input'>
-												<button
-													onClick={(e) => {
-														e.preventDefault();
-														setCheckIn(
-															new DateObject().format("YYYY-MM-DD")
-														);
-														setCheckOut();
-													}}
-												>
-													X
-												</button>
-												<h5>Check In:</h5>
-												<DatePicker
-													containerClassName='w-100'
-													inputClass='form-control'
-													format='MMMM DD YYYY'
-													minDate={checkIn}
-													onChange={(e) =>
-														setCheckIn(e.format("YYYY-MM-DD"))
-													}
-												/>
-											</div>
 
-											<div className='date-input'>
-												<h5>Check Out:</h5>
-												<DatePicker
-													containerClassName='w-100'
-													inputClass='form-control'
-													format='MMMM DD YYYY'
-													minDate={checkIn}
-													onChange={(e) =>
-														setCheckOut(e.format("YYYY-MM-DD"))
-													}
-												/>
-											</div>
 											<div className='w-100'>
 												<h5>Adults:</h5>
 												<Counter value={adult} onValueChange={setAdult} />
@@ -135,6 +100,8 @@ const UnitCard = ({ data, buttonOnClick }) => {
 									<Button
 										type='submit'
 										className='w-100 '
+										data-bs-dismiss='modal'
+										aria-label='Close'
 										onClick={() => reservationHandler(id)}
 									>
 										Send Reservation Request
@@ -169,3 +136,41 @@ const UnitCard = ({ data, buttonOnClick }) => {
 };
 
 export default UnitCard;
+{
+	/* <div className='date-input'>
+<button
+	onClick={(e) => {
+		e.preventDefault();
+		setCheckIn(
+			new DateObject().format("YYYY-MM-DD")
+		);
+		setCheckOut();
+	}}
+>
+	X
+</button>
+<h5>Check In:</h5>
+<DatePicker
+	containerClassName='w-100'
+	inputClass='form-control'
+	format='MMMM DD YYYY'
+	minDate={checkIn}
+	onChange={(e) =>
+		setCheckIn(e.format("YYYY-MM-DD"))
+	}
+/>
+</div>
+
+<div className='date-input'>
+<h5>Check Out:</h5>
+<DatePicker
+	containerClassName='w-100'
+	inputClass='form-control'
+	format='MMMM DD YYYY'
+	minDate={checkIn.add(2, "d")}
+	onChange={(e) =>
+		setCheckOut(e.format("YYYY-MM-DD"))
+	}
+/>
+</div> */
+}

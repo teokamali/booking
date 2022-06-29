@@ -1,25 +1,38 @@
 import React from "react";
-import image from "assets/image/avatars/7.jpg";
 import "./index.scss";
-import Modal from "../Modal";
-import EditProperty from "UserDashboard/layouts/EditProperty";
-import { Link } from "react-router-dom";
 
-const TableButtons = ({ onEdit, onDelete, id }) => {
+const TableButtons = ({ onAccept, onReject, id, acceptIsLoading, rejectIsloading }) => {
 	return (
 		<div className='TbuttonsWrapper'>
-			<button type='button' onClick={onEdit} className='action-button accept'>
+			<button
+				disabled={acceptIsLoading ? true : false}
+				type='button'
+				onClick={() => onAccept(id)}
+				className='action-button accept'
+			>
 				<i className='fas fa-check'></i>
 			</button>
 
-			<button type='button' onClick={onDelete} className='action-button reject'>
+			<button
+				disabled={rejectIsloading ? true : false}
+				type='button'
+				onClick={() => onReject(id)}
+				className='action-button reject'
+			>
 				<i className='fas fa-close'></i>
 			</button>
 		</div>
 	);
 };
-const Table2 = ({ onEdit, onDelete, data, tableHead, title }) => {
-	console.log(data);
+const Table2 = ({
+	onAccept,
+	onReject,
+	data,
+	tableHead,
+	title,
+	acceptIsLoading,
+	rejectIsloading,
+}) => {
 	return (
 		<div className='table-responsive'>
 			<div className='Table_wrapper'>
@@ -68,9 +81,11 @@ const Table2 = ({ onEdit, onDelete, data, tableHead, title }) => {
 								</td>
 								<td className=' table_body_d  '>
 									<TableButtons
-										onEdit={onEdit}
-										onDelete={onDelete}
-										id={item.id}
+										acceptIsLoading={acceptIsLoading}
+										rejectIsloading={rejectIsloading}
+										onAccept={onAccept}
+										onReject={onReject}
+										id={item.invoice_id}
 									/>
 								</td>
 							</tr>

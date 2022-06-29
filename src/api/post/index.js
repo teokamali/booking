@@ -5,6 +5,8 @@ import postUserGallery from "./postUserGallery";
 import postProperty from "./postProperty";
 import postUnit from "./postUnit";
 import reserveUnit from "./reserveUnit";
+import acceptReservation from "./acceptReservation";
+import rejectReservation from "./rejectReservation";
 const post = {
 	webSiteLogin,
 	webSiteLogOut,
@@ -13,5 +15,7 @@ const post = {
 	postProperty,
 	reserveUnit,
 	postUnit,
+	acceptReservation,
+	rejectReservation,
 };
 export default post;
