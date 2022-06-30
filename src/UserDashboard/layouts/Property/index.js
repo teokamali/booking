@@ -1,4 +1,4 @@
-import { Loader, Table } from "../../../components";
+import { Loader2, Table } from "../../../components";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 
@@ -23,25 +23,21 @@ const Property = () => {
 						Add
 					</Link>
 				</div>
-				<div className='container'>
-					{data ? (
-						data.data.data.length === 0 ? (
-							<h2>Empty</h2>
-						) : (
-							<div>
-								<Table
-									tableHead={["id", "Name", "Location", "Action"]}
-									onDelete={(id) => deletePropertyHandler(id)}
-									data={property}
-								/>
-							</div>
-						)
+				{data ? (
+					data.data.data.length === 0 ? (
+						<h2>Empty</h2>
 					) : (
-						<div className='w-100'>
-							<Loader />
+						<div>
+							<Table
+								tableHead={["id", "Name", "Location", "Action"]}
+								onDelete={(id) => deletePropertyHandler(id)}
+								data={property}
+							/>
 						</div>
-					)}
-				</div>
+					)
+				) : (
+					<Loader2 />
+				)}
 			</div>
 		</DashboardLayout>
 	);

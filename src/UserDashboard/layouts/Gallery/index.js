@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Loader, Modal, AddGalleryModal } from "../../../components";
+import { Button, Loader2, Modal, AddGalleryModal } from "../../../components";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import {
@@ -108,7 +108,7 @@ const Gallery = () => {
 								))
 							)
 						) : (
-							<Loader />
+							<Loader2 />
 						)}
 					</div>
 				</div>
