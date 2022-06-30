@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Toastify } from "components";
 import api from "api";
 const useGetUserUnits = () => {
@@ -7,6 +7,7 @@ const useGetUserUnits = () => {
 };
 
 const useDeleteUnit = () => {
+	const queryClient = useQueryClient();
 	return useMutation(api.deleteApi.deleteUnit, {
 		onError: (error, variables, context) => {
 			// An error happened!
@@ -15,7 +16,8 @@ const useDeleteUnit = () => {
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
 			Toastify("success", "Property Removed successfully");
-			window.location.reload();
+			// window.location.reload();
+			queryClient.refetchQueries(["getUserUnits"]);
 		},
 	});
 };
