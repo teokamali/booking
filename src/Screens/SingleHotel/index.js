@@ -373,7 +373,7 @@ const SingleHotel = () => {
 									<i className='fas fa-family'></i> Children & Beds
 								</span>
 								<div className='d-flex flex-column'>
-									{data?.data.generalRules.children_and_beds[0]
+									{data?.data.generalRules
 										? data?.data.generalRules.children_and_beds.map(
 												(item, i) => <p key={i}>{`${i + 1}: ${item}`}</p>
 										  )

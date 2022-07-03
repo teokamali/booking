@@ -62,6 +62,19 @@ const usePostProperty = () => {
 		},
 	});
 };
+const usePostGeneralRules = () => {
+	return useMutation(api.post.postGeneralRules, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			// window.location.reload();
+			console.log(data);
+		},
+	});
+};
 const useDeleteProperty = () => {
 	return useMutation(api.deleteApi.deleteProperty, {
 		onError: (error, variables, context) => {
@@ -87,4 +100,5 @@ export {
 	useGetAllProperties,
 	useGetBestProperties,
 	useDeleteProperty,
+	usePostGeneralRules,
 };

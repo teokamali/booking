@@ -45,7 +45,7 @@ const AddProperty = () => {
 				value: item.id,
 			})
 		);
-	}
+	}	
 	// get cities
 	const [selectedCountry, setSelectedCountry] = useState(null);
 	const { data: cityData, isLoading: isCityLoading } = useGetCities({
@@ -54,6 +54,7 @@ const AddProperty = () => {
 			enabled: !!selectedCountry,
 		},
 	});
+	console.log({ cityData, countryList });
 
 	// get propertie types
 	const { data: propertyTypes, isLoading: propertyTypesLoading } = useGetPropertyType();

@@ -7,6 +7,7 @@ import postUnit from "./postUnit";
 import reserveUnit from "./reserveUnit";
 import acceptReservation from "./acceptReservation";
 import rejectReservation from "./rejectReservation";
+import postGeneralRules from "./postGeneralRules";
 const post = {
 	webSiteLogin,
 	webSiteLogOut,
@@ -17,5 +18,6 @@ const post = {
 	postUnit,
 	acceptReservation,
 	rejectReservation,
+	postGeneralRules,
 };
 export default post;

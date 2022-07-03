@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import { useGetProperties } from "hooks/useProperty";
@@ -11,9 +11,45 @@ import { useGetUnitById } from "hooks/useUnits";
 import { useLocation } from "react-router-dom";
 
 function EditUnit() {
+	const [unitData, setUnitData] = useState();
+	const [loading, setLoading] = useState(true);
 	const location = useLocation().pathname;
 	const unitId = location.split("/")[4];
 	const { data, isLoading } = useGetUnitById(unitId);
+	let formikInitialValue = {
+		property_id: "",
+		name: "",
+		adults_sleeps_count: 1,
+		kids_sleeps_count: 1,
+		price: 1,
+		bedrooms_count: 1,
+		description: "",
+		beds: [
+			{
+				bed_type_id: 1,
+				count: 1,
+			},
+		],
+	};
+	const formik = useFormik({
+		initialValues: formikInitialValue,
+		validationSchema: AddUnitValidate,
+		onSubmit: (values) => {
+			const formData = { unitId, values };
+			updateUnit(formData);
+		},
+	});
+	useEffect(() => {
+		if (data) {
+			setUnitData(data.data);
+			setLoading(false);
+			console.log(formik.values);
+			formik.setValues(unitData);
+			console.log(formik.values);
+		} else {
+			setLoading(true);
+		}
+	}, [isLoading]);
 	const [selectedBeds, setSelectedBeds] = useState([]);
 	// user Properties
 	const { data: properties, isLoading: propertyLoading } = useGetProperties();
@@ -83,30 +119,7 @@ function EditUnit() {
 		setSelectedBeds((prev) => prev.slice(0, -1));
 	};
 
-	let formInitial = {
-		property_id: "",
-		name: "",
-		adults_sleeps_count: 1,
-		kids_sleeps_count: 1,
-		price: 0,
-		bedrooms_count: 1,
-		description: "",
-		beds: [
-			{
-				bed_type_id: null,
-				count: 1,
-			},
-		],
-	};
-	const formik = useFormik({
-		initialValues: formInitial,
-		validationSchema: AddUnitValidate,
-		onSubmit: (values) => {
-			const formData = { unitId, values };
-			updateUnit(formData);
-		},
-	});
-	if (data && !isLoading) {
+	if (unitData && !loading) {
 		return (
 			<DashboardLayout>
 				<DashboardNavbar />

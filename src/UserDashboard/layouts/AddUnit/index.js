@@ -27,6 +27,8 @@ const AddUnit = () => {
 	// beds type
 	const { data: bedTypes, isLoading: BedTypesIsLoading } = useGetBedTypes();
 
+	const { mutate: postUnit } = usePostUnit();
+
 	let formInitial = {
 		property_id: "",
 		name: "",
@@ -43,8 +45,6 @@ const AddUnit = () => {
 			},
 		],
 	};
-	const { mutate: postUnit } = usePostUnit();
-
 	const formik = useFormik({
 		initialValues: formInitial,
 		validationSchema: AddUnitValidate,

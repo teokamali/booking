@@ -12,6 +12,7 @@ import Reserves from "./layouts/Reserves";
 import { constans } from "values";
 // @mui icons
 import Icon from "@mui/material/Icon";
+import GeneralRules from "./layouts/GeneralRules";
 const { PASSENGER, MIDDLE_MAN, OWNER } = constans;
 
 const routes = [
@@ -73,6 +74,16 @@ const routes = [
 		route: "units",
 		link: "units",
 		component: <Units />,
+		accessibility: [PASSENGER, OWNER],
+	},
+	{
+		type: "collapse",
+		name: "General Rules",
+		key: "general-rules",
+		icon: <Icon fontSize='small'>gavel</Icon>,
+		route: "general-rules",
+		link: "general-rules",
+		component: <GeneralRules />,
 		accessibility: [PASSENGER, OWNER],
 	},
 	{

@@ -24,6 +24,7 @@ const updateUnit = config.BASE_URL + "property/units";
 const getHotelReservations = config.BASE_URL + "hotels/invoices";
 const acceptReservation = config.BASE_URL + "hotels/invoices";
 const rejectReservation = config.BASE_URL + "hotels/invoices";
+const postGeneralRules = config.BASE_URL + "property";
 // main website
 const getBestProperties = config.BASE_URL + "best_properties";
 const getAllProperties = config.BASE_URL + "property";
@@ -57,6 +58,8 @@ const routes = {
 	updateUnit,
 	acceptReservation,
 	rejectReservation,
+	postGeneralRules,
+
 };
 
 export default routes;
