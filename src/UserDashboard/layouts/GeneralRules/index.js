@@ -199,7 +199,7 @@ function GeneralRules() {
 						<label htmlFor='floatingTextarea3'>Refundable Damage Deposit</label>
 					</div>
 					{/* childern and beds rules */}
-					<div className='childern-and-beds-wrapper'>
+					<div className='childern-and-beds-wrapper mt-3'>
 						<span>childern and beds rules</span>
 						<div className='input-wrapper'>
 							<label htmlFor=''>1-</label>
