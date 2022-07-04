@@ -45,7 +45,7 @@ const AddProperty = () => {
 				value: item.id,
 			})
 		);
-	}	
+	}
 	// get cities
 	const [selectedCountry, setSelectedCountry] = useState(null);
 	const { data: cityData, isLoading: isCityLoading } = useGetCities({
@@ -54,7 +54,6 @@ const AddProperty = () => {
 			enabled: !!selectedCountry,
 		},
 	});
-	console.log({ cityData, countryList });
 
 	// get propertie types
 	const { data: propertyTypes, isLoading: propertyTypesLoading } = useGetPropertyType();
@@ -72,8 +71,7 @@ const AddProperty = () => {
 	const formSubmitHandler = (e) => {
 		if (images.length === 0) {
 			Toastify("error", "Please select at least one image");
-		}
-		if (position === undefined) {
+		} else if (position === undefined) {
 			Toastify("error", "Please select a loacation on map");
 		}
 		const formData = {
@@ -92,9 +90,7 @@ const AddProperty = () => {
 				},
 			},
 		};
-		if (images.length !== 0 && position !== undefined) {
-			postPropertyResult(formData);
-		}
+		postPropertyResult(formData);
 	};
 
 	return (
@@ -202,7 +198,9 @@ const AddProperty = () => {
 								city_id: "",
 								full: "",
 							}}
-							onSubmit={(e) => formSubmitHandler(e)}
+							onSubmit={(e) => {
+								formSubmitHandler(e);
+							}}
 						>
 							{({ values, errors }) => (
 								<Form>
@@ -310,7 +308,11 @@ const AddProperty = () => {
 										</MapContainer>
 									</div>
 									{!isPropertyPostLoading ? (
-										<Button type='submit' className='w-100 my-3'>
+										<Button
+											type='submit'
+											className='w-100 my-3'
+											isLoading={isPropertyPostLoading}
+										>
 											Submit
 										</Button>
 									) : (

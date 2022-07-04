@@ -5,4 +5,9 @@ const useGetHotelInvoices = () => {
 	const { data, isLoading } = useQuery("getHotelInvoices", api.get.getHotelReservations);
 	return { data, isLoading };
 };
-export { useGetHotelInvoices };
+
+const useGetUserReservations = () => {
+	const { data, isLoading } = useQuery("getUserInvoices", api.get.getUserReservations);
+	return { data, isLoading };
+};
+export { useGetHotelInvoices, useGetUserReservations };

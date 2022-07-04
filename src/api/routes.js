@@ -22,9 +22,13 @@ const getBedsTypes = config.BASE_URL + "property/bed_types";
 const getUnitById = config.BASE_URL + "property/units";
 const updateUnit = config.BASE_URL + "property/units";
 const getHotelReservations = config.BASE_URL + "hotels/invoices";
+const getUserReservations = config.BASE_URL + "user/invoices";
 const acceptReservation = config.BASE_URL + "hotels/invoices";
 const rejectReservation = config.BASE_URL + "hotels/invoices";
 const postGeneralRules = config.BASE_URL + "property";
+const getFacilityCategories = config.BASE_URL + "property/facilities";
+const getFacilityCategoriesItem = config.BASE_URL + "property/facilities";
+
 // main website
 const getBestProperties = config.BASE_URL + "best_properties";
 const getAllProperties = config.BASE_URL + "property";
@@ -32,6 +36,9 @@ const searchUnits = config.BASE_URL + "search/hotels";
 const ReserveUnit = config.BASE_URL + "hotels/unit";
 
 const routes = {
+	getFacilityCategoriesItem,
+	getFacilityCategories,
+	getUserReservations,
 	webSiteLoginWithEmailRoute,
 	webSiteRegisterWithEmailRoute,
 	usergallery,
@@ -59,7 +66,6 @@ const routes = {
 	acceptReservation,
 	rejectReservation,
 	postGeneralRules,
-
 };
 
 export default routes;

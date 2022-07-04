@@ -3,7 +3,8 @@ import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLa
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import { useGetHotelInvoices } from "hooks/useInvoices";
 import { useAcceptReservation, useRejectReservation } from "hooks/useReservaion";
-import { Table2, Loader2 } from "components";
+import { OwnerTable, Loader2 } from "components";
+
 function Reserves() {
 	const [isLoading, setIsLoading] = useState(false);
 	const { data } = useGetHotelInvoices();
@@ -21,7 +22,7 @@ function Reserves() {
 			<DashboardNavbar />
 
 			{data ? (
-				<Table2
+				<OwnerTable
 					onAccept={(id) => AcceptReserveHandler(id)}
 					onReject={(id) => RejectReserveHandler(id)}
 					data={data?.data}

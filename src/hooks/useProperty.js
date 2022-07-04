@@ -19,6 +19,7 @@ const useGetBestProperties = () => {
 };
 const useGetPropertyById = (id) => {
 	const { data, isLoading } = useQuery("getPropertyById", () => api.get.getPropertyById(id));
+	console.log(data);
 	return { data, isLoading };
 };
 const useGetCountries = () => {
@@ -88,6 +89,23 @@ const useDeleteProperty = () => {
 		},
 	});
 };
+const useGetFacilityCategories = () => {
+	const { data, isLoading } = useQuery("getFacilityCategories", api.get.getFacilityCategories);
+	return { data, isLoading };
+};
+const useGetFacilityCategoriesItem = ({ id, options = {} }) => {
+	return useQuery(["get-categortyItems", id], api.get.getFacilityCategoriesItem, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			// recconecting
+		},
+		select: (data, variables, context) => {
+			// Boom baby!
+			return data.data.map((item) => ({ label: item.name, value: item.id }));
+		},
+		...options,
+	});
+};
 
 export {
 	useGetPropertyType,
@@ -101,4 +119,6 @@ export {
 	useGetBestProperties,
 	useDeleteProperty,
 	usePostGeneralRules,
+	useGetFacilityCategories,
+	useGetFacilityCategoriesItem,
 };

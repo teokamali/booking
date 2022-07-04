@@ -10,9 +10,11 @@ import Units from "./layouts/Units";
 import EditUnit from "./layouts/EditUnit";
 import Reserves from "./layouts/Reserves";
 import { constans } from "values";
+import GeneralRules from "./layouts/GeneralRules";
+import Facilities from "./layouts/Facilities";
+import PassangerReserves from "./layouts/PassangerReserves";
 // @mui icons
 import Icon from "@mui/material/Icon";
-import GeneralRules from "./layouts/GeneralRules";
 const { PASSENGER, MIDDLE_MAN, OWNER } = constans;
 
 const routes = [
@@ -24,7 +26,7 @@ const routes = [
 		route: "/",
 		link: "/dashboard",
 		component: <Dashboard />,
-		accessibility: [MIDDLE_MAN, OWNER],
+		accessibility: [PASSENGER, MIDDLE_MAN, OWNER],
 	},
 	{
 		type: "collapse",
@@ -44,7 +46,7 @@ const routes = [
 		route: "property",
 		link: "property",
 		component: <Property />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [OWNER],
 	},
 	{
 		type: "",
@@ -54,7 +56,7 @@ const routes = [
 		route: "property/add",
 		link: "property/add",
 		component: <AddProperty />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [OWNER],
 	},
 	{
 		type: "",
@@ -64,7 +66,7 @@ const routes = [
 		route: "property/edit/:id",
 		link: "property/edit/:id",
 		component: <EditProperty />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [OWNER],
 	},
 	{
 		type: "collapse",
@@ -74,7 +76,7 @@ const routes = [
 		route: "units",
 		link: "units",
 		component: <Units />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [OWNER],
 	},
 	{
 		type: "collapse",
@@ -84,7 +86,17 @@ const routes = [
 		route: "general-rules",
 		link: "general-rules",
 		component: <GeneralRules />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [OWNER],
+	},
+	{
+		type: "collapse",
+		name: "Facilities",
+		key: "facilities",
+		icon: <Icon fontSize='small'>warehouse</Icon>,
+		route: "facilities",
+		link: "facilities",
+		component: <Facilities />,
+		accessibility: [OWNER],
 	},
 	{
 		type: "",
@@ -94,7 +106,7 @@ const routes = [
 		route: "units/add-unit",
 		link: "units/add-unit",
 		component: <AddUnit />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [OWNER],
 	},
 	{
 		type: "",
@@ -104,7 +116,7 @@ const routes = [
 		route: "units/edit/:id",
 		link: "units/edit/:id",
 		component: <EditUnit />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [OWNER],
 	},
 	{
 		type: "collapse",
@@ -114,7 +126,17 @@ const routes = [
 		route: "reserves",
 		link: "reserves",
 		component: <Reserves />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [OWNER],
+	},
+	{
+		type: "collapse",
+		name: "Reservations",
+		key: "passanger-reserves",
+		icon: <Icon fontSize='small'>book_online</Icon>,
+		route: "passanger-reserves",
+		link: "passanger-reserves",
+		component: <PassangerReserves />,
+		accessibility: [PASSENGER],
 	},
 	{
 		type: "collapse",

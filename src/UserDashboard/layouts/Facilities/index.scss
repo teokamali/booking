@@ -1,0 +1,17 @@
+@import "styles/global.scss";
+.categories-wrapper {
+	background-color: $white-color;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 1rem 2rem;
+	margin-top: 20px;
+	border-radius: 20px;
+	.category {
+		flex: 1 1 200px;
+		h5 {
+			font-size: 1.2rem;
+            font-weight: bold;
+		}
+	}
+}

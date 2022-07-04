@@ -24,7 +24,7 @@ const TableButtons = ({ onAccept, onReject, id, acceptIsLoading, rejectIsloading
 		</div>
 	);
 };
-const Table2 = ({
+const OwnerTable = ({
 	onAccept,
 	onReject,
 	data,
@@ -97,16 +97,4 @@ const Table2 = ({
 	);
 };
 
-export default Table2;
-// <TableItem
-// 	key={i}
-// 	id={item.id}
-// 	name={item.name}
-// 	address={item.address}
-// 	adults_sleeps_count={item.adults_sleeps_count}
-// 	bedrooms_count={item.bedrooms_count}
-// 	beds={item.beds}
-// 	bathrooms={item.bathroom}
-// 	onEdit={() => onEdit(item)}
-// 	onDelete={() => onDelete(item.id)}
-// />
+export default OwnerTable;
