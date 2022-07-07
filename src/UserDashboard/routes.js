@@ -13,6 +13,8 @@ import { constans } from "values";
 import GeneralRules from "./layouts/GeneralRules";
 import Facilities from "./layouts/Facilities";
 import PassangerReserves from "./layouts/PassangerReserves";
+import Surrounding from "./layouts/Surrounding";
+import Faq from "./layouts/Faq";
 // @mui icons
 import Icon from "@mui/material/Icon";
 const { PASSENGER, MIDDLE_MAN, OWNER } = constans;
@@ -96,6 +98,26 @@ const routes = [
 		route: "facilities",
 		link: "facilities",
 		component: <Facilities />,
+		accessibility: [OWNER],
+	},
+	{
+		type: "collapse",
+		name: "Surrounding",
+		key: "surrounding",
+		icon: <Icon fontSize='small'>map</Icon>,
+		route: "surrounding",
+		link: "surrounding",
+		component: <Surrounding />,
+		accessibility: [OWNER],
+	},
+	{
+		type: "collapse",
+		name: "FAQ",
+		key: "faq",
+		icon: <Icon fontSize='small'>quiz</Icon>,
+		route: "faq",
+		link: "faq",
+		component: <Faq />,
 		accessibility: [OWNER],
 	},
 	{

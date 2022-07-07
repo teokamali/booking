@@ -1,0 +1,19 @@
+.surrounding_page {
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+.add-surroundig-form {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	gap: 20px;
+}
+.surrounding-select {
+	z-index: 10000;
+}
+.propertyList-select {
+	z-index: 10001;
+}

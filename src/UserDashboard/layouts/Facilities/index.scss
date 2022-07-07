@@ -8,10 +8,22 @@
 	margin-top: 20px;
 	border-radius: 20px;
 	.category {
-		flex: 1 1 200px;
+		flex: 1 1 300px;
+		max-width: 300px;
 		h5 {
 			font-size: 1.2rem;
-            font-weight: bold;
+			font-weight: bold;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			li {
+				display: flex;
+				align-items: center;
+				gap: 5px;
+				margin-bottom: 10px;
+			}
 		}
 	}
 }

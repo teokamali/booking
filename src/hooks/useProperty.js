@@ -72,7 +72,7 @@ const usePostGeneralRules = () => {
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
 			// window.location.reload();
-			console.log(data);
+			Toastify("success", data.message);
 		},
 	});
 };
@@ -106,8 +106,43 @@ const useGetFacilityCategoriesItem = ({ id, options = {} }) => {
 		...options,
 	});
 };
+const usePostSurrounding = () => {
+	return useQuery("post-surrounding", api.post.postSurrounding, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			// recconecting
+		},
+		onSuccess: (data) => {
+			console.log(data);
+		},
+	});
+};
+const useGetSurroundingCategories = () => {
+	const { data, isLoading } = useQuery(
+		"getSurroundingCategories",
+		api.get.getSurroundingCategories
+	);
+	return { data, isLoading };
+};
+
+const usePostFacilities = () => {
+	return useMutation(api.post.postFacilities, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			// window.location.reload();
+			Toastify("success", data.message);
+		},
+	});
+};
 
 export {
+	usePostFacilities,
+	usePostSurrounding,
+	useGetSurroundingCategories,
 	useGetPropertyType,
 	useGetProperties,
 	useGetCountries,

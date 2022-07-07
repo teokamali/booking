@@ -28,6 +28,9 @@ const rejectReservation = config.BASE_URL + "hotels/invoices";
 const postGeneralRules = config.BASE_URL + "property";
 const getFacilityCategories = config.BASE_URL + "property/facilities";
 const getFacilityCategoriesItem = config.BASE_URL + "property/facilities";
+const getSurroundingCategories = config.BASE_URL + "property/surrounding_categories";
+const postSurrounding = config.BASE_URL + "property/surroundings";
+const postFacilities = config.BASE_URL + "property/facilities";
 
 // main website
 const getBestProperties = config.BASE_URL + "best_properties";
@@ -36,6 +39,9 @@ const searchUnits = config.BASE_URL + "search/hotels";
 const ReserveUnit = config.BASE_URL + "hotels/unit";
 
 const routes = {
+	postFacilities,
+	postSurrounding,
+	getSurroundingCategories,
 	getFacilityCategoriesItem,
 	getFacilityCategories,
 	getUserReservations,

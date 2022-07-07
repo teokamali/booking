@@ -15,8 +15,10 @@ import getHotelReservations from "./getHotelReservations";
 import getUserReservations from "./getUserReservations";
 import getFacilityCategories from "./getFacilityCategories";
 import getFacilityCategoriesItem from "./getFacilityCategoriesItem";
+import getSurroundingCategories from "./getSurroundingCategories";
 
 const get = {
+	getSurroundingCategories,
 	getUnitById,
 	getUserGallery,
 	getPropertyTypes,

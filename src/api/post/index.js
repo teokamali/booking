@@ -8,6 +8,8 @@ import reserveUnit from "./reserveUnit";
 import acceptReservation from "./acceptReservation";
 import rejectReservation from "./rejectReservation";
 import postGeneralRules from "./postGeneralRules";
+import postSurrounding from "./postSurrounding";
+import postFacilities from "./postFacilities";
 const post = {
 	webSiteLogin,
 	webSiteLogOut,
@@ -19,5 +21,7 @@ const post = {
 	acceptReservation,
 	rejectReservation,
 	postGeneralRules,
+	postSurrounding,
+	postFacilities,
 };
 export default post;
