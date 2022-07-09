@@ -16,8 +16,9 @@ import getUserReservations from "./getUserReservations";
 import getFacilityCategories from "./getFacilityCategories";
 import getFacilityCategoriesItem from "./getFacilityCategoriesItem";
 import getSurroundingCategories from "./getSurroundingCategories";
-
+import getCurrentUser from "./getCurrentUser";
 const get = {
+	getCurrentUser,
 	getSurroundingCategories,
 	getUnitById,
 	getUserGallery,

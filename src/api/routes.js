@@ -5,6 +5,7 @@ const loginWithGoogle = config.BASE_URL + "auth/google";
 const webSiteLoginWithEmailRoute = config.BASE_URL + "login/email";
 const webSiteLogOut = config.BASE_URL + "logout";
 const webSiteRegisterWithEmailRoute = config.BASE_URL + "register/email";
+const getCurrentUser = config.BASE_URL + "user";
 // dashboard
 const propertyTypes = config.BASE_URL + "property_types";
 const usergallery = config.BASE_URL + "gallery";
@@ -40,6 +41,7 @@ const searchUnits = config.BASE_URL + "search/hotels";
 const ReserveUnit = config.BASE_URL + "hotels/unit";
 
 const routes = {
+	getCurrentUser,
 	postFaq,
 	postFacilities,
 	postSurrounding,

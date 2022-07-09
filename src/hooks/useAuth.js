@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import api from "../api";
 import { Toastify } from "../components";
 import { constans } from "../values";
@@ -71,6 +71,24 @@ const useLoginWithGoogle = () => {
 		},
 	});
 };
+const useGetCurrentUser = () => {
+	const { user, setUser } = useContext(UserContext);
+	const navigate = useNavigate();
+	return useMutation(api.get.getCurrentUser, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			window.location.reload();
+			// Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			Cookies.set(constans.TOKEN, data.data);
+			setUser({ ...user, userInformation: data.data });
+			Cookies.set(constans.INFO, JSON.stringify(data.data));
+			navigate("/");
+		},
+	});
+};
 const useRegister = () => {
 	const { user, setUser } = useContext(UserContext);
 
@@ -107,4 +125,4 @@ const useLogout = () => {
 	});
 };
 
-export { useAuth, useLogin, useRegister, useLogout, useLoginWithGoogle };
+export { useAuth, useLogin, useRegister, useLogout, useLoginWithGoogle, useGetCurrentUser };
