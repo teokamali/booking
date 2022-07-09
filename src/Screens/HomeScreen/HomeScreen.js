@@ -71,9 +71,9 @@ const HomeScrean = () => {
 					<div className='section first__section'>
 						<div className='section__heading'>
 							<h3>Explore our Hotels</h3>
-							<Button isWhite hasBorder hasBoxShadow isPrimary>
-								<Link to='/hotels'>See More</Link>
-							</Button>
+							<Link to='/hotels' className='btn-main'>
+								See More
+							</Link>
 						</div>
 						<div className='slider-swiper'>
 							<Swiper

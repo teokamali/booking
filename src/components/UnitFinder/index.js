@@ -33,6 +33,14 @@ const UnitFinder = ({ setSearchedUnits }) => {
 			return Toastify("error", "Please Select Check-Out Date");
 		}
 	};
+	const resetFormHandler = (e) => {
+		e.preventDefault();
+		setAdult(1);
+		setChildren(0);
+		setCheckMinDate(new DateObject());
+		setCheckIn(null);
+		setCheckOut(null);
+	};
 	return (
 		<>
 			{isOpen ? (
@@ -46,6 +54,9 @@ const UnitFinder = ({ setSearchedUnits }) => {
 						</button>
 					</div>
 					<div className='UnitFinder__wrapper '>
+						<button className='small-btn-main' onClick={resetFormHandler}>
+							Reset
+						</button>
 						{/* date */}
 						<div className='date-input'>
 							<h5>Check In:</h5>
