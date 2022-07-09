@@ -6,15 +6,21 @@ import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import "./index.scss";
 import { Field, Form, Formik } from "formik";
 import { MapContainer } from "react-leaflet";
-import { Map, Button, Loader } from "components";
-import { useGetProperties, useGetSurroundingCategories } from "hooks/useProperty";
+import { Map, Button, Loader, Toastify } from "components";
+import {
+	useGetProperties,
+	useGetSurroundingCategories,
+	usePostSurrounding,
+} from "hooks/useProperty";
+import { addSurroundingValidation } from "validations";
+import { omit } from "lodash";
 
 function Surrounding() {
 	const [location, setLocation] = useState({
 		lat: 0,
 		lng: 0,
 	});
-	const [position, setPosition] = useState();
+	const { mutate: postSurroundingMutate, isPostSurroundingLoading } = usePostSurrounding();
 
 	// get Property List
 	const { data: proppertyList, isLoading: isPropertyListLoading } = useGetProperties();
@@ -42,17 +48,21 @@ function Surrounding() {
 
 	let Initialvalue = {
 		property_id: "",
+		property_label: "",
 		surrounding_category_id: "",
+		surrounding_category_label: "",
 		surrounding_name: "",
-		lat: "",
-		long: "",
+		lat: null,
+		long: null,
 	};
 
 	// form submit handler
-	const onSubmitHandler = (e) => {
-		console.log(e);
+	const onSubmitHandler = (val) => {
+		const formData = omit(val, ["property_label", "surrounding_category_label"]);
+		postSurroundingMutate(formData);
 	};
 
+	// todo : show errors under inputs
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
@@ -65,26 +75,49 @@ function Surrounding() {
 						buttonText='Add'
 						modalTitle='Add New Surrounding'
 					>
-						<Formik initialValues={Initialvalue}>
-							{({ values, errors }) => (
-								<Form
-									className='add-surroundig-form'
-									onSubmit={(values) => onSubmitHandler(values)}
-								>
+						<Formik
+							initialValues={Initialvalue}
+							onSubmit={(values) => onSubmitHandler(values)}
+							validationSchema={addSurroundingValidation}
+						>
+							{({ values, errors, setValues }) => (
+								<Form className='add-surroundig-form'>
 									<div>
 										<label htmlFor=''>Select Your Property</label>
 										<Select
 											options={newPropertyList}
+											name='property_id'
 											className='basic-single propertyList-select'
-											onChange={(e) => console.log(e.value)}
+											value={{
+												value: values.property_id,
+												label: values.property_label,
+											}}
+											onChange={(e) =>
+												setValues((prev) => ({
+													...prev,
+													property_id: e.value,
+													property_label: e.label,
+												}))
+											}
 										/>
 									</div>
 									<div>
 										<label htmlFor=''>Select Surrounding Category</label>
 										<Select
 											options={newSurroundingList}
+											name='surrounding_category_id'
 											className='basic-single surrounding-select'
-											onChange={(e) => console.log(e)}
+											value={{
+												value: values.surrounding_category_id,
+												label: values.surrounding_category_label,
+											}}
+											onChange={(e) =>
+												setValues((prev) => ({
+													...prev,
+													surrounding_category_id: e.value,
+													surrounding_category_label: e.label,
+												}))
+											}
 										/>
 									</div>
 									<div>
@@ -104,13 +137,28 @@ function Surrounding() {
 												<Map
 													userLocation={location}
 													setUserLocation={setLocation}
-													clickedPosition={position}
-													setClickPosition={setPosition}
+													clickedPosition={{
+														lat: values.lat,
+														lng: values.long,
+													}}
+													// setClickPosition={setPosition}
+													setClickPosition={(e) => {
+														setValues((prev) => ({
+															...prev,
+															lat: e.lat,
+															long: e.lng,
+														}));
+													}}
 												/>
 											</MapContainer>
 										</div>
 									</div>
-									<Button>Submit</Button>
+									<Button
+										disabled={isPostSurroundingLoading}
+										isLoading={isPostSurroundingLoading}
+									>
+										Submit
+									</Button>
 									{/* {!isPropertyPostLoading ? (
 										<Button
 											type='submit'

@@ -10,6 +10,7 @@ import rejectReservation from "./rejectReservation";
 import postGeneralRules from "./postGeneralRules";
 import postSurrounding from "./postSurrounding";
 import postFacilities from "./postFacilities";
+import postFaq from "./postFaq";
 const post = {
 	webSiteLogin,
 	webSiteLogOut,
@@ -23,5 +24,6 @@ const post = {
 	postGeneralRules,
 	postSurrounding,
 	postFacilities,
+	postFaq,
 };
 export default post;

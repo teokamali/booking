@@ -30,3 +30,4 @@ export { default as Map } from "./Map";
 export { default as Counter } from "./Counter";
 export { default as UnitFinder } from "./UnitFinder";
 export { default as PassangerTable } from "./PassangerTable";
+export { default as FaqTable } from "./FaqTable";

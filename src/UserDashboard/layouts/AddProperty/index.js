@@ -202,8 +202,9 @@ const AddProperty = () => {
 								formSubmitHandler(e);
 							}}
 						>
-							{({ values, errors }) => (
+							{({ values, errors, touched }) => (
 								<Form>
+									{console.log(errors)}
 									{/* type */}
 									<div className=' mb-3'>
 										<label htmlFor=''>Select Your Service Type</label>
@@ -214,6 +215,11 @@ const AddProperty = () => {
 											name='property_type_id'
 											onChange={(e) => (values.property_type_id = e.value)}
 										/>
+										{errors.property_type_id && touched.property_type_id && (
+											<span className='input-error'>
+												{errors.property_type_id}
+											</span>
+										)}
 									</div>
 									{/* city and country*/}
 									<div className='row mb-3'>
@@ -242,6 +248,11 @@ const AddProperty = () => {
 												isLoading={isCityLoading}
 												isDisabled={!!!cityData}
 											/>
+											{errors.city_id && touched.city_id && (
+												<span className='input-error'>
+													{errors.city_id}
+												</span>
+											)}
 										</div>
 									</div>
 									{/* name */}
@@ -254,6 +265,9 @@ const AddProperty = () => {
 											name='name'
 										/>
 										<label htmlFor='name'>Name</label>
+										{errors.name && touched.name && (
+											<span className='input-error'>{errors.name}</span>
+										)}
 									</div>
 									{/* subtitle */}
 									<div className='form-floating mb-3'>
@@ -265,6 +279,9 @@ const AddProperty = () => {
 											name='subtitle'
 										/>
 										<label htmlFor='subtitle'>Subtitle</label>
+										{errors.subtitle && touched.subtitle && (
+											<span className='input-error'>{errors.subtitle}</span>
+										)}
 									</div>
 									{/* description */}
 									<div className='form-floating mb-3'>
@@ -278,6 +295,11 @@ const AddProperty = () => {
 											style={{ height: "100px" }}
 										/>
 										<label htmlFor='description'>Description</label>
+										{errors.description && touched.description && (
+											<span className='input-error'>
+												{errors.description}
+											</span>
+										)}
 									</div>
 									{/* fullAddress */}
 									<div className='form-floating mb-3'>
@@ -289,6 +311,9 @@ const AddProperty = () => {
 											name='full'
 										/>
 										<label htmlFor='fullAddress'>Full Address</label>
+										{errors.full && touched.full && (
+											<span className='input-error'>{errors.full}</span>
+										)}
 									</div>
 									{/* Map */}
 									<div className='container'>

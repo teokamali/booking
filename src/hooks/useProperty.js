@@ -1,6 +1,7 @@
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Toastify } from "components";
 import api from "api";
+import { Navigate, useNavigate } from "react-router";
 const useGetPropertyType = () => {
 	const { data, isLoading } = useQuery("getPropertyTypes", api.get.getPropertyTypes);
 	return { data, isLoading };
@@ -52,6 +53,7 @@ const useUpdateProperty = () => {
 	});
 };
 const usePostProperty = () => {
+	const navigate = useNavigate();
 	return useMutation(api.post.postProperty, {
 		onError: (error, variables, context) => {
 			// An error happened!
@@ -59,7 +61,7 @@ const usePostProperty = () => {
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
-			window.location.reload();
+			navigate("/dashboard/property");
 		},
 	});
 };
@@ -107,13 +109,15 @@ const useGetFacilityCategoriesItem = ({ id, options = {} }) => {
 	});
 };
 const usePostSurrounding = () => {
-	return useQuery("post-surrounding", api.post.postSurrounding, {
+	return useMutation(api.post.postSurrounding, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			// recconecting
+			Toastify("error", error.response.data.message);
 		},
-		onSuccess: (data) => {
-			console.log(data);
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			// window.location.reload();
+			Toastify("success", data.message);
 		},
 	});
 };
@@ -138,8 +142,25 @@ const usePostFacilities = () => {
 		},
 	});
 };
+const usePostFaq = () => {
+	const queryClient = useQueryClient();
+
+	return useMutation(api.post.postFaq, {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			// window.location.reload();
+			Toastify("success", data.message);
+			queryClient.refetchQueries(["getUserProperties"]);
+		},
+	});
+};
 
 export {
+	usePostFaq,
 	usePostFacilities,
 	usePostSurrounding,
 	useGetSurroundingCategories,

@@ -27,7 +27,6 @@ const useAcceptReservation = () => {
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
 			Toastify("success", data.message);
-			console.log("success");
 			queryClient.refetchQueries(["getHotelInvoices"]);
 			// refetchQueries(1"getHotelInvoices");
 		},

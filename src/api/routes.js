@@ -31,6 +31,7 @@ const getFacilityCategoriesItem = config.BASE_URL + "property/facilities";
 const getSurroundingCategories = config.BASE_URL + "property/surrounding_categories";
 const postSurrounding = config.BASE_URL + "property/surroundings";
 const postFacilities = config.BASE_URL + "property/facilities";
+const postFaq = config.BASE_URL + "property";
 
 // main website
 const getBestProperties = config.BASE_URL + "best_properties";
@@ -39,6 +40,7 @@ const searchUnits = config.BASE_URL + "search/hotels";
 const ReserveUnit = config.BASE_URL + "hotels/unit";
 
 const routes = {
+	postFaq,
 	postFacilities,
 	postSurrounding,
 	getSurroundingCategories,

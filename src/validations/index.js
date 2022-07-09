@@ -22,7 +22,7 @@ export const AddPropertyValidate = Yup.object({
 	city_id: Yup.number().required("You Most Select your City"),
 	name: Yup.string().max(15, "Name Most Be Less Then 15 Characters").required("Name Is Required"),
 	description: Yup.string()
-		.max(15, "Description most be less than 15 Characters")
+		.min(15, "Description most at least 15 Characters")
 		.required("Description Is Required"),
 	full: Yup.string().required("Full Address is required"),
 	subtitle: Yup.string()
@@ -52,4 +52,19 @@ export const AddUnitValidate = Yup.object({
 			})
 		)
 		.required("You must enter your bed types"),
+});
+export const addSurroundingValidation = Yup.object({
+	property_id: Yup.number().required("please Select a Property"),
+	surrounding_category_id: Yup.number().required("please Select a Category"),
+	lat: Yup.number().required("please Select a loaction"),
+	long: Yup.number().required("please Select a loaction"),
+});
+export const addFaq = Yup.object({
+	property_id: Yup.number().required("please Select a Property"),
+	question: Yup.string()
+		.min(10, "Question Must Be At Least 10 Charachters")
+		.required("Question Field Is Requierd"),
+	answer: Yup.string()
+		.min(10, "Answer Must Be At Least 10 Charachters")
+		.required("Answer Field Is Requierd"),
 });
