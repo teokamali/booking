@@ -29,5 +29,5 @@ export { default as AddGalleryModal } from "./AddGalleryModal";
 export { default as Map } from "./Map";
 export { default as Counter } from "./Counter";
 export { default as UnitFinder } from "./UnitFinder";
-export { default as PassangerTable } from "./PassangerTable";
 export { default as FaqTable } from "./FaqTable";
+export { default as ReusableTable } from "./ReusableTable";
