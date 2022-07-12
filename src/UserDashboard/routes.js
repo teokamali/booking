@@ -12,7 +12,6 @@ import Reserves from "./layouts/Reserves";
 import { constans } from "values";
 import GeneralRules from "./layouts/GeneralRules";
 import Facilities from "./layouts/Facilities";
-import PassangerReserves from "./layouts/PassangerReserves";
 import Surrounding from "./layouts/Surrounding";
 import Faq from "./layouts/Faq";
 // @mui icons
@@ -28,7 +27,7 @@ const routes = [
 		route: "/",
 		link: "/dashboard",
 		component: <Dashboard />,
-		accessibility: [PASSENGER, MIDDLE_MAN, OWNER],
+		accessibility: [MIDDLE_MAN, OWNER],
 	},
 	{
 		type: "collapse",
@@ -148,18 +147,9 @@ const routes = [
 		route: "reserves",
 		link: "reserves",
 		component: <Reserves />,
-		accessibility: [OWNER],
+		accessibility: [PASSENGER, OWNER],
 	},
-	{
-		type: "collapse",
-		name: "Reservations",
-		key: "passanger-reserves",
-		icon: <Icon fontSize='small'>book_online</Icon>,
-		route: "passanger-reserves",
-		link: "passanger-reserves",
-		component: <PassangerReserves />,
-		accessibility: [PASSENGER],
-	},
+
 	{
 		type: "collapse",
 		name: "Setting",
@@ -168,7 +158,7 @@ const routes = [
 		route: "setting",
 		link: "setting",
 		component: <Profile />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [PASSENGER],
 	},
 ];
 

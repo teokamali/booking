@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import AdministratorRoutes from "./AdministratorRoutes";
 import PanelRoutes from "./PanelRoutes";

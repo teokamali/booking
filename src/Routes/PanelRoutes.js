@@ -1,10 +1,11 @@
 import { UserContext } from "context/UsersContextProvider";
+import { useAuth } from "hooks/useAuth";
 import { useContext, useEffect, useMemo, useState } from "react";
 import websiteRoutesList from "UserDashboard/routes";
 import PanelProtectedRoutes from "./PanelProtectedRoutes";
 
 // react-router components
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 // @mui material components
 import CssBaseline from "@mui/material/CssBaseline";
@@ -36,8 +37,12 @@ import routes from "UserDashboard/routes";
 import { setMiniSidenav, useMaterialUIController } from "UserDashboard/context";
 
 // Images
+import Cookies from "js-cookie";
 import brandDark from "UserDashboard/assets/images/logo-ct-dark.png";
 import brandWhite from "UserDashboard/assets/images/logo-ct.png";
+import constans from "../AdminPanel/values/constans";
+import { Loader } from "components";
+import { Loader2 } from "components";
 
 const PanelRoutes = () => {
 	const [controller, dispatch] = useMaterialUIController();
@@ -92,10 +97,55 @@ const PanelRoutes = () => {
 	}, [pathname]);
 
 	const { user } = useContext(UserContext);
+	const { isUserLoggedIn, isLoading } = useAuth();
+	if (isLoading) {
+		return <Loader2 />;
+	} else if (isUserLoggedIn) {
+		return direction === "rtl" ? (
+			<CacheProvider value={rtlCache}>
+				<ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
+					<CssBaseline />
+					{layout === "dashboard" && (
+						<>
+							<Sidenav
+								color={sidenavColor}
+								brand={
+									(transparentSidenav && !darkMode) || whiteSidenav
+										? brandDark
+										: brandWhite
+								}
+								brandName={`Hello ${user.userInformation.first_name}`}
+								routes={routes}
+								onMouseEnter={handleOnMouseEnter}
+								onMouseLeave={handleOnMouseLeave}
+							/>
+							<Configurator />
+							{/* {configsButton} */}
+						</>
+					)}
+					{layout === "vr" && <Configurator />}
+					<Routes>
+						{websiteRoutesList.map((_route) => {
+							const { route, key, component, accessibility } = _route;
 
-	return direction === "rtl" ? (
-		<CacheProvider value={rtlCache}>
-			<ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
+							return (
+								<Route
+									key={key}
+									path={route}
+									element={
+										<PanelProtectedRoutes
+											accessbility={accessibility}
+											Component={component}
+										/>
+									}
+								/>
+							);
+						})}
+					</Routes>
+				</ThemeProvider>
+			</CacheProvider>
+		) : (
+			<ThemeProvider theme={darkMode ? themeDark : theme}>
 				<CssBaseline />
 				{layout === "dashboard" && (
 					<>
@@ -106,20 +156,18 @@ const PanelRoutes = () => {
 									? brandDark
 									: brandWhite
 							}
-							brandName={`Hello ${user.userInformation.first_name}`}
+							brandName={`Hello ${user.userInformation.first_name} `}
 							routes={routes}
 							onMouseEnter={handleOnMouseEnter}
 							onMouseLeave={handleOnMouseLeave}
 						/>
 						<Configurator />
-						{/* {configsButton} */}
 					</>
 				)}
 				{layout === "vr" && <Configurator />}
 				<Routes>
 					{websiteRoutesList.map((_route) => {
 						const { route, key, component, accessibility } = _route;
-
 						return (
 							<Route
 								key={key}
@@ -135,47 +183,10 @@ const PanelRoutes = () => {
 					})}
 				</Routes>
 			</ThemeProvider>
-		</CacheProvider>
-	) : (
-		<ThemeProvider theme={darkMode ? themeDark : theme}>
-			<CssBaseline />
-			{layout === "dashboard" && (
-				<>
-					<Sidenav
-						color={sidenavColor}
-						brand={
-							(transparentSidenav && !darkMode) || whiteSidenav
-								? brandDark
-								: brandWhite
-						}
-						brandName={`Hello ${user.userInformation.first_name} `}
-						routes={routes}
-						onMouseEnter={handleOnMouseEnter}
-						onMouseLeave={handleOnMouseLeave}
-					/>
-					<Configurator />
-				</>
-			)}
-			{layout === "vr" && <Configurator />}
-			<Routes>
-				{websiteRoutesList.map((_route) => {
-					const { route, key, component, accessibility } = _route;
-					return (
-						<Route
-							key={key}
-							path={route}
-							element={
-								<PanelProtectedRoutes
-									accessbility={accessibility}
-									Component={component}
-								/>
-							}
-						/>
-					);
-				})}
-			</Routes>
-		</ThemeProvider>
-	);
+		);
+	} else {
+		return <Navigate to='/' />;
+	}
 };
 
 export default PanelRoutes;

@@ -17,7 +17,7 @@ function PassangerTable({ title, data, tableHead }) {
 					</thead>
 					<tbody className='tbody'>
 						{data.map((item, i) => (
-							<tr className='table_body_row'>
+							<tr className='table_body_row' key={i}>
 								<td className=' table_body_d'>
 									<span>{i + 1}</span>
 								</td>
@@ -25,16 +25,16 @@ function PassangerTable({ title, data, tableHead }) {
 									<span>{item.issued_at}</span>
 								</td>
 								<td className=' table_body_d'>
-									<span>propertyName</span>
+									<span>{item.reservable.model_reserved.parent_model.name}</span>
 								</td>
 								<td className='table_body_d'>
-									<span>UnitName</span>
+									<span>{item.reservable.model_reserved.name}</span>
 								</td>
 								<td className=' table_body_d'>
 									<span>{item.price}</span>
 								</td>
 								<td className=' table_body_d'>
-									<span>{item.paid_at}</span>
+									<span>{item.paid_at === null ? "Not Paid" : item.paid_at}</span>
 								</td>
 								<td className='table_body_d'>
 									<span>{item.reservable.status}</span>

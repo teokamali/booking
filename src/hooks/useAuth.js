@@ -9,16 +9,18 @@ import { UserContext } from "context/UsersContextProvider";
 
 const useAuth = () => {
 	let [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		if (Cookies.get(constans.TOKEN) && Cookies.get(constans.INFO)) {
+			setIsLoading(false);
 			return setIsUserLoggedIn(true);
 		} else {
+			setIsLoading(false);
 			return setIsUserLoggedIn(false);
 		}
 	}, []);
 
-	return { isUserLoggedIn };
+	return { isUserLoggedIn, isLoading };
 };
 const useLogin = () => {
 	const { user, setUser } = useContext(UserContext);

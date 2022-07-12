@@ -12,9 +12,10 @@ const useRole = (acc) => {
 					const hasAccess = type.pivot.user_type_id === acc;
 					if (hasAccess) {
 						setCanAccess({ isInit: true, canAccess: true });
-					} else {
-						setCanAccess({ isInit: true, canAccess: false });
 					}
+					//  else {
+					// 	setCanAccess({ isInit: true, canAccess: false });
+					// }
 				});
 			});
 		}
