@@ -78,7 +78,6 @@ function Reserves() {
 	}
 	// owner Table
 	if (JSON.parse(Cookies.get(constans.INFO)).types[0].pivot.user_type_id === 2) {
-		console.log(hotelData);
 		return (
 			<DashboardLayout>
 				<DashboardNavbar />
@@ -134,7 +133,9 @@ function Reserves() {
 										<button
 											disabled={accpetIsLoading ? true : false}
 											type='button'
-											onClick={(id) => AcceptReserveHandler(id)}
+											onClick={() => {
+												AcceptReserveHandler(item.invoice_id);
+											}}
 											className='action-button accept'
 										>
 											<i className='fas fa-check'></i>
@@ -143,7 +144,7 @@ function Reserves() {
 										<button
 											disabled={rejectIsloading ? true : false}
 											type='button'
-											onClick={(id) => RejectReserveHandler(id)}
+											onClick={() => RejectReserveHandler(item.invoice_id)}
 											className='action-button reject'
 										>
 											<i className='fas fa-close'></i>
@@ -159,7 +160,6 @@ function Reserves() {
 			</DashboardLayout>
 		);
 	}
-	
 }
 
 export default Reserves;

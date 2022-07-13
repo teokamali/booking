@@ -27,7 +27,7 @@ const routes = [
 		route: "/",
 		link: "/dashboard",
 		component: <Dashboard />,
-		accessibility: [MIDDLE_MAN, OWNER],
+		accessibility: [PASSENGER, MIDDLE_MAN, OWNER],
 	},
 	{
 		type: "collapse",

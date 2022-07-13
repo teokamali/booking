@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Modal, LoginModal, Counter, Button } from "components";
-import DatePicker, { DateObject } from "react-multi-date-picker";
-import { useReserveUnits } from "hooks/useReservaion";
+import { Button, Counter, LoginModal, Modal } from "components";
 import { useAuth } from "hooks/useAuth";
+import { useReserveUnits } from "hooks/useReservaion";
+import React, { useState } from "react";
+import DatePicker, { DateObject } from "react-multi-date-picker";
 import "./index.scss";
 
 const UnitCard = ({ data, buttonOnClick }) => {
@@ -71,7 +71,7 @@ const UnitCard = ({ data, buttonOnClick }) => {
 					<div className='unitcard__price'>
 						<p>{price}$/Night</p>
 						<Modal
-							id='reservation-modal'
+							id={`reservation-modal${id}`}
 							buttonText='Reserve Now'
 							buttonClassnames='btn-main'
 							modalTitle={`Reserve ${name}`}

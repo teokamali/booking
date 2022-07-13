@@ -70,7 +70,10 @@
 			.tbody {
 				.table_body_row {
 					.table_body_d {
-						padding: 1rem 0 !important;
+						padding: 1rem;
+						&:first-child {
+							text-align: center;
+						}
 						span {
 							font-size: 0.8rem;
 							@media (min-width: 768px) {
@@ -81,6 +84,18 @@
 						P {
 							font-size: 0.8rem;
 							margin: 0;
+						}
+						.accept {
+							width: 25px;
+							height: 25px;
+							background-color: $green-color;
+							color: $white-color;
+						}
+						.reject {
+							width: 25px;
+							height: 25px;
+							background-color: $red-color;
+							color: $white-color;
 						}
 					}
 				}
