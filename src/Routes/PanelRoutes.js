@@ -37,11 +37,8 @@ import routes from "UserDashboard/routes";
 import { setMiniSidenav, useMaterialUIController } from "UserDashboard/context";
 
 // Images
-import Cookies from "js-cookie";
 import brandDark from "UserDashboard/assets/images/logo-ct-dark.png";
 import brandWhite from "UserDashboard/assets/images/logo-ct.png";
-import constans from "../AdminPanel/values/constans";
-import { Loader } from "components";
 import { Loader2 } from "components";
 
 const PanelRoutes = () => {
