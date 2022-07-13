@@ -21,8 +21,8 @@ const UnitCard = ({ data, buttonOnClick }) => {
 		const data = {
 			id,
 			formData: {
-				check_in_date: checkIn,
-				check_out_date: checkOut,
+				check_in_date: checkIn.format("YYYY-MM-DD"),
+				check_out_date: checkOut.format("YYYY-MM-DD"),
 				adults_count: adult,
 				kids_count: children,
 				is_for_someone_else: false,
@@ -36,7 +36,14 @@ const UnitCard = ({ data, buttonOnClick }) => {
 		};
 		reserveMutate(data);
 	};
-
+	const resetFormHandler = (e) => {
+		e.preventDefault();
+		setAdult(1);
+		setChildren(0);
+		setSpecialRequests("");
+		setCheckIn(null);
+		setCheckOut(null);
+	};
 	return (
 		<main id='unitcard'>
 			<div className='unitcard__wrapper'>
@@ -77,28 +84,22 @@ const UnitCard = ({ data, buttonOnClick }) => {
 										className='reservation-form'
 									>
 										<div className='reservation-form__wrapper '>
+											<button
+												className='small-btn-main'
+												onClick={resetFormHandler}
+											>
+												Reset
+											</button>
 											{/* date */}
 											<div className='date-input'>
-												<button
-													onClick={(e) => {
-														e.preventDefault();
-														setCheckIn(
-															new DateObject().format("YYYY-MM-DD")
-														);
-														setCheckOut();
-													}}
-												>
-													X
-												</button>
 												<h5>Check In:</h5>
 												<DatePicker
 													containerClassName='w-100'
 													inputClass='form-control'
 													format='MMMM DD YYYY'
 													minDate={checkIn}
-													onChange={(e) =>
-														setCheckIn(e.format("YYYY-MM-DD"))
-													}
+													onChange={(e) => setCheckIn(e)}
+													value={checkIn}
 												/>
 											</div>
 
@@ -109,9 +110,8 @@ const UnitCard = ({ data, buttonOnClick }) => {
 													inputClass='form-control'
 													format='MMMM DD YYYY'
 													minDate={checkIn}
-													onChange={(e) =>
-														setCheckOut(e.format("YYYY-MM-DD"))
-													}
+													onChange={(e) => setCheckOut(e)}
+													value={checkOut}
 												/>
 											</div>
 
