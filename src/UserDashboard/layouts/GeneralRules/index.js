@@ -356,7 +356,14 @@ function GeneralRules() {
 							</div>
 						</div>
 					</div>
-					<Button type='submit'>Submit</Button>
+					<Button
+						type='submit'
+						className='w-100'
+						isLoading={isPostLoading}
+						disabled={isPostLoading}
+					>
+						Submit
+					</Button>
 				</form>
 			</div>
 		</DashboardLayout>

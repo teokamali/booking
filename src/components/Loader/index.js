@@ -1,7 +1,14 @@
 import React from "react";
 import "./index.scss";
 const Loader = () => {
-  return <span className="loader">Loading</span>;
+	return (
+		<div className='lds-ellipsis'>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	);
 };
 
 export default Loader;

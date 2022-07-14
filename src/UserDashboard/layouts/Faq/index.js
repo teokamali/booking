@@ -116,8 +116,8 @@ function Faq() {
 									<Button
 										className='w-100'
 										type='submit'
-										data-bs-dismiss='modal'
-										aria-label='Close'
+										disabled={postFaqIsLoading}
+										isLoading={postFaqIsLoading}
 									>
 										Submit
 									</Button>

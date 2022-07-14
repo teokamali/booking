@@ -7,7 +7,7 @@ import { useGetUserUnits, useDeleteUnit } from "hooks/useUnits";
 
 const Units = () => {
 	const { data, isLoading } = useGetUserUnits();
-	const { mutate: deleteUnitMutate } = useDeleteUnit();
+	const { mutate: deleteUnitMutate, isLoading: isDeleteLoading } = useDeleteUnit();
 	const deletePropertyHandler = (id) => {
 		deleteUnitMutate({ id });
 	};
@@ -36,6 +36,7 @@ const Units = () => {
 									title={hotel.name}
 									tableHead={["Id", "Name", "Adults", "Bedrooms", "Actions"]}
 									// onEdit={onEditUnit}
+									disabledActions={isDeleteLoading}
 									onDelete={(id) => deletePropertyHandler(id)}
 									data={hotel.units}
 								/>

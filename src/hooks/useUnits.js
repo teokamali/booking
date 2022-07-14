@@ -1,6 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Toastify } from "components";
+import { useNavigate } from "react-router-dom";
 import api from "api";
+
 const useGetUserUnits = () => {
 	const { data, isLoading } = useQuery("getUserUnits", api.get.getUserUnits);
 	return { data, isLoading };
@@ -25,14 +27,15 @@ const useGetBedTypes = () => {
 	const { data, isLoading } = useQuery("getBedstypes", api.get.getBedsTypes, {
 		select: (data) =>
 			data.data.map((item) => ({
-				label: item.name,
 				value: item.id,
+				label: item.name,
 			})),
 	});
 	return { data, isLoading };
 };
 
 const usePostUnit = () => {
+	const navigate = useNavigate();
 	return useMutation(api.post.postUnit, {
 		onError: (error, variables, context) => {
 			// An error happened!
@@ -40,7 +43,7 @@ const usePostUnit = () => {
 		},
 		onSuccess: (data, variables, context) => {
 			// Boom baby!
-			window.location.reload();
+			navigate("/dashboard/units");
 		},
 	});
 };

@@ -56,8 +56,9 @@ export const AddUnitValidate = Yup.object({
 export const addSurroundingValidation = Yup.object({
 	property_id: Yup.number().required("please Select a Property"),
 	surrounding_category_id: Yup.number().required("please Select a Category"),
-	lat: Yup.number().required("please Select a loaction"),
-	long: Yup.number().required("please Select a loaction"),
+	surrounding_name: Yup.string()
+		.required("Enter a Name For Surrounding")
+		.min(4, "Nmae must be at least 4 characters"),
 });
 export const addFaq = Yup.object({
 	property_id: Yup.number().required("please Select a Property"),

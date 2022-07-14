@@ -20,7 +20,8 @@ function Surrounding() {
 		lat: 0,
 		lng: 0,
 	});
-	const { mutate: postSurroundingMutate, isPostSurroundingLoading } = usePostSurrounding();
+	const { mutate: postSurroundingMutate, isLoading: isPostSurroundingLoading } =
+		usePostSurrounding();
 
 	// get Property List
 	const { data: proppertyList, isLoading: isPropertyListLoading } = useGetProperties();
@@ -59,7 +60,11 @@ function Surrounding() {
 	// form submit handler
 	const onSubmitHandler = (val) => {
 		const formData = omit(val, ["property_label", "surrounding_category_label"]);
-		postSurroundingMutate(formData);
+		if (val.lat === null) {
+			Toastify("error", "Please Select a location");
+		} else {
+			postSurroundingMutate(formData);
+		}
 	};
 
 	// todo : show errors under inputs
@@ -77,10 +82,13 @@ function Surrounding() {
 					>
 						<Formik
 							initialValues={Initialvalue}
-							onSubmit={(values) => onSubmitHandler(values)}
+							onSubmit={(values, { resetForm }) => {
+								onSubmitHandler(values);
+								resetForm({ values: Initialvalue });
+							}}
 							validationSchema={addSurroundingValidation}
 						>
-							{({ values, errors, setValues }) => (
+							{({ values, errors, touched, setValues }) => (
 								<Form className='add-surroundig-form'>
 									<div>
 										<label htmlFor=''>Select Your Property</label>
@@ -100,6 +108,11 @@ function Surrounding() {
 												}))
 											}
 										/>
+										{errors.property_id && touched.property_id && (
+											<span className='input-error'>
+												{errors.property_id}
+											</span>
+										)}
 									</div>
 									<div>
 										<label htmlFor=''>Select Surrounding Category</label>
@@ -119,39 +132,48 @@ function Surrounding() {
 												}))
 											}
 										/>
+										{errors.surrounding_category_id &&
+											touched.surrounding_category_id && (
+												<span className='input-error'>
+													{errors.surrounding_category_id}
+												</span>
+											)}
 									</div>
 									<div>
 										<label htmlFor=''>Surrounding Name</label>
 										<Field className='form-control' name='surrounding_name' />
+										{errors.surrounding_name && touched.surrounding_name && (
+											<span className='input-error'>
+												{errors.surrounding_name}
+											</span>
+										)}
 									</div>
 									<div>
 										<label htmlFor=''>Locate Surrounding On Map</label>
-										<div className='container'>
-											<MapContainer
-												style={{ height: "400px" }}
-												center={[location.lat, location.lng]}
-												zoom={13}
-												minZoom={5}
-												scrollWheelZoom={true}
-											>
-												<Map
-													userLocation={location}
-													setUserLocation={setLocation}
-													clickedPosition={{
-														lat: values.lat,
-														lng: values.long,
-													}}
-													// setClickPosition={setPosition}
-													setClickPosition={(e) => {
-														setValues((prev) => ({
-															...prev,
-															lat: e.lat,
-															long: e.lng,
-														}));
-													}}
-												/>
-											</MapContainer>
-										</div>
+										<MapContainer
+											style={{ height: "400px", width: "400px" }}
+											center={[location.lat, location.lng]}
+											zoom={12}
+											minZoom={4}
+											// scrollWheelZoom={true}
+										>
+											<Map
+												userLocation={location}
+												setUserLocation={setLocation}
+												clickedPosition={{
+													lat: values.lat,
+													lng: values.long,
+												}}
+												// setClickPosition={setPosition}
+												setClickPosition={(e) => {
+													setValues((prev) => ({
+														...prev,
+														lat: e.lat,
+														long: e.lng,
+													}));
+												}}
+											/>
+										</MapContainer>
 									</div>
 									<Button
 										disabled={isPostSurroundingLoading}

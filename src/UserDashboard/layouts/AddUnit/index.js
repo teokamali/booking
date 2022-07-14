@@ -27,7 +27,7 @@ const AddUnit = () => {
 	// beds type
 	const { data: bedTypes, isLoading: BedTypesIsLoading } = useGetBedTypes();
 
-	const { mutate: postUnit } = usePostUnit();
+	const { mutate: postUnit, isLoading: isPostUnitLoading } = usePostUnit();
 
 	let formInitial = {
 		property_id: "",
@@ -265,7 +265,12 @@ const AddUnit = () => {
 						);
 					})}
 
-					<Button type='submit' className='mt-4 w-100'>
+					<Button
+						type='submit'
+						className='mt-4 w-100'
+						isLoading={isPostUnitLoading}
+						disabled={isPostUnitLoading}
+					>
 						Submit
 					</Button>
 				</form>

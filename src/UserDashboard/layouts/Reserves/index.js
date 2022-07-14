@@ -56,7 +56,7 @@ function Reserves() {
 										<span>{item.reservable.model_reserved.name}</span>
 									</td>
 									<td className=' table_body_d'>
-										<span>{item.price}</span>
+										<span>{item.price.toLocaleString()}</span>
 									</td>
 									<td className=' table_body_d'>
 										<span>

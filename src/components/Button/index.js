@@ -36,6 +36,11 @@ function Button({
 			color: ${(props) => (props.isPrimary ? "#fff" : "#191919")};
 			background-color: ${(props) => (props.isWhite ? "#ff3f3f" : "#fff")};
 		}
+		&:disabled {
+			.lds-ellipsis div {
+				background-color: #ff3f3f;
+			}
+		}
 	`;
 	return (
 		<ButtonEl

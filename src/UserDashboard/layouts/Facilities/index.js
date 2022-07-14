@@ -176,7 +176,7 @@ function Facilities() {
 					</div>
 				</div>
 				<Button
-					className='mt-3 '
+					className='mt-3 w-100'
 					type='submit'
 					disabled={isPostFacilitiesLoading}
 					isLoading={isPostFacilitiesLoading}

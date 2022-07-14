@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useLogin, useLoginWithGoogle, useRegister } from "../../hooks/useAuth";
 import { LoginValidate, RegisterValidate } from "../../validations";
 import { userTypes } from "../../values";
-import { Button, CustomRadioButton2, Modal } from "../index";
+import { Button, CustomRadioButton2, Modal, Loader } from "../index";
 import "./index.scss";
 
 const LoginModal = ({ iconButton = true }) => {
@@ -62,9 +62,13 @@ const LoginModal = ({ iconButton = true }) => {
 								<span className='icon fa-brands fa-facebook-square'></span>
 								Login with facebook
 							</button>
-							<button className='login-with-google' onClick={loginWithGoogleHandler}>
+							<button
+								className='login-with-google'
+								onClick={loginWithGoogleHandler}
+								disabled={loginWithGoogleIsLoading}
+							>
 								<span className='icon fa-brands fa-google'></span>
-								Login with google
+								{loginWithGoogleIsLoading ? "Please Wait..." : "Login with google"}
 							</button>
 						</div>
 						<Formik
