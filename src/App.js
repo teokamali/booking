@@ -20,7 +20,7 @@ function App() {
 				</UserContextProvider>
 				<ToastContainer
 					position='top-right'
-					autoClose={1000}
+					autoClose={1500}
 					hideProgressBar={false}
 					newestOnTop={false}
 					closeOnClick
