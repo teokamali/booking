@@ -1,3 +1,5 @@
+@import "styles/global.scss";
+
 #custom-pagination {
 	display: flex;
 	flex-direction: row-reverse;
@@ -7,10 +9,10 @@
 	li {
 		cursor: pointer;
 		margin: 0.25rem;
-		border: 1px solid #2b2b40;
+		box-shadow: $box-shadow;
 		display: flex;
 		padding: 1rem;
-		color: #92929f;
+		color: $gray-color;
 		background-color: transparent;
 		justify-content: center;
 		align-items: center;
@@ -22,15 +24,15 @@
 		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 			border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 		&:hover {
-			background-color: #212e48;
-			color: #3699ff;
+			background-color: rgba($color: $red-color, $alpha: 0.5);
+			color: $white-color;
 		}
 	}
 	.active {
 		color: #ffffff;
-		background-color: #3699ff;
+		background-color: $red-color;
 		&:hover {
-			background-color: #3699ff !important;
+			background-color: $red-color !important;
 			color: #ffffff !important;
 		}
 	}

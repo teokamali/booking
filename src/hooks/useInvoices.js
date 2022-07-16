@@ -1,9 +1,11 @@
 import { useQuery } from "react-query";
 import api from "api";
 
-const useGetHotelInvoices = () => {
-	const { data, isLoading } = useQuery("getHotelInvoices", api.get.getHotelReservations);
-	return { data, isLoading };
+const useGetHotelInvoices = ({ pageParam }) => {
+	const { data, refetch, isFetching, isLoading } = useQuery("getHotelInvoices", () =>
+		api.get.getHotelReservations(pageParam)
+	);
+	return { data, refetch, isFetching, isLoading };
 };
 
 const useGetUserReservations = () => {

@@ -20,7 +20,6 @@ const useGetBestProperties = () => {
 };
 const useGetPropertyById = (id) => {
 	const { data, isLoading } = useQuery("getPropertyById", () => api.get.getPropertyById(id));
-	console.log(data);
 	return { data, isLoading };
 };
 const useGetCountries = () => {

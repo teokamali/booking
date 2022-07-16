@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss";
-const Pagination = ({ data, onPaginateClick }) => {
-	const { page, totalPages } = data;
+
+const Pagination = ({ onPaginateClick, page, totalPages }) => {
 	return (
 		<React.Fragment>
 			{totalPages > 1 && (

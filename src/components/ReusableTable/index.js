@@ -1,8 +1,9 @@
 import React from "react";
 import "./index.scss";
-function ReusableTable({ tableHead, children }) {
+function ReusableTable({ tableHead, children, title }) {
 	return (
 		<div className='table-responsive'>
+			<h3>{title}</h3>
 			<div className='Table_wrapper'>
 				<table className='cs-table'>
 					<thead className='thead'>

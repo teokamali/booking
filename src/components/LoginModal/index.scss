@@ -1,20 +1,16 @@
 @import "../../styles/global.scss";
-#LoginModal {
-	.modal-content {
-		border-radius: 24px !important;
-	}
-	.modal-title {
-		color: $black-color;
-	}
-	.modal-body {
+.login-modal {
+	max-width: 500px !important;
+	.auth-wrapper {
 		&::-webkit-scrollbar {
 			display: none;
 		}
 		color: $black-color;
 		position: relative;
 		overflow-x: hidden;
-		padding: 1rem;
 		height: 700px;
+		max-width: 500px;
+		margin: 0 auto;
 		.user-role {
 			width: 73%;
 		}

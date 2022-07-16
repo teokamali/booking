@@ -1,8 +1,8 @@
 import routes from "../routes";
 import axios from "../webSiteAxios";
 
-const getHotelReservations = async () => {
-	const response = await axios.get(routes.getHotelReservations);
+const getHotelReservations = async (pageParam) => {
+	const response = await axios.get(routes.getHotelReservations + `?page=${pageParam}`);
 	return response.data;
 };
 

@@ -30,6 +30,12 @@ const routes = [
 		accessibility: [PASSENGER, MIDDLE_MAN, OWNER],
 	},
 	{
+		type: "title",
+		title: "Property",
+		key: "propertytext",
+		accessibility: [MIDDLE_MAN, OWNER],
+	},
+	{
 		type: "collapse",
 		name: "Gallery",
 		key: "gallery",
@@ -140,6 +146,12 @@ const routes = [
 		accessibility: [OWNER],
 	},
 	{
+		type: "title",
+		title: "Invoices",
+		key: "invoices",
+		accessibility: [PASSENGER, MIDDLE_MAN, OWNER],
+	},
+	{
 		type: "collapse",
 		name: "Reservations",
 		key: "reserves",
@@ -149,16 +161,21 @@ const routes = [
 		component: <Reserves />,
 		accessibility: [PASSENGER, OWNER],
 	},
-
+	{
+		type: "title",
+		title: "Settings",
+		key: "settingsText",
+		accessibility: [PASSENGER, MIDDLE_MAN, OWNER],
+	},
 	{
 		type: "collapse",
-		name: "Setting",
-		key: "Setting",
-		icon: <Icon fontSize='small'>settings</Icon>,
-		route: "setting",
-		link: "setting",
+		name: "Profile",
+		key: "Profile",
+		icon: <Icon fontSize='small'>manage_accounts</Icon>,
+		route: "profile",
+		link: "profile",
 		component: <Profile />,
-		accessibility: [PASSENGER],
+		accessibility: [PASSENGER, OWNER, MIDDLE_MAN],
 	},
 ];
 

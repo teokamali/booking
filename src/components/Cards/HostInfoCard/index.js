@@ -2,7 +2,7 @@ import React from "react";
 import "./index.scss";
 
 const HostInfoCard = ({ data }) => {
-	const { property_cover_image, user, ratings_average, subtitle } = data;
+	const { property_cover_image, user, ratings_average, description } = data;
 	return (
 		<div className='host__info__card'>
 			<div className='host__info__card__header'>
@@ -21,13 +21,7 @@ const HostInfoCard = ({ data }) => {
 					</div>
 				</div>
 				<div className='host__info__card__body__description'>
-					<p>
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste nulla
-						consequuntur iure. Facere perferendis perspiciatis ducimus, fuga, rerum
-						laboriosam cupiditate, ipsum ratione tempora illo assumenda et delectus? Eos
-						placeat tenetur alias rerum, id, nostrum molestiae odio quibusdam, quia
-						similique iusto?
-					</p>
+					<p>{description}</p>
 				</div>
 			</div>
 		</div>

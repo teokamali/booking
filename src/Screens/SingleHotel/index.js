@@ -30,10 +30,7 @@ import "./index.scss";
 
 const SingleHotel = () => {
 	const { isUserLoggedIn } = useAuth();
-	// const [toggleState, setToggleState] = useState(1);
-	// const toggleTab = (index) => {
-	// 	setToggleState(index);
-	// };
+
 	const PropertyId = useLocation().pathname.split("/")[2];
 	const { data, isLoading: ispropertyLoading } = useGetPropertyById(PropertyId);
 

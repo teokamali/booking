@@ -5,7 +5,7 @@ import "./index.scss";
 
 const modalRoot = document.querySelector("#portal");
 
-function Modal2({ children, isOpen, disableBackdropClose, onClose, title, ...attr }) {
+function Modal2({ children, isOpen, disableBackdropClose, onClose, title, className, ...attr }) {
 	const modalRef = useRef(null);
 	// useClickOutside(modalRef, onClose);
 	return ReactDOM.createPortal(
@@ -27,7 +27,7 @@ function Modal2({ children, isOpen, disableBackdropClose, onClose, title, ...att
 					className='bk-modal-backdrop'
 					onClick={() => !disableBackdropClose && onClose()}
 				></div>
-				<div className='bk-modal-wrapper'>
+				<div className={`bk-modal-wrapper ${className}`}>
 					<div className='bk-modal-header'>
 						<span>{title}</span>
 						<span>

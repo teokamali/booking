@@ -15,6 +15,9 @@
 	.user-dashboard {
 		font-size: 1.7rem;
 		cursor: pointer;
+		outline: 0;
+		border: 0;
+		background-color: $white-color;
 	}
 	.row {
 		align-items: center;

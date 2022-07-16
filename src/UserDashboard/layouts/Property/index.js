@@ -7,7 +7,6 @@ import { useGetProperties, useDeleteProperty } from "hooks/useProperty";
 import { Link } from "react-router-dom";
 const Property = () => {
 	const { data } = useGetProperties();
-	console.log(data);
 	const { mutate: deletePropertyMutate } = useDeleteProperty();
 	const deletePropertyHandler = (id) => {
 		deletePropertyMutate({ id });

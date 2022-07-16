@@ -21,25 +21,48 @@ const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
 				</Selected>
 			</IconContainer>
 			<Options heyt={isActived}>
-				<li>
-					<Link to='/dashboard'>Dashboard</Link>
-				</li>
-				<li>
-					<Link to='/dashboard/settings'>Setting</Link>
-				</li>
-				<li>
-					<Link to='/dashboard/reserves'>Reservations</Link>
-				</li>
-				<li>
-					<Button
-						className='w-100'
-						onClick={() => {
-							logout();
-						}}
-					>
-						Log Out
-					</Button>
-				</li>
+				{/* if user was passanger */}
+				{JSON.parse(Cookies.get(constans.INFO)).types[0].pivot.user_type_id === 1 && (
+					<>
+						<li>
+							<Link to='/dashboard'>Dashboard</Link>
+						</li>
+						<li>
+							<Button
+								className='w-100'
+								onClick={() => {
+									logout();
+								}}
+							>
+								Log Out
+							</Button>
+						</li>
+					</>
+				)}
+				{/* if user was owner */}
+				{JSON.parse(Cookies.get(constans.INFO)).types[0].pivot.user_type_id === 2 && (
+					<>
+						<li>
+							<Link to='/dashboard'>Dashboard</Link>
+						</li>
+						<li>
+							<Link to='/dashboard/settings'>Setting</Link>
+						</li>
+						<li>
+							<Link to='/dashboard/reserves'>Reservations</Link>
+						</li>
+						<li>
+							<Button
+								className='w-100'
+								onClick={() => {
+									logout();
+								}}
+							>
+								Log Out
+							</Button>
+						</li>
+					</>
+				)}
 			</Options>
 		</Container>
 	);
