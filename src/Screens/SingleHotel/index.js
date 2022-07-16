@@ -9,6 +9,7 @@ import {
 	LoginModal,
 	TimeLine,
 	Loader2,
+	Toastify,
 	UnitFinder,
 } from "components";
 import HostInfoCard from "components/Cards/HostInfoCard";
@@ -18,7 +19,7 @@ import { useAuth } from "hooks/useAuth";
 import { useGetPropertyById } from "hooks/useProperty";
 import { Desktop, Mobile, Tablet } from "layout/BreakPoints";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import StarRating from "react-svg-star-rating";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -30,15 +31,21 @@ import "./index.scss";
 
 const SingleHotel = () => {
 	const { isUserLoggedIn } = useAuth();
-
+	const navigate = useNavigate();
 	const PropertyId = useLocation().pathname.split("/")[2];
-	const { data, isLoading: ispropertyLoading } = useGetPropertyById(PropertyId);
-
+	const { data, isLoading: ispropertyLoading, isError } = useGetPropertyById(PropertyId);
 	const [searchedUnits, setSearchedUnits] = useState([]);
+	console.log(isError);
 	const RoomReserveHandler = (id) => {
 		console.log(id);
 	};
-
+	if (isError) {
+		Toastify("error", "Hotel Not Found Redirecting to homePage...");
+		setTimeout(() => {
+			navigate("/");
+		}, 2000);
+		return <Loader2 />;
+	}
 	return (
 		<>
 			{data ? (

@@ -40,6 +40,7 @@
 		"react-github-btn": "1.2.1",
 		"react-i18next": "^11.16.6",
 		"react-leaflet": "^4.0.0",
+		"react-lottie": "^1.2.3",
 		"react-multi-date-picker": "^3.3.0",
 		"react-multiple-image-input": "^1.0.0",
 		"react-photoswipe-gallery": "^2.2.1",

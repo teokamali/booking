@@ -19,8 +19,10 @@ const useGetBestProperties = () => {
 	return { data, isLoading };
 };
 const useGetPropertyById = (id) => {
-	const { data, isLoading } = useQuery("getPropertyById", () => api.get.getPropertyById(id));
-	return { data, isLoading };
+	const { data, isLoading, isError } = useQuery("getPropertyById", () =>
+		api.get.getPropertyById(id)
+	);
+	return { data, isLoading, isError };
 };
 const useGetCountries = () => {
 	const { data, isLoading } = useQuery("getCountries", api.get.getCountries);
