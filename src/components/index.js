@@ -32,3 +32,4 @@ export { default as UnitFinder } from "./UnitFinder";
 export { default as FaqTable } from "./FaqTable";
 export { default as ReusableTable } from "./ReusableTable";
 export { default as Pagination } from "./Pagination";
+export { default as FilterTable } from "./FilterTable";
