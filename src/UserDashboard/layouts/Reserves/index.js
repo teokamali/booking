@@ -9,6 +9,7 @@ import { useGetUserReservations } from "hooks/useInvoices";
 import Select from "react-select";
 import Cookies from "js-cookie";
 import { constans } from "values";
+import { RadioButton } from "components";
 
 function Reserves() {
 	// pages for pagination
@@ -141,15 +142,29 @@ function Reserves() {
 				{!isHotelReservesFetching ? (
 					<>
 						<FilterTable>
+							<label className='font-size-1' htmlFor=''>
+								Status
+							</label>
 							<Select
 								className='w-100 mb-3'
 								options={status}
-								onChange={(e) => console.log(e)}
+								onChange={(e) => console.log(e.value)}
 							/>
+							<label className='font-size-1' htmlFor=''>
+								Property
+							</label>
 							<Select
 								className='w-100 mb-3'
 								options={propertyList}
-								onChange={(e) => console.log(e)}
+								onChange={(e) => console.log(e.value)}
+							/>
+							<label className='font-size-1' htmlFor=''>
+								Payment Status
+							</label>
+							<RadioButton
+								data={paymentStatus}
+								groupName='paymentStatusRadio'
+								onChangeValue={(val) => console.log(val)}
 							/>
 						</FilterTable>
 						<ReusableTable

@@ -33,3 +33,4 @@ export { default as FaqTable } from "./FaqTable";
 export { default as ReusableTable } from "./ReusableTable";
 export { default as Pagination } from "./Pagination";
 export { default as FilterTable } from "./FilterTable";
+export { default as RadioButton } from "./RadioButton";

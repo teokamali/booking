@@ -1,0 +1,41 @@
+@import "styles/global.scss";
+.radioWrapper {
+	display: flex;
+	margin-top: 1rem;
+	flex-wrap: nowrap;
+	box-shadow: $box-shadow;
+	input[type="radio"] {
+		display: none;
+	}
+	.radio-label {
+		font-size: 1rem;
+		position: relative;
+		background-color: $white-color;
+		padding: 0.5rem 1rem;
+		display: flex;
+		align-items: center;
+		white-space: nowrap;
+		color: $red-color;
+		justify-content: center;
+		text-align: center;
+		border-radius: inherit;
+		cursor: pointer;
+	}
+
+	input[type="radio"]:checked + .radio-label {
+		background-color: $red-color;
+		color: $white-color;
+	}
+
+	.radioButton-custom {
+		flex-basis: 0;
+		flex-grow: 1;
+		&:first-child {
+			border-radius: 5px 0 0 5px;
+			// border-radius: 0 5px 5px 0;
+		}
+		&:last-child {
+			border-radius: 0 5px 5px 0;
+		}
+	}
+}
