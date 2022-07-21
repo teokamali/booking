@@ -17,9 +17,12 @@ function Layout({ children }) {
 	const currentlanguageCode = jsCookie.get("i18next") || "en";
 	const currentLanguage = languages.find((lang) => lang.code === currentlanguageCode);
 	const [isScrollable, setIsScrollable] = useState(false);
-	window.addEventListener("scroll", () =>
-		window.scrollY > 930 ? setIsScrollable(true) : setIsScrollable(false)
-	);
+
+	useEffect(() => {
+		window.addEventListener("scroll", () =>
+			window.scrollY > 930 ? setIsScrollable(true) : setIsScrollable(false)
+		);
+	}, [window.scrollY]);
 	useEffect(() => {
 		document.body.dir = currentLanguage.dir || "ltr";
 	}, [currentLanguage]);

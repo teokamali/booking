@@ -34,3 +34,4 @@ export { default as ReusableTable } from "./ReusableTable";
 export { default as Pagination } from "./Pagination";
 export { default as FilterTable } from "./FilterTable";
 export { default as RadioButton } from "./RadioButton";
+export { default as FullBanner } from "./FullBanner";

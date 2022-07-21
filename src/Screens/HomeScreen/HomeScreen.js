@@ -9,6 +9,7 @@ import {
 	Hero,
 	LoginModal,
 	Loader2,
+	FullBanner,
 } from "../../components";
 
 //other
@@ -30,6 +31,8 @@ import {
 	useGetLastProperties,
 } from "../../hooks/useProperty";
 import { Link } from "react-router-dom";
+import image1 from "assets/image/city1.jpg";
+import image2 from "assets/image/city2.png";
 
 const HomeScrean = () => {
 	const { t } = useTranslation();
@@ -237,9 +240,7 @@ const HomeScrean = () => {
 						</div>
 					</div>
 					{/* banner section */}
-					<div className='section banner__section'>
-						<CallToAction />
-					</div>
+					<FullBanner image={image1} />
 					{/* Third Section */}
 					<div className='section first__section'>
 						<div className='section__heading'>
@@ -318,9 +319,8 @@ const HomeScrean = () => {
 						</div>
 					</div>
 					{/* banner section */}
-					<div className='section banner__section'>
-						<CallToAction />
-					</div>
+					<FullBanner image={image2} />
+
 					{/* Fourth Section */}
 					<div className='section first__section'>
 						<div className='section__heading'>
@@ -397,10 +397,6 @@ const HomeScrean = () => {
 								))}
 							</Swiper>
 						</div>
-					</div>
-					{/* banner section */}
-					<div className='section banner__section'>
-						<CallToAction />
 					</div>
 
 					{/* blog sectoin*/}
