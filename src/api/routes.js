@@ -6,23 +6,24 @@ const webSiteLoginWithEmailRoute = config.BASE_URL + "login/email";
 const webSiteLogOut = config.BASE_URL + "logout";
 const webSiteRegisterWithEmailRoute = config.BASE_URL + "register/email";
 const getCurrentUser = config.BASE_URL + "user";
+
 // dashboard
-const propertyTypes = config.BASE_URL + "property_types";
+const propertyTypes = config.BASE_URL + "types/properties";
 const usergallery = config.BASE_URL + "gallery";
-const countries = config.BASE_URL + "countries";
-const cities = config.BASE_URL + "cities";
+const countries = config.BASE_URL + "places/countries";
+const cities = config.BASE_URL + "places/countries";
 const updateProperty = config.BASE_URL + "property";
-const userProperties = config.BASE_URL + "user/properties";
+const ownerProperties = config.BASE_URL + "owner/properties";
 const postProperty = config.BASE_URL + "property";
 const getPropertyById = config.BASE_URL + "property";
-const userUnits = config.BASE_URL + "user/units";
+const userUnits = config.BASE_URL + "owner/units";
 const deleteProperty = config.BASE_URL + "property";
 const deleteUnit = config.BASE_URL + "property/units";
 const postUnit = config.BASE_URL + "property/units";
-const getBedsTypes = config.BASE_URL + "property/bed_types";
+const getBedsTypes = config.BASE_URL + "types/beds";
 const getUnitById = config.BASE_URL + "property/units";
 const updateUnit = config.BASE_URL + "property/units";
-const getHotelReservations = config.BASE_URL + "hotels/invoices";
+const getHotelReservations = config.BASE_URL + "owner/report/invoices";
 const getUserReservations = config.BASE_URL + "user/invoices";
 const acceptReservation = config.BASE_URL + "hotels/invoices";
 const rejectReservation = config.BASE_URL + "hotels/invoices";
@@ -33,14 +34,20 @@ const getSurroundingCategories = config.BASE_URL + "property/surrounding_categor
 const postSurrounding = config.BASE_URL + "property/surroundings";
 const postFacilities = config.BASE_URL + "property/facilities";
 const postFaq = config.BASE_URL + "property";
+const ReserveUnit = config.BASE_URL + "reservation/hotels/unit";
 
 // main website
-const getBestProperties = config.BASE_URL + "best_properties";
+const getBestProperties = config.BASE_URL + "slider/best_hotels?count=10";
+const getCheapestHotels = config.BASE_URL + "slider/cheap_hotels?count=10";
+const getMostReservedProperties = config.BASE_URL + "slider/most_reserved_hotels?count=10";
+const getLastProperties = config.BASE_URL + "slider/last_hotels?count=10";
 const getAllProperties = config.BASE_URL + "property";
 const searchUnits = config.BASE_URL + "search/hotels";
-const ReserveUnit = config.BASE_URL + "hotels/unit";
 
 const routes = {
+	getCheapestHotels,
+	getMostReservedProperties,
+	getLastProperties,
 	getCurrentUser,
 	postFaq,
 	postFacilities,
@@ -54,7 +61,7 @@ const routes = {
 	usergallery,
 	webSiteLogOut,
 	propertyTypes,
-	userProperties,
+	ownerProperties,
 	countries,
 	cities,
 	postProperty,

@@ -1,7 +1,7 @@
 import loginWithGoogle from "./loginWithGoogle";
 import getUserGallery from "./getUsergallery";
 import getPropertyTypes from "./getPropertyTypes";
-import getUserProperties from "./getUserProperties";
+import getOwnerProperties from "./getOwnerProperties";
 import getCountries from "./getCountries";
 import getCities from "./getCities";
 import getUserUnits from "./getUserUnits";
@@ -9,6 +9,9 @@ import getPropertyById from "./getPropertyById";
 import getAllProperties from "./getAllProperties";
 import getSearchedUnit from "./getSearchedUnit";
 import getBestProperties from "./getBestProperties";
+import getCheapestHotels from "./getCheapestHotels";
+import getMostReservedProperties from "./getMostReservedProperties";
+import getLastProperties from "./getLastProperties";
 import getBedsTypes from "./getBedTypes";
 import getUnitById from "./getUnitById";
 import getHotelReservations from "./getHotelReservations";
@@ -17,13 +20,17 @@ import getFacilityCategories from "./getFacilityCategories";
 import getFacilityCategoriesItem from "./getFacilityCategoriesItem";
 import getSurroundingCategories from "./getSurroundingCategories";
 import getCurrentUser from "./getCurrentUser";
+
 const get = {
+	getCheapestHotels,
+	getMostReservedProperties,
+	getLastProperties,
 	getCurrentUser,
 	getSurroundingCategories,
 	getUnitById,
 	getUserGallery,
 	getPropertyTypes,
-	getUserProperties,
+	getOwnerProperties,
 	getCountries,
 	getCities,
 	loginWithGoogle,

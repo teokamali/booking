@@ -14,6 +14,13 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	.user-dashboard {
+		font-size: 1.7rem;
+		cursor: pointer;
+		outline: 0;
+		border: 0;
+		background-color: $white-color;
+	}
 	&_icons {
 		display: flex;
 		flex-direction: row-reverse;

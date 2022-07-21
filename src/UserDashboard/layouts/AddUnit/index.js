@@ -52,9 +52,7 @@ const AddUnit = () => {
 			postUnit(values);
 		},
 	});
-	if (formik.errors) {
-		console.log(formik.errors);
-	}
+
 	const handleChangeCounter = (name, val) => {
 		formik.setValues((prev) => ({ ...prev, [name]: val }));
 	};

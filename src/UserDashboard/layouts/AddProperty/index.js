@@ -71,8 +71,10 @@ const AddProperty = () => {
 	const formSubmitHandler = (e) => {
 		if (images.length === 0) {
 			Toastify("error", "Please select at least one image");
+			return null;
 		} else if (position === undefined) {
 			Toastify("error", "Please select a loacation on map");
+			return null;
 		}
 		const formData = {
 			property_type_id: e.property_type_id,

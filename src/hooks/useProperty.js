@@ -7,17 +7,37 @@ const useGetPropertyType = () => {
 	return { data, isLoading };
 };
 const useGetProperties = () => {
-	const { data, isLoading } = useQuery("getUserProperties", api.get.getUserProperties);
+	const { data, isLoading } = useQuery("getOwnerProperties", api.get.getOwnerProperties);
 	return { data, isLoading };
 };
 const useGetAllProperties = () => {
 	const { data, isLoading } = useQuery("getAllProperties", api.get.getAllProperties);
 	return { data, isLoading };
 };
+
+// slider
+
 const useGetBestProperties = () => {
 	const { data, isLoading } = useQuery("getBestProperties", api.get.getBestProperties);
 	return { data, isLoading };
 };
+
+const useGetCheapestHotels = () => {
+	const { data, isLoading } = useQuery("getCheapestHotels", api.get.getCheapestHotels);
+	return { data, isLoading };
+};
+const useGetMostReservedProperties = () => {
+	const { data, isLoading } = useQuery(
+		"getMostReservedProperties",
+		api.get.getMostReservedProperties
+	);
+	return { data, isLoading };
+};
+const useGetLastProperties = () => {
+	const { data, isLoading } = useQuery("getLastProperties", api.get.getLastProperties);
+	return { data, isLoading };
+};
+
 const useGetPropertyById = (id) => {
 	const { data, isLoading, isError } = useQuery("getPropertyById", () =>
 		api.get.getPropertyById(id)
@@ -36,6 +56,7 @@ const useGetCities = ({ id, options = {} }) => {
 		},
 		select: (data, variables, context) => {
 			// Boom baby!
+			console.log({ data });
 			return data.data.map((item) => ({ label: item.name, value: item.id }));
 		},
 		...options,
@@ -155,7 +176,7 @@ const usePostFaq = () => {
 			// Boom baby!
 			// window.location.reload();
 			Toastify("success", data.message);
-			queryClient.refetchQueries(["getUserProperties"]);
+			queryClient.refetchQueries(["getOwnerProperties"]);
 		},
 	});
 };
@@ -178,4 +199,7 @@ export {
 	usePostGeneralRules,
 	useGetFacilityCategories,
 	useGetFacilityCategoriesItem,
+	useGetCheapestHotels,
+	useGetMostReservedProperties,
+	useGetLastProperties,
 };

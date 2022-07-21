@@ -23,6 +23,7 @@ function Reserves() {
 	} = useGetHotelInvoices({
 		pageParam: page,
 	});
+	console.log({ hotelData });
 	// get Passanger Data
 	const { data: passangerData } = useGetUserReservations();
 	// refetch data on pagination change
