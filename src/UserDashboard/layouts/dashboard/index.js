@@ -38,7 +38,6 @@ import { ReusableTable, Loader2 } from "components";
 function Dashboard() {
 	const { sales, tasks } = reportsLineChartData;
 	const { data: passangerData } = useGetUserReservations();
-
 	// passanger Dashboard
 	if (JSON.parse(Cookies.get(constans.INFO)).types[0].pivot.user_type_id === 1) {
 		return (

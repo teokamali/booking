@@ -3,7 +3,7 @@ import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLa
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import { useGetHotelInvoices } from "hooks/useInvoices";
 import { useAcceptReservation, useRejectReservation } from "hooks/useReservaion";
-import { Pagination, Loader2, ReusableTable, FilterTable } from "components";
+import { Loader2, ReusableTable, FilterTable, Pagination } from "components";
 import { useGetProperties } from "hooks/useProperty";
 import { useGetUserReservations } from "hooks/useInvoices";
 import Select from "react-select";
@@ -75,63 +75,6 @@ function Reserves() {
 				label: item.name,
 				value: item.id,
 			})
-		);
-	}
-	// passanger Table
-	if (JSON.parse(Cookies.get(constans.INFO)).types[0].pivot.user_type_id === 1) {
-		return (
-			<DashboardLayout>
-				<DashboardNavbar />
-				{passangerData ? (
-					<>
-						<ReusableTable
-							tableHead={[
-								"id",
-								"Requested at",
-								"Property",
-								"Unit Name",
-								"Price",
-								"Paid at",
-								"status",
-							]}
-						>
-							{passangerData?.data.map((item, i) => {
-								return (
-									<tr className='table_body_row' key={i}>
-										<td className=' table_body_d'>
-											<span>{i + 1}</span>
-										</td>
-										<td className=' table_body_d'>
-											<span>{item.issued_at}</span>
-										</td>
-										<td className=' table_body_d'>
-											<span>
-												{item.reservable.model_reserved.parent_model.name}
-											</span>
-										</td>
-										<td className='table_body_d'>
-											<span>{item.reservable.model_reserved.name}</span>
-										</td>
-										<td className=' table_body_d'>
-											<span>{item.price.toLocaleString()}</span>
-										</td>
-										<td className=' table_body_d'>
-											<span>
-												{item.paid_at === null ? "Not Paid" : item.paid_at}
-											</span>
-										</td>
-										<td className='table_body_d'>
-											<span>{item.reservable.status}</span>
-										</td>
-									</tr>
-								);
-							})}
-						</ReusableTable>
-					</>
-				) : (
-					<Loader2 />
-				)}
-			</DashboardLayout>
 		);
 	}
 	// owner Table
@@ -241,7 +184,7 @@ function Reserves() {
 								</tr>
 							))}
 						</ReusableTable>
-						<div className='d-flex justify-content-center'>
+						<div className='d-flex justify-content-center pagination'>
 							<Pagination
 								page={page}
 								totalPages={hotelData.last_page}
