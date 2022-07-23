@@ -5,8 +5,6 @@ import postUserGallery from "./postUserGallery";
 import postProperty from "./postProperty";
 import postUnit from "./postUnit";
 import reserveUnit from "./reserveUnit";
-import acceptReservation from "./acceptReservation";
-import rejectReservation from "./rejectReservation";
 import postGeneralRules from "./postGeneralRules";
 import postSurrounding from "./postSurrounding";
 import postFacilities from "./postFacilities";
@@ -19,8 +17,6 @@ const post = {
 	postProperty,
 	reserveUnit,
 	postUnit,
-	acceptReservation,
-	rejectReservation,
 	postGeneralRules,
 	postSurrounding,
 	postFacilities,

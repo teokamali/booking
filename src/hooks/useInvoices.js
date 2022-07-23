@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import api from "api";
 
 const useGetHotelInvoices = ({ pageParam }) => {
@@ -12,4 +12,19 @@ const useGetUserReservations = () => {
 	const { data, isLoading } = useQuery("getUserInvoices", api.get.getUserReservations);
 	return { data, isLoading };
 };
-export { useGetHotelInvoices, useGetUserReservations };
+
+const useUpdateReservationStatus = () => {
+	const queryClient = useQueryClient();
+	return useMutation(api.patch.updateReservationStatus, {
+		onError: (error, variables, context) => {
+			// An error happened!
+		},
+		onSuccess: (data, variables, context) => {
+			// Boom baby!
+			// window.location.reload();
+			queryClient.refetchQueries(["getHotelInvoices"]);
+		},
+	});
+};
+
+export { useGetHotelInvoices, useGetUserReservations, useUpdateReservationStatus };

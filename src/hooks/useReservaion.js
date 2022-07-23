@@ -15,38 +15,5 @@ const useReserveUnits = () => {
 		},
 	});
 };
-const useAcceptReservation = () => {
-	const queryClient = useQueryClient();
-	// const queryCache = useQueryClient();
-	// queryCache.invalidateQueries();
-	return useMutation(api.post.acceptReservation, {
-		onError: (error, variables, context) => {
-			// An error happened!
-			Toastify("error", error.response.data.message);
-		},
-		onSuccess: (data, variables, context) => {
-			// Boom baby!
-			Toastify("success", data.message);
-			queryClient.refetchQueries(["getHotelInvoices"]);
-			// refetchQueries(1"getHotelInvoices");
-		},
-	});
-};
-const useRejectReservation = () => {
-	const queryClient = useQueryClient();
 
-	return useMutation(api.post.rejectReservation, {
-		onError: (error, variables, context) => {
-			// An error happened!
-			Toastify("error", error.response.data.message);
-		},
-		onSuccess: (data, variables, context) => {
-			// Boom baby!
-			Toastify("success", data.message);
-			// refetchQueries("getHotelInvoices");
-			queryClient.refetchQueries(["getHotelInvoices"]);
-		},
-	});
-};
-
-export { useReserveUnits, useAcceptReservation, useRejectReservation };
+export { useReserveUnits };

@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import { useGetHotelInvoices } from "hooks/useInvoices";
-import { useAcceptReservation, useRejectReservation } from "hooks/useReservaion";
 import { Loader2, ReusableTable, FilterTable, Pagination } from "components";
 import { useGetProperties } from "hooks/useProperty";
-import { useGetUserReservations } from "hooks/useInvoices";
+import { useGetUserReservations, useUpdateReservationStatus } from "hooks/useInvoices";
 import Select from "react-select";
 import Cookies from "js-cookie";
 import { constans } from "values";
@@ -23,36 +22,64 @@ function Reserves() {
 	} = useGetHotelInvoices({
 		pageParam: page,
 	});
-	console.log({ hotelData });
-	// get Passanger Data
-	const { data: passangerData } = useGetUserReservations();
+	console.log(hotelData);
+
 	// refetch data on pagination change
 	useEffect(() => {
 		refetchHotelReserves();
 	}, [page]);
-	// Accept and rejection requests for owner
-	const { mutate: acceptReserveMutate, isLoading: accpetIsLoading } = useAcceptReservation();
-	const { mutate: rejectReserveMutate, isLoading: rejectIsloading } = useRejectReservation();
+
+	// update reservation status
+	const { mutate: updateReservationStatus, isLoading: isUpdatingStatus } =
+		useUpdateReservationStatus();
 	// Accept and rejection functions for owner
-	const AcceptReserveHandler = (id) => {
-		acceptReserveMutate(id);
+	const acceptReserveHandler = (id) => {
+		let body = {
+			status: "waiting_for_payment",
+		};
+		updateReservationStatus({ id, body });
 	};
-	const RejectReserveHandler = (id) => {
-		rejectReserveMutate(id);
+	const rejectReserveHandler = (id) => {
+		let body = {
+			status: "reserve_canceled_by_owner",
+		};
+		updateReservationStatus({ id, body });
 	};
 	// Status
+	//  ,  ,  ,  ,  ,  ,  ,
 	const status = [
 		{
-			label: "Waiting",
-			value: "waiting",
+			label: "Waiting for accept",
+			value: "waiting_for_accept",
 		},
+		{
+			label: "Waiting for payment",
+			value: "waiting_for_payment",
+		},
+
 		{
 			label: "Accepted",
-			value: "accepted",
+			value: "reserve_accepted",
 		},
 		{
-			label: "Rejected",
-			value: "rejected",
+			label: "Canceled by owner",
+			value: "reserve_canceled_by_owner",
+		},
+		{
+			label: "Canceled by passanger",
+			value: "reserve_canceled_by_passenger",
+		},
+		{
+			label: "Not paid",
+			value: "reserve_canceled_by_not_paid",
+		},
+		{
+			label: "Canceled after payment",
+			value: "reserve_canceled_by_passenger_after_payment",
+		},
+		{
+			label: "Finnished",
+			value: "reserve_finished",
 		},
 	];
 	// payment status
@@ -112,8 +139,6 @@ function Reserves() {
 							/>
 						</FilterTable>
 						<ReusableTable
-							acceptIsLoading={accpetIsLoading}
-							rejectIsloading={rejectIsloading}
 							tableHead={[
 								"id",
 								"Requested at",
@@ -135,50 +160,93 @@ function Reserves() {
 									</td>
 									<td className=' table_body_d'>
 										<span>
-											{item.user_first_name} {item.user_last_name}
+											{item.user.first_name} {item.user.last_name}
 										</span>
 										<br />
-										<span>{item.user_email}</span>
+										<span>{item.user.email}</span>
 									</td>
 									<td className='table_body_d'>
-										<span>{item.property_name}</span>
+										<span>
+											{item.reservable.model_reserved.parent_model.name}
+											<br />
+											{item.reservable.model_reserved.name}
+										</span>
 									</td>
 									<td className=' table_body_d'>
-										<span>{item.check_in_date}</span>
+										<span>{item.reservable.check_in_date}</span>
 										<br />
-										<span>{item.check_out_date}</span>
+										<span>{item.reservable.check_out_date}</span>
+										<br />
+										<span>{item.reservable.days_count} Days</span>
 									</td>
 									<td className=' table_body_d'>
-										<span>Adults: {item.adults_count}</span>
+										<span>Adults: {item.reservable.adults_count}</span>
 										<br />
-										<span>Children: {item.kids_count}</span>
+										<span>Children: {item.reservable.kids_count}</span>
 									</td>
 									<td className='table_body_d'>
-										<span>{item.accept_status}</span>
+										<span>
+											{
+												status.find(
+													(st) => st.value === item.reservable.status
+												).label
+											}
+										</span>
 									</td>
 									<td className=' table_body_d  '>
 										<div className='TbuttonsWrapper'>
-											<button
-												disabled={accpetIsLoading ? true : false}
-												type='button'
-												onClick={() => {
-													AcceptReserveHandler(item.invoice_id);
-												}}
-												className='action-button accept'
-											>
-												<i className='fas fa-check'></i>
-											</button>
+											{/* accept button */}
+											{item.reservable.status === "waiting_for_payment" ? (
+												<button
+													style={{
+														opacity: "0.5",
+														cursor: "not-allowed",
+													}}
+													disabled
+													type='button'
+													// onClick={() => rejectReserveHandler(item.id)}
+													className='action-button accept'
+												>
+													<i className='fas fa-check'></i>
+												</button>
+											) : (
+												<button
+													disabled={isUpdatingStatus ? true : false}
+													type='button'
+													onClick={() => {
+														acceptReserveHandler(item.id);
+													}}
+													className='action-button accept'
+												>
+													<i className='fas fa-check'></i>
+												</button>
+											)}
+											{/* reject button */}
 
-											<button
-												disabled={rejectIsloading ? true : false}
-												type='button'
-												onClick={() =>
-													RejectReserveHandler(item.invoice_id)
-												}
-												className='action-button reject'
-											>
-												<i className='fas fa-close'></i>
-											</button>
+											{item.reservable.status ===
+											"reserve_canceled_by_owner" ? (
+												<button
+													style={{
+														opacity: "0.5",
+														cursor: "not-allowed",
+													}}
+													disabled
+													type='button'
+													// onClick={() => rejectReserveHandler(item.id)}
+													className='action-button reject'
+												>
+													<i className='fas fa-close'></i>
+												</button>
+											) : (
+												<button
+													disabled={isUpdatingStatus ? true : false}
+													type='button'
+													onClick={() => rejectReserveHandler(item.id)}
+													className='action-button reject'
+												>
+													<i className='fas fa-close'></i>
+												</button>
+											)}
 										</div>
 									</td>
 								</tr>

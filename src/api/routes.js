@@ -25,8 +25,6 @@ const getUnitById = config.BASE_URL + "property/units";
 const updateUnit = config.BASE_URL + "property/units";
 const getHotelReservations = config.BASE_URL + "owner/report/invoices";
 const getUserReservations = config.BASE_URL + "passenger/invoices";
-const acceptReservation = config.BASE_URL + "hotels/invoices";
-const rejectReservation = config.BASE_URL + "hotels/invoices";
 const postGeneralRules = config.BASE_URL + "property";
 const getFacilityCategories = config.BASE_URL + "property/facilities";
 const getFacilityCategoriesItem = config.BASE_URL + "property/facilities";
@@ -35,7 +33,7 @@ const postSurrounding = config.BASE_URL + "property/surroundings";
 const postFacilities = config.BASE_URL + "property/facilities";
 const postFaq = config.BASE_URL + "property";
 const ReserveUnit = config.BASE_URL + "reservation/hotels/unit";
-
+const updateReservationStatus = config.BASE_URL + "reservation/invoices";
 // main website
 const getBestProperties = config.BASE_URL + "slider/best_hotels?count=10";
 const getCheapestHotels = config.BASE_URL + "slider/cheap_hotels?count=10";
@@ -80,9 +78,8 @@ const routes = {
 	getUnitById,
 	getHotelReservations,
 	updateUnit,
-	acceptReservation,
-	rejectReservation,
 	postGeneralRules,
+	updateReservationStatus,
 };
 
 export default routes;
