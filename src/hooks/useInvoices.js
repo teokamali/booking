@@ -1,9 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import api from "api";
 
-const useGetHotelInvoices = ({ pageParam }) => {
-	const { data, refetch, isFetching, isLoading } = useQuery("getHotelInvoices", () =>
-		api.get.getHotelReservations(pageParam)
+const useGetHotelInvoices = ({ pageParam, model_id, accept_status, payment_status }) => {
+	const { data, refetch, isFetching, isLoading } = useQuery(
+		["getHotelInvoices", model_id, accept_status, payment_status],
+		() => api.get.getHotelReservations(pageParam, model_id, accept_status, payment_status)
 	);
 	return { data, refetch, isFetching, isLoading };
 };

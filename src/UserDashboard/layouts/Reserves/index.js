@@ -11,6 +11,12 @@ import { constans } from "values";
 import { RadioButton } from "components";
 
 function Reserves() {
+	const [filterForm, setFilterForm] = useState({
+		model_id: "",
+		accept_status: "",
+		payment_status: "",
+	});
+
 	// pages for pagination
 	const [page, setPage] = useState(1);
 	// get hotels data with pagonation
@@ -21,8 +27,10 @@ function Reserves() {
 		isLoading,
 	} = useGetHotelInvoices({
 		pageParam: page,
+		model_id: filterForm.model_id,
+		accept_status: filterForm.accept_status,
+		payment_status: filterForm.payment_status,
 	});
-	console.log(hotelData);
 
 	// refetch data on pagination change
 	useEffect(() => {
@@ -119,7 +127,11 @@ function Reserves() {
 							<Select
 								className='w-100 mb-3'
 								options={status}
-								onChange={(e) => console.log(e.value)}
+								onChange={(e) =>
+									setFilterForm((prev) => {
+										return { ...prev, accept_status: e.value };
+									})
+								}
 							/>
 							<label className='font-size-1' htmlFor=''>
 								Property
@@ -127,7 +139,11 @@ function Reserves() {
 							<Select
 								className='w-100 mb-3'
 								options={propertyList}
-								onChange={(e) => console.log(e.value)}
+								onChange={(e) =>
+									setFilterForm((prev) => {
+										return { ...prev, model_id: e.value };
+									})
+								}
 							/>
 							<label className='font-size-1' htmlFor=''>
 								Payment Status
@@ -135,7 +151,11 @@ function Reserves() {
 							<RadioButton
 								data={paymentStatus}
 								groupName='paymentStatusRadio'
-								onChangeValue={(val) => console.log(val)}
+								onChangeValue={(val) =>
+									setFilterForm((prev) => {
+										return { ...prev, payment_status: val };
+									})
+								}
 							/>
 						</FilterTable>
 						<ReusableTable
@@ -204,7 +224,6 @@ function Reserves() {
 													}}
 													disabled
 													type='button'
-													// onClick={() => rejectReserveHandler(item.id)}
 													className='action-button accept'
 												>
 													<i className='fas fa-check'></i>
@@ -213,7 +232,8 @@ function Reserves() {
 												<button
 													disabled={isUpdatingStatus ? true : false}
 													type='button'
-													onClick={() => {
+													onClick={(e) => {
+														e.preventDefault();
 														acceptReserveHandler(item.id);
 													}}
 													className='action-button accept'
@@ -241,7 +261,10 @@ function Reserves() {
 												<button
 													disabled={isUpdatingStatus ? true : false}
 													type='button'
-													onClick={() => rejectReserveHandler(item.id)}
+													onClick={(e) => {
+														e.preventDefault();
+														rejectReserveHandler(item.id);
+													}}
 													className='action-button reject'
 												>
 													<i className='fas fa-close'></i>
