@@ -48,10 +48,10 @@
 				border-style: solid;
 				border-width: 0;
 				.thead_row {
-					background-color: $red-color !important;
 					color: $white-color !important;
 
 					.thead_cels {
+						background-color: $red-color !important;
 						padding-top: 1rem;
 						padding-bottom: 1rem;
 						&:first-child {

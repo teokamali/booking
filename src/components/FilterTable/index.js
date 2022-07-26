@@ -2,14 +2,14 @@ import React, { memo, useState, useRef } from "react";
 import useClickOutside from "hooks/useClickedOutSide";
 import "./index.scss";
 
-function FilterTable({ children }) {
-	const [isOpen, setIsOpen] = useState(false);
+function FilterTable({ children, isOpen, setIsOpen }) {
 	const handleOpenList = (e) => {
 		e.preventDefault();
 		setIsOpen(true);
 	};
 	const handleCloseList = (e) => {
 		e.preventDefault();
+
 		setIsOpen(false);
 	};
 	const FillterRef = useRef(null);

@@ -1,14 +1,14 @@
 /**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
+ =========================================================
+ * Material Dashboard 2 React - v2.1.0
+ =========================================================
+ 
+ * Product Page: https://www.creative-tim.com/product/material-dashboard-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
- =========================================================
+=========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
@@ -18,6 +18,7 @@ import Grid from "@mui/material/Grid";
 
 // Material Dashboard 2 React components
 import MDBox from "UserDashboard/components/MDBox";
+import { useEffect, useState } from "react";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
@@ -33,11 +34,61 @@ import reportsLineChartData from "UserDashboard/layouts/dashboard/data/reportsLi
 import Cookies from "js-cookie";
 import { constans } from "values";
 import { useGetUserReservations } from "hooks/useInvoices";
-import { ReusableTable, Loader2 } from "components";
+import { ReusableTable, Loader2, Pagination, Loader3 } from "components";
+import moment from "moment";
 
 function Dashboard() {
 	const { sales, tasks } = reportsLineChartData;
-	const { data: passangerData } = useGetUserReservations();
+	const [page, setPage] = useState(1);
+	const {
+		data: passangerInvoices,
+		refetch: refetchUserReserves,
+		isFetching,
+	} = useGetUserReservations({
+		pageParam: page,
+	});
+
+	console.log({ passangerInvoices });
+
+	useEffect(() => {
+		refetchUserReserves();
+	}, [page]);
+
+	const status = [
+		{
+			label: "Waiting for accept",
+			value: "waiting_for_accept",
+		},
+		{
+			label: "Waiting for payment",
+			value: "waiting_for_payment",
+		},
+
+		{
+			label: "Accepted",
+			value: "reserve_accepted",
+		},
+		{
+			label: "Canceled by owner",
+			value: "reserve_canceled_by_owner",
+		},
+		{
+			label: "Canceled by passanger",
+			value: "reserve_canceled_by_passenger",
+		},
+		{
+			label: "Not paid",
+			value: "reserve_canceled_by_not_paid",
+		},
+		{
+			label: "Canceled after payment",
+			value: "reserve_canceled_by_passenger_after_payment",
+		},
+		{
+			label: "Finnished",
+			value: "reserve_finished",
+		},
+	];
 	// passanger Dashboard
 	if (JSON.parse(Cookies.get(constans.INFO)).types[0].pivot.user_type_id === 1) {
 		return (
@@ -106,56 +157,88 @@ function Dashboard() {
 								</MDBox>
 							</Grid>
 						</Grid>
-						{passangerData ? (
-							<ReusableTable
-								title='Reservations'
-								tableHead={[
-									"id",
-									"Requested at",
-									"Property",
-									"Unit Name",
-									"Price",
-									"Paid at",
-									"status",
-								]}
-							>
-								{passangerData?.data.map((item, i) => {
-									return (
-										<tr className='table_body_row' key={i}>
-											<td className=' table_body_d'>
-												<span>{i + 1}</span>
-											</td>
-											<td className=' table_body_d'>
-												<span>{item.issued_at}</span>
-											</td>
-											<td className=' table_body_d'>
-												<span>
-													{
-														item.reservable.model_reserved.parent_model
-															.name
-													}
-												</span>
-											</td>
-											<td className='table_body_d'>
-												<span>{item.reservable.model_reserved.name}</span>
-											</td>
-											<td className=' table_body_d'>
-												<span>{item.price.toLocaleString()}</span>
-											</td>
-											<td className=' table_body_d'>
-												<span>
-													{item.paid_at === null
-														? "Not Paid"
-														: item.paid_at}
-												</span>
-											</td>
-											<td className='table_body_d'>
-												<span>{item.reservable.status}</span>
-											</td>
-										</tr>
-									);
-								})}
-							</ReusableTable>
+						{passangerInvoices ? (
+							<>
+								<ReusableTable
+									title='Reservations'
+									className='psaangerInvoices'
+									tableHead={[
+										"id",
+										"Requested at",
+										"Property",
+										"Unit Name",
+										"Price",
+										"Paid at",
+										"Status",
+									]}
+								>
+									{isFetching && <Loader3 />}
+									{passangerInvoices?.data.map((item, i) => {
+										const currStatus = status.find(
+											(st) => item.reservable.status === st.value
+										).label;
+										return (
+											<tr className='table_body_row' key={i}>
+												<td className=' table_body_d'>
+													<span>{i + 1}</span>
+												</td>
+												<td className=' table_body_d'>
+													<span>
+														{moment(item.issued_at).format("LL")}
+													</span>
+												</td>
+												<td className=' table_body_d'>
+													<span>
+														{
+															item.reservable.model_reserved
+																.parent_model.name
+														}
+													</span>
+												</td>
+												<td className='table_body_d'>
+													<span>
+														{item.reservable.model_reserved.name}
+													</span>
+												</td>
+												<td className=' table_body_d'>
+													<span>{item.price.toLocaleString()}</span>
+												</td>
+												<td className=' table_body_d'>
+													<span>
+														{item.paid_at === null
+															? "Not Paid"
+															: item.paid_at}
+													</span>
+												</td>
+												<td className='table_body_d'>
+													<span>
+														{currStatus === "Waiting for payment" ? (
+															<a
+																href=''
+																className='d-flex align-items-center justify-content-between w-50'
+															>
+																<span>Pay Now</span>
+																<i className='fas fa-arrow-right-to-line small-btn-main'></i>
+															</a>
+														) : (
+															currStatus
+														)}
+													</span>
+												</td>
+											</tr>
+										);
+									})}
+								</ReusableTable>
+								<div className='d-flex justify-content-center pagination'>
+									<Pagination
+										page={page}
+										totalPages={passangerInvoices.last_page}
+										onPaginateClick={(page) => {
+											setPage(page);
+										}}
+									/>
+								</div>
+							</>
 						) : (
 							<Loader2 />
 						)}
@@ -272,18 +355,7 @@ function Dashboard() {
 							</Grid>
 						</Grid>
 					</MDBox>
-					{/* <MDBox>
-			  <Grid container spacing={3}>
-				<Grid item xs={12} md={6} lg={8}>
-				  <Projects />
-				</Grid>
-				<Grid item xs={12} md={6} lg={4}>
-				  <OrdersOverview />
-				</Grid>
-			  </Grid>
-			</MDBox> */}
 				</MDBox>
-				{/* <Footer /> */}
 			</DashboardLayout>
 		);
 	}

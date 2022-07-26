@@ -16,6 +16,7 @@ function Reserves() {
 		accept_status: "",
 		payment_status: "",
 	});
+	const [isFilterOpen, setIsFilterOpen] = useState(false);
 
 	// pages for pagination
 	const [page, setPage] = useState(1);
@@ -27,8 +28,8 @@ function Reserves() {
 		isLoading,
 	} = useGetHotelInvoices({
 		pageParam: page,
-		model_id: filterForm.model_id,
-		accept_status: filterForm.accept_status,
+		model_id: filterForm.model_id.value,
+		accept_status: filterForm.accept_status.value,
 		payment_status: filterForm.payment_status,
 	});
 
@@ -53,6 +54,11 @@ function Reserves() {
 		};
 		updateReservationStatus({ id, body });
 	};
+
+	const resetFilterHandler = () => {
+		setFilterForm({ model_id: "", accept_status: "", payment_status: "" });
+	};
+
 	// Status
 	//  ,  ,  ,  ,  ,  ,  ,
 	const status = [
@@ -117,47 +123,56 @@ function Reserves() {
 		return (
 			<DashboardLayout>
 				<DashboardNavbar />
-
+				<FilterTable isOpen={isFilterOpen} setIsOpen={setIsFilterOpen}>
+					<label className='font-size-1' htmlFor=''>
+						Status
+					</label>
+					<Select
+						className='w-100 mb-3'
+						options={status}
+						value={filterForm.accept_status}
+						onChange={(e) => {
+							setFilterForm((prev) => {
+								return { ...prev, accept_status: e };
+							});
+							setIsFilterOpen(false);
+						}}
+					/>
+					<label className='font-size-1' htmlFor=''>
+						Property
+					</label>
+					<Select
+						className='w-100 mb-3'
+						options={propertyList}
+						value={filterForm.model_id}
+						onChange={(e) => {
+							setFilterForm((prev) => {
+								return { ...prev, model_id: e };
+							});
+							setIsFilterOpen(false);
+						}}
+					/>
+					<label className='font-size-1' htmlFor=''>
+						Payment Status
+					</label>
+					<div className='d-flex align-items-center justify-content-between w-100 '>
+						<RadioButton
+							data={paymentStatus}
+							groupName='paymentStatusRadio'
+							onChangeValue={(val) => {
+								setFilterForm((prev) => {
+									return { ...prev, payment_status: val };
+								});
+								setIsFilterOpen(false);
+							}}
+						/>
+						<button className='small-btn-main' onClick={resetFilterHandler}>
+							<i className='fas fa-arrow-rotate-left'></i>
+						</button>
+					</div>
+				</FilterTable>
 				{!isHotelReservesFetching ? (
 					<>
-						<FilterTable>
-							<label className='font-size-1' htmlFor=''>
-								Status
-							</label>
-							<Select
-								className='w-100 mb-3'
-								options={status}
-								onChange={(e) =>
-									setFilterForm((prev) => {
-										return { ...prev, accept_status: e.value };
-									})
-								}
-							/>
-							<label className='font-size-1' htmlFor=''>
-								Property
-							</label>
-							<Select
-								className='w-100 mb-3'
-								options={propertyList}
-								onChange={(e) =>
-									setFilterForm((prev) => {
-										return { ...prev, model_id: e.value };
-									})
-								}
-							/>
-							<label className='font-size-1' htmlFor=''>
-								Payment Status
-							</label>
-							<RadioButton
-								data={paymentStatus}
-								groupName='paymentStatusRadio'
-								onChangeValue={(val) =>
-									setFilterForm((prev) => {
-										return { ...prev, payment_status: val };
-									})
-								}
-							/>
-						</FilterTable>
 						<ReusableTable
 							tableHead={[
 								"id",
@@ -286,7 +301,20 @@ function Reserves() {
 						</div>
 					</>
 				) : (
-					<Loader2 />
+					<ReusableTable
+						tableHead={[
+							"id",
+							"Requested at",
+							"Passenger",
+							"Property",
+							"Date",
+							"Passengers Count",
+							"status",
+							"Actions",
+						]}
+					>
+						Loading....
+					</ReusableTable>
 				)}
 			</DashboardLayout>
 		);

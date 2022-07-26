@@ -1,12 +1,12 @@
 import React from "react";
 import "./index.scss";
-const Loader = () => {
+const Loader = ({ background = "#fff" }) => {
 	return (
 		<div className='lds-ellipsis'>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
+			<div style={{ backgroundColor: background }}></div>
+			<div style={{ backgroundColor: background }}></div>
+			<div style={{ backgroundColor: background }}></div>
+			<div style={{ backgroundColor: background }}></div>
 		</div>
 	);
 };

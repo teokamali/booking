@@ -37,7 +37,9 @@
 	border-radius: 1rem;
 	.Table_wrapper {
 		padding: 2rem 1.25rem;
+		min-height: 500px;
 		.cs-table {
+			position: relative;
 			vertical-align: middle;
 			width: 100%;
 			border-width: 0 !important;
@@ -48,20 +50,22 @@
 				border-style: solid;
 				border-width: 0;
 				.thead_row {
-					background-color: $red-color !important;
 					color: $white-color !important;
 
 					.thead_cels {
+						background-color: $red-color !important;
 						padding-top: 1rem;
 						padding-bottom: 1rem;
 						&:first-child {
-							border-radius: 10px 0 0 10px;
+							border-top-left-radius: 10px;
+							border-bottom-left-radius: 10px;
 							padding-left: 1rem;
 						}
 
 						&:last-child {
 							min-width: 50px;
-							border-radius: 0 10px 10px 0;
+							border-top-right-radius: 10px;
+							border-bottom-right-radius: 10px;
 							padding-right: 1rem;
 						}
 					}
