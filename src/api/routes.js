@@ -25,6 +25,7 @@ const getUnitById = config.BASE_URL + "property/units";
 const updateUnit = config.BASE_URL + "property/units";
 const getHotelReservations = config.BASE_URL + "owner/report/invoices";
 const getUserReservations = config.BASE_URL + "passenger/invoices";
+const getUserTransactions = config.BASE_URL + "passenger/transactions";
 const postGeneralRules = config.BASE_URL + "property";
 const getFacilityCategories = config.BASE_URL + "property/facilities";
 const getFacilityCategoriesItem = config.BASE_URL + "property/facilities";
@@ -43,6 +44,7 @@ const getAllProperties = config.BASE_URL + "property";
 const searchUnits = config.BASE_URL + "search/hotels";
 
 const routes = {
+	getUserTransactions,
 	getCheapestHotels,
 	getMostReservedProperties,
 	getLastProperties,

@@ -20,8 +20,9 @@ import getFacilityCategories from "./getFacilityCategories";
 import getFacilityCategoriesItem from "./getFacilityCategoriesItem";
 import getSurroundingCategories from "./getSurroundingCategories";
 import getCurrentUser from "./getCurrentUser";
-
+import getUserTransactions from "./getUserTransactions";
 const get = {
+	getUserTransactions,
 	getCheapestHotels,
 	getMostReservedProperties,
 	getLastProperties,

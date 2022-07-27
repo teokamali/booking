@@ -5,6 +5,7 @@ import { useGetHotelInvoices } from "hooks/useInvoices";
 import { Loader2, ReusableTable, FilterTable, Pagination } from "components";
 import { useGetProperties } from "hooks/useProperty";
 import { useGetUserReservations, useUpdateReservationStatus } from "hooks/useInvoices";
+import { invoiceStatus } from "values";
 import Select from "react-select";
 import Cookies from "js-cookie";
 import { constans } from "values";
@@ -59,43 +60,6 @@ function Reserves() {
 		setFilterForm({ model_id: "", accept_status: "", payment_status: "" });
 	};
 
-	// Status
-	//  ,  ,  ,  ,  ,  ,  ,
-	const status = [
-		{
-			label: "Waiting for accept",
-			value: "waiting_for_accept",
-		},
-		{
-			label: "Waiting for payment",
-			value: "waiting_for_payment",
-		},
-
-		{
-			label: "Accepted",
-			value: "reserve_accepted",
-		},
-		{
-			label: "Canceled by owner",
-			value: "reserve_canceled_by_owner",
-		},
-		{
-			label: "Canceled by passanger",
-			value: "reserve_canceled_by_passenger",
-		},
-		{
-			label: "Not paid",
-			value: "reserve_canceled_by_not_paid",
-		},
-		{
-			label: "Canceled after payment",
-			value: "reserve_canceled_by_passenger_after_payment",
-		},
-		{
-			label: "Finnished",
-			value: "reserve_finished",
-		},
-	];
 	// payment status
 	const paymentStatus = [
 		{
@@ -129,7 +93,7 @@ function Reserves() {
 					</label>
 					<Select
 						className='w-100 mb-3'
-						options={status}
+						options={invoiceStatus}
 						value={filterForm.accept_status}
 						onChange={(e) => {
 							setFilterForm((prev) => {
@@ -222,7 +186,7 @@ function Reserves() {
 									<td className='table_body_d'>
 										<span>
 											{
-												status.find(
+												invoiceStatus.find(
 													(st) => st.value === item.reservable.status
 												).label
 											}

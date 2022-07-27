@@ -34,61 +34,40 @@ import reportsLineChartData from "UserDashboard/layouts/dashboard/data/reportsLi
 import Cookies from "js-cookie";
 import { constans } from "values";
 import { useGetUserReservations } from "hooks/useInvoices";
+import { useGetUserTransactions } from "hooks/useTransactions";
 import { ReusableTable, Loader2, Pagination, Loader3 } from "components";
+import { invoiceStatus } from "values";
 import moment from "moment";
 
 function Dashboard() {
 	const { sales, tasks } = reportsLineChartData;
 	const [page, setPage] = useState(1);
+	const [transactionPage, setTransactionPage] = useState(1);
+
+	// get invoices
 	const {
 		data: passangerInvoices,
 		refetch: refetchUserReserves,
-		isFetching,
+		isFetching: isInvoiceFetching,
 	} = useGetUserReservations({
 		pageParam: page,
 	});
-
-	console.log({ passangerInvoices });
+	// get transactions
+	const {
+		data: passangerTransactions,
+		refetch: refetchUserTransactions,
+		isFetching: isTransactionsFetching,
+	} = useGetUserTransactions({
+		pageParam: transactionPage,
+	});
 
 	useEffect(() => {
 		refetchUserReserves();
 	}, [page]);
 
-	const status = [
-		{
-			label: "Waiting for accept",
-			value: "waiting_for_accept",
-		},
-		{
-			label: "Waiting for payment",
-			value: "waiting_for_payment",
-		},
-
-		{
-			label: "Accepted",
-			value: "reserve_accepted",
-		},
-		{
-			label: "Canceled by owner",
-			value: "reserve_canceled_by_owner",
-		},
-		{
-			label: "Canceled by passanger",
-			value: "reserve_canceled_by_passenger",
-		},
-		{
-			label: "Not paid",
-			value: "reserve_canceled_by_not_paid",
-		},
-		{
-			label: "Canceled after payment",
-			value: "reserve_canceled_by_passenger_after_payment",
-		},
-		{
-			label: "Finnished",
-			value: "reserve_finished",
-		},
-	];
+	useEffect(() => {
+		refetchUserTransactions();
+	}, [transactionPage]);
 	// passanger Dashboard
 	if (JSON.parse(Cookies.get(constans.INFO)).types[0].pivot.user_type_id === 1) {
 		return (
@@ -157,8 +136,9 @@ function Dashboard() {
 								</MDBox>
 							</Grid>
 						</Grid>
-						{passangerInvoices ? (
+						{passangerInvoices && passangerTransactions ? (
 							<>
+								{/* invoices */}
 								<ReusableTable
 									title='Reservations'
 									className='psaangerInvoices'
@@ -172,15 +152,15 @@ function Dashboard() {
 										"Status",
 									]}
 								>
-									{isFetching && <Loader3 />}
+									{isInvoiceFetching && <Loader3 />}
 									{passangerInvoices?.data.map((item, i) => {
-										const currStatus = status.find(
+										const currStatus = invoiceStatus.find(
 											(st) => item.reservable.status === st.value
 										).label;
 										return (
 											<tr className='table_body_row' key={i}>
 												<td className=' table_body_d'>
-													<span>{i + 1}</span>
+													<span>{item.id}</span>
 												</td>
 												<td className=' table_body_d'>
 													<span>
@@ -235,6 +215,64 @@ function Dashboard() {
 										totalPages={passangerInvoices.last_page}
 										onPaginateClick={(page) => {
 											setPage(page);
+										}}
+									/>
+								</div>
+								{/* Transactions */}
+								<ReusableTable
+									title='Transactions'
+									className='psaangerInvoices'
+									tableHead={[
+										"id",
+										"Requested at",
+										"Unit Name",
+										"Status",
+										"Price",
+										"Tracking Code",
+										"Type",
+									]}
+								>
+									{isTransactionsFetching && <Loader3 />}
+									{passangerTransactions?.data.map((item, i) => {
+										return (
+											<tr className='table_body_row' key={i}>
+												<td className=' table_body_d'>
+													<span>{item.id}</span>
+												</td>
+												<td className=' table_body_d'>
+													<span>
+														{moment(item.created_at).format("LL")}
+													</span>
+												</td>
+												<td className=' table_body_d'>
+													{item.reservation_info.map((res, ind) => (
+														<span key={ind}>
+															{res.property.name} {res.unit.name}
+														</span>
+													))}
+												</td>
+												<td className='table_body_d'>
+													<span>{item.status}</span>
+												</td>
+												<td className=' table_body_d'>
+													<span>{item.amount.toLocaleString()}</span>
+												</td>
+												<td className=' table_body_d'>
+													<span>{item.tracking_code}</span>
+												</td>
+												<td className='table_body_d'>
+													<span>{item.type}</span>
+												</td>
+											</tr>
+										);
+									})}
+								</ReusableTable>
+								<div className='d-flex justify-content-center pagination'>
+									<Pagination
+										page={transactionPage}
+										totalPages={passangerTransactions.last_page}
+										onPaginateClick={(page) => {
+											setTransactionPage(page);
 										}}
 									/>
 								</div>
