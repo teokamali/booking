@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DashboardLayout from "UserDashboard/examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 import { useGetHotelInvoices } from "hooks/useInvoices";
-import { Loader2, ReusableTable, FilterTable, Pagination } from "components";
+import { Loader3, Loader2, ReusableTable, FilterTable, Pagination } from "components";
 import { useGetProperties } from "hooks/useProperty";
 import { useGetUserReservations, useUpdateReservationStatus } from "hooks/useInvoices";
 import { invoiceStatus } from "values";
@@ -135,7 +135,7 @@ function Reserves() {
 						</button>
 					</div>
 				</FilterTable>
-				{!isHotelReservesFetching ? (
+				{hotelData ? (
 					<>
 						<ReusableTable
 							tableHead={[
@@ -149,6 +149,7 @@ function Reserves() {
 								"Actions",
 							]}
 						>
+							{isHotelReservesFetching && <Loader3 />}
 							{hotelData?.data.map((item, i) => (
 								<tr className='table_body_row' key={i}>
 									<td className=' table_body_d'>
@@ -265,20 +266,7 @@ function Reserves() {
 						</div>
 					</>
 				) : (
-					<ReusableTable
-						tableHead={[
-							"id",
-							"Requested at",
-							"Passenger",
-							"Property",
-							"Date",
-							"Passengers Count",
-							"status",
-							"Actions",
-						]}
-					>
-						Loading....
-					</ReusableTable>
+					<Loader2 />
 				)}
 			</DashboardLayout>
 		);

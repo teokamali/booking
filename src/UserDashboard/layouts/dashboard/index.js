@@ -56,11 +56,13 @@ function Dashboard() {
 	const { sales, tasks } = reportsLineChartData;
 	const [page, setPage] = useState(1);
 	const [transactionPage, setTransactionPage] = useState(1);
+	// invoice filter
 	const [isInvoiceFilterOpen, setIsInvoiceFilterOpen] = useState(false);
 	const [invoiceFilterForm, setInvoiceFilterForm] = useState({
 		accept_status: "",
 		payment_status: "",
 	});
+
 	// get invoices
 	const {
 		data: passangerInvoices,
@@ -198,7 +200,7 @@ function Dashboard() {
 								</button>
 							</div>
 						</FilterTable>
-						{passangerInvoices && passangerTransactions ? (
+						{passangerInvoices ? (
 							<>
 								{/* invoices */}
 								<ReusableTable
@@ -280,6 +282,13 @@ function Dashboard() {
 										}}
 									/>
 								</div>
+							</>
+						) : (
+							<Loader2 />
+						)}
+
+						{passangerTransactions ? (
+							<>
 								{/* Transactions */}
 								<ReusableTable
 									title='Transactions'
