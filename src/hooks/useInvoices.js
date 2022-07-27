@@ -9,9 +9,10 @@ const useGetHotelInvoices = ({ pageParam, model_id, accept_status, payment_statu
 	return { data, refetch, isFetching, isLoading };
 };
 
-const useGetUserReservations = ({ pageParam }) => {
-	const { data, refetch, isFetching, isLoading } = useQuery("getUserInvoices", () =>
-		api.get.getUserReservations(pageParam)
+const useGetUserReservations = ({ pageParam, accept_status, payment_status }) => {
+	const { data, refetch, isFetching, isLoading } = useQuery(
+		["getUserInvoices", accept_status, payment_status],
+		() => api.get.getUserReservations(pageParam, accept_status, payment_status)
 	);
 	return { data, refetch, isFetching, isLoading };
 };

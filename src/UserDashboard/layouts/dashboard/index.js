@@ -35,15 +35,32 @@ import Cookies from "js-cookie";
 import { constans } from "values";
 import { useGetUserReservations } from "hooks/useInvoices";
 import { useGetUserTransactions } from "hooks/useTransactions";
-import { ReusableTable, Loader2, Pagination, Loader3 } from "components";
+import { ReusableTable, Loader2, Pagination, Loader3, FilterTable, RadioButton } from "components";
 import { invoiceStatus } from "values";
+import Select from "react-select";
 import moment from "moment";
+
+// payment status
+const paymentStatus = [
+	{
+		label: "Paid",
+		value: "paid",
+	},
+	{
+		label: "Not Paid",
+		value: "not_paid",
+	},
+];
 
 function Dashboard() {
 	const { sales, tasks } = reportsLineChartData;
 	const [page, setPage] = useState(1);
 	const [transactionPage, setTransactionPage] = useState(1);
-
+	const [isInvoiceFilterOpen, setIsInvoiceFilterOpen] = useState(false);
+	const [invoiceFilterForm, setInvoiceFilterForm] = useState({
+		accept_status: "",
+		payment_status: "",
+	});
 	// get invoices
 	const {
 		data: passangerInvoices,
@@ -51,6 +68,8 @@ function Dashboard() {
 		isFetching: isInvoiceFetching,
 	} = useGetUserReservations({
 		pageParam: page,
+		accept_status: invoiceFilterForm.accept_status.value,
+		payment_status: invoiceFilterForm.payment_status,
 	});
 	// get transactions
 	const {
@@ -68,6 +87,11 @@ function Dashboard() {
 	useEffect(() => {
 		refetchUserTransactions();
 	}, [transactionPage]);
+
+	const resetFilterHandler = () => {
+		setInvoiceFilterForm({ accept_status: "", payment_status: "" });
+	};
+
 	// passanger Dashboard
 	if (JSON.parse(Cookies.get(constans.INFO)).types[0].pivot.user_type_id === 1) {
 		return (
@@ -136,6 +160,44 @@ function Dashboard() {
 								</MDBox>
 							</Grid>
 						</Grid>
+
+						<FilterTable
+							isOpen={isInvoiceFilterOpen}
+							setIsOpen={setIsInvoiceFilterOpen}
+						>
+							<label className='font-size-1' htmlFor=''>
+								Status
+							</label>
+							<Select
+								className='w-100 mb-3'
+								options={invoiceStatus}
+								value={invoiceFilterForm.accept_status}
+								onChange={(e) => {
+									setInvoiceFilterForm((prev) => {
+										return { ...prev, accept_status: e };
+									});
+									setIsInvoiceFilterOpen(false);
+								}}
+							/>
+							<label className='font-size-1' htmlFor=''>
+								Payment Status
+							</label>
+							<div className='d-flex align-items-center justify-content-between w-100 '>
+								<RadioButton
+									data={paymentStatus}
+									groupName='paymentStatusRadio'
+									onChangeValue={(val) => {
+										setInvoiceFilterForm((prev) => {
+											return { ...prev, payment_status: val };
+										});
+										setIsInvoiceFilterOpen(false);
+									}}
+								/>
+								<button className='small-btn-main' onClick={resetFilterHandler}>
+									<i className='fas fa-arrow-rotate-left'></i>
+								</button>
+							</div>
+						</FilterTable>
 						{passangerInvoices && passangerTransactions ? (
 							<>
 								{/* invoices */}
@@ -225,7 +287,7 @@ function Dashboard() {
 									tableHead={[
 										"id",
 										"Requested at",
-										"Unit Name",
+										"Property Info",
 										"Status",
 										"Price",
 										"Tracking Code",
@@ -247,7 +309,8 @@ function Dashboard() {
 												<td className=' table_body_d'>
 													{item.reservation_info.map((res, ind) => (
 														<span key={ind}>
-															{res.property.name} {res.unit.name}
+															{res.property.name} | {res.unit.name}
+															<br />
 														</span>
 													))}
 												</td>
