@@ -6,13 +6,6 @@ function RadioButton({ data, onChangeValue, className, groupName, activeItem }) 
 		onChangeValue(e.target.value);
 	};
 
-	const handleCheckedOrNot = (item) => {
-		if (item.value !== activeItem) {
-			return false;
-		} else {
-			return true;
-		}
-	};
 	return (
 		<div className={`radioWrapper ${className}`}>
 			{data.map((item, index) => {
