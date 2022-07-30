@@ -57,7 +57,7 @@ function Button({
 			type={type}
 			{...props}
 		>
-			{isLoading ? <Loader /> : children}
+			{isLoading ? <Loader background='#ff3f3f' /> : children}
 		</ButtonEl>
 	);
 }
