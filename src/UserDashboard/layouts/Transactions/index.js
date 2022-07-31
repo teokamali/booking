@@ -27,7 +27,7 @@ const transactionType = [
 
 function Transactions() {
 	const [transactionPage, setTransactionPage] = useState(1);
-	const { isTransactionFilterOpen, setIsTransactionFilterOpen } = useState(false);
+	const [isTransactionFilterOpen, setIsTransactionFilterOpen] = useState(false);
 	const [transactionFilterForm, setTransactionFilterForm] = useState({
 		type: "",
 	});
@@ -44,101 +44,110 @@ function Transactions() {
 		pageParam: transactionPage,
 		type: transactionFilterForm.type,
 	});
-	// console.log({ ownerTransactions });
-	if (ownerTransactions) {
-		return (
-			<DashboardLayout>
-				<DashboardNavbar />
 
-				<FilterTable
-					isOpen={isTransactionFilterOpen}
-					setIsOpen={setIsTransactionFilterOpen}
-				>
-					<label className='font-size-1' htmlFor=''>
-						Transaction Type
-					</label>
-					<div className='d-flex align-items-center justify-content-between w-100 '>
-						<RadioButton
-							data={transactionType}
-							groupName='transactionTypeRadio'
-							activeItem={transactionFilterForm.type}
-							onChangeValue={(val) => {
-								setTransactionFilterForm((prev) => {
-									return { ...prev, type: val };
-								});
-								setIsTransactionFilterOpen(false);
+	return (
+		<DashboardLayout>
+			<DashboardNavbar />
+			{ownerTransactions ? (
+				<>
+					<FilterTable
+						isOpen={isTransactionFilterOpen}
+						setIsOpen={setIsTransactionFilterOpen}
+					>
+						<label className='font-size-1' htmlFor=''>
+							Transaction Type
+						</label>
+						<div className='d-flex align-items-center justify-content-between w-100 '>
+							<RadioButton
+								data={transactionType}
+								groupName='transactionTypeRadio'
+								activeItem={transactionFilterForm.type}
+								onChangeValue={(val) => {
+									setTransactionFilterForm((prev) => {
+										return { ...prev, type: val };
+									});
+									setIsTransactionFilterOpen(false);
+								}}
+							/>
+							<button
+								className='small-btn-main ms-3 mt-3'
+								onClick={resetTransactionFilterHandler}
+							>
+								<i className='fas fa-arrow-rotate-left'></i>
+							</button>
+						</div>
+					</FilterTable>
+					{/* Transactions */}
+					<ReusableTable
+						title='Transactions'
+						className='psaangerInvoices'
+						tableHead={[
+							"id",
+							"Requested at",
+							"Passanger Info",
+							"Property Info",
+							"Status",
+							"Price",
+							"Tracking Code",
+							"Type",
+						]}
+					>
+						{isTransactionsFetching && <Loader3 />}
+						{ownerTransactions.data.map((item, i) => {
+							return (
+								<tr className='table_body_row' key={i}>
+									<td className=' table_body_d'>
+										<span>{item.id}</span>
+									</td>
+									<td className=' table_body_d'>
+										<span>{moment(item.created_at).format("LL")}</span>
+									</td>
+									<td className=' table_body_d'>
+										<span>
+											{item.user.first_name} {item.user.last_name}
+										</span>
+										<br />
+										<span>{item.user.email}</span>
+									</td>
+									<td className=' table_body_d'>
+										{item.reservation_info.map((res, ind) => (
+											<span key={ind}>
+												{res.property.name} | {res.unit.name}
+												<br />
+											</span>
+										))}
+									</td>
+									<td className='table_body_d'>
+										<span>{item.status}</span>
+									</td>
+									<td className=' table_body_d'>
+										<span>{item.amount.toLocaleString()}</span>
+									</td>
+									<td className=' table_body_d'>
+										<span>{item.tracking_code}</span>
+									</td>
+									<td className='table_body_d'>
+										<span>{item.type}</span>
+									</td>
+								</tr>
+							);
+						})}
+					</ReusableTable>
+					<div className='d-flex justify-content-center pagination'>
+						<Pagination
+							page={transactionPage}
+							totalPages={ownerTransactions.last_page}
+							onPaginateClick={(page) => {
+								setTransactionPage(page);
 							}}
 						/>
-						<button
-							className='small-btn-main ms-3 mt-3'
-							onClick={resetTransactionFilterHandler}
-						>
-							<i className='fas fa-arrow-rotate-left'></i>
-						</button>
 					</div>
-				</FilterTable>
-				{/* Transactions */}
-				<ReusableTable
-					title='Transactions'
-					className='psaangerInvoices'
-					tableHead={[
-						"id",
-						"Requested at",
-						"Property Info",
-						"Status",
-						"Price",
-						"Tracking Code",
-						"Type",
-					]}
-				>
-					{isTransactionsFetching && <Loader3 />}
-					{ownerTransactions.data.map((item, i) => {
-						return (
-							<tr className='table_body_row' key={i}>
-								<td className=' table_body_d'>
-									<span>{item.id}</span>
-								</td>
-								<td className=' table_body_d'>
-									<span>{moment(item.created_at).format("LL")}</span>
-								</td>
-								<td className=' table_body_d'>
-									{item.reservation_info.map((res, ind) => (
-										<span key={ind}>
-											{res.property.name} | {res.unit.name}
-											<br />
-										</span>
-									))}
-								</td>
-								<td className='table_body_d'>
-									<span>{item.status}</span>
-								</td>
-								<td className=' table_body_d'>
-									<span>{item.amount.toLocaleString()}</span>
-								</td>
-								<td className=' table_body_d'>
-									<span>{item.tracking_code}</span>
-								</td>
-								<td className='table_body_d'>
-									<span>{item.type}</span>
-								</td>
-							</tr>
-						);
-					})}
-				</ReusableTable>
-				<div className='d-flex justify-content-center pagination'>
-					<Pagination
-						page={transactionPage}
-						totalPages={ownerTransactions.last_page}
-						onPaginateClick={(page) => {
-							setTransactionPage(page);
-						}}
-					/>
-				</div>
-			</DashboardLayout>
-		);
-	} else {
-		<Loader2 />;
-	}
+				</>
+			) : (
+				<Loader2 />
+			)}
+		</DashboardLayout>
+	);
 }
 
 export default Transactions;

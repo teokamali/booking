@@ -7,8 +7,9 @@ const useGetUserTransactions = ({ pageParam, type }) => {
 	return { data, refetch, isFetching, isLoading };
 };
 const useGetOwnerTransactions = ({ pageParam, type }) => {
-	const { data, refetch, isFetching, isLoading } = useQuery(["getOwnerTransactions", type], () =>
-		api.get.getOwnerTransactions(pageParam, type)
+	const { data, refetch, isFetching, isLoading } = useQuery(
+		["getOwnerTransactions", pageParam, type],
+		() => api.get.getOwnerTransactions(pageParam, type)
 	);
 	return { data, refetch, isFetching, isLoading };
 };
