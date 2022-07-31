@@ -3,18 +3,19 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { constans } from "../../values";
 import styled from "styled-components";
-import Button from "../Button";
+import { Button, Modal2 } from "components";
 import { useLogout } from "hooks/useAuth";
 
 const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
 	const [isActived, setIsActicved] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const { mutate: logout } = useLogout();
 	const onOpenDropDown = () => {
 		setIsActicved((prev) => !prev);
 	};
 	return (
-		<Container onClick={onOpenDropDown}>
-			<IconContainer>
+		<Container>
+			<IconContainer onClick={onOpenDropDown}>
 				<span>{data}</span>
 				<Selected>
 					<i className='fa-regular fa-circle-user'></i>
@@ -31,11 +32,42 @@ const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
 							<Button
 								className='w-100'
 								onClick={() => {
-									logout();
+									setIsModalOpen(true);
+									setIsActicved(false);
 								}}
 							>
 								Log Out
 							</Button>
+							<Modal2
+								className='login-modal'
+								isOpen={isModalOpen}
+								disableBackdropClose={true}
+								onClose={() => setIsModalOpen(false)}
+								title='Logout'
+							>
+								<span className='text-center w-100'>
+									Are you sure you want to sign out?
+								</span>
+								<div
+									className='mt-3'
+									style={{
+										display: "flex",
+										alignItems: "center",
+										gap: "5px",
+									}}
+								>
+									<button className='small-btn-main' onClick={logout}>
+										Log out
+									</button>
+									<button
+										className='seconadry-small-btn-main'
+										// style={{ backgroundColor: "#6a6a71" }}
+										onClick={() => setIsModalOpen(false)}
+									>
+										No Keep me sign in!
+									</button>
+								</div>
+							</Modal2>
 						</li>
 					</>
 				)}
@@ -55,11 +87,42 @@ const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
 							<Button
 								className='w-100'
 								onClick={() => {
-									logout();
+									setIsModalOpen(true);
+									setIsActicved(false);
 								}}
 							>
 								Log Out
 							</Button>
+							<Modal2
+								className='login-modal'
+								isOpen={isModalOpen}
+								disableBackdropClose={true}
+								onClose={() => setIsModalOpen(false)}
+								title='Logout'
+							>
+								<span className='text-center w-100'>
+									Are you sure you want to sign out?
+								</span>
+								<div
+									className='mt-3'
+									style={{
+										display: "flex",
+										alignItems: "center",
+										gap: "5px",
+									}}
+								>
+									<button className='small-btn-main' onClick={logout}>
+										Log out
+									</button>
+									<button
+										className='seconadry-small-btn-main'
+										// style={{ backgroundColor: "#6a6a71" }}
+										onClick={() => setIsModalOpen(false)}
+									>
+										No Keep me sign in!
+									</button>
+								</div>
+							</Modal2>
 						</li>
 					</>
 				)}
