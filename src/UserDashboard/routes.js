@@ -9,6 +9,7 @@ import AddUnit from "./layouts/AddUnit";
 import Units from "./layouts/Units";
 import EditUnit from "./layouts/EditUnit";
 import Reserves from "./layouts/Reserves";
+import Transactions from "./layouts/Transactions";
 import { constans } from "values";
 import GeneralRules from "./layouts/GeneralRules";
 import Facilities from "./layouts/Facilities";
@@ -149,7 +150,7 @@ const routes = [
 		type: "title",
 		title: "Invoices",
 		key: "invoices",
-		accessibility: [PASSENGER, MIDDLE_MAN, OWNER],
+		accessibility: [MIDDLE_MAN, OWNER],
 	},
 	{
 		type: "collapse",
@@ -159,7 +160,17 @@ const routes = [
 		route: "reserves",
 		link: "reserves",
 		component: <Reserves />,
-		accessibility: [PASSENGER, OWNER],
+		accessibility: [OWNER],
+	},
+	{
+		type: "collapse",
+		name: "Transactions",
+		key: "transactions",
+		icon: <Icon fontSize='small'>swap_horiz</Icon>,
+		route: "transactions",
+		link: "transactions",
+		component: <Transactions />,
+		accessibility: [OWNER],
 	},
 	{
 		type: "title",

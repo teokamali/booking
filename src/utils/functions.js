@@ -20,6 +20,7 @@ export const toFaDigit = function () {
 		return ret;
 	});
 };
+
 export const handleDirction = () => {
 	if (document.body.dir === "rtl") {
 		return true;

@@ -35,6 +35,7 @@ const postFacilities = config.BASE_URL + "property/facilities";
 const postFaq = config.BASE_URL + "property";
 const ReserveUnit = config.BASE_URL + "reservation/hotels/unit";
 const updateReservationStatus = config.BASE_URL + "reservation/invoices";
+const owenerTransactions = config.BASE_URL + "owner/report/transactions";
 // main website
 const getBestProperties = config.BASE_URL + "slider/best_hotels?count=10";
 const getCheapestHotels = config.BASE_URL + "slider/cheap_hotels?count=10";
@@ -44,6 +45,7 @@ const getAllProperties = config.BASE_URL + "property";
 const searchUnits = config.BASE_URL + "search/hotels";
 
 const routes = {
+	owenerTransactions,
 	getUserTransactions,
 	getCheapestHotels,
 	getMostReservedProperties,
