@@ -117,7 +117,6 @@ function Facilities() {
 			};
 		}, []);
 		postFacilitiesMutate(mapData);
-		// console.log(mapData);
 	};
 	return (
 		<DashboardLayout>

@@ -13,7 +13,6 @@ function Faq() {
 	const { mutate: postFaqMutate, isLoading: postFaqIsLoading } = usePostFaq();
 	// get Property List
 	const { data: proppertyList, isLoading: isPropertyListLoading } = useGetProperties();
-	console.log(proppertyList?.data.data);
 	let newPropertyList = [];
 	if (!isPropertyListLoading) {
 		proppertyList.data.data.map((item) =>
@@ -30,8 +29,6 @@ function Faq() {
 		answer: "",
 	};
 	const formSubmitHandler = (val) => {
-		console.log(val);
-
 		const propertyId = val.property_id;
 		const formData = {
 			question: val.question,
@@ -58,7 +55,6 @@ function Faq() {
 						>
 							{({ values, errors, touched, setValues }) => (
 								<Form>
-									{console.log(errors)}
 									<div className='mb-3'>
 										<label htmlFor=''>Select Your Property</label>
 										<Select

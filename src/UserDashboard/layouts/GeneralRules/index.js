@@ -50,7 +50,6 @@ function GeneralRules() {
 					formInitial.cancellation_prepayment !== "" &&
 					formInitial.refundable_damage_deposit !== ""
 				) {
-					// console.log(data);
 					postGeneralRulesMutate(data);
 				} else {
 					Toastify(

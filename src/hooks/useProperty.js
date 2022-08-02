@@ -56,7 +56,6 @@ const useGetCities = ({ id, options = {} }) => {
 		},
 		select: (data, variables, context) => {
 			// Boom baby!
-			console.log({ data });
 			return data.data.map((item) => ({ label: item.name, value: item.id }));
 		},
 		...options,

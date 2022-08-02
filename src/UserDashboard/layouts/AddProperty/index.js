@@ -206,7 +206,6 @@ const AddProperty = () => {
 						>
 							{({ values, errors, touched }) => (
 								<Form>
-									{console.log(errors)}
 									{/* type */}
 									<div className=' mb-3'>
 										<label htmlFor=''>Select Your Service Type</label>

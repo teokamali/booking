@@ -43,9 +43,7 @@ function EditUnit() {
 		if (data) {
 			setUnitData(data.data);
 			setLoading(false);
-			console.log(formik.values);
 			formik.setValues(unitData);
-			console.log(formik.values);
 		} else {
 			setLoading(true);
 		}

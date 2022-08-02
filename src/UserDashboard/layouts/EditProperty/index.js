@@ -73,7 +73,6 @@ const EditProperty = ({ data }) => {
 	}
 	const { mutate: updateProperty, isLoading: isUpdating } = useUpdateProperty();
 	const formSubmitHandler = (e) => {
-		console.log(propertyData.data);
 		const formData = {
 			property_type_id: e.property_type_id,
 			name: e.name,
@@ -164,7 +163,6 @@ const EditProperty = ({ data }) => {
 					<div className='container mt-3'>
 						<div className='preview'>
 							<Gallery>
-								{/* {console.log(propertyData.data.images)} */}
 								{propertyData.data.images.map((images, i) => (
 									<Item
 										original={images.original_image_link}

@@ -10,9 +10,7 @@ const Map = ({ userLocation, setUserLocation, clickedPosition, setClickPosition 
 			setUserLocation(e.latlng);
 			mapEvents.flyTo(e.latlng);
 		},
-		locationerror(e) {
-			// console.log(e);
-		},
+		locationerror(e) {},
 	});
 	useEffect(() => {
 		mapEvents.locate();

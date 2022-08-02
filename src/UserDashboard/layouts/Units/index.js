@@ -11,7 +11,6 @@ const Units = () => {
 	const deletePropertyHandler = (id) => {
 		deleteUnitMutate({ id });
 	};
-	console.log(data?.data);
 	const onEditUnit = (id) => {
 		// console.log({ id });
 	};

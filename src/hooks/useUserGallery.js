@@ -6,7 +6,6 @@ import { Toastify } from "../components";
 const useGetGallery = () => {
 	return useQuery("getGallery", api.get.getUserGallery, {
 		onError: (error, variables, context) => {
-			console.log({ error });
 			// An error happened!
 			Toastify("error", error.response.data.message);
 		},

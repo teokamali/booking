@@ -45,7 +45,6 @@ const TableButtons = ({ onEdit, onDelete, id }) => {
 	);
 };
 const FaqTable = ({ onEdit, onDelete, data, tableHead, title }) => {
-	console.log({ data });
 	return (
 		<div className='table-responsive'>
 			<div className='Table_wrapper'>

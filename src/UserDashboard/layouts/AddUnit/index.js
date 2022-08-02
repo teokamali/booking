@@ -97,8 +97,6 @@ const AddUnit = () => {
 			}),
 		}));
 	};
-	// console.log(formik.values.beds);
-	// formik.setValues();
 	const handleSetSelectedBeds = (id) => {
 		setSelectedBeds((prev) => [...prev, id]);
 	};

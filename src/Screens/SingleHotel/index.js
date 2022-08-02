@@ -35,7 +35,6 @@ const SingleHotel = () => {
 	const PropertyId = useLocation().pathname.split("/")[2];
 	const { data, isLoading: ispropertyLoading, isError } = useGetPropertyById(PropertyId);
 	const [searchedUnits, setSearchedUnits] = useState([]);
-	console.log(data);
 	const RoomReserveHandler = (id) => {
 		console.log(id);
 	};
@@ -138,7 +137,6 @@ const SingleHotel = () => {
 									const icon = Object.entries(icons).find(
 										(key) => item[0] === key[0]
 									);
-									console.log({ item });
 									return (
 										<div
 											key={index}
