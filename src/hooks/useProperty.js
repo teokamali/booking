@@ -180,7 +180,15 @@ const usePostFaq = () => {
 	});
 };
 
+const useGetPropertiesOccupation = ({ pageParam }) => {
+	const { data, refetch, isFetching, isLoading } = useQuery(
+		["getPropertiesOccupation", pageParam],
+		() => api.get.getPropertiesOccupation(pageParam)
+	);
+	return { data, refetch, isFetching, isLoading };
+};
 export {
+	useGetPropertiesOccupation,
 	usePostFaq,
 	usePostFacilities,
 	usePostSurrounding,

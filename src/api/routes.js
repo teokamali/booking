@@ -44,6 +44,9 @@ const getLastProperties = config.BASE_URL + "slider/last_hotels?count=10";
 const getAllProperties = config.BASE_URL + "property";
 const searchUnits = config.BASE_URL + "search/hotels";
 
+// ADMIN
+const getPropertiesOccupation = config.BASE_URL + "admin/report/properties/occupation";
+
 const routes = {
 	owenerTransactions,
 	getUserTransactions,
@@ -84,6 +87,7 @@ const routes = {
 	updateUnit,
 	postGeneralRules,
 	updateReservationStatus,
+	getPropertiesOccupation,
 };
 
 export default routes;

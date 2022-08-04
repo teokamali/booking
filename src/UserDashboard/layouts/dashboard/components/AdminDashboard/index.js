@@ -1,4 +1,7 @@
 import Grid from "@mui/material/Grid";
+import { Loader2 } from "components";
+import { useGetPropertiesOccupation } from "hooks/useProperty";
+import { useState } from "react";
 
 // Material Dashboard 2 React components
 import MDBox from "UserDashboard/components/MDBox";
@@ -15,8 +18,21 @@ import reportsBarChartData from "UserDashboard/layouts/dashboard/data/reportsBar
 import reportsLineChartData from "UserDashboard/layouts/dashboard/data/reportsLineChartData";
 function AdminDashboard() {
 	const { sales, tasks } = reportsLineChartData;
+	// Properties info
+	const [propertiesOccupationPage, setPropertiesOccupationPage] = useState(1);
+	const {
+		data: propertiesOccupation,
+		refetch: refetchPropertiesOccupation,
+		isFetching: isPropertiesOccupationFetching,
+	} = useGetPropertiesOccupation({
+		pageParam: propertiesOccupationPage,
+	});
+	// Users Info
 
+
+	console.log("sa");
 	// Admin Dashboard
+	if (!propertiesOccupation) return <Loader2 />;
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
@@ -28,7 +44,7 @@ function AdminDashboard() {
 								color='dark'
 								icon='weekend'
 								title='Properties Registered'
-								count={281}
+								count={propertiesOccupation.total}
 								percentage={{
 									color: "success",
 									amount: "+55%",

@@ -22,7 +22,10 @@ import getSurroundingCategories from "./getSurroundingCategories";
 import getCurrentUser from "./getCurrentUser";
 import getUserTransactions from "./getUserTransactions";
 import getOwnerTransactions from "./getOwnerTransactions";
+import getPropertiesOccupation from "./getPropertiesOccupation";
+
 const get = {
+	getPropertiesOccupation,
 	getOwnerTransactions,
 	getUserTransactions,
 	getCheapestHotels,
