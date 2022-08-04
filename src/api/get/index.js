@@ -23,8 +23,9 @@ import getCurrentUser from "./getCurrentUser";
 import getUserTransactions from "./getUserTransactions";
 import getOwnerTransactions from "./getOwnerTransactions";
 import getPropertiesOccupation from "./getPropertiesOccupation";
-
+import getUsersList from "./getUsersList";
 const get = {
+	getUsersList,
 	getPropertiesOccupation,
 	getOwnerTransactions,
 	getUserTransactions,

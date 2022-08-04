@@ -1,6 +1,7 @@
 import Grid from "@mui/material/Grid";
 import { Loader2 } from "components";
 import { useGetPropertiesOccupation } from "hooks/useProperty";
+import { useGetUsersList } from "hooks/useUser";
 import { useState } from "react";
 
 // Material Dashboard 2 React components
@@ -18,8 +19,11 @@ import reportsBarChartData from "UserDashboard/layouts/dashboard/data/reportsBar
 import reportsLineChartData from "UserDashboard/layouts/dashboard/data/reportsLineChartData";
 function AdminDashboard() {
 	const { sales, tasks } = reportsLineChartData;
-	// Properties info
+	// Paginations
+	const [userListPage, setUserListPage] = useState(1);
 	const [propertiesOccupationPage, setPropertiesOccupationPage] = useState(1);
+
+	// Properties info
 	const {
 		data: propertiesOccupation,
 		refetch: refetchPropertiesOccupation,
@@ -28,11 +32,15 @@ function AdminDashboard() {
 		pageParam: propertiesOccupationPage,
 	});
 	// Users Info
+	const {
+		data: userList,
+		refetch: refetchUserList,
+		isFetching: isUserListFetching,
+	} = useGetUsersList({ pageParam: userListPage });
 
-
-	console.log("sa");
+	console.log(userList);
 	// Admin Dashboard
-	if (!propertiesOccupation) return <Loader2 />;
+	if (!propertiesOccupation && !userList) return <Loader2 />;
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
@@ -58,7 +66,7 @@ function AdminDashboard() {
 							<ComplexStatisticsCard
 								icon='leaderboard'
 								title='Total Users'
-								count='2,300'
+								count={userList.total}
 								percentage={{
 									color: "success",
 									amount: "+3%",

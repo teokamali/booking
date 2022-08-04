@@ -46,8 +46,10 @@ const searchUnits = config.BASE_URL + "search/hotels";
 
 // ADMIN
 const getPropertiesOccupation = config.BASE_URL + "admin/report/properties/occupation";
+const getUsersList = config.BASE_URL + "admin/users/list";
 
 const routes = {
+	getUsersList,
 	owenerTransactions,
 	getUserTransactions,
 	getCheapestHotels,
