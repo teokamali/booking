@@ -24,7 +24,10 @@ import getUserTransactions from "./getUserTransactions";
 import getOwnerTransactions from "./getOwnerTransactions";
 import getPropertiesOccupation from "./getPropertiesOccupation";
 import getUsersList from "./getUsersList";
+import getAllTransactions from "./getAllTransactions";
+
 const get = {
+	getAllTransactions,
 	getUsersList,
 	getPropertiesOccupation,
 	getOwnerTransactions,

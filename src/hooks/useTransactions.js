@@ -6,6 +6,14 @@ const useGetUserTransactions = ({ pageParam, type }) => {
 	);
 	return { data, refetch, isFetching, isLoading };
 };
+
+const useGetAllTransactions = ({ pageParam, type }) => {
+	const { data, refetch, isFetching, isLoading } = useQuery(["getAllTransactions", type], () =>
+		api.get.getAllTransactions(pageParam, type)
+	);
+	return { data, refetch, isFetching, isLoading };
+};
+
 const useGetOwnerTransactions = ({ pageParam, type }) => {
 	const { data, refetch, isFetching, isLoading } = useQuery(
 		["getOwnerTransactions", pageParam, type],
@@ -13,4 +21,4 @@ const useGetOwnerTransactions = ({ pageParam, type }) => {
 	);
 	return { data, refetch, isFetching, isLoading };
 };
-export { useGetUserTransactions, useGetOwnerTransactions };
+export { useGetUserTransactions, useGetOwnerTransactions, useGetAllTransactions };

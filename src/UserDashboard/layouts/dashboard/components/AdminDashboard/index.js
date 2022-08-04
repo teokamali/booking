@@ -1,6 +1,7 @@
 import Grid from "@mui/material/Grid";
 import { Loader2 } from "components";
 import { useGetPropertiesOccupation } from "hooks/useProperty";
+import { useGetAllTransactions } from "hooks/useTransactions";
 import { useGetUsersList } from "hooks/useUser";
 import { useState } from "react";
 
@@ -22,6 +23,7 @@ function AdminDashboard() {
 	// Paginations
 	const [userListPage, setUserListPage] = useState(1);
 	const [propertiesOccupationPage, setPropertiesOccupationPage] = useState(1);
+	const [TransactionsPage, setTransactionsPage] = useState(1);
 
 	// Properties info
 	const {
@@ -37,10 +39,16 @@ function AdminDashboard() {
 		refetch: refetchUserList,
 		isFetching: isUserListFetching,
 	} = useGetUsersList({ pageParam: userListPage });
+	// transaction info
 
-	console.log(userList);
+	const {
+		data: TrasnsactionsList,
+		refetch: refetchTransactionsList,
+		isFetching: isTransactionsListFetching,
+	} = useGetAllTransactions({ pageParam: userListPage });
+
 	// Admin Dashboard
-	if (!propertiesOccupation && !userList) return <Loader2 />;
+	if (!propertiesOccupation || !userList || !TrasnsactionsList) return <Loader2 />;
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
@@ -81,7 +89,7 @@ function AdminDashboard() {
 								color='success'
 								icon='store'
 								title='Total Reservations'
-								count='34k'
+								count={TrasnsactionsList.total}
 								percentage={{
 									color: "success",
 									amount: "+1%",
