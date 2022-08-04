@@ -126,6 +126,61 @@ const DashboardDropDownWithIcon = ({ icon, data, onItemClick }) => {
 						</li>
 					</>
 				)}
+				{/* if user was Admin */}
+				{JSON.parse(Cookies.get(constans.INFO)).types[0].pivot.user_type_id === 4 && (
+					<>
+						<li>
+							<Link to='/dashboard'>Dashboard</Link>
+						</li>
+						<li>
+							<Link to='/dashboard/settings'>Users</Link>
+						</li>
+						<li>
+							<Link to='/dashboard/reserves'>Reservations</Link>
+						</li>
+						<li>
+							<Button
+								className='w-100'
+								onClick={() => {
+									setIsModalOpen(true);
+									setIsActicved(false);
+								}}
+							>
+								Log Out
+							</Button>
+							<Modal2
+								className='login-modal'
+								isOpen={isModalOpen}
+								disableBackdropClose={true}
+								onClose={() => setIsModalOpen(false)}
+								title='Logout'
+							>
+								<span className='text-center w-100'>
+									Are you sure you want to sign out?
+								</span>
+								<div
+									className='mt-3'
+									style={{
+										display: "flex",
+										alignItems: "center",
+										gap: "5px",
+									}}
+								>
+									<button className='small-btn-main' onClick={logout}>
+										Log out
+									</button>
+									<button
+										className='seconadry-small-btn-main'
+										// style={{ backgroundColor: "#6a6a71" }}
+										onClick={() => setIsModalOpen(false)}
+									>
+										No Keep me sign in!
+									</button>
+								</div>
+							</Modal2>
+						</li>
+					</>
+				)}
 			</Options>
 		</Container>
 	);

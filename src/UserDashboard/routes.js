@@ -17,7 +17,7 @@ import Surrounding from "./layouts/Surrounding";
 import Faq from "./layouts/Faq";
 // @mui icons
 import Icon from "@mui/material/Icon";
-const { PASSENGER, MIDDLE_MAN, OWNER } = constans;
+const { PASSENGER, MIDDLE_MAN, OWNER, ADMIN } = constans;
 
 const routes = [
 	{
@@ -28,7 +28,7 @@ const routes = [
 		route: "/",
 		link: "/dashboard",
 		component: <Dashboard />,
-		accessibility: [PASSENGER, MIDDLE_MAN, OWNER],
+		accessibility: [PASSENGER, MIDDLE_MAN, OWNER, ADMIN],
 	},
 	{
 		type: "title",

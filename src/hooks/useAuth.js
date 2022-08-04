@@ -30,18 +30,36 @@ const useLogin = () => {
 			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
-			// Boom baby!
-			Cookies.set(constans.TOKEN, data.data.data.token.access_token, {
+			const user = data.data.user;
+			const info = {
+				id: user.id,
+				email: user.email,
+				google_id: user.google_id,
+				facebook_id: user.facebook_id,
+				first_name: user.first_name,
+				last_name: user.last_name,
+				avatar: user.avatar,
+				lang_id: user.lang_id,
+				currency_id: user.currency_id,
+				country_id: user.country_id,
+				email_verified_at: user.email_verified_at,
+				created_at: user.created_at,
+				updated_at: user.updated_at,
+				can_see_admin_dashboard: user.can_see_admin_dashboard,
+				types: user.types,
+			};
+			Cookies.set(constans.INFO, JSON.stringify(info), {
 				expires: new Date().getFullYear(),
 			});
+
+			Cookies.set(constans.TOKEN, data.data.token.access_token, {
+				expires: new Date().getFullYear(),
+			});
+
+			setUser({ ...user, userInformation: data.data.user });
 			Toastify("success", "Logged in successfully");
-			setUser({ ...user, userInformation: data.data.data.user });
-			Cookies.set(constans.INFO, JSON.stringify(data.data.data.user), {
-				expires: new Date().getFullYear(),
-			});
 			setTimeout(() => {
 				window.location.reload();
-				document.querySelector(".modal-backdrop").remove("");
 			}, 1000);
 		},
 	});
@@ -54,15 +72,6 @@ const useLoginWithGoogle = () => {
 			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
-			// Boom baby!
-			// Cookies.set(constans.TOKEN, data.data.data.token.access_token);
-			// Toastify("success", "Logged in successfully");
-			// setUser({ ...user, userInformation: data.data.data.user });
-			// Cookies.set(constans.INFO, JSON.stringify(data.data.data.user));
-			// setTimeout(() => {
-			// 	window.location.reload();
-			// 	document.querySelector(".modal-backdrop").remove("");
-			// }, 1000);
 			function popup() {
 				var features =
 					"directories=no,menubar=no,status=no,titlebar=no,toolbar=no,width=500,height=500";
