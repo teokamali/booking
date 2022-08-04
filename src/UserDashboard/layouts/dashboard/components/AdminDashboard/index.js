@@ -1,4 +1,5 @@
 import Grid from "@mui/material/Grid";
+import { ReusableTable } from "components";
 import { Loader2 } from "components";
 import { useGetPropertiesOccupation } from "hooks/useProperty";
 import { useGetAllTransactions } from "hooks/useTransactions";
@@ -33,12 +34,34 @@ function AdminDashboard() {
 	} = useGetPropertiesOccupation({
 		pageParam: propertiesOccupationPage,
 	});
-	// Users Info
+	// All Users Info
 	const {
 		data: userList,
 		refetch: refetchUserList,
 		isFetching: isUserListFetching,
 	} = useGetUsersList({ pageParam: userListPage });
+	// 10 Lateest passengers List
+	const {
+		data: latestPassengerList,
+		refetch: refetchLatestPassenger,
+		isFetching: isLatestPassengerFetching,
+	} = useGetUsersList({ pageParam: 1, type: "passenger" });
+	console.log(latestPassengerList);
+
+	// 10 Lateest Owner List
+	const {
+		data: latestOwnerList,
+		refetch: refetchLatestOwner,
+		isFetching: isLatestOwnerFetching,
+	} = useGetUsersList({ pageParam: 1, type: "property_owner" });
+
+	// 10 Lateest middleman List
+	const {
+		data: latestMiddlemanList,
+		refetch: refetchLatestMiddleman,
+		isFetching: isLatestMiddlemanFetching,
+	} = useGetUsersList({ pageParam: 1, type: "middleman" });
+
 	// transaction info
 
 	const {
@@ -48,7 +71,15 @@ function AdminDashboard() {
 	} = useGetAllTransactions({ pageParam: userListPage });
 
 	// Admin Dashboard
-	if (!propertiesOccupation || !userList || !TrasnsactionsList) return <Loader2 />;
+	if (
+		!propertiesOccupation ||
+		!userList ||
+		!TrasnsactionsList ||
+		!latestPassengerList ||
+		!latestOwnerList ||
+		!latestMiddlemanList
+	)
+		return <Loader2 />;
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
@@ -141,6 +172,72 @@ function AdminDashboard() {
 					</Grid>
 				</MDBox>
 			</MDBox>
+			{/*lastest passengers */}
+			<ReusableTable
+				title='Latest Passengers'
+				className=''
+				tableHead={["Name", "Email", "Location"]}
+			>
+				{latestPassengerList.data.map((passengers, i) => (
+					<tr className='table_body_row' key={i}>
+						<td className='table_body_d text-start'>
+							<span className='ps-3'>
+								{passengers.first_name} {passengers.last_name}
+							</span>
+						</td>
+						<td className='table_body_d'>
+							<span>{passengers.email}</span>
+						</td>
+						<td className=' table_body_d'>
+							<span>{passengers.country.name}</span>
+						</td>
+					</tr>
+				))}
+			</ReusableTable>
+			{/*lastest owner */}
+			<ReusableTable
+				title='Latest Owners'
+				className=''
+				tableHead={["Name", "Email", "Location"]}
+			>
+				{latestOwnerList.data.map((owner, i) => (
+					<tr className='table_body_row' key={i}>
+						<td className='table_body_d text-start'>
+							<span className='ps-3'>
+								{owner.first_name} {owner.last_name}
+							</span>
+						</td>
+						<td className='table_body_d'>
+							<span>{owner.email}</span>
+						</td>
+						<td className=' table_body_d'>
+							<span>{owner.country.name}</span>
+						</td>
+					</tr>
+				))}
+			</ReusableTable>
+			{/*lastest Middleman */}
+			<ReusableTable
+				title='Latest Middle Man'
+				className=''
+				tableHead={["Name", "Email", "Location"]}
+			>
+				{latestMiddlemanList.data.map((middleman, i) => (
+					<tr className='table_body_row' key={i}>
+						<td className='table_body_d text-start'>
+							<span className='ps-3'>
+								{middleman.first_name} {middleman.last_name}
+							</span>
+						</td>
+						<td className='table_body_d'>
+							<span>{middleman.email}</span>
+						</td>
+						<td className=' table_body_d'>
+							<span>{middleman.country.name}</span>
+						</td>
+					</tr>
+				))}
+			</ReusableTable>
 		</DashboardLayout>
 	);
 }
