@@ -1,6 +1,7 @@
 import Grid from "@mui/material/Grid";
 import { ReusableTable } from "components";
 import { Loader2 } from "components";
+import { useGetAllProperties } from "hooks/useProperty";
 import { useGetPropertiesOccupation } from "hooks/useProperty";
 import { useGetAllTransactions } from "hooks/useTransactions";
 import { useGetUsersList } from "hooks/useUser";
@@ -34,6 +35,12 @@ function AdminDashboard() {
 	} = useGetPropertiesOccupation({
 		pageParam: propertiesOccupationPage,
 	});
+	// All Properties
+
+	const { data: latestProperties, isLoading: isLatestPropetiesLoading } = useGetAllProperties({
+		pageParam: 1,
+		perPage: 10,
+	});
 	// All Users Info
 	const {
 		data: userList,
@@ -46,7 +53,6 @@ function AdminDashboard() {
 		refetch: refetchLatestPassenger,
 		isFetching: isLatestPassengerFetching,
 	} = useGetUsersList({ pageParam: 1, type: "passenger" });
-	console.log(latestPassengerList);
 
 	// 10 Lateest Owner List
 	const {
@@ -72,6 +78,7 @@ function AdminDashboard() {
 
 	// Admin Dashboard
 	if (
+		!latestProperties ||
 		!propertiesOccupation ||
 		!userList ||
 		!TrasnsactionsList ||
@@ -234,6 +241,67 @@ function AdminDashboard() {
 						</td>
 						<td className=' table_body_d'>
 							<span>{middleman.country.name}</span>
+						</td>
+					</tr>
+				))}
+			</ReusableTable>
+			{/*lastest transactions */}
+			<ReusableTable
+				title='Latest Transactions'
+				className=''
+				tableHead={["#", "Sender Name", "Amount", "Gateway", "Tracking Code", "Status"]}
+			>
+				{TrasnsactionsList.data.map((transaction, i) => (
+					<tr className='table_body_row' key={i}>
+						<td className='table_body_d text-start'>
+							<span className='ps-3'>{i + 1}</span>
+						</td>
+						<td className='table_body_d text-start'>
+							<span className='ps-3'>
+								{transaction.user.first_name} {transaction.user.last_name}
+							</span>
+							<p className='ps-3'>{transaction.user.email}</p>
+						</td>
+						<td className='table_body_d'>
+							<span>{transaction.amount}</span>
+						</td>
+						<td className=' table_body_d'>
+							<span>{transaction.gateway}</span>
+						</td>
+						<td className=' table_body_d'>
+							<span>{transaction.tracking_code}</span>
+						</td>
+						<td className=' table_body_d'>
+							<span>{transaction.status}</span>
+						</td>
+					</tr>
+				))}
+			</ReusableTable>
+			{/*lastest Properties */}
+			<ReusableTable
+				title='Latest Properties'
+				className=''
+				tableHead={["#", "Owner Name", "Name", "Location", "Type"]}
+			>
+				{latestProperties.data.map((property, i) => (
+					<tr className='table_body_row' key={i}>
+						<td className='table_body_d text-start'>
+							<span className='ps-3'>{i + 1}</span>
+						</td>
+						<td className='table_body_d text-start'>
+							<span className='ps-3'>
+								{property.user.first_name} {property.user.last_name}
+							</span>
+							<p className='ps-3'>{property.user.email}</p>
+						</td>
+						<td className='table_body_d'>
+							<span>{property.name}</span>
+						</td>
+						<td className=' table_body_d'>
+							<span>{property.city.name}</span>
+						</td>
+						<td className=' table_body_d'>
+							<span>{property.type.type}</span>
 						</td>
 					</tr>
 				))}

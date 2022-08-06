@@ -10,8 +10,10 @@ const useGetProperties = () => {
 	const { data, isLoading } = useQuery("getOwnerProperties", api.get.getOwnerProperties);
 	return { data, isLoading };
 };
-const useGetAllProperties = () => {
-	const { data, isLoading } = useQuery("getAllProperties", api.get.getAllProperties);
+const useGetAllProperties = ({ pageParam, perPage }) => {
+	const { data, isLoading } = useQuery(["getAllProperties", pageParam, perPage], () =>
+		api.get.getAllProperties(pageParam, perPage)
+	);
 	return { data, isLoading };
 };
 
