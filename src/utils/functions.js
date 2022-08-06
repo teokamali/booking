@@ -1,6 +1,8 @@
 import Cookies from "js-cookie";
 import { constans } from "values";
 import { useNavigate } from "react-router";
+import { stringify } from "stylis";
+import moment from "moment";
 export const toEnDigit = function (str) {
 	const persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
 	if (typeof str === "string") {
@@ -44,4 +46,21 @@ export const log = (text, color) => {
 		`%c ${text}`,
 		`color: ${color};font-family: IRANSansX; font-weight: bold; font-size: 1rem`
 	);
+};
+export const getDaysInMonthArray = function (year, month) {
+	const monthIndex = month - 1; // 0..11 instead of 1..12
+	const date = new Date(year, monthIndex, 1);
+	const currMonth = moment().format("MM");
+	console.log(currMonth);
+	const result = [];
+	while (date.getMonth() == monthIndex) {
+		const day = date.getDate();
+		result.push(
+			`${
+				day < 10 ? currMonth + "-" + "0" + day.toString() : currMonth + "-" + day.toString()
+			}`
+		);
+		date.setDate(date.getDate() + 1);
+	}
+	return result;
 };

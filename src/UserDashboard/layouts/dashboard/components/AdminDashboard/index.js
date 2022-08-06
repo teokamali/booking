@@ -6,7 +6,9 @@ import { useGetPropertiesOccupation } from "hooks/useProperty";
 import { useGetAllTransactions } from "hooks/useTransactions";
 import { useGetUsersList } from "hooks/useUser";
 import { useState } from "react";
-
+import ReactApexChart from "react-apexcharts";
+import Chart from "react-apexcharts";
+import moment from "moment";
 // Material Dashboard 2 React components
 import MDBox from "UserDashboard/components/MDBox";
 
@@ -20,13 +22,70 @@ import DashboardNavbar from "UserDashboard/examples/Navbars/DashboardNavbar";
 // Data
 import reportsBarChartData from "UserDashboard/layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "UserDashboard/layouts/dashboard/data/reportsLineChartData";
+import { getDaysInMonthArray } from "utils/functions";
 function AdminDashboard() {
 	const { sales, tasks } = reportsLineChartData;
 	// Paginations
+	const daysInMonth = getDaysInMonthArray(moment().format("YYYY"), moment().format("M"));
+	console.log(daysInMonth);
 	const [userListPage, setUserListPage] = useState(1);
 	const [propertiesOccupationPage, setPropertiesOccupationPage] = useState(1);
 	const [TransactionsPage, setTransactionsPage] = useState(1);
+	const [userChartData, setUserChartData] = useState({
+		series: [
+			{
+				name: "Passenger",
+				data: [
+					11, 12, 13, 14, 15, 16, 17, 18, 19, 110, 111, 112, 113, 114, 115, 116, 117, 118,
+					119, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 310, 311,
+				],
+			},
+			{
+				name: "Owner",
+				data: [
+					12, 22, 23, 24, 25, 26, 27, 28, 29, 210, 311, 232, 243, 254, 265, 216, 217, 218,
+					219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 320, 231,
+				],
+			},
+			{
+				name: "Middle Man",
+				data: [
+					13, 23, 33, 43, 53, 63, 73, 83, 93, 130, 131, 132, 133, 314, 15, 163, 17, 183,
+					19, 230, 21, 22, 23, 234, 253, 26, 27, 28, 293, 30, 31,
+				],
+			},
+		],
 
+		options: {
+			colors: ["#ff3f3f", "#008ffb", "#00e396"],
+			chart: {
+				height: 350,
+				type: "area",
+				zoom: {
+					enabled: false,
+				},
+				toolbar: {
+					show: false,
+				},
+			},
+			dataLabels: {
+				enabled: false,
+			},
+			stroke: {
+				curve: "smooth",
+			},
+			xaxis: {
+				type: "datetime",
+				categories: daysInMonth,
+			},
+			tooltip: {
+				enabled: true,
+				x: {
+					format: "dd/MM",
+				},
+			},
+		},
+	});
 	// Properties info
 	const {
 		data: propertiesOccupation,
@@ -137,47 +196,12 @@ function AdminDashboard() {
 						</MDBox>
 					</Grid>
 				</Grid>
-				<MDBox mt={4.5}>
-					<Grid container spacing={3}>
-						<Grid item xs={12} md={6} lg={4}>
-							<MDBox mb={3}>
-								<ReportsBarChart
-									color='info'
-									title='website views'
-									description='Last Campaign Performance'
-									date='campaign sent 2 days ago'
-									chart={reportsBarChartData}
-								/>
-							</MDBox>
-						</Grid>
-						<Grid item xs={12} md={6} lg={4}>
-							<MDBox mb={3}>
-								<ReportsLineChart
-									color='success'
-									title='daily sales'
-									description={
-										<>
-											(<strong>+15%</strong>) increase in today sales.
-										</>
-									}
-									date='updated 4 min ago'
-									chart={sales}
-								/>
-							</MDBox>
-						</Grid>
-						<Grid item xs={12} md={6} lg={4}>
-							<MDBox mb={3}>
-								<ReportsLineChart
-									color='dark'
-									title='completed tasks'
-									description='Last Campaign Performance'
-									date='just updated'
-									chart={tasks}
-								/>
-							</MDBox>
-						</Grid>
-					</Grid>
-				</MDBox>
+				<ReactApexChart
+					options={userChartData.options}
+					series={userChartData.series}
+					type='area'
+					height={350}
+				/>
 			</MDBox>
 			{/*lastest passengers */}
 			<ReusableTable
